@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "518528650096",
+    "firebase_url": "https://sistur-app-cdf.firebaseio.com",
+    "project_id": "sistur-app-cdf",
+    "storage_bucket": "sistur-app-cdf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:518528650096:android:1533ecaf42677421ee5db5",
+        "android_client_info": {
+          "package_name": "com.dgaviria.sistur"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "518528650096-7t4h8jcf92ugbso0k02h8iq6jb0qi1vh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dgaviria.sistur",
+            "certificate_hash": "6d209489bbfcbe8201c7c225753e548a34abdd66"
+          }
+        },
+        {
+          "client_id": "518528650096-lh23u9mousbfh83721mccnr4airfo7s0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfXVY328QVC2blCm4k9ehr2JzmoxFpYrk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "518528650096-lh23u9mousbfh83721mccnr4airfo7s0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
