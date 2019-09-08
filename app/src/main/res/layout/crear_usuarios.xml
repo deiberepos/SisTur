@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondoanimado"
+    android:orientation="vertical"
+    android:id="@+id/contenedor"
+    tools:context=".CrearUsuarios">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            >
+            <ImageView
+                android:layout_width="65dp"
+                android:layout_height="70dp"
+                android:background="@drawable/logoinicialclaro" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:shadowColor="@color/colorClaro"
+                    android:shadowDx="-2"
+                    android:shadowDy="-2"
+                    android:shadowRadius="1.5"
+                    android:text="Creación de usuarios"
+                    android:textColor="@color/colorNegro"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
+                <EditText
+                    android:id="@+id/editTextUsuario"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="monospace"
+                    android:hint="usuario"
+                    android:inputType="textPostalAddress"
+                    android:maxLength="15"
+                    android:paddingBottom="15dp"
+                    android:textColor="@color/colorAmarillo"
+                    android:textSize="15dp"
+                    android:elegantTextHeight="true"
+                    android:textColorHint="@color/colorClaro"
+                    android:backgroundTint="@color/colorRojo"/>
+
+                <EditText
+                    android:id="@+id/editTextPassword"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="monospace"
+                    android:hint="contraseña"
+                    android:inputType="textPassword"
+                    android:maxLength="15"
+                    android:textSize="15dp"
+                    android:paddingBottom="15dp"
+                    android:textColor="@color/colorAmarillo"
+                    android:textColorHint="@color/colorClaro"
+                    android:backgroundTint="@color/colorRojo"
+                    />
+                <EditText
+                    android:id="@+id/editTextVerificaPassword"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="monospace"
+                    android:hint="verifica contraseña"
+                    android:inputType="textPassword"
+                    android:textSize="15dp"
+                    android:maxLength="15"
+                    android:paddingBottom="15dp"
+                    android:textColor="@color/colorAmarillo"
+                    android:textColorHint="@color/colorClaro"
+                    android:backgroundTint="@color/colorRojo"/>
+                <EditText
+                    android:id="@+id/editTextCorreo"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="monospace"
+                    android:hint="correo"
+                    android:inputType="textEmailAddress"
+                    android:maxLength="35"
+                    android:paddingBottom="15dp"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorAmarillo"
+                    android:textColorHint="@color/colorClaro"
+                    android:backgroundTint="@color/colorRojo"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:shadowColor="@color/colorClaro"
+                    android:shadowDx="-2"
+                    android:shadowDy="-2"
+                    android:shadowRadius="1.5"
+                    android:text="Rol"
+                    android:textColor="@color/colorNegro"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+                <RadioGroup
+                    android:id="@+id/rgRoles"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/rounded_button_transparent"
+                    android:orientation="horizontal"
+                    android:paddingEnd="15dp">
+
+                    <RadioButton
+                        android:id="@+id/opbRolUno"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp"
+                        android:paddingRight="15dp"
+                        android:paddingBottom="15dp"
+                        android:text="Gestor"
+                        android:textColor="@color/colorAmarillo"
+                        android:typeface="monospace"
+                        app:buttonTint="@color/colorRojo"/>
+
+                    <RadioButton
+                        android:id="@+id/opbRolDos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp"
+                        android:paddingRight="15dp"
+                        android:paddingBottom="15dp"
+                        android:text="Compras"
+                        android:textColor="@color/colorAmarillo"
+                        android:typeface="monospace"
+                        app:buttonTint="@color/colorRojo"/>
+
+                    <RadioButton
+                        android:id="@+id/opbRolTres"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="15dp"
+                        android:text="Básico"
+                        android:textColor="@color/colorAmarillo"
+                        android:typeface="monospace"
+                        app:buttonTint="@color/colorRojo"/>
+                </RadioGroup>
+
+                <Button
+                    android:id="@+id/botonRegistrar"
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/rounded_button_solid"
+                    android:text="Registrar Usuario"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorClaro" />
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/barraProgreso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:visibility="gone" />
+        </RelativeLayout>
+    </ScrollView>
+</LinearLayout>
