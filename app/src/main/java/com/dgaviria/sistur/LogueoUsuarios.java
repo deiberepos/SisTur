@@ -3,20 +3,17 @@ package com.dgaviria.sistur;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
-import android.util.Patterns;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
+import com.dgaviria.sistur.Clases.Usuarios;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,7 +22,6 @@ import com.google.firebase.database.ValueEventListener;
 
 public class LogueoUsuarios extends AppCompatActivity{
     DatabaseReference miReferencia;
-    DatabaseReference miHija;
     EditText editTextUsuario, editTextContrasena;
     ProgressBar barraProgreso;
     String nombreU,contrasenaU;
@@ -61,9 +57,9 @@ public class LogueoUsuarios extends AppCompatActivity{
     }
 
     private void verificarPermiso(){
-        Boolean finalizar=false;
         barraProgreso.setVisibility(View.VISIBLE);
-        miReferencia= FirebaseDatabase.getInstance().getReference();
+        miReferencia= FirebaseDatabase.getInstance().getReference("usuarios");
+
         if (editTextUsuario.getText().toString().trim().toLowerCase().isEmpty()) {
             editTextUsuario.setError("Nombre de usuario requerido");
             editTextUsuario.requestFocus();
@@ -82,55 +78,51 @@ public class LogueoUsuarios extends AppCompatActivity{
             contrasenaU = editTextContrasena.getText().toString().trim();
             editTextContrasena.setText(contrasenaU);
         }
-        switch (nombreU){
-            case "deiber":
-                miHija=miReferencia.child("deiber");
-                break;
-            case "cristian":
-                miHija=miReferencia.child("cristian");
-                break;
-            case "felipe":
-                miHija=miReferencia.child("felipe");
-                break;
-            case "administrador":
-                miHija=miReferencia.child("administrador");
-                break;
-            default:
-                Toast.makeText(getApplicationContext(), "El usuario no es válido", Toast.LENGTH_SHORT).show();
-                finalizar=true;
-                break;
-        }
+        miReferencia.child(nombreU).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    //se crea un objeto para que lea uno a uno los campos de la BD,
+                    //se hace uno a uno para garantizar el paso de los Boolean correctamente
+                    Usuarios usuarioC=new Usuarios(
+                            dataSnapshot.child("usuario").getValue(String.class),
+                            dataSnapshot.child("contrasena").getValue(String.class),
+                            dataSnapshot.child("nombre").getValue(String.class),
+                            dataSnapshot.child("correo").getValue(String.class),
+                            dataSnapshot.child("rolsuper").getValue(Boolean.class),
+                            dataSnapshot.child("roladmin").getValue(Boolean.class),
+                            dataSnapshot.child("rolgestor").getValue(Boolean.class),
+                            dataSnapshot.child("rolcompras").getValue(Boolean.class),
+                            dataSnapshot.child("rolbasico").getValue(Boolean.class));
+                    //valida el nombre del usuario
+                    if (usuarioC.getUsuario().equals(nombreU)) {
+                        //valida la contraseña
+                        if(usuarioC.getContrasena().equals(contrasenaU)) {
+                            //verifica si tiene el rol de administrador
+                            if (usuarioC.getRoladmin() || usuarioC.getRolsuper() ) {
+                                Intent miIntento = new Intent(getApplicationContext(), CrearUsuarios.class);
+                                startActivity(miIntento);
+                            } else {
+                                Intent miIntento = new Intent(getApplicationContext(), MainActivity.class);
+                                startActivity(miIntento);
+                            }
+                            finish();
+                        }
+                        else
+                            Toast.makeText(getApplicationContext(), "La contraseña está errada", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                        Toast.makeText(getApplicationContext(), "El usuario "+nombreU+" no existe", Toast.LENGTH_SHORT).show();
+                }
+                else
+                    Toast.makeText(getApplicationContext(), "El usuario "+nombreU+" no existe", Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         barraProgreso.setVisibility(View.GONE);
-        if (!finalizar) {
-            miHija.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    String miValidar = dataSnapshot.getValue(String.class);
-                    if (miValidar.equals(contrasenaU) && !contrasenaU.isEmpty()) {
-                        Toast.makeText(getApplicationContext(), "Ya tienes acceso", Toast.LENGTH_SHORT).show();
-                        if (nombreU.equals("administrador")){
-                            Intent miIntento = new Intent(getApplicationContext(), CrearUsuarios.class);
-                            startActivity(miIntento);
-                            finish();
-                        }
-                        else{
-                            Intent miIntento = new Intent(getApplicationContext(), MainActivity.class);
-                            startActivity(miIntento);
-                            finish();
-                        }
-                    }
-                    else {
-                        Toast.makeText(getApplicationContext(), "Tu clave está errada, intenta de nuevo", Toast.LENGTH_SHORT).show();
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
-            });
-        }
-
     }
 
     @Override

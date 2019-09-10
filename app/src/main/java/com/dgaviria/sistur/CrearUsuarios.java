@@ -12,20 +12,24 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioGroup;
-import android.widget.ScrollView;
 import android.widget.Toast;
 
+import com.dgaviria.sistur.Clases.Roles;
+import com.dgaviria.sistur.Clases.Usuarios;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class CrearUsuarios extends AppCompatActivity {
-    DatabaseReference miReferencia;
-    EditText editTextUsuario, editTextContrasena,editTextVerificaContrasena,editTextCorreo;
+    DatabaseReference miReferencia,misDatos;
+    EditText editTextUsuario, editTextContrasena,editTextVerificaContrasena,editTextCorreo,editTextNombres ;
     ProgressBar barraProgreso;
-    String nombreU,contrasenaU,contrasenaV,correoE;
+    String usuarioU,contrasenaU,contrasenaV,correoE,nombresU,nombreRol;
     AnimationDrawable animacion;
     LinearLayout miContenedor;
     Button botonRegistra;
@@ -50,6 +54,7 @@ public class CrearUsuarios extends AppCompatActivity {
         editTextContrasena= findViewById(R.id.editTextPassword);
         editTextVerificaContrasena= findViewById(R.id.editTextVerificaPassword);
         editTextCorreo=findViewById(R.id.editTextCorreo);
+        editTextNombres=findViewById(R.id.editTextNombre);
         barraProgreso = findViewById(R.id.barraProgreso);
         botonRegistra=findViewById(R.id.botonRegistrar);
         rolSeleccionado=findViewById(R.id.rgRoles);
@@ -63,7 +68,7 @@ public class CrearUsuarios extends AppCompatActivity {
     private void verificarDatosUsuario(){
         Boolean finalizar=false;
         barraProgreso.setVisibility(View.VISIBLE);
-        miReferencia= FirebaseDatabase.getInstance().getReference();
+        miReferencia= FirebaseDatabase.getInstance().getReference("usuarios");
         //Verifica que escriba los valores en todos los campos requeridos
         if (editTextUsuario.getText().toString().trim().toLowerCase().isEmpty()){
             editTextUsuario.setError("Nombre de usuario requerido");
@@ -72,8 +77,8 @@ public class CrearUsuarios extends AppCompatActivity {
             return;
         }
         else{
-            nombreU=editTextUsuario.getText().toString().trim().toLowerCase();
-            editTextUsuario.setText(nombreU);
+            usuarioU=editTextUsuario.getText().toString().trim().toLowerCase();
+            editTextUsuario.setText(usuarioU);
         }
         if (editTextContrasena.getText().toString().trim().isEmpty()){
             editTextContrasena.setError("Contraseña requerida");
@@ -125,6 +130,16 @@ public class CrearUsuarios extends AppCompatActivity {
                 return;
             }
         }
+        if (editTextNombres.getText().toString().trim().isEmpty()){
+            editTextNombres.setError("Los nombres y apellidos son requeridos");
+            editTextNombres.requestFocus();
+            barraProgreso.setVisibility(View.GONE);
+            return;
+        }
+        else{
+            nombresU=editTextNombres.getText().toString().trim();
+            editTextNombres.setText(nombresU);
+        }
         //verifica el rol seleccionado
         rolSeleccionado.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -132,31 +147,80 @@ public class CrearUsuarios extends AppCompatActivity {
                 switch (cualRol) {
                     case R.id.opbRolUno:
                         rolUsuario=1;
+                        nombreRol="administrador";
                         break;
                     case R.id.opbRolDos:
                         rolUsuario=2;
+                        nombreRol="gestor";
                         break;
                     case R.id.opbRolTres:
                         rolUsuario=3;
+                        nombreRol="compras";
+                        break;
+                    case R.id.opbRolCuatro:
+                        rolUsuario=4;
+                        nombreRol="basico";
                         break;
                     default:
                         rolUsuario=0;
+                        nombreRol="";
                         break;
                 }
             }
         });
         barraProgreso.setVisibility(View.GONE);
         if (rolUsuario!=0) {
-            if (nombreU.equals("deiber") || nombreU.equals("cristian") || nombreU.equals("felipe") || nombreU.equals("administrador")) {
-                Toast.makeText(getApplicationContext(), "Usuario ya existe, intente de nuevo", Toast.LENGTH_SHORT).show();
-            } else {
-                Intent miIntento = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(miIntento);
-                finish();
-            }
+            //verifica que no se repita el nombre del usuario
+            miReferencia.child(usuarioU).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        //valida el nombre del usuario
+                        if (dataSnapshot.child("usuario").getValue(String.class).equals(usuarioU)) {
+                            Toast.makeText(getApplicationContext(), "Este usuario ya existe, intente otro nombre", Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            crearNuevoUsuario();
+                            finish();
+                        }
+                    }
+                    else {
+                        crearNuevoUsuario();
+                        finish();
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
         }
         else
             Toast.makeText(getApplicationContext(), "Debe seleccionar un rol", Toast.LENGTH_SHORT).show();
+    }
+
+    private void crearNuevoUsuario() {
+        //construye el objeto que se va a guardar en la base de datos
+        miReferencia= FirebaseDatabase.getInstance().getReference();
+        //guarda los datos del usuario
+        misDatos=miReferencia.child("usuarios");
+        misDatos.child(usuarioU).setValue(new Usuarios(usuarioU,contrasenaU,nombresU,correoE,false,rolUsuario==1,rolUsuario==2,rolUsuario==3,rolUsuario==4));
+        /*Usar para actualizar
+        Map<String,Usuarios> usuariosMap=new HashMap<>();
+        usuariosMap.put(usuarioU,new Usuarios(
+                usuarioU,contrasenaU,nombresU,correoE,false,rolUsuario==1,rolUsuario==2,rolUsuario==3,rolUsuario==4));
+        misDatos.setValue(usuariosMap);*/
+        //guarda los datos del rol
+        misDatos=miReferencia.child("rol").child(nombreRol).child("miembros");
+        misDatos.child(usuarioU).setValue(new Roles(true));
+        /*Usar para actualizar
+        Map<String, Roles> rolesMap=new HashMap<>();
+        rolesMap.put(nombreRol,new Roles(usuarioU,true));
+        misDatos.setValue(rolesMap);*/
+
+        Toast.makeText(this,"Usuario creado exitosamente",Toast.LENGTH_SHORT).show();
+        Intent miIntento = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(miIntento);
     }
 
     @Override
