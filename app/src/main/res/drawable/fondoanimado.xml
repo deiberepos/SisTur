@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:duration="3000"
+        android:drawable="@drawable/fondoingresoinicio"/>
+
+    <item android:duration="5000"
+        android:drawable="@drawable/fondoingreso"/>
+
+    <item android:duration="5000"
+        android:drawable="@drawable/fondoingresosalida"/>
+
+</animation-list>
