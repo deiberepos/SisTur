@@ -100,8 +100,10 @@ public class LogueoUsuarios extends AppCompatActivity{
                         if(usuarioC.getContrasena().equals(contrasenaU)) {
                             //verifica si tiene el rol de administrador
                             if (usuarioC.getRoladmin() || usuarioC.getRolsuper() ) {
-                                Intent miIntento = new Intent(getApplicationContext(), CrearUsuarios.class);
-                                startActivity(miIntento);
+                                //Intent miIntento = new Intent(getApplicationContext(), CrearUsuarios.class);
+                                //startActivity(miIntento);
+                                Intent intent = new Intent(getApplicationContext(), MenuSuper.class);
+                                startActivity(intent);
                             } else {
                                 Intent miIntento = new Intent(getApplicationContext(), MainActivity.class);
                                 startActivity(miIntento);

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="veredas">
+        <item>Vereda Santa Rosa</item>
+        <item>Vereda la Cabana</item>
+        <item>Vereda Campo Bello</item>
+        <item>Vereda Siloe</item>
+        <item>Vereda Triana</item>
+        <item>Vereda Santa Fe</item>
+        <item>Vereda Limonar</item>
+        <item>Vereda Cerrito</item>
+        <item>Vereda Pureto</item>
+        <item>Vereda Garzón</item>
+        <item>Vereda Llano largo</item>
+    </string-array>
+</resources>

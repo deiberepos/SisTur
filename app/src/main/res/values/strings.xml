@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">SisTur</string>
+    <string name="menu_opciones_administrador">MENU OPCIONES ADMINISTRADOR</string>
+    <string name="TituloRegCentro">REGISTRO DE INFORMACIÓN</string>
+    <string name="nombre_asignado">Nombre asignado</string>
+    <string name="escribe_aqu">Escribe aquí</string>
+    <string name="centro_de_desarrollo">Centro de desarrollo</string>
+    <string name="hogarcomunitario">Hogar comunitario</string>
 </resources>
