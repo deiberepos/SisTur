@@ -62,11 +62,13 @@
             android:layout_height="wrap_content">
 
             <RadioButton
+                android:id="@+id/idrbCentro"
                 style="@style/TexviewsubTitulo"
                 android:text="Centro Desarrollo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <RadioButton
+                android:id="@+id/rbHogar"
                 style="@style/TexviewsubTitulo"
                 android:text="Hogar Comunitario"
                 android:layout_marginLeft="20dp"
@@ -86,26 +88,31 @@
             android:layout_height="wrap_content">
 
             <RadioButton
+                android:id="@+id/idrbPlaya"
                 style="@style/TexviewsubTitulo"
                 android:text="Vereda La Playa"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <RadioButton
+                android:id="@+id/idrbAlpes"
                 style="@style/TexviewsubTitulo"
                 android:text="Vereda Alpes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <RadioButton
+                android:id="@+id/idrbVenecia"
                 style="@style/TexviewsubTitulo"
                 android:text="Vereda Venecia"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <RadioButton
+                android:id="@+id/idrbSarzal"
                 style="@style/TexviewsubTitulo"
                 android:text="Vereda Sarzal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <RadioButton
+                android:id="@+id/idrbTrujillo"
                 style="@style/TexviewsubTitulo"
                 android:text="Vereda Trujillo"
                 android:layout_width="wrap_content"

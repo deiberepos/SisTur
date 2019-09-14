@@ -1,5 +1,6 @@
 package com.dgaviria.sistur;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.drawable.AnimationDrawable;
@@ -10,14 +11,32 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.RadioGroup;
 import android.widget.ScrollView;
+import android.widget.Toast;
+
+import com.dgaviria.sistur.Clases.CdiHcb;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class RegistrarCDIHCB extends AppCompatActivity {
     private AnimationDrawable animacion;
     private ScrollView contenedorScroll;
-    private EditText nombreCentro, nombreEncargado, nomContacto, dirEncargado, dirContacto, telEncargado,telContacto;
+    private EditText edtnombreCentro, edtnombreEncargado, edtnomContacto, edtdirEncargado, edtdirContacto, edttelEncargado, edttelContacto;
     private Button btnGuardar;
     ListView listaveredas;
+
+    DatabaseReference miReferencia,misDatos;
+
+    ProgressBar barraProgreso;
+    String nombrecentro, nombreE, nombreC, direccionE, direccionC, telE, telC, vereda;
+
+    RadioGroup rgbtipo, rgbvereda;
+    Integer tipo=2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,19 +47,197 @@ public class RegistrarCDIHCB extends AppCompatActivity {
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                cargarDatos();
+                guardarCentro();
             }
         });
     }
 
+    private void cargarDatos(){
+
+
+            Boolean finalizar=false;
+//            barraProgreso.setVisibility(View.VISIBLE);
+            miReferencia= FirebaseDatabase.getInstance().getReference("CDI&HCB");
+            nombrecentro=edtnombreCentro.getText().toString();
+            nombreE=edtnombreEncargado.getText().toString();
+            nombreC=edtnomContacto.getText().toString();
+            direccionE=edtdirEncargado.getText().toString();
+            direccionC=edtdirContacto.getText().toString();
+            telE=edttelEncargado.getText().toString();
+            telC=edttelContacto.getText().toString();
+            /*
+            //Verifica que escriba los valores en todos los campos requeridos
+            if (editTextUsuario.getText().toString().trim().toLowerCase().isEmpty()){
+                editTextUsuario.setError("Nombre de usuario requerido");
+                editTextUsuario.requestFocus();
+                barraProgreso.setVisibility(View.GONE);
+                return;
+            }
+            else{
+                usuarioU=editTextUsuario.getText().toString().trim().toLowerCase();
+                editTextUsuario.setText(usuarioU);
+            }
+            if (editTextContrasena.getText().toString().trim().isEmpty()){
+                editTextContrasena.setError("Contraseña requerida");
+                editTextContrasena.requestFocus();
+                barraProgreso.setVisibility(View.GONE);
+                return;
+            }
+            else{
+                contrasenaU=editTextContrasena.getText().toString().trim();
+                editTextContrasena.setText(contrasenaU);
+            }
+            if (editTextVerificaContrasena.getText().toString().trim().isEmpty()){
+                editTextVerificaContrasena.setError("Validación requerida");
+                editTextVerificaContrasena.requestFocus();
+                barraProgreso.setVisibility(View.GONE);
+                return;
+            }
+            else{
+                //Verifica que las contraseñas coincidan
+                contrasenaV=editTextVerificaContrasena.getText().toString().trim();
+                editTextVerificaContrasena.setText(contrasenaV);
+                if (!contrasenaU.equals(contrasenaV)){
+                    editTextVerificaContrasena.setError("Las contraseñas no coinciden");
+                    editTextVerificaContrasena.requestFocus();
+                    barraProgreso.setVisibility(View.GONE);
+                    return;
+                }
+                else{
+                    contrasenaV=editTextVerificaContrasena.getText().toString().trim();
+                    editTextVerificaContrasena.setText(contrasenaV);
+                }
+            }
+            if (editTextCorreo.getText().toString().trim().toLowerCase().isEmpty()){
+                editTextCorreo.setError("El correo es requerido");
+                editTextCorreo.requestFocus();
+                barraProgreso.setVisibility(View.GONE);
+                return;
+            }
+            else{
+                //Verifica que el correo esté bien escrito
+                correoE=editTextCorreo.getText().toString().trim().toLowerCase();
+                if(android.util.Patterns.EMAIL_ADDRESS.matcher(correoE).matches()){
+                    editTextCorreo.setText(correoE);
+                }
+                else{
+                    editTextCorreo.setError("El correo no es válido");
+                    editTextCorreo.requestFocus();
+                    barraProgreso.setVisibility(View.GONE);
+                    return;
+                }
+            }
+            if (editTextNombres.getText().toString().trim().isEmpty()){
+                editTextNombres.setError("Los nombres y apellidos son requeridos");
+                editTextNombres.requestFocus();
+                barraProgreso.setVisibility(View.GONE);
+                return;
+            }
+            else{
+                nombresU=editTextNombres.getText().toString().trim();
+                editTextNombres.setText(nombresU);
+            }*/
+            //verifica el rol seleccionado
+        rgbtipo.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int tipo) {
+               switch (tipo){
+                   case R.id.idrbCentro:
+                       tipo=0;
+                       break;
+                   case R.id.rbHogar:
+                       tipo=1;
+                       break;
+               }
+            }
+        });
+            rgbvereda.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                    switch (i){
+                        case R.id.idrbAlpes:
+                            vereda="Los Alpes";
+                            break;
+                        case R.id.idrbPlaya:
+                            vereda="La Playa";
+                            break;
+                        case R.id.idrbVenecia:
+                            vereda="Venecia";
+                            break;
+                        case R.id.idrbSarzal:
+                            vereda="Sarzal";
+                            break;
+                        case R.id.idrbTrujillo:
+                            vereda="Trujillo";
+                            break;
+                    }
+                }
+            });
+            /*
+            barraProgreso.setVisibility(View.GONE);
+            if (rolUsuario!=0) {
+                //verifica que no se repita el nombre del usuario
+                miReferencia.child(usuarioU).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            //valida el nombre del usuario
+                            if (dataSnapshot.child("usuario").getValue(String.class).equals(usuarioU)) {
+                                Toast.makeText(getApplicationContext(), "Este usuario ya existe, intente otro nombre", Toast.LENGTH_SHORT).show();
+                            }
+                            else {
+                                crearNuevoUsuario();
+                                finish();
+                            }
+                        }
+                        else {
+                            crearNuevoUsuario();
+                            finish();
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+            }
+            else
+                Toast.makeText(getApplicationContext(), "Debe seleccionar un rol", Toast.LENGTH_SHORT).show();
+        */
+    }
+    private void guardarCentro(){
+        //construye el objeto que se va a guardar en la base de datos
+        miReferencia= FirebaseDatabase.getInstance().getReference();
+        //guarda los datos del usuario
+        misDatos=miReferencia.child("CDI&HCB");
+        misDatos.child(nombrecentro).setValue(new CdiHcb(nombrecentro,nombreE,nombreC,vereda,direccionE,direccionC,telE,telC,tipo));
+        /*Usar para actualizar
+        Map<String,Usuarios> usuariosMap=new HashMap<>();
+        usuariosMap.put(usuarioU,new Usuarios(
+                usuarioU,contrasenaU,nombresU,correoE,false,rolUsuario==1,rolUsuario==2,rolUsuario==3,rolUsuario==4));
+        misDatos.setValue(usuariosMap);*/
+        //guarda los datos del rol
+        //misDatos=miReferencia.child("rol").child(nombreRol).child("miembros");
+        //misDatos.child(usuarioU).setValue(new Roles(true));
+        /*Usar para actualizar
+        Map<String, Roles> rolesMap=new HashMap<>();
+        rolesMap.put(nombreRol,new Roles(usuarioU,true));
+        misDatos.setValue(rolesMap);*/
+        rgbvereda.clearCheck();
+        Toast.makeText(this,"Centro creado exitosamente",Toast.LENGTH_SHORT).show();
+    }
+
     private void referenciar() {
-        nombreCentro=findViewById(R.id.idedtnombreregCentro);
-        nombreEncargado=findViewById(R.id.idedtnombreencargado);
-        nomContacto=findViewById(R.id.idedtnombreContacto);
-        dirEncargado=findViewById(R.id.idedtdirEncargado);
-        dirContacto=findViewById(R.id.idedtdirContacto);
-        telEncargado=findViewById(R.id.idedttelEncargado);
-        telContacto=findViewById(R.id.idedttelContacto);
+        edtnombreCentro =findViewById(R.id.idedtnombreregCentro);
+        edtnombreEncargado =findViewById(R.id.idedtnombreencargado);
+        edtnomContacto =findViewById(R.id.idedtnombreContacto);
+        edtdirEncargado =findViewById(R.id.idedtdirEncargado);
+        edtdirContacto =findViewById(R.id.idedtdirContacto);
+        edttelEncargado =findViewById(R.id.idedttelEncargado);
+        edttelContacto =findViewById(R.id.idedttelContacto);
+        rgbtipo=findViewById(R.id.idrgUbicaRegCDI);
+        rgbvereda=findViewById(R.id.idrgveredaCDI);
        // listaveredas=findViewById(R.id.idlisVeredas);
         btnGuardar=findViewById(R.id.idbtnregCDI);
         contenedorScroll=findViewById(R.id.idcontenerRegCDI);
