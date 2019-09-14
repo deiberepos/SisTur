@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.ImageButton;
 
 public class MenuSuper extends AppCompatActivity implements View.OnClickListener{
-    private ImageButton btnregUsuarios, btnregHogares;
+    private ImageButton btnregUsuarios, btnregHogares,btnCensoPoblacion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,8 +20,10 @@ public class MenuSuper extends AppCompatActivity implements View.OnClickListener
     private void referenciar() {
         btnregUsuarios=findViewById(R.id.idBtnRegisMenuSuper);
         btnregHogares=findViewById(R.id.idBtnCdiMenuSuper);
+        btnCensoPoblacion=findViewById(R.id.idBtnCensoPoblacion);
         btnregUsuarios.setOnClickListener(this);
         btnregHogares.setOnClickListener(this);
+        btnCensoPoblacion.setOnClickListener(this);
     }
 
     @Override
@@ -34,6 +36,10 @@ public class MenuSuper extends AppCompatActivity implements View.OnClickListener
             case R.id.idBtnCdiMenuSuper:
                 Intent intent = new Intent(getApplicationContext(), RegistrarCDIHCB.class);
                 startActivity(intent);
+                break;
+            case R.id.idBtnCensoPoblacion:
+                Intent intentcenso = new Intent(getApplicationContext(), CensoPoblacional.class);
+                startActivity(intentcenso);
                 break;
 
         }
