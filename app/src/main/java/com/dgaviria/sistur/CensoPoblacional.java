@@ -18,6 +18,7 @@ RadioButton genero;
         referenciar();
     }
 
+
     public void referenciar()
     {
 
