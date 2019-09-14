@@ -1,4 +1,4 @@
-package com.dgaviria.sistur;
+package com.dgaviria.sistur.Usuarios;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +14,9 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.dgaviria.sistur.Clases.Usuarios;
+import com.dgaviria.sistur.MainActivity;
+import com.dgaviria.sistur.MenuSuper;
+import com.dgaviria.sistur.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -99,10 +102,13 @@ public class LogueoUsuarios extends AppCompatActivity{
                         //valida la contraseña
                         if(usuarioC.getContrasena().equals(contrasenaU)) {
                             //verifica si tiene el rol de administrador
-                            if (usuarioC.getRoladmin() || usuarioC.getRolsuper() ) {
-                                //Intent miIntento = new Intent(getApplicationContext(), CrearUsuarios.class);
-                                //startActivity(miIntento);
-                                Intent intent = new Intent(getApplicationContext(), MenuSuper.class);
+                            if (usuarioC.getRoladmin()){
+                                    //Intent miIntento = new Intent(getApplicationContext(), CrearUsuarios.class);
+                                    //startActivity(miIntento);
+                                    Intent intent = new Intent(getApplicationContext(), MenuSuper.class);
+                                    startActivity(intent);
+                            }else if (usuarioC.getRolsuper() ) {
+                                Intent intent = new Intent(getApplicationContext(), ListarUsuarios.class);
                                 startActivity(intent);
                             } else {
                                 Intent miIntento = new Intent(getApplicationContext(), MainActivity.class);

@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.widget.ImageView;
 
+import com.dgaviria.sistur.Usuarios.LogueoUsuarios;
+
 public class Splash extends AppCompatActivity {
     ImageView imagen;
     private final int DURACION_SPLASH = 2000;
@@ -18,7 +20,7 @@ public class Splash extends AppCompatActivity {
         new Handler().postDelayed(new Runnable(){
             public void run(){
                 // Cuando pasen los 2 segundos, pasamos a la actividad principal de la aplicación
-                Intent intento = new Intent(Splash.this,LogueoUsuarios.class);
+                Intent intento = new Intent(Splash.this, LogueoUsuarios.class);
                 startActivity(intento);
                 finish();
             }

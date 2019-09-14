@@ -9,10 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RegistrarCDIHCB"></activity>
+        <activity android:name=".Usuarios.usuariosLista"></activity>
+        <activity android:name=".RegistrarCDIHCB" />
         <activity android:name=".MenuSuper" />
-        <activity android:name=".LogueoUsuarios" />
-        <activity android:name=".CrearUsuarios" />
+        <activity android:name=".Usuarios.LogueoUsuarios" />
+        <activity android:name=".Usuarios.CrearUsuarios" />
+        <activity android:name=".Usuarios.ListarUsuarios" />
         <activity android:name=".MainActivity" />
         <activity android:name=".Splash">
             <intent-filter>

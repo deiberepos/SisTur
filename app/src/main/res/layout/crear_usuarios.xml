@@ -7,7 +7,7 @@
     android:background="@drawable/fondoanimado"
     android:orientation="vertical"
     android:id="@+id/contenedor"
-    tools:context=".CrearUsuarios">
+    tools:context=".Usuarios.CrearUsuarios">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">

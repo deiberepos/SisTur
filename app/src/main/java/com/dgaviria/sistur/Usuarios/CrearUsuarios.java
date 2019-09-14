@@ -1,4 +1,4 @@
-package com.dgaviria.sistur;
+package com.dgaviria.sistur.Usuarios;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import com.dgaviria.sistur.Clases.Roles;
 import com.dgaviria.sistur.Clases.Usuarios;
+import com.dgaviria.sistur.MainActivity;
+import com.dgaviria.sistur.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

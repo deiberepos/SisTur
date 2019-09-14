@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
+import com.dgaviria.sistur.Usuarios.CrearUsuarios;
+
 public class MenuSuper extends AppCompatActivity implements View.OnClickListener{
     private ImageButton btnregUsuarios, btnregHogares;
 

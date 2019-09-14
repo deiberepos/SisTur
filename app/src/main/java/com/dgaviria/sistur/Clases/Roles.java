@@ -1,5 +1,7 @@
 package com.dgaviria.sistur.Clases;
 
+import java.util.Date;
+
 public class Roles {
 
     public Boolean activo;
