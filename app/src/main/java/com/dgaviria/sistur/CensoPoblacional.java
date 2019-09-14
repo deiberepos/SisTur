@@ -20,6 +20,7 @@ RadioButton genero;
 
     public void referenciar()
     {
+
         btnguardar=findViewById(R.id.btnguardarcenso);
 
     }
