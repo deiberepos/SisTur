@@ -6,4 +6,7 @@
     <string name="escribe_aqu">Escribe aquí</string>
     <string name="centro_de_desarrollo">Centro de desarrollo</string>
     <string name="hogarcomunitario">Hogar comunitario</string>
+    <string name="censo">CensoPoblacional</string>
+    <string name="nombreinfante">Nombre Del Infante</string>
+    <string name="apellidoinfante">Apellido Del Infante</string>
 </resources>

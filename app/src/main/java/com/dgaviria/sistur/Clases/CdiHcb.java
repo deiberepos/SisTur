@@ -3,8 +3,8 @@ package com.dgaviria.sistur.Clases;
 public class CdiHcb {
 
     private String nombreCDI, nombreEncargado, nombreContacto, ubicacion, dirEncargado, dirContacto;
-    private String telEncargado, telContacto;
-    private int tipo;
+    private String telEncargado, telContacto, tipo;
+
 
     public CdiHcb() {
         this.nombreCDI = "";
@@ -15,10 +15,10 @@ public class CdiHcb {
         this.dirContacto = "";
         this.telEncargado = "";
         this.telContacto = "";
-        this.tipo = 0;
+        this.tipo = "";
     }
 
-    public CdiHcb(String nombreCDI, String nombreEncargado, String nombreContacto, String ubicacion, String dirEncargado, String dirContacto, String telEncargado, String telContacto, int tipo) {
+    public CdiHcb(String nombreCDI, String nombreEncargado, String nombreContacto, String ubicacion, String dirEncargado, String dirContacto, String telEncargado, String telContacto, String tipo) {
         this.nombreCDI = nombreCDI;
         this.nombreEncargado = nombreEncargado;
         this.nombreContacto = nombreContacto;
@@ -94,11 +94,11 @@ public class CdiHcb {
         this.telContacto = telContacto;
     }
 
-    public int getTipo() {
+    public String getTipo() {
         return tipo;
     }
 
-    public void setTipo(int tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 
