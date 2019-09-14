@@ -17,6 +17,7 @@
         <activity android:name=".Usuarios.usuariosLista" />
         <activity android:name=".Usuarios.LogueoUsuarios" />
         <activity android:name=".Usuarios.CrearUsuarios" />
+        <activity android:name=".Usuarios.ListarUsuarios" />
         <activity android:name=".MainActivity" />
         <activity android:name=".Splash">
             <intent-filter>
