@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.dgaviria.sistur">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,12 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Usuarios.usuariosLista"></activity>
+        <activity android:name=".CensoPoblacional"></activity>
         <activity android:name=".RegistrarCDIHCB" />
         <activity android:name=".MenuSuper" />
-        <activity android:name=".Usuarios.LogueoUsuarios" />
-        <activity android:name=".Usuarios.CrearUsuarios" />
-        <activity android:name=".Usuarios.ListarUsuarios" />
+        <activity android:name=".LogueoUsuarios" />
+        <activity android:name=".CrearUsuarios" />
         <activity android:name=".MainActivity" />
         <activity android:name=".Splash">
             <intent-filter>
@@ -24,7 +25,5 @@
             </intent-filter>
         </activity>
     </application>
-
-    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
