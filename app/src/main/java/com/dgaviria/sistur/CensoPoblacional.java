@@ -48,6 +48,7 @@ public class CensoPoblacional extends AppCompatActivity {
         editDirPadre = findViewById(R.id.direccionpadre);
     }
 
+
     private void guardarCenso() {
         //construye el objeto que se va a guardar en la base de datos
         miReferencia = FirebaseDatabase.getInstance().getReference();
