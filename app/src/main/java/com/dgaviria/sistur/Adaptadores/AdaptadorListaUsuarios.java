@@ -19,40 +19,40 @@ public class AdaptadorListaUsuarios extends RecyclerView.Adapter<AdaptadorListaU
     Context contexto;
     public interface OnItemClick{
         void itemClick(Usuarios misUsuarios,int posicion);
-        void correoClick(Usuarios misUsuarios,int posicion);
-        void telefonoClick(Usuarios misUsuarios,int posicion);
-
+        void modificaClick(Usuarios misUsuarios,int posicion);
+        void eliminaClick(Usuarios misUsuarios,int posicion);
     }
     private OnItemClick listener;
 
     public static class UsuariosViewHolder extends RecyclerView.ViewHolder{
-        ImageView correo,telefono,nombre;
-        TextView nombreU;
+        ImageView modifica, elimina;
+        TextView nombreU,nombres,rol;
 
         public UsuariosViewHolder(View vistaItem){
             super(vistaItem);
             nombreU=vistaItem.findViewById(R.id.txtUsuario);
-            correo=vistaItem.findViewById(R.id.imgCorreo);
-            telefono=vistaItem.findViewById(R.id.imgTelefono);
-
+            modifica =vistaItem.findViewById(R.id.imgModifica);
+            elimina =vistaItem.findViewById(R.id.imgElimina);
+            nombres=vistaItem.findViewById(R.id.txtNombres);
+            rol=vistaItem.findViewById(R.id.txtRol);
         }
         public void bind (final Usuarios misUsuarios, final int posicion, final OnItemClick onItemClick){
-            nombre.setOnClickListener(new View.OnClickListener() {
+            nombres.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     onItemClick.itemClick(misUsuarios,posicion);
                 }
             });
-            telefono.setOnClickListener(new View.OnClickListener() {
+            elimina.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    onItemClick.telefonoClick(misUsuarios,posicion);
+                    onItemClick.eliminaClick(misUsuarios,posicion);
                 }
             });
-            correo.setOnClickListener(new View.OnClickListener() {
+            modifica.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    onItemClick.correoClick(misUsuarios,posicion);
+                    onItemClick.modificaClick(misUsuarios,posicion);
                 }
             });
         }
@@ -66,20 +66,31 @@ public class AdaptadorListaUsuarios extends RecyclerView.Adapter<AdaptadorListaU
 
     @Override
     public UsuariosViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View vistaUno= LayoutInflater.from(parent.getContext()).inflate(R.layout.usuarios_lista,parent,false);
-            UsuariosViewHolder filaUno=new UsuariosViewHolder(vistaUno);
-            return filaUno;
-
+        View vistaUno= LayoutInflater.from(parent.getContext()).inflate(R.layout.usuarios_lista,parent,false);
+        UsuariosViewHolder filaUno=new UsuariosViewHolder(vistaUno);
+        return filaUno;
     }
 
     @Override
     public void onBindViewHolder(UsuariosViewHolder holder, int position) {
+        String nombreRol="";
         Usuarios miUsuario=listadoUsuarios.get(position);
-        holder.nombreU.setText(miUsuario.getNombre());
-        holder.correo.setImageResource(R.mipmap.ic_email);
-        holder.telefono.setImageResource(R.mipmap.ic_telefono);
-        //holder.nombre.setImageResource(R.mipmap.ic_nombre);
-
+        if (miUsuario.getRolsuper())
+            nombreRol="Superusuario";
+        else if (miUsuario.getRoladmin())
+            nombreRol="Administrador";
+        else if (miUsuario.getRolgestor())
+            nombreRol="Gestor";
+        else if (miUsuario.getRolcompras())
+            nombreRol="Compras";
+        else if (miUsuario.getRolbasico())
+            nombreRol="Básico";
+        holder.nombreU.setText(miUsuario.getUsuario());
+        holder.nombres.setText(miUsuario.getNombre());
+        holder.rol.setText(nombreRol);
+        holder.modifica.setImageResource(R.mipmap.ic_actualiza);
+        holder.elimina.setImageResource(R.mipmap.ic_elimina);
+        holder.bind(listadoUsuarios.get(position),position,listener);
     }
 
     @Override

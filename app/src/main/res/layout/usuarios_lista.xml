@@ -4,60 +4,67 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="15dp"
-    app:cardElevation="30dp"
+    app:cardCornerRadius="10dp"
     android:layout_marginTop="10dp"
-    android:paddingBottom="15dp"
+    android:paddingBottom="10dp"
     android:orientation="vertical"
-    android:background="@color/colorPrimarioSuave"
-    tools:context=".Usuarios.usuariosLista">
+    tools:context=".Usuarios.UsuariosLista">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:layout_gravity="center">
         <LinearLayout
             android:id="@+id/layTextos"
-            android:layout_width="160dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="right"
+            android:paddingLeft="10dp"
             android:orientation="vertical">
             <TextView
-                android:id="@+id/txtUsuario"
-                android:layout_width="160dp"
+                android:id="@+id/txtNombres"
+                android:layout_width="180dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:textSize="10dp"
-                android:layout_marginTop="10dp"
-                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:fontFamily="monospace"
+                android:textSize="15dp"
+                />
+            <TextView
+                android:id="@+id/txtUsuario"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="monospace"
+                android:textSize="20dp"
+                />
+            <TextView
+                android:id="@+id/txtRol"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="monospace"
+                android:textSize="15dp"
+                android:textStyle="italic"
                 />
         </LinearLayout>
         <ImageView
-            android:id="@+id/imgUsuario"
-            android:layout_marginTop="5dp"
+            android:id="@+id/imgModifica"
+            android:layout_marginTop="15dp"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_marginLeft="20dp"
             android:layout_toRightOf="@id/layTextos"
             />
         <ImageView
-            android:id="@+id/imgCorreo"
-            android:layout_marginTop="5dp"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginLeft="20dp"
-            android:layout_toRightOf="@id/imgUsuario"
-            />
-        <ImageView
-            android:id="@+id/imgTelefono"
+            android:id="@+id/imgElimina"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_toRightOf="@id/imgCorreo"
+            android:layout_marginTop="15dp"
+            android:layout_toRightOf="@id/imgModifica"
             />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

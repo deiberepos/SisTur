@@ -38,17 +38,17 @@ public class ListarUsuarios extends AppCompatActivity {
         adaptadorUsuarios=new AdaptadorListaUsuarios(listadoUsuarios, this, new AdaptadorListaUsuarios.OnItemClick() {
             @Override
             public void itemClick(Usuarios misUsuarios, int posicion) {
-                Toast.makeText(getApplicationContext(),"Modificar Nombre",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Modificar datos",Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void correoClick(Usuarios misUsuarios, int posicion) {
-                Toast.makeText(getApplicationContext(),"Modificar Nombre",Toast.LENGTH_SHORT).show();
+            public void modificaClick(Usuarios misUsuarios, int posicion) {
+                Toast.makeText(getApplicationContext(),"Modificar información",Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void telefonoClick(Usuarios misUsuarios, int posicion) {
-                Toast.makeText(getApplicationContext(),"Modificar Correo",Toast.LENGTH_SHORT).show();
+            public void eliminaClick(Usuarios misUsuarios, int posicion) {
+                Toast.makeText(getApplicationContext(),"Eliminar usuario",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -56,13 +56,13 @@ public class ListarUsuarios extends AppCompatActivity {
     }
 
     private void referenciar() {
-        miRecycler=findViewById(R.id.recycler);
+        miRecycler=findViewById(R.id.recyclerLista);
     }
 
     private void llenarRecycler() {
         miReferencia= FirebaseDatabase.getInstance().getReference();
         listadoUsuarios=new ArrayList<>();
-        //verifica que no se repita el nombre del usuario
+        //busca el nombre de todos los usuarios y llena la lista
         miReferencia.child("usuarios").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -74,7 +74,7 @@ public class ListarUsuarios extends AppCompatActivity {
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                Toast.makeText(getApplicationContext(),"Error en la lectura de usuarios, contacte al administrador",Toast.LENGTH_SHORT).show();
             }
         });
     }
