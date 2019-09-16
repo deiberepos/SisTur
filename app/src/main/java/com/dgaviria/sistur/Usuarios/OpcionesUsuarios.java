@@ -17,24 +17,25 @@ public class OpcionesUsuarios extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.opciones_usuarios);
         referenciar();
-    }
 
-    private void referenciar() {
-        botonCrear=findViewById(R.id.botonCrea);
-        botonGestionar=findViewById(R.id.botonGestion);
         botonCrear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent miIntento = new Intent(getApplicationContext(), CrearUsuarios.class);
-                startActivity(miIntento);
+                Intent miIntento1 = new Intent(getApplicationContext(), CrearUsuarios.class);
+                startActivity(miIntento1);
             }
         });
         botonGestionar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent miIntento = new Intent(getApplicationContext(), ListarUsuarios.class);
-                startActivity(miIntento);
+                Intent miIntento2 = new Intent(getApplicationContext(), ListarUsuarios.class);
+                startActivity(miIntento2);
             }
         });
+    }
+
+    private void referenciar() {
+        botonCrear=findViewById(R.id.botonCrea);
+        botonGestionar=findViewById(R.id.botonGestion);
     }
 }

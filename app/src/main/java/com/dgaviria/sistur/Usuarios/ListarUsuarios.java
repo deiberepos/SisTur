@@ -21,21 +21,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListarUsuarios extends AppCompatActivity {
-    RecyclerView miRecycler;
-    List<Usuarios> listadoUsuarios;
+    RecyclerView miRecyclerUsuarios;
+    List<Usuarios> listaDeUsuarios;
     AdaptadorListaUsuarios adaptadorUsuarios;
     DatabaseReference miReferencia;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.listar_usuarios);
+
         referenciar();
+        llenarRecyclerUsuarios();
 
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
-        miRecycler.setLayoutManager(linearLayoutManager);
-        llenarRecycler();
-
-        adaptadorUsuarios=new AdaptadorListaUsuarios(listadoUsuarios, this, new AdaptadorListaUsuarios.OnItemClick() {
+        adaptadorUsuarios=new AdaptadorListaUsuarios(listaDeUsuarios, getApplicationContext(), new AdaptadorListaUsuarios.OnItemClick() {
             @Override
             public void itemClick(Usuarios misUsuarios, int posicion) {
                 Toast.makeText(getApplicationContext(),"Modificar datos",Toast.LENGTH_SHORT).show();
@@ -51,25 +49,36 @@ public class ListarUsuarios extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"Eliminar usuario",Toast.LENGTH_SHORT).show();
             }
         });
+        miRecyclerUsuarios.setAdapter(adaptadorUsuarios);
 
-        miRecycler.setAdapter(adaptadorUsuarios);
     }
 
     private void referenciar() {
-        miRecycler=findViewById(R.id.recyclerLista);
+        miRecyclerUsuarios =findViewById(R.id.recyclerLista);
+        listaDeUsuarios =new ArrayList<>();
+        listaDeUsuarios.removeAll(listaDeUsuarios);
     }
 
-    private void llenarRecycler() {
+    private void llenarRecyclerUsuarios() {
+        miRecyclerUsuarios.setLayoutManager(new LinearLayoutManager(this));
         miReferencia= FirebaseDatabase.getInstance().getReference();
-        listadoUsuarios=new ArrayList<>();
         //busca el nombre de todos los usuarios y llena la lista
         miReferencia.child("usuarios").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                listadoUsuarios.clear();
                 for (DataSnapshot usuariosExisten : dataSnapshot.getChildren()) {
                     Usuarios miUsuario=usuariosExisten.getValue(Usuarios.class);
-                    listadoUsuarios.add(miUsuario);
+                    /*Usuarios miUsuario=new Usuarios(
+                            usuariosExisten.child("usuario").getValue(String.class),
+                            usuariosExisten.child("contrasena").getValue(String.class),
+                            usuariosExisten.child("nombre").getValue(String.class),
+                            usuariosExisten.child("correo").getValue(String.class),
+                            usuariosExisten.child("rolsuper").getValue(Boolean.class),
+                            usuariosExisten.child("roladmin").getValue(Boolean.class),
+                            usuariosExisten.child("rolgestor").getValue(Boolean.class),
+                            usuariosExisten.child("rolcompras").getValue(Boolean.class),
+                            usuariosExisten.child("rolbasico").getValue(Boolean.class));*/
+                    listaDeUsuarios.add(miUsuario);
                 }
             }
             @Override

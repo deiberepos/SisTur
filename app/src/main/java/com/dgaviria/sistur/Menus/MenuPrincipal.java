@@ -1,10 +1,12 @@
 package com.dgaviria.sistur.Menus;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -17,6 +19,7 @@ import com.dgaviria.sistur.Clases.Usuarios;
 import com.dgaviria.sistur.R;
 import com.dgaviria.sistur.RegistrarCDIHCB;
 import com.dgaviria.sistur.Usuarios.CrearUsuarios;
+import com.dgaviria.sistur.Usuarios.ListarUsuarios;
 import com.dgaviria.sistur.Usuarios.OpcionesUsuarios;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -40,15 +43,16 @@ public class MenuPrincipal extends AppCompatActivity {
         referenciar();
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         miRecycler.setLayoutManager(linearLayoutManager);
-        llenarRecycler();
+        llenarRecyclerOpciones();
 
         adaptadorMenu=new AdaptadorMenuPpal(listadoOpciones, this, new AdaptadorMenuPpal.OnItemClick() {
             @Override
             public void itemClick(MenuOpciones misOpciones, int posicion) {
                 switch (posicion){
                     case 0:
-                        Intent miIntento1 = new Intent(getApplicationContext(), OpcionesUsuarios.class);
-                        startActivity(miIntento1);
+                        /*Intent miIntento1 = new Intent(getApplicationContext(), OpcionesUsuarios.class);
+                        startActivity(miIntento1);*/
+                        crearAlertaDialogo();
                         break;
                     case 1:
                         Intent miIntento2 = new Intent(getApplicationContext(), RegistrarCDIHCB.class);
@@ -68,8 +72,7 @@ public class MenuPrincipal extends AppCompatActivity {
             public void imagenClick(MenuOpciones misOpciones, int posicion) {
                 switch (posicion) {
                     case 0:
-                        Intent miIntento1 = new Intent(getApplicationContext(), OpcionesUsuarios.class);
-                        startActivity(miIntento1);
+                        crearAlertaDialogo();
                         break;
                     case 1:
                         Intent miIntento2 = new Intent(getApplicationContext(), RegistrarCDIHCB.class);
@@ -92,7 +95,7 @@ public class MenuPrincipal extends AppCompatActivity {
         miRecycler=findViewById(R.id.recyclerOpciones);
     }
 
-    private void llenarRecycler() {
+    private void llenarRecyclerOpciones() {
         miReferencia= FirebaseDatabase.getInstance().getReference();
         listadoOpciones=new ArrayList<>();
         //busca las opciones del menú y llena la lista
@@ -112,5 +115,26 @@ public class MenuPrincipal extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"Error en la lectura de opciones de menú, contacte al administrador",Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    public void crearAlertaDialogo(){
+        AlertDialog.Builder construye=new AlertDialog.Builder(this);
+        construye.setTitle("Gestionar Usuarios");
+        construye.setIcon(R.mipmap.pregunta);
+        construye.setMessage("Quá acción desea realizar");
+        construye.setPositiveButton("Crear Usuarios", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent miIntento1 = new Intent(getApplicationContext(), CrearUsuarios.class);
+                startActivity(miIntento1);
+            }
+        });
+        construye.setNegativeButton("Modificar Usuarios", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent miIntento1 = new Intent(getApplicationContext(), ListarUsuarios.class);
+                startActivity(miIntento1);
+            }
+        });
+        construye.show();
     }
 }

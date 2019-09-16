@@ -102,4 +102,8 @@ public class AdaptadorListaUsuarios extends RecyclerView.Adapter<AdaptadorListaU
     public int getItemViewType(int posicion) {
        return posicion;
     }
+
+    public AdaptadorListaUsuarios(List<Usuarios> listadoUsuarios) {
+        this.listadoUsuarios = listadoUsuarios;
+    }
 }
