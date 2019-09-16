@@ -14,8 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.dgaviria.sistur.Clases.Usuarios;
-import com.dgaviria.sistur.MainActivity;
-import com.dgaviria.sistur.MenuSuper;
+import com.dgaviria.sistur.Menus.MenuPrincipal;
 import com.dgaviria.sistur.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -51,11 +50,11 @@ public class LogueoUsuarios extends AppCompatActivity{
         editTextContrasena= findViewById(R.id.editTextPassword);
         barraProgreso = findViewById(R.id.barraProgreso);
         botonIngresar=findViewById(R.id.botonIngreso);
-        //Inicio de la animación del fondo de pantalla
+        /*Inicio de la animación del fondo de pantalla
         animacion=(AnimationDrawable) miContenedor.getBackground();
         animacion.setEnterFadeDuration(2000);
         animacion.setExitFadeDuration(2000);
-        //Final de la animación del fondo de pantalla
+        //Final de la animación del fondo de pantalla*/
 
     }
 
@@ -102,19 +101,8 @@ public class LogueoUsuarios extends AppCompatActivity{
                         //valida la contraseña
                         if(usuarioC.getContrasena().equals(contrasenaU)) {
                             //verifica si tiene el rol de administrador
-                            if (usuarioC.getRoladmin()){
-                                    //Intent miIntento = new Intent(getApplicationContext(), CrearUsuarios.class);
-                                    //startActivity(miIntento);
-                                    Intent intent = new Intent(getApplicationContext(), MenuSuper.class);
-                                    startActivity(intent);
-                            }else if (usuarioC.getRolsuper() ) {
-                                Intent intent = new Intent(getApplicationContext(), ListarUsuarios.class);
-                                startActivity(intent);
-                            } else {
-                                Intent miIntento = new Intent(getApplicationContext(), MainActivity.class);
-                                startActivity(miIntento);
-                            }
-                            finish();
+                            Intent miIntento = new Intent(getApplicationContext(), MenuPrincipal.class);
+                            startActivity(miIntento);
                         }
                         else
                             Toast.makeText(getApplicationContext(), "La contraseña está errada", Toast.LENGTH_SHORT).show();
@@ -136,13 +124,13 @@ public class LogueoUsuarios extends AppCompatActivity{
     @Override
     protected void onResume() {
         super.onResume();
-        if (animacion!=null && !animacion.isRunning())
-            animacion.start();
+        /*if (animacion!=null && !animacion.isRunning())
+            animacion.start();*/
     }
     @Override
     protected void onPause() {
         super.onPause();
-        if (animacion!=null && !animacion.isRunning())
-            animacion.stop();
+        /*if (animacion!=null && !animacion.isRunning())
+            animacion.stop();*/
     }
 }

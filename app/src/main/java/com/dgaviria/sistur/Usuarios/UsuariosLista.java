@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.dgaviria.sistur.R;
 
-public class usuariosLista extends AppCompatActivity {
+public class UsuariosLista extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

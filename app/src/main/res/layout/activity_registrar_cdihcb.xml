@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:id="@+id/idcontenerRegCDI"
-    android:background="@drawable/fondoanimado"
     android:layout_height="match_parent"
     tools:context=".RegistrarCDIHCB">
 
@@ -23,7 +22,7 @@
         <ImageView
             android:layout_width="65dp"
             android:layout_height="70dp"
-            android:background="@drawable/logoinicialclaro" />
+            android:background="@drawable/logoinicial" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -201,14 +200,14 @@
 
          <Button
              android:id="@+id/idbtnregCDI"
-             android:layout_width="150dp"
-             android:layout_height="40dp"
-             android:layout_gravity="center"
-             android:layout_margin="20dp"
-             android:background="@drawable/rounded_button_solid"
              android:text="Registrar"
+             android:layout_width="200dp"
+             android:layout_gravity="center"
+             android:layout_marginTop="20dp"
+             android:layout_height="40dp"
+             android:background="@drawable/rounded_button_solid"
              android:textAllCaps="false"
-             android:textColor="@color/colorClaro" />
+             android:textColor="@color/colorClaro"/>
 
      </LinearLayout>
 

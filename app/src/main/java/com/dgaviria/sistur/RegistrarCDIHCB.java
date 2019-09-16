@@ -243,11 +243,11 @@ public class RegistrarCDIHCB extends AppCompatActivity {
        // listaveredas=findViewById(R.id.idlisVeredas);
         btnGuardar=findViewById(R.id.idbtnregCDI);
         contenedorScroll=findViewById(R.id.idcontenerRegCDI);
-        //Inicio de la animación del fondo de pantalla
+        /*//Inicio de la animación del fondo de pantalla
         animacion=(AnimationDrawable) contenedorScroll.getBackground();
         animacion.setEnterFadeDuration(2000);
         animacion.setExitFadeDuration(2000);
-        //Final de la animación del fondo de pantalla
+        //Final de la animación del fondo de pantalla*/
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.veredas,android.R.layout.simple_spinner_item);
         spnVeredas.setAdapter(adapter);
         //listaveredas.setAdapter(adapter);

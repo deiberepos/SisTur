@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondoanimado"
     android:orientation="vertical"
     android:id="@+id/contenedor"
     tools:context=".Usuarios.LogueoUsuarios">
@@ -19,7 +18,7 @@
             <ImageView
                 android:layout_width="65dp"
                 android:layout_height="70dp"
-                android:background="@drawable/logoinicialclaro" />
+                android:background="@drawable/logoinicial" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
@@ -51,8 +50,8 @@
                     android:hint="usuario"
                     android:inputType="textPostalAddress"
                     android:paddingBottom="15dp"
-                    android:textColor="@color/colorAmarillo"
-                    android:textColorHint="@color/colorClaro"
+                    android:textColor="@color/colorPrimarioOscuro"
+                    android:textColorHint="@color/colorPrimarioSuave"
                     android:backgroundTint="@color/colorRojo"/>
 
                 <EditText
@@ -66,8 +65,8 @@
                     android:inputType="textPassword"
                     android:layout_marginTop="20dp"
                     android:paddingBottom="15dp"
-                    android:textColor="@color/colorAmarillo"
-                    android:textColorHint="@color/colorClaro"
+                    android:textColor="@color/colorPrimarioOscuro"
+                    android:textColorHint="@color/colorPrimarioSuave"
                     android:backgroundTint="@color/colorRojo" />
                 <Button
                     android:id="@+id/botonIngreso"
