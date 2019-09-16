@@ -40,12 +40,12 @@ public class CensoPoblacional extends AppCompatActivity {
         editnombreInfante = findViewById(R.id.nombreinfante);
         editapellidoInfante = findViewById(R.id.apellidoinfante);
         editobservaciones = findViewById(R.id.editobsrvaciones);
-        editnombrePadre = findViewById(R.id.editnom_padre);
-        editnombreMadre = findViewById(R.id.editnom_madre);
-        editTeleMadre = findViewById(R.id.edittelefonomadre);
-        editTelePadre = findViewById(R.id.edittelefonopadre);
-        editDirMadre = findViewById(R.id.editdireccionmadre);
-        editDirPadre = findViewById(R.id.editdireccionpadre);
+        editnombrePadre = findViewById(R.id.nom_ape_padre);
+        editnombreMadre = findViewById(R.id.nom_ape_madre);
+        editTeleMadre = findViewById(R.id.telefonomadre);
+        editTelePadre = findViewById(R.id.telefonomadre);
+        editDirMadre = findViewById(R.id.direccionmadre);
+        editDirPadre = findViewById(R.id.direccionpadre);
     }
 
     private void guardarCenso() {

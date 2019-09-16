@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="10dp"
     tools:context=".CensoPoblacional">
     <RelativeLayout
             android:layout_width="match_parent"
@@ -31,30 +32,31 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Censo Poblacional"/>
+
             <EditText
+                android:layout_marginTop="30dp"
                 android:id="@+id/nombreinfante"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:textColorHint="@color/colorPrimarioSuave"
-                android:textColor="@color/colorPrimarioOscuro"
-                android:backgroundTint="@color/colorRojo"
+                style="@style/edit"
+                android:layout_height="42dp"
+                android:background="@drawable/personalizar_edit"
                 android:fontFamily="monospace"
-                android:textSize="15dp"
-                android:layout_gravity="center"
-                android:hint="Nombres del infante" />
-          <EditText
+                android:hint="Nombres del infante"
+                android:textColor="@color/colorPrimarioOscuro"
+                android:textColorHint="@color/colorPrimarioSuave"
+                android:textSize="15dp" />
+
+            <EditText
                 android:id="@+id/apellidoinfante"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                style="@style/edit"
+                android:background="@drawable/personalizar_edit"
                 android:fontFamily="monospace"
-                android:textSize="15dp"
-                android:textColorHint="@color/colorPrimarioSuave"
+                android:hint="Apellidos del infante"
                 android:textColor="@color/colorPrimarioOscuro"
-                android:backgroundTint="@color/colorRojo"
-                android:hint="Apellidos del infante" />
+                android:textColorHint="@color/colorPrimarioSuave"
+                android:textSize="15dp" />
 
             <RadioGroup
+                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -102,10 +104,9 @@
 
             </LinearLayout>
             <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:backgroundTint="@color/colorRojo"
+                android:background="@drawable/personalizar_edit"
+                style="@style/edit"
+                android:id="@+id/editobsrvaciones"
                 android:fontFamily="monospace"
                 android:hint="Observaciones"
                 android:lines="3"
@@ -113,76 +114,70 @@
                 android:textColorHint="@color/colorPrimarioSuave"
                 android:textSize="15dp" />
             <EditText
+                android:background="@drawable/personalizar_edit"
+                style="@style/edit"
                 android:id="@+id/nom_ape_padre"
                 android:hint="Nombres/apellidos Padre"
                 android:textColorHint="@color/colorPrimarioSuave"
                 android:textColor="@color/colorPrimarioOscuro"
-                android:backgroundTint="@color/colorRojo"
                 android:fontFamily="monospace"
                 android:textSize="15dp"
-                android:layout_gravity="center"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"/>
+                />
             <EditText
+                android:background="@drawable/personalizar_edit"
+                style="@style/edit"
                 android:id="@+id/telefonopadre"
-                android:layout_width="250dp"
                 android:hint="Teléfono del Padre"
                 android:textColorHint="@color/colorPrimarioSuave"
                 android:textColor="@color/colorPrimarioOscuro"
-                android:backgroundTint="@color/colorRojo"
                 android:fontFamily="monospace"
                 android:textSize="15dp"
-                android:layout_gravity="center"
-                android:layout_height="wrap_content" />
+                />
 
             <EditText
+                android:background="@drawable/personalizar_edit"
+                style="@style/edit"
                 android:id="@+id/direccionpadre"
-                android:layout_width="250dp"
                 android:hint="Direccion del Padre"
                 android:textColorHint="@color/colorPrimarioSuave"
                 android:textColor="@color/colorPrimarioOscuro"
-                android:backgroundTint="@color/colorRojo"
                 android:fontFamily="monospace"
                 android:textSize="15dp"
                 android:text="Dirección del Padre"
-                android:layout_gravity="center"
-                android:layout_height="wrap_content" />
+                 />
 
             <EditText
+                android:background="@drawable/personalizar_edit"
+                style="@style/edit"
                 android:id="@+id/nom_ape_madre"
                 android:textColorHint="@color/colorPrimarioSuave"
                 android:textColor="@color/colorPrimarioOscuro"
-                android:backgroundTint="@color/colorRojo"
                 android:fontFamily="monospace"
                 android:textSize="15dp"
-                android:layout_gravity="center"
                 android:text="Nombres/apellidos Madre"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"/>
+                />
 
             <EditText
+                android:background="@drawable/personalizar_edit"
+                style="@style/edit"
                 android:id="@+id/telefonomadre"
-                android:layout_width="250dp"
                 android:textColorHint="@color/colorPrimarioSuave"
                 android:textColor="@color/colorPrimarioOscuro"
-                android:backgroundTint="@color/colorRojo"
                 android:fontFamily="monospace"
                 android:textSize="15dp"
-                android:layout_gravity="center"
                 android:text="Teléfono de la Madre"
-                android:layout_height="wrap_content" />
+                />
 
             <EditText
+                android:background="@drawable/personalizar_edit"
+                style="@style/edit"
                 android:id="@+id/direccionmadre"
-                android:layout_width="250dp"
                 android:textColorHint="@color/colorPrimarioSuave"
                 android:textColor="@color/colorPrimarioOscuro"
-                android:backgroundTint="@color/colorRojo"
                 android:fontFamily="monospace"
                 android:textSize="15dp"
-                android:layout_gravity="center"
                 android:text="Dirección de la Madre"
-                android:layout_height="wrap_content" />
+                 />
             <Button
                 android:id="@+id/btnguardarcenso"
                 android:layout_width="200dp"

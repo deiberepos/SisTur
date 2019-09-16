@@ -46,7 +46,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <EditText
-        style="@style/Editex"
+        android:background="@drawable/personalizar_edit"
+        style="@style/edit"
+        android:layout_width="match_parent"
+        android:hint="Escribe Aqui"
         android:id="@+id/idedtnombreregCentro" />
         <TextView
             style="@style/TexviewsubTitulo"
@@ -148,7 +151,10 @@
          android:layout_width="match_parent"
          android:layout_height="wrap_content"/>
      <EditText
-         style="@style/Editex"
+         android:background="@drawable/personalizar_edit"
+         style="@style/edit"
+         android:hint="Escribe aqui"
+         android:layout_width="match_parent"
          android:id="@+id/idedtnombreencargado" />
      <TextView
          style="@style/TexviewsubTitulo"
@@ -156,7 +162,10 @@
          android:layout_width="match_parent"
          android:layout_height="wrap_content"/>
      <EditText
-         style="@style/Editex"
+         android:background="@drawable/personalizar_edit"
+         style="@style/edit"
+         android:hint="Escribe aqui"
+         android:layout_width="match_parent"
          android:id="@+id/idedtdirEncargado" />
      <TextView
          style="@style/TexviewsubTitulo"
@@ -164,7 +173,10 @@
          android:layout_width="match_parent"
          android:layout_height="wrap_content"/>
      <EditText
-         style="@style/Editex"
+         android:background="@drawable/personalizar_edit"
+         style="@style/edit"
+         android:hint="Escribe aqui"
+         android:layout_width="match_parent"
          android:id="@+id/idedttelEncargado" />
 
          <TextView
@@ -179,7 +191,10 @@
              android:layout_width="match_parent"
              android:layout_height="wrap_content"/>
          <EditText
-             style="@style/Editex"
+             android:background="@drawable/personalizar_edit"
+             style="@style/edit"
+             android:hint="Escribe aqui"
+             android:layout_width="match_parent"
              android:id="@+id/idedtnombreContacto" />
          <TextView
              style="@style/TexviewsubTitulo"
@@ -187,7 +202,10 @@
              android:layout_width="match_parent"
              android:layout_height="wrap_content"/>
          <EditText
-             style="@style/Editex"
+             android:background="@drawable/personalizar_edit"
+             style="@style/edit"
+             android:hint="Escribe aqui"
+             android:layout_width="match_parent"
              android:id="@+id/idedtdirContacto" />
          <TextView
              style="@style/TexviewsubTitulo"
@@ -195,7 +213,10 @@
              android:layout_width="match_parent"
              android:layout_height="wrap_content"/>
          <EditText
-             style="@style/Editex"
+             android:background="@drawable/personalizar_edit"
+             style="@style/edit"
+             android:hint="Escribe aqui"
+             android:layout_width="match_parent"
              android:id="@+id/idedttelContacto" />
 
          <Button
