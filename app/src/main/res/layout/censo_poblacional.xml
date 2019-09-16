@@ -104,6 +104,8 @@
 
             </LinearLayout>
             <EditText
+
+
                 android:background="@drawable/personalizar_edit"
                 style="@style/edit"
                 android:id="@+id/editobsrvaciones"
@@ -112,7 +114,8 @@
                 android:lines="3"
                 android:textColor="@color/colorPrimarioOscuro"
                 android:textColorHint="@color/colorPrimarioSuave"
-                android:textSize="15dp" />
+                android:textSize="15dp"
+                />
             <EditText
                 android:background="@drawable/personalizar_edit"
                 style="@style/edit"
