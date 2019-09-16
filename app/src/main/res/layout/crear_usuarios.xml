@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="10dp"
     android:id="@+id/contenedor"
     tools:context=".Usuarios.CrearUsuarios">
     <ScrollView
@@ -39,10 +38,10 @@
                     android:textSize="25dp"
                     android:textStyle="bold" />
                 <EditText
-                    android:layout_marginTop="30dp"
-                    style="@style/edit"
-                    android:background="@drawable/personalizar_edit"
                     android:id="@+id/editTextUsuario"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:fontFamily="monospace"
                     android:textSize="15dp"
                     android:hint="usuario"
@@ -50,13 +49,15 @@
                     android:maxLength="15"
                     android:paddingBottom="15dp"
                     android:textColor="@color/colorPrimarioOscuro"
-                    android:elegantTextHeight="true"
-                    android:textColorHint="@color/colorPrimarioSuave" />
+                    android:textColorHint="@color/colorPrimarioSuave"
+                    android:textCursorDrawable="@color/colorRojo"
+                    android:backgroundTint="@color/colorRojo"/>
 
                 <EditText
-                    style="@style/edit"
-                    android:background="@drawable/personalizar_edit"
                     android:id="@+id/editTextPassword"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:fontFamily="monospace"
                     android:hint="contraseña"
                     android:inputType="textPassword"
@@ -65,11 +66,14 @@
                     android:paddingBottom="15dp"
                     android:textColor="@color/colorPrimarioOscuro"
                     android:textColorHint="@color/colorPrimarioSuave"
+                    android:textCursorDrawable="@color/colorRojo"
+                    android:backgroundTint="@color/colorRojo"
                     />
                 <EditText
-                    style="@style/edit"
-                    android:background="@drawable/personalizar_edit"
                     android:id="@+id/editTextVerificaPassword"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:fontFamily="monospace"
                     android:hint="verifica contraseña"
                     android:inputType="textPassword"
@@ -77,11 +81,14 @@
                     android:maxLength="15"
                     android:paddingBottom="15dp"
                     android:textColor="@color/colorPrimarioOscuro"
-                    android:textColorHint="@color/colorPrimarioSuave"/>
+                    android:textColorHint="@color/colorPrimarioSuave"
+                    android:textCursorDrawable="@color/colorRojo"
+                    android:backgroundTint="@color/colorRojo"/>
                 <EditText
-                    style="@style/edit"
-                    android:background="@drawable/personalizar_edit"
                     android:id="@+id/editTextCorreo"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:fontFamily="monospace"
                     android:hint="correo"
                     android:inputType="textEmailAddress"
@@ -90,10 +97,14 @@
                     android:textSize="15dp"
                     android:textColor="@color/colorPrimarioOscuro"
                     android:textColorHint="@color/colorPrimarioSuave"
+                    android:textCursorDrawable="@color/colorRojo"
+                    android:backgroundTint="@color/colorRojo"
                     />
                 <EditText
-                    style="@style/edit"
                     android:id="@+id/editTextNombre"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:fontFamily="monospace"
                     android:hint="nombres y apellidos"
                     android:inputType="textPersonName"
@@ -102,19 +113,17 @@
                     android:textSize="15dp"
                     android:textColor="@color/colorPrimarioOscuro"
                     android:textColorHint="@color/colorPrimarioSuave"
-                    android:background="@drawable/personalizar_edit"
+                    android:textCursorDrawable="@color/colorRojo"
+                    android:backgroundTint="@color/colorRojo"
                     />
             </LinearLayout>
-
             <LinearLayout
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="260dp"
                 android:weightSum="2"
                 android:orientation="horizontal">
                 <LinearLayout
-                    android:layout_marginTop="30dp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"

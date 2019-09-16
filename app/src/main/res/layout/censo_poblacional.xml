@@ -41,6 +41,7 @@
                 android:fontFamily="monospace"
                 android:textSize="15dp"
                 android:layout_gravity="center"
+                android:textCursorDrawable="@color/colorNegro"
                 android:hint="Nombres del infante" />
           <EditText
                 android:id="@+id/apellidoinfante"
@@ -52,6 +53,7 @@
                 android:textColorHint="@color/colorPrimarioSuave"
                 android:textColor="@color/colorPrimarioOscuro"
                 android:backgroundTint="@color/colorRojo"
+                android:textCursorDrawable="@color/colorNegro"
                 android:hint="Apellidos del infante" />
 
             <RadioGroup
@@ -89,8 +91,9 @@
                 >
                 <ImageButton
                     android:layout_width="140dp"
-                    android:layout_height="223dp"
+                    android:layout_height="200dp"
                     android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
                     android:layout_x="7dp"
                     android:layout_y="14dp" />
                 <CalendarView
@@ -111,6 +114,7 @@
                 android:lines="3"
                 android:textColor="@color/colorPrimarioOscuro"
                 android:textColorHint="@color/colorPrimarioSuave"
+                android:textCursorDrawable="@color/colorNegro"
                 android:textSize="15dp" />
             <EditText
                 android:id="@+id/nom_ape_padre"
@@ -122,6 +126,7 @@
                 android:textSize="15dp"
                 android:layout_gravity="center"
                 android:layout_width="250dp"
+                android:textCursorDrawable="@color/colorNegro"
                 android:layout_height="wrap_content"/>
             <EditText
                 android:id="@+id/telefonopadre"
@@ -132,6 +137,7 @@
                 android:backgroundTint="@color/colorRojo"
                 android:fontFamily="monospace"
                 android:textSize="15dp"
+                android:textCursorDrawable="@color/colorNegro"
                 android:layout_gravity="center"
                 android:layout_height="wrap_content" />
 
@@ -145,6 +151,7 @@
                 android:fontFamily="monospace"
                 android:textSize="15dp"
                 android:text="Dirección del Padre"
+                android:textCursorDrawable="@color/colorNegro"
                 android:layout_gravity="center"
                 android:layout_height="wrap_content" />
 
@@ -157,6 +164,7 @@
                 android:textSize="15dp"
                 android:layout_gravity="center"
                 android:text="Nombres/apellidos Madre"
+                android:textCursorDrawable="@color/colorNegro"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"/>
 
@@ -170,6 +178,7 @@
                 android:textSize="15dp"
                 android:layout_gravity="center"
                 android:text="Teléfono de la Madre"
+                android:textCursorDrawable="@color/colorNegro"
                 android:layout_height="wrap_content" />
 
             <EditText
@@ -192,6 +201,7 @@
                 android:background="@drawable/rounded_button_solid"
                 android:text="Guardar"
                 android:textAllCaps="false"
+                android:textCursorDrawable="@color/colorNegro"
                 android:textColor="@color/colorClaro"
 />
         </LinearLayout>
