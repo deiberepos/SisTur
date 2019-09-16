@@ -80,8 +80,6 @@ public class RegistrarCDIHCB extends AppCompatActivity {
     }
 
     private void cargarDatos(){
-
-
             Boolean finalizar=false;
 //            barraProgreso.setVisibility(View.VISIBLE);
         if(edtnombreCentro.getText().toString().isEmpty()||edtdirEncargado.getText().toString().isEmpty()||

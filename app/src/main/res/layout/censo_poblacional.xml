@@ -78,6 +78,7 @@
         </AbsoluteLayout>
 
         <EditText
+            android:id="@+id/editobsrvaciones"
             android:hint="Observaciones"
             android:layout_width="400dp"
             android:layout_height="103dp" />
@@ -86,7 +87,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <EditText
-            android:id="@+id/nom_ape_padre"
+            android:id="@+id/editnom_padre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <TextView
@@ -95,7 +96,7 @@
             android:layout_height="wrap_content"/>
 
         <EditText
-            android:id="@+id/telefonopadre"
+            android:id="@+id/edittelefonopadre"
             android:layout_width="125dp"
             android:layout_height="wrap_content" />
         <TextView
@@ -104,7 +105,7 @@
             android:layout_height="wrap_content"/>
 
         <EditText
-            android:id="@+id/direccionpadre"
+            android:id="@+id/editdireccionpadre"
             android:layout_width="125dp"
             android:layout_height="wrap_content" />
         <TextView
@@ -112,7 +113,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <EditText
-            android:id="@+id/nom_ape_madre"
+            android:id="@+id/editnom_madre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <TextView
@@ -121,7 +122,7 @@
             android:layout_height="wrap_content"/>
 
         <EditText
-            android:id="@+id/telefonomadre"
+            android:id="@+id/edittelefonomadre"
             android:layout_width="125dp"
             android:layout_height="wrap_content" />
         <TextView
@@ -130,7 +131,7 @@
             android:layout_height="wrap_content"/>
 
         <EditText
-            android:id="@+id/direccionmadre"
+            android:id="@+id/editdireccionmadre"
             android:layout_width="125dp"
             android:layout_height="wrap_content" />
         <Button

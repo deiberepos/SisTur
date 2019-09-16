@@ -5,28 +5,33 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="10dp"
     tools:context=".MenuSuper">
 
     <TextView
+        android:gravity="center"
         android:id="@+id/idtxvBienveMenuSuper"
         android:text="@string/menu_opciones_administrador"
         android:layout_width="match_parent"
         android:textSize="25sp"
         android:layout_height="wrap_content"/>
+
     <ImageButton
-        style="@style/ButtonImage"
-        android:background="@drawable/btnusuarios"
         android:id="@+id/idBtnRegisMenuSuper"
-        />
-    <ImageButton
         style="@style/ButtonImage"
-        android:background="@drawable/btnhogares"
+        android:layout_height="96dp"
+        android:background="@drawable/btnusuarios" />
+
+    <ImageButton
         android:id="@+id/idBtnCdiMenuSuper"
-        />
-    <ImageButton
         style="@style/ButtonImage"
-        android:background="@drawable/btnusuarios"
+        android:layout_height="84dp"
+        android:background="@drawable/btnhogares" />
+
+    <ImageButton
         android:id="@+id/idBtnCensoPoblacion"
-        />
+        style="@style/ButtonImage"
+        android:layout_height="85dp"
+        android:background="@drawable/btnusuarios" />
 
 </LinearLayout>
