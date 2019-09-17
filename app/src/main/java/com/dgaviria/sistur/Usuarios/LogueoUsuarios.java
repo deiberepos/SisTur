@@ -96,7 +96,7 @@ public class LogueoUsuarios extends AppCompatActivity{
                         //valida la contraseña
                         if(usuarioC.getContrasena().equals(contrasenaU)) {
                             //verifica si tiene el rol de administrador
-                            Intent miIntento = new Intent(getApplicationContext(), MenuPrincipal.class);
+                            Intent miIntento = new Intent(LogueoUsuarios.this, MenuPrincipal.class);
                             startActivity(miIntento);
                         }
                         else

@@ -56,12 +56,12 @@ public class ListarUsuarios extends AppCompatActivity {
         miRecyclerUsuarios =findViewById(R.id.recyclerLista);
         listaDeUsuarios =new ArrayList<>();
         listaDeUsuarios.removeAll(listaDeUsuarios);
+        miRecyclerUsuarios.setLayoutManager(new LinearLayoutManager(this));
     }
 
     private void llenarRecyclerUsuarios() {
-        miRecyclerUsuarios.setLayoutManager(new LinearLayoutManager(this));
-        miReferencia= FirebaseDatabase.getInstance().getReference();
         //busca el nombre de todos los usuarios y llena la lista
+        miReferencia= FirebaseDatabase.getInstance().getReference();
         miReferencia.child("usuarios").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

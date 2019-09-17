@@ -119,7 +119,7 @@ public class MenuPrincipal extends AppCompatActivity {
         });
     }
     public void crearAlertaDialogo(){
-        AlertDialog.Builder construye=new AlertDialog.Builder(this);
+        AlertDialog.Builder construye=new AlertDialog.Builder(this,R.style.TemaDialogo);
         construye.setTitle("Gestionar Usuarios");
         construye.setIcon(R.mipmap.pregunta);
         construye.setMessage("Quá acción desea realizar");
