@@ -21,60 +21,58 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListarUsuarios extends AppCompatActivity {
-    RecyclerView miRecycler;
-    List<Usuarios> listadoUsuarios;
+    RecyclerView miRecyclerUsuarios;
+    List<Usuarios> listaDeUsuarios;
     AdaptadorListaUsuarios adaptadorUsuarios;
     DatabaseReference miReferencia;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.listar_usuarios);
+
         referenciar();
+        llenarRecyclerUsuarios();
 
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
-        miRecycler.setLayoutManager(linearLayoutManager);
-        llenarRecycler();
-
-        adaptadorUsuarios=new AdaptadorListaUsuarios(listadoUsuarios, this, new AdaptadorListaUsuarios.OnItemClick() {
+        adaptadorUsuarios=new AdaptadorListaUsuarios(this,listaDeUsuarios, new AdaptadorListaUsuarios.OnItemClick() {
             @Override
             public void itemClick(Usuarios misUsuarios, int posicion) {
-                Toast.makeText(getApplicationContext(),"Modificar Nombre",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Modificar datos",Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void correoClick(Usuarios misUsuarios, int posicion) {
-                Toast.makeText(getApplicationContext(),"Modificar Nombre",Toast.LENGTH_SHORT).show();
+            public void modificaClick(Usuarios misUsuarios, int posicion) {
+                Toast.makeText(getApplicationContext(),"Modificar información",Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void telefonoClick(Usuarios misUsuarios, int posicion) {
-                Toast.makeText(getApplicationContext(),"Modificar Correo",Toast.LENGTH_SHORT).show();
+            public void eliminaClick(Usuarios misUsuarios, int posicion) {
+                Toast.makeText(getApplicationContext(),"Eliminar usuario",Toast.LENGTH_SHORT).show();
             }
         });
-
-        miRecycler.setAdapter(adaptadorUsuarios);
+        miRecyclerUsuarios.setAdapter(adaptadorUsuarios);
     }
 
     private void referenciar() {
-        miRecycler=findViewById(R.id.recycler);
+        miRecyclerUsuarios =findViewById(R.id.recyclerLista);
+        listaDeUsuarios =new ArrayList<>();
+        listaDeUsuarios.removeAll(listaDeUsuarios);
     }
 
-    private void llenarRecycler() {
+    private void llenarRecyclerUsuarios() {
+        miRecyclerUsuarios.setLayoutManager(new LinearLayoutManager(this));
         miReferencia= FirebaseDatabase.getInstance().getReference();
-        listadoUsuarios=new ArrayList<>();
-        //verifica que no se repita el nombre del usuario
+        //busca el nombre de todos los usuarios y llena la lista
         miReferencia.child("usuarios").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                listadoUsuarios.clear();
                 for (DataSnapshot usuariosExisten : dataSnapshot.getChildren()) {
                     Usuarios miUsuario=usuariosExisten.getValue(Usuarios.class);
-                    listadoUsuarios.add(miUsuario);
+                    listaDeUsuarios.add(miUsuario);
                 }
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                Toast.makeText(getApplicationContext(),"Error en la lectura de usuarios, contacte al administrador",Toast.LENGTH_SHORT).show();
             }
         });
     }

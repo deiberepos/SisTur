@@ -4,15 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingRight="16dp"
-    android:paddingLeft="16dp"
-    android:paddingBottom="16dp"
-    android:paddingTop="16dp"
-    android:orientation="vertical"
-    tools:context=".Usuarios.ListarUsuarios">
-
+    android:padding="10dp"
+    tools:context=".Menus.MenuPrincipal">
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerLista"
+        android:id="@+id/recyclerOpciones"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />

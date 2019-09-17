@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Roles {
 
-    public Boolean activo;
+    private Boolean activo;
 
     public Roles() {
     }

@@ -1,21 +1,26 @@
 package com.dgaviria.sistur.Clases;
 
-import android.provider.ContactsContract;
-
-import java.util.List;
-
 public class Usuarios {
-    String usuario;
-    String contrasena;
-    String nombre;
-    String correo;
-    Boolean rolsuper;
-    Boolean roladmin;
-    Boolean rolgestor;
-    Boolean rolcompras;
-    Boolean rolbasico;
+    public String usuario;
+    public String contrasena;
+    public String nombre;
+    public String correo;
+    public Boolean rolsuper;
+    public Boolean roladmin;
+    public Boolean rolgestor;
+    public Boolean rolcompras;
+    public Boolean rolbasico;
 
     public Usuarios() {
+        this.usuario = "";
+        this.contrasena = "";
+        this.nombre = "";
+        this.correo = "";
+        this.rolsuper = false;
+        this.roladmin = false;
+        this.rolgestor = false;
+        this.rolcompras = false;
+        this.rolbasico = false;
     }
 
     public Usuarios(String usuario, String contrasena, String nombre, String correo, Boolean rolSuper, Boolean rolAdmin, Boolean rolGestor, Boolean rolCompras, Boolean rolBasico) {

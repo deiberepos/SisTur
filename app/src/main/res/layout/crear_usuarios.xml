@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondoanimado"
     android:orientation="vertical"
     android:id="@+id/contenedor"
     tools:context=".Usuarios.CrearUsuarios">
@@ -19,18 +18,17 @@
             <ImageView
                 android:layout_width="65dp"
                 android:layout_height="70dp"
-                android:background="@drawable/logoinicialclaro" />
+                android:background="@drawable/logoinicial" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:shadowColor="@color/colorClaro"
+                    android:shadowColor="@color/colorPrimarioOscuro"
                     android:shadowDx="-2"
                     android:shadowDy="-2"
                     android:shadowRadius="1.5"
@@ -39,88 +37,85 @@
                     android:textSize="25dp"
                     android:textStyle="bold" />
                 <EditText
+                    android:layout_marginTop="25dp"
+                    android:background="@drawable/personalizar_edit"
+                    style="@style/edit"
                     android:id="@+id/editTextUsuario"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:fontFamily="monospace"
+                    android:textSize="15dp"
                     android:hint="usuario"
                     android:inputType="textPostalAddress"
                     android:maxLength="15"
                     android:paddingBottom="15dp"
-                    android:textColor="@color/colorAmarillo"
-                    android:textSize="15dp"
-                    android:elegantTextHeight="true"
-                    android:textColorHint="@color/colorClaro"
-                    android:backgroundTint="@color/colorRojo"/>
+                    android:textColor="@color/colorPrimarioOscuro"
+                    android:textColorHint="@color/colorPrimarioSuave"
+                    android:textCursorDrawable="@color/colorRojo" />
 
                 <EditText
                     android:id="@+id/editTextPassword"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:background="@drawable/personalizar_edit"
+                    style="@style/edit"
                     android:fontFamily="monospace"
                     android:hint="contraseña"
                     android:inputType="textPassword"
                     android:maxLength="15"
                     android:textSize="15dp"
                     android:paddingBottom="15dp"
-                    android:textColor="@color/colorAmarillo"
-                    android:textColorHint="@color/colorClaro"
-                    android:backgroundTint="@color/colorRojo"
+                    android:textColor="@color/colorPrimarioOscuro"
+                    android:textColorHint="@color/colorPrimarioSuave"
+                    android:textCursorDrawable="@color/colorRojo"
                     />
                 <EditText
                     android:id="@+id/editTextVerificaPassword"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:background="@drawable/personalizar_edit"
+                    style="@style/edit"
                     android:fontFamily="monospace"
                     android:hint="verifica contraseña"
                     android:inputType="textPassword"
                     android:textSize="15dp"
                     android:maxLength="15"
                     android:paddingBottom="15dp"
-                    android:textColor="@color/colorAmarillo"
-                    android:textColorHint="@color/colorClaro"
-                    android:backgroundTint="@color/colorRojo"/>
+                    android:textColor="@color/colorPrimarioOscuro"
+                    android:textColorHint="@color/colorPrimarioSuave"
+                    android:textCursorDrawable="@color/colorRojo" />
                 <EditText
                     android:id="@+id/editTextCorreo"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:background="@drawable/personalizar_edit"
+                    style="@style/edit"
                     android:fontFamily="monospace"
                     android:hint="correo"
                     android:inputType="textEmailAddress"
                     android:maxLength="35"
                     android:paddingBottom="15dp"
                     android:textSize="15dp"
-                    android:textColor="@color/colorAmarillo"
-                    android:textColorHint="@color/colorClaro"
-                    android:backgroundTint="@color/colorRojo"
+                    android:textColor="@color/colorPrimarioOscuro"
+                    android:textColorHint="@color/colorPrimarioSuave"
+                    android:textCursorDrawable="@color/colorRojo"
                     />
                 <EditText
                     android:id="@+id/editTextNombre"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:background="@drawable/personalizar_edit"
+                    style="@style/edit"
                     android:fontFamily="monospace"
                     android:hint="nombres y apellidos"
                     android:inputType="textPersonName"
                     android:maxLength="35"
                     android:paddingBottom="15dp"
                     android:textSize="15dp"
-                    android:textColor="@color/colorAmarillo"
-                    android:textColorHint="@color/colorClaro"
-                    android:backgroundTint="@color/colorRojo"
+                    android:textColor="@color/colorPrimarioOscuro"
+                    android:textColorHint="@color/colorPrimarioSuave"
+                    android:textCursorDrawable="@color/colorRojo"
                     />
             </LinearLayout>
             <LinearLayout
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="260dp"
                 android:weightSum="2"
                 android:orientation="horizontal">
                 <LinearLayout
+                    android:layout_marginTop="20dp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -142,7 +137,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:background="@drawable/rounded_button_transparent"
                         android:orientation="vertical"
                         android:paddingEnd="15dp">
                         <RadioButton
@@ -150,7 +144,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Administrador"
-                            android:textColor="@color/colorAmarillo"
+                            android:textColor="@color/colorPrimarioOscuro"
                             android:typeface="monospace"
                             android:checked="true"
                             app:buttonTint="@color/colorRojo"/>
@@ -159,7 +153,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Gestor"
-                            android:textColor="@color/colorAmarillo"
+                            android:textColor="@color/colorPrimarioOscuro"
                             android:typeface="monospace"
                             android:checked="true"
                             app:buttonTint="@color/colorRojo"/>
@@ -169,7 +163,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Compras"
-                            android:textColor="@color/colorAmarillo"
+                            android:textColor="@color/colorPrimarioOscuro"
                             android:typeface="monospace"
                             android:checked="true"
                             app:buttonTint="@color/colorRojo"/>
@@ -179,7 +173,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Básico"
-                            android:textColor="@color/colorAmarillo"
+                            android:textColor="@color/colorPrimarioOscuro"
                             android:typeface="monospace"
                             android:checked="true"
                             app:buttonTint="@color/colorRojo"/>
@@ -193,10 +187,10 @@
                     android:layout_gravity="center_vertical">
                     <Button
                         android:id="@+id/botonRegistrar"
-                        android:layout_width="150dp"
+                        android:layout_width="180dp"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
-                        android:layout_margin="20dp"
+                        android:layout_marginTop="20dp"
                         android:background="@drawable/rounded_button_solid"
                         android:text="Registrar Usuario"
                         android:textAllCaps="false"

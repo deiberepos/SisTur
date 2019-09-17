@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.dgaviria.sistur.Clases.Roles;
 import com.dgaviria.sistur.Clases.Usuarios;
 import com.dgaviria.sistur.MainActivity;
+import com.dgaviria.sistur.Menus.MenuPrincipal;
 import com.dgaviria.sistur.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -32,7 +33,7 @@ public class CrearUsuarios extends AppCompatActivity {
     EditText editTextUsuario, editTextContrasena,editTextVerificaContrasena,editTextCorreo,editTextNombres ;
     ProgressBar barraProgreso;
     String usuarioU,contrasenaU,contrasenaV,correoE,nombresU,nombreRol;
-    AnimationDrawable animacion;
+    //AnimationDrawable animacion;
     LinearLayout miContenedor;
     Button botonRegistra;
     RadioGroup rolSeleccionado;
@@ -60,11 +61,11 @@ public class CrearUsuarios extends AppCompatActivity {
         barraProgreso = findViewById(R.id.barraProgreso);
         botonRegistra=findViewById(R.id.botonRegistrar);
         rolSeleccionado=findViewById(R.id.rgRoles);
-        //Inicio de la animación del fondo de pantalla
+        /*//Inicio de la animación del fondo de pantalla
         animacion=(AnimationDrawable) miContenedor.getBackground();
         animacion.setEnterFadeDuration(2000);
         animacion.setExitFadeDuration(2000);
-        //Final de la animación del fondo de pantalla
+        //Final de la animación del fondo de pantalla*/
     }
 
     private void verificarDatosUsuario(){
@@ -180,6 +181,7 @@ public class CrearUsuarios extends AppCompatActivity {
                         //valida el nombre del usuario
                         if (dataSnapshot.child("usuario").getValue(String.class).equals(usuarioU)) {
                             Toast.makeText(getApplicationContext(), "Este usuario ya existe, intente otro nombre", Toast.LENGTH_SHORT).show();
+
                         }
                         else {
                             crearNuevoUsuario();
@@ -220,21 +222,18 @@ public class CrearUsuarios extends AppCompatActivity {
         rolesMap.put(nombreRol,new Roles(usuarioU,true));
         misDatos.setValue(rolesMap);*/
 
-        Toast.makeText(this,"Usuario creado exitosamente",Toast.LENGTH_SHORT).show();
-        Intent miIntento = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(miIntento);
+        Toast.makeText(this,"Usuario creado exitosamente",Toast.LENGTH_LONG).show();
+        finish();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if (animacion!=null && !animacion.isRunning())
-            animacion.start();
+
     }
     @Override
     protected void onPause() {
         super.onPause();
-        if (animacion!=null && !animacion.isRunning())
-            animacion.stop();
+
     }
 }

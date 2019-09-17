@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.dgaviria.sistur">
-
-    <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logoinicial"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CensoPoblacional"></activity>
-        <activity android:name=".RegistrarCDIHCB" />
-        <activity android:name=".MenuSuper" />
-        <activity android:name=".Usuarios.usuariosLista" />
-        <activity android:name=".Usuarios.LogueoUsuarios" />
+        <activity android:name=".Menus.MenuPrincipal" />
+        <activity android:name=".Menus.OpcionesMenuPpal" />
         <activity android:name=".Usuarios.CrearUsuarios" />
         <activity android:name=".Usuarios.ListarUsuarios" />
+        <activity android:name=".Usuarios.LogueoUsuarios" />
+        <activity android:name=".Usuarios.OpcionesUsuarios"/>
+        <activity android:name=".Usuarios.UsuariosLista" />
         <activity android:name=".MainActivity" />
+        <activity android:name=".CensoPoblacional" />
+        <activity android:name=".RegistrarCDIHCB" />
         <activity android:name=".Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,5 +27,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>
