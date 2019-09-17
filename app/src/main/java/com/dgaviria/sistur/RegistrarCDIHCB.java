@@ -223,11 +223,7 @@ public class RegistrarCDIHCB extends AppCompatActivity {
         //guarda los datos del rol
         //misDatos=miReferencia.child("rol").child(nombreRol).child("miembros");
         //misDatos.child(usuarioU).setValue(new Roles(true));
-        /*Usar para actualizar
-        Map<String, Roles> rolesMap=new HashMap<>();
-        rolesMap.put(nombreRol,new Roles(usuarioU,true));
-        misDatos.setValue(rolesMap);*/
-        //rgbvereda.clearCheck();
+
 
     }
 
