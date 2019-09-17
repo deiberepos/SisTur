@@ -50,9 +50,9 @@ public class MenuPrincipal extends AppCompatActivity {
             public void itemClick(MenuOpciones misOpciones, int posicion) {
                 switch (posicion){
                     case 0:
-                        /*Intent miIntento1 = new Intent(MenuPrincipal.this, OpcionesUsuarios.class);
-                        startActivity(miIntento1);*/
-                        crearAlertaDialogo();
+                        Intent miIntento1 = new Intent(MenuPrincipal.this, OpcionesUsuarios.class);
+                        startActivity(miIntento1);
+                        //crearAlertaDialogo();
                         break;
                     case 1:
                         Intent miIntento2 = new Intent(MenuPrincipal.this, RegistrarCDIHCB.class);
@@ -72,9 +72,9 @@ public class MenuPrincipal extends AppCompatActivity {
             public void imagenClick(MenuOpciones misOpciones, int posicion) {
                 switch (posicion) {
                     case 0:
-                        /*Intent miIntento1 = new Intent(MenuPrincipal.this, OpcionesUsuarios.class);
-                        startActivity(miIntento1);*/
-                        crearAlertaDialogo();
+                        Intent miIntento1 = new Intent(MenuPrincipal.this, OpcionesUsuarios.class);
+                        startActivity(miIntento1);
+                        //crearAlertaDialogo();
                         break;
                     case 1:
                         Intent miIntento2 = new Intent(MenuPrincipal.this, RegistrarCDIHCB.class);
@@ -119,7 +119,7 @@ public class MenuPrincipal extends AppCompatActivity {
             }
         });
     }
-    public void crearAlertaDialogo(){
+   /* public void crearAlertaDialogo(){
         AlertDialog.Builder construye=new AlertDialog.Builder(this,R.style.Theme_Design);
         construye.setTitle("Gestionar Usuarios");
         construye.setIcon(R.mipmap.pregunta);
@@ -139,5 +139,5 @@ public class MenuPrincipal extends AppCompatActivity {
             }
         });
         construye.show();
-    }
+    }*/
 }
