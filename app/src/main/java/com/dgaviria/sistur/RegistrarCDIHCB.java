@@ -207,21 +207,18 @@ public class RegistrarCDIHCB extends AppCompatActivity {
     }
     private void guardarCentro(){
         //construye el objeto que se va a guardar en la base de datos
-        Toast.makeText(getApplicationContext(),"Ubicacion: "+vereda,Toast.LENGTH_SHORT).show();
+
         miReferencia= FirebaseDatabase.getInstance().getReference();
         //guarda los datos del usuario
-        misDatos=miReferencia.child("CDI&HCB");
+        misDatos=miReferencia.child("Centros");
 
         misDatos.child(nombrecentro).setValue(new CdiHcb(nombrecentro,nombreE,nombreC,vereda,direccionE,direccionC,telE,telC,tipo));
+        Toast.makeText(getApplicationContext(),"Datos guardados correctamente",Toast.LENGTH_SHORT).show();
         /*Usar para actualizar
         Map<String,Usuarios> usuariosMap=new HashMap<>();
         usuariosMap.put(usuarioU,new Usuarios(
                 usuarioU,contrasenaU,nombresU,correoE,false,rolUsuario==1,rolUsuario==2,rolUsuario==3,rolUsuario==4));
         misDatos.setValue(usuariosMap);*/
-        //guarda los datos del rol
-        //misDatos=miReferencia.child("rol").child(nombreRol).child("miembros");
-        //misDatos.child(usuarioU).setValue(new Roles(true));
-
 
     }
 
@@ -239,11 +236,6 @@ public class RegistrarCDIHCB extends AppCompatActivity {
        // listaveredas=findViewById(R.id.idlisVeredas);
         btnGuardar=findViewById(R.id.idbtnregCDI);
         contenedorScroll=findViewById(R.id.idcontenerRegCDI);
-        /*//Inicio de la animación del fondo de pantalla
-        animacion=(AnimationDrawable) contenedorScroll.getBackground();
-        animacion.setEnterFadeDuration(2000);
-        animacion.setExitFadeDuration(2000);
-        //Final de la animación del fondo de pantalla*/
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.veredas,android.R.layout.simple_spinner_item);
         spnVeredas.setAdapter(adapter);
         //listaveredas.setAdapter(adapter);
