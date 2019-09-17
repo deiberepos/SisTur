@@ -111,6 +111,7 @@ public class MenuPrincipal extends AppCompatActivity {
                     if (misOpciones.getActivo()==true)
                         listadoOpciones.add(misOpciones);
                 }
+                adaptadorMenu.notifyDataSetChanged();
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -119,7 +120,7 @@ public class MenuPrincipal extends AppCompatActivity {
         });
     }
     public void crearAlertaDialogo(){
-        AlertDialog.Builder construye=new AlertDialog.Builder(this,R.style.TemaDialogo);
+        AlertDialog.Builder construye=new AlertDialog.Builder(this,R.style.Theme_Design);
         construye.setTitle("Gestionar Usuarios");
         construye.setIcon(R.mipmap.pregunta);
         construye.setMessage("Quá acción desea realizar");
