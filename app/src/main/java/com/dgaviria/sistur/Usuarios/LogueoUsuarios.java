@@ -50,12 +50,6 @@ public class LogueoUsuarios extends AppCompatActivity{
         editTextContrasena= findViewById(R.id.editTextPassword);
         barraProgreso = findViewById(R.id.barraProgreso);
         botonIngresar=findViewById(R.id.botonIngreso);
-        /*Inicio de la animación del fondo de pantalla
-        animacion=(AnimationDrawable) miContenedor.getBackground();
-        animacion.setEnterFadeDuration(2000);
-        animacion.setExitFadeDuration(2000);
-        //Final de la animación del fondo de pantalla*/
-
     }
 
     private void verificarPermiso(){
@@ -80,6 +74,7 @@ public class LogueoUsuarios extends AppCompatActivity{
             contrasenaU = editTextContrasena.getText().toString().trim();
             editTextContrasena.setText(contrasenaU);
         }
+        barraProgreso.setVisibility(View.GONE);
         miReferencia.child(nombreU).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -118,19 +113,17 @@ public class LogueoUsuarios extends AppCompatActivity{
 
             }
         });
-        barraProgreso.setVisibility(View.GONE);
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        /*if (animacion!=null && !animacion.isRunning())
-            animacion.start();*/
+
     }
     @Override
     protected void onPause() {
         super.onPause();
-        /*if (animacion!=null && !animacion.isRunning())
-            animacion.stop();*/
+
     }
 }

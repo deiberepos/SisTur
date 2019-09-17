@@ -33,7 +33,7 @@ public class ListarUsuarios extends AppCompatActivity {
         referenciar();
         llenarRecyclerUsuarios();
 
-        adaptadorUsuarios=new AdaptadorListaUsuarios(listaDeUsuarios, getApplicationContext(), new AdaptadorListaUsuarios.OnItemClick() {
+        adaptadorUsuarios=new AdaptadorListaUsuarios(this,listaDeUsuarios, new AdaptadorListaUsuarios.OnItemClick() {
             @Override
             public void itemClick(Usuarios misUsuarios, int posicion) {
                 Toast.makeText(getApplicationContext(),"Modificar datos",Toast.LENGTH_SHORT).show();
@@ -50,7 +50,6 @@ public class ListarUsuarios extends AppCompatActivity {
             }
         });
         miRecyclerUsuarios.setAdapter(adaptadorUsuarios);
-
     }
 
     private void referenciar() {
@@ -68,16 +67,6 @@ public class ListarUsuarios extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot usuariosExisten : dataSnapshot.getChildren()) {
                     Usuarios miUsuario=usuariosExisten.getValue(Usuarios.class);
-                    /*Usuarios miUsuario=new Usuarios(
-                            usuariosExisten.child("usuario").getValue(String.class),
-                            usuariosExisten.child("contrasena").getValue(String.class),
-                            usuariosExisten.child("nombre").getValue(String.class),
-                            usuariosExisten.child("correo").getValue(String.class),
-                            usuariosExisten.child("rolsuper").getValue(Boolean.class),
-                            usuariosExisten.child("roladmin").getValue(Boolean.class),
-                            usuariosExisten.child("rolgestor").getValue(Boolean.class),
-                            usuariosExisten.child("rolcompras").getValue(Boolean.class),
-                            usuariosExisten.child("rolbasico").getValue(Boolean.class));*/
                     listaDeUsuarios.add(miUsuario);
                 }
             }

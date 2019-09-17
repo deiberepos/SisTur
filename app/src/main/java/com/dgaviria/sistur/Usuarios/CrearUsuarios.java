@@ -229,13 +229,11 @@ public class CrearUsuarios extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        /*if (animacion!=null && !animacion.isRunning())
-            animacion.start();*/
+
     }
     @Override
     protected void onPause() {
         super.onPause();
-        /*if (animacion!=null && !animacion.isRunning())
-            animacion.stop();*/
+
     }
 }

@@ -45,21 +45,21 @@ public class MenuPrincipal extends AppCompatActivity {
         miRecycler.setLayoutManager(linearLayoutManager);
         llenarRecyclerOpciones();
 
-        adaptadorMenu=new AdaptadorMenuPpal(listadoOpciones, this, new AdaptadorMenuPpal.OnItemClick() {
+        adaptadorMenu=new AdaptadorMenuPpal(this,listadoOpciones, new AdaptadorMenuPpal.OnItemClick() {
             @Override
             public void itemClick(MenuOpciones misOpciones, int posicion) {
                 switch (posicion){
                     case 0:
-                        /*Intent miIntento1 = new Intent(getApplicationContext(), OpcionesUsuarios.class);
+                        /*Intent miIntento1 = new Intent(MenuPrincipal.this, OpcionesUsuarios.class);
                         startActivity(miIntento1);*/
                         crearAlertaDialogo();
                         break;
                     case 1:
-                        Intent miIntento2 = new Intent(getApplicationContext(), RegistrarCDIHCB.class);
+                        Intent miIntento2 = new Intent(MenuPrincipal.this, RegistrarCDIHCB.class);
                         startActivity(miIntento2);
                         break;
                     case 2:
-                        Intent miIntento3 = new Intent(getApplicationContext(), CensoPoblacional.class);
+                        Intent miIntento3 = new Intent(MenuPrincipal.this, CensoPoblacional.class);
                         startActivity(miIntento3);
                         break;
                     default:
@@ -72,14 +72,16 @@ public class MenuPrincipal extends AppCompatActivity {
             public void imagenClick(MenuOpciones misOpciones, int posicion) {
                 switch (posicion) {
                     case 0:
+                        /*Intent miIntento1 = new Intent(MenuPrincipal.this, OpcionesUsuarios.class);
+                        startActivity(miIntento1);*/
                         crearAlertaDialogo();
                         break;
                     case 1:
-                        Intent miIntento2 = new Intent(getApplicationContext(), RegistrarCDIHCB.class);
+                        Intent miIntento2 = new Intent(MenuPrincipal.this, RegistrarCDIHCB.class);
                         startActivity(miIntento2);
                         break;
                     case 2:
-                        Intent miIntento3 = new Intent(getApplicationContext(), CensoPoblacional.class);
+                        Intent miIntento3 = new Intent(MenuPrincipal.this, CensoPoblacional.class);
                         startActivity(miIntento3);
                         break;
                     default:
@@ -124,14 +126,14 @@ public class MenuPrincipal extends AppCompatActivity {
         construye.setPositiveButton("Crear Usuarios", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Intent miIntento1 = new Intent(getApplicationContext(), CrearUsuarios.class);
+                Intent miIntento1 = new Intent(MenuPrincipal.this, CrearUsuarios.class);
                 startActivity(miIntento1);
             }
         });
         construye.setNegativeButton("Modificar Usuarios", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Intent miIntento1 = new Intent(getApplicationContext(), ListarUsuarios.class);
+                Intent miIntento1 = new Intent(MenuPrincipal.this, ListarUsuarios.class);
                 startActivity(miIntento1);
             }
         });

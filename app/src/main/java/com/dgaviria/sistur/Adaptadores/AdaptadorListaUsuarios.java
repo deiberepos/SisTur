@@ -58,7 +58,7 @@ public class AdaptadorListaUsuarios extends RecyclerView.Adapter<AdaptadorListaU
         }
     }
 
-    public AdaptadorListaUsuarios(List<Usuarios> listado, Context contexto, OnItemClick listener){
+    public AdaptadorListaUsuarios( Context contexto,List<Usuarios> listado, OnItemClick listener){
         this.listadoUsuarios=listado;
         this.contexto=contexto;
         this.listener=listener;

@@ -146,7 +146,6 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:orientation="vertical"
-                        android:background="@drawable/fondoclaro"
                         android:paddingEnd="15dp">
                         <RadioButton
                             android:id="@+id/opbRolUno"

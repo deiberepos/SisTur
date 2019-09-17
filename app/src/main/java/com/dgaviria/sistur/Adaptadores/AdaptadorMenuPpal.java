@@ -56,7 +56,7 @@ public class AdaptadorMenuPpal extends RecyclerView.Adapter<AdaptadorMenuPpal.Op
         }
     }
 
-    public AdaptadorMenuPpal(List<MenuOpciones> listado, Context contexto, AdaptadorMenuPpal.OnItemClick listener){
+    public AdaptadorMenuPpal(Context contexto,List<MenuOpciones> listado, AdaptadorMenuPpal.OnItemClick listener){
         this.listadoOpciones=listado;
         this.contexto=contexto;
         this.listener=listener;
