@@ -6,12 +6,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/contenedor"
+    android:gravity="center"
     tools:context=".Usuarios.LogueoUsuarios">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
         <RelativeLayout
+            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal">
@@ -20,6 +22,7 @@
                 android:layout_height="70dp"
                 android:background="@drawable/logoinicial" />
             <LinearLayout
+                android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:orientation="vertical"
@@ -66,13 +69,12 @@
                     android:textColorHint="@color/colorPrimarioSuave"
                     android:textCursorDrawable="@color/colorNegro" />
                 <Button
-
                     android:id="@+id/botonIngreso"
                     android:layout_width="200dp"
                     android:layout_gravity="center"
                     android:layout_margin="20dp"
                     android:layout_height="40dp"
-                    android:background="@drawable/rounded_button_solid"
+                    android:background="@drawable/personalizar_button"
                     android:text="Ingresar"
                     android:textAllCaps="false"
                     android:textColor="@color/colorClaro" />

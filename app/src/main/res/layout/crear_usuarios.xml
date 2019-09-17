@@ -191,7 +191,7 @@
                         android:layout_height="40dp"
                         android:layout_gravity="center"
                         android:layout_marginTop="20dp"
-                        android:background="@drawable/rounded_button_solid"
+                        android:background="@drawable/personalizar_button"
                         android:text="Registrar Usuario"
                         android:textAllCaps="false"
                         android:textColor="@color/colorClaro" />

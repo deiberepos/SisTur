@@ -39,7 +39,7 @@
                 android:layout_marginTop="50dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_height="40dp"
-                android:background="@drawable/rounded_button_solid"
+                android:background="@drawable/personalizar_button"
                 android:text="Crear usuarios"
                 android:textAllCaps="false"
                 android:textColor="@color/colorClaro" />
@@ -49,7 +49,7 @@
                 android:layout_gravity="center"
                 android:layout_margin="20dp"
                 android:layout_height="40dp"
-                android:background="@drawable/rounded_button_solid"
+                android:background="@drawable/personalizar_button"
                 android:text="Modificar usuarios"
                 android:textAllCaps="false"
                 android:textColor="@color/colorClaro" />
