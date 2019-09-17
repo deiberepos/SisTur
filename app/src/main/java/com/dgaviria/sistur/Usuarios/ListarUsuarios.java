@@ -21,15 +21,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListarUsuarios extends AppCompatActivity {
+
     RecyclerView miRecyclerUsuarios;
     List<Usuarios> listaDeUsuarios;
     AdaptadorListaUsuarios adaptadorUsuarios;
     DatabaseReference miReferencia;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.listar_usuarios);
-
+        miReferencia= FirebaseDatabase.getInstance().getReference();
         referenciar();
         llenarRecyclerUsuarios();
 
@@ -53,15 +55,13 @@ public class ListarUsuarios extends AppCompatActivity {
     }
 
     private void referenciar() {
-        miRecyclerUsuarios =findViewById(R.id.recyclerLista);
+        miRecyclerUsuarios=findViewById(R.id.recyclerLista);
         listaDeUsuarios =new ArrayList<>();
-        listaDeUsuarios.removeAll(listaDeUsuarios);
-        miRecyclerUsuarios.setLayoutManager(new LinearLayoutManager(this));
     }
 
     private void llenarRecyclerUsuarios() {
+        miRecyclerUsuarios.setLayoutManager(new LinearLayoutManager(this));
         //busca el nombre de todos los usuarios y llena la lista
-        miReferencia= FirebaseDatabase.getInstance().getReference();
         miReferencia.child("usuarios").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -69,6 +69,7 @@ public class ListarUsuarios extends AppCompatActivity {
                     Usuarios miUsuario=usuariosExisten.getValue(Usuarios.class);
                     listaDeUsuarios.add(miUsuario);
                 }
+                adaptadorUsuarios.notifyDataSetChanged();
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {

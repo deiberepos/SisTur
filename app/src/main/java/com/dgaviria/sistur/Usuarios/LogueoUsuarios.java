@@ -25,9 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 public class LogueoUsuarios extends AppCompatActivity{
     DatabaseReference miReferencia;
     EditText editTextUsuario, editTextContrasena;
-    ProgressBar barraProgreso;
     String nombreU,contrasenaU;
-    AnimationDrawable animacion;
     LinearLayout miContenedor;
     Button botonIngresar;
     @Override
@@ -48,12 +46,10 @@ public class LogueoUsuarios extends AppCompatActivity{
         miContenedor=findViewById(R.id.contenedor);
         editTextUsuario =  findViewById(R.id.editTextUsuario);
         editTextContrasena= findViewById(R.id.editTextPassword);
-        barraProgreso = findViewById(R.id.barraProgreso);
         botonIngresar=findViewById(R.id.botonIngreso);
     }
 
     private void verificarPermiso(){
-        barraProgreso.setVisibility(View.VISIBLE);
         miReferencia= FirebaseDatabase.getInstance().getReference("usuarios");
 
         if (editTextUsuario.getText().toString().trim().toLowerCase().isEmpty()) {
@@ -74,7 +70,6 @@ public class LogueoUsuarios extends AppCompatActivity{
             contrasenaU = editTextContrasena.getText().toString().trim();
             editTextContrasena.setText(contrasenaU);
         }
-        barraProgreso.setVisibility(View.GONE);
         miReferencia.child(nombreU).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

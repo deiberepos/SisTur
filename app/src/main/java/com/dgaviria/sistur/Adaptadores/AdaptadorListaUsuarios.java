@@ -17,6 +17,12 @@ import java.util.List;
 public class AdaptadorListaUsuarios extends RecyclerView.Adapter<AdaptadorListaUsuarios.UsuariosViewHolder> {
     List<Usuarios> listadoUsuarios;
     Context contexto;
+
+    public AdaptadorListaUsuarios(List<Usuarios> listadoUsuarios) {
+        this.listadoUsuarios = listadoUsuarios;
+    }
+
+
     public interface OnItemClick{
         void itemClick(Usuarios misUsuarios,int posicion);
         void modificaClick(Usuarios misUsuarios,int posicion);
@@ -64,6 +70,7 @@ public class AdaptadorListaUsuarios extends RecyclerView.Adapter<AdaptadorListaU
         this.listener=listener;
     }
 
+
     @Override
     public UsuariosViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View vistaUno= LayoutInflater.from(parent.getContext()).inflate(R.layout.usuarios_lista,parent,false);
@@ -75,16 +82,6 @@ public class AdaptadorListaUsuarios extends RecyclerView.Adapter<AdaptadorListaU
     public void onBindViewHolder(UsuariosViewHolder holder, int position) {
         String nombreRol="";
         Usuarios miUsuario=listadoUsuarios.get(position);
-        if (miUsuario.getRolsuper())
-            nombreRol="Superusuario";
-        else if (miUsuario.getRoladmin())
-            nombreRol="Administrador";
-        else if (miUsuario.getRolgestor())
-            nombreRol="Gestor";
-        else if (miUsuario.getRolcompras())
-            nombreRol="Compras";
-        else if (miUsuario.getRolbasico())
-            nombreRol="Básico";
         holder.nombreU.setText(miUsuario.getUsuario());
         holder.nombres.setText(miUsuario.getNombre());
         holder.rol.setText(nombreRol);
@@ -103,7 +100,5 @@ public class AdaptadorListaUsuarios extends RecyclerView.Adapter<AdaptadorListaU
        return posicion;
     }
 
-    public AdaptadorListaUsuarios(List<Usuarios> listadoUsuarios) {
-        this.listadoUsuarios = listadoUsuarios;
-    }
+
 }

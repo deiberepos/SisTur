@@ -61,15 +61,9 @@ public class CrearUsuarios extends AppCompatActivity {
         barraProgreso = findViewById(R.id.barraProgreso);
         botonRegistra=findViewById(R.id.botonRegistrar);
         rolSeleccionado=findViewById(R.id.rgRoles);
-        /*//Inicio de la animación del fondo de pantalla
-        animacion=(AnimationDrawable) miContenedor.getBackground();
-        animacion.setEnterFadeDuration(2000);
-        animacion.setExitFadeDuration(2000);
-        //Final de la animación del fondo de pantalla*/
     }
 
     private void verificarDatosUsuario(){
-        Boolean finalizar=false;
         barraProgreso.setVisibility(View.VISIBLE);
         miReferencia= FirebaseDatabase.getInstance().getReference("usuarios");
         //Verifica que escriba los valores en todos los campos requeridos
@@ -209,18 +203,8 @@ public class CrearUsuarios extends AppCompatActivity {
         //guarda los datos del usuario
         misDatos=miReferencia.child("usuarios");
         misDatos.child(usuarioU).setValue(new Usuarios(usuarioU,contrasenaU,nombresU,correoE,false,rolUsuario==1,rolUsuario==2,rolUsuario==3,rolUsuario==4));
-        /*Usar para actualizar
-        Map<String,Usuarios> usuariosMap=new HashMap<>();
-        usuariosMap.put(usuarioU,new Usuarios(
-                usuarioU,contrasenaU,nombresU,correoE,false,rolUsuario==1,rolUsuario==2,rolUsuario==3,rolUsuario==4));
-        misDatos.setValue(usuariosMap);*/
-        //guarda los datos del rol
         misDatos=miReferencia.child("rol").child(nombreRol).child("miembros");
         misDatos.child(usuarioU).setValue(new Roles(true));
-        /*Usar para actualizar
-        Map<String, Roles> rolesMap=new HashMap<>();
-        rolesMap.put(nombreRol,new Roles(usuarioU,true));
-        misDatos.setValue(rolesMap);*/
 
         Toast.makeText(this,"Usuario creado exitosamente",Toast.LENGTH_LONG).show();
         finish();
