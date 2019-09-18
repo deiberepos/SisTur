@@ -26,23 +26,23 @@
             android:orientation="vertical">
             <TextView
                 android:id="@+id/txtNombres"
-                android:layout_width="180dp"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="monospace"
                 android:textSize="15dp"
                 />
+
             <TextView
                 android:id="@+id/txtUsuario"
-                android:layout_width="180dp"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="monospace"
-                android:textSize="20dp"
-                />
+                android:textSize="20dp" />
             <TextView
                 android:id="@+id/txtRol"
-                android:layout_width="180dp"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="monospace"
@@ -50,21 +50,21 @@
                 android:textStyle="italic"
                 />
         </LinearLayout>
+
         <ImageView
             android:id="@+id/imgModifica"
-            android:layout_marginTop="15dp"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_marginLeft="20dp"
-            android:layout_toRightOf="@id/layTextos"
-            />
+            android:layout_marginLeft="28dp"
+            android:layout_marginTop="15dp"
+            android:layout_toRightOf="@id/layTextos" />
+
         <ImageView
             android:id="@+id/imgElimina"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="30dp"
             android:layout_marginTop="15dp"
-            android:layout_toRightOf="@id/imgModifica"
-            />
+            android:layout_toRightOf="@id/imgModifica" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
