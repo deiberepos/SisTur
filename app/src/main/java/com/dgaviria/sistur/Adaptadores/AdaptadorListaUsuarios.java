@@ -78,6 +78,7 @@ public class AdaptadorListaUsuarios extends RecyclerView.Adapter<AdaptadorListaU
         return filaUno;
     }
 
+
     @Override
     public void onBindViewHolder(UsuariosViewHolder holder, int position) {
         String nombreRol="";
