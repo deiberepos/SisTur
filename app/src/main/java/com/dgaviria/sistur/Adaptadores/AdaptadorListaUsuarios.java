@@ -83,6 +83,16 @@ public class AdaptadorListaUsuarios extends RecyclerView.Adapter<AdaptadorListaU
     public void onBindViewHolder(UsuariosViewHolder holder, int position) {
         String nombreRol="";
         Usuarios miUsuario=listadoUsuarios.get(position);
+        if(miUsuario.getRoladmin())
+            nombreRol="SuperUsuario";
+        else if (miUsuario.getRoladmin())
+            nombreRol="Administrador";
+        else if (miUsuario.getRoladmin())
+            nombreRol="Gestor";
+        else if (miUsuario.getRoladmin())
+            nombreRol="Compras";
+        else if (miUsuario.getRoladmin())
+            nombreRol="Basico";
         holder.nombreU.setText(miUsuario.getUsuario());
         holder.nombres.setText(miUsuario.getNombre());
         holder.rol.setText(nombreRol);
