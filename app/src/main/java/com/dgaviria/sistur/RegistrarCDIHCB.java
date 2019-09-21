@@ -3,6 +3,7 @@ package com.dgaviria.sistur;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.View;
@@ -219,6 +220,8 @@ public class RegistrarCDIHCB extends AppCompatActivity {
         usuariosMap.put(usuarioU,new Usuarios(
                 usuarioU,contrasenaU,nombresU,correoE,false,rolUsuario==1,rolUsuario==2,rolUsuario==3,rolUsuario==4));
         misDatos.setValue(usuariosMap);*/
+        Intent intent = new Intent(getApplicationContext(), GestionarCDIHCB.class);
+        startActivity(intent);
 
     }
 

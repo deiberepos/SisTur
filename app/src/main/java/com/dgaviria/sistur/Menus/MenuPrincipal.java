@@ -16,6 +16,7 @@ import com.dgaviria.sistur.Adaptadores.AdaptadorMenuPpal;
 import com.dgaviria.sistur.CensoPoblacional;
 import com.dgaviria.sistur.Clases.MenuOpciones;
 import com.dgaviria.sistur.Clases.Usuarios;
+import com.dgaviria.sistur.GestionarCDIHCB;
 import com.dgaviria.sistur.R;
 import com.dgaviria.sistur.RegistrarCDIHCB;
 import com.dgaviria.sistur.Usuarios.CrearUsuarios;
@@ -55,8 +56,10 @@ public class MenuPrincipal extends AppCompatActivity {
                         //crearAlertaDialogo();
                         break;
                     case 1:
-                        Intent miIntento2 = new Intent(MenuPrincipal.this, RegistrarCDIHCB.class);
-                        startActivity(miIntento2);
+                        //Intent miIntento2 = new Intent(MenuPrincipal.this, RegistrarCDIHCB.class);
+                        //startActivity(miIntento2);
+                        Intent intent = new Intent(MenuPrincipal.this, GestionarCDIHCB.class);
+                        startActivity(intent);
                         break;
                     case 2:
                         Intent miIntento3 = new Intent(MenuPrincipal.this, CensoPoblacional.class);
