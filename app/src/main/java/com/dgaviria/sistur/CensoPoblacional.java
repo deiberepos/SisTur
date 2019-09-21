@@ -2,6 +2,7 @@ package com.dgaviria.sistur;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,15 +11,16 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.dgaviria.sistur.Clases.CdiHcb;
+import com.dgaviria.sistur.Clases.Censo;
+import com.dgaviria.sistur.Usuarios.CrearUsuarios;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class CensoPoblacional extends AppCompatActivity {
-    Button btnguardar;
+    Button btnguardar,btnlistar;
     EditText editnombreInfante, editapellidoInfante, editobservaciones, editnombrePadre, editnombreMadre, editTeleMadre, editTelePadre, editDirPadre, editDirMadre;
-    RadioButton genero;
     DatabaseReference miReferencia, misDatos;
-    String nombreinfante, nombre, apellido, observacion, nombreMadr, nombrePadr, telM, telP, dirM, dirP;
+    String nombreinfante, nombre, apellido, observacion, nombreMadr, nombrePadr, telM, telP, dirM, dirP,genero;
 
 
     @Override
@@ -33,9 +35,17 @@ public class CensoPoblacional extends AppCompatActivity {
                 cargarDatos();
             }
         });
+        btnlistar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent mi = new Intent(CensoPoblacional.this, ListarCensoPoblacion.class);
+                startActivity(mi);
+            }
+        });
     }
 
     public void referenciar() {
+        btnlistar=findViewById(R.id.btnlistar);
         btnguardar = findViewById(R.id.btnguardarcenso);
         editnombreInfante = findViewById(R.id.nombreinfante);
         editapellidoInfante = findViewById(R.id.apellidoinfante);
@@ -43,7 +53,7 @@ public class CensoPoblacional extends AppCompatActivity {
         editnombrePadre = findViewById(R.id.nom_ape_padre);
         editnombreMadre = findViewById(R.id.nom_ape_madre);
         editTeleMadre = findViewById(R.id.telefonomadre);
-        editTelePadre = findViewById(R.id.telefonomadre);
+        editTelePadre = findViewById(R.id.telefonopadre);
         editDirMadre = findViewById(R.id.direccionmadre);
         editDirPadre = findViewById(R.id.direccionpadre);
     }
@@ -54,7 +64,7 @@ public class CensoPoblacional extends AppCompatActivity {
         miReferencia = FirebaseDatabase.getInstance().getReference();
         //guarda los datos del usuario
         misDatos = miReferencia.child("CensoInfante");
-        misDatos.child(nombreinfante).setValue(new CdiHcb(nombre, apellido, observacion, nombreMadr, nombrePadr, telM, telP, dirM, dirP));
+        misDatos.child(nombreinfante).setValue(new Censo(nombre, apellido, genero, observacion, nombreMadr, nombrePadr, telM, telP, dirM, dirP));
     }
 
     private void cargarDatos() {

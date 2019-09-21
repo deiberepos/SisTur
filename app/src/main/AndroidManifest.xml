@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.dgaviria.sistur">
-
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/logoinicial"
@@ -9,13 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".GestionarCDIHCB"></activity>
         <activity android:name=".Menus.MenuPrincipal" />
         <activity android:name=".Menus.OpcionesMenuPpal" />
         <activity android:name=".Usuarios.CrearUsuarios" />
+        <activity android:name=".GestionarCDIHCB" />
+        <activity android:name=".CensoLista" />
+        <activity android:name=".ListarCensoPoblacion" />
         <activity android:name=".Usuarios.ListarUsuarios" />
         <activity android:name=".Usuarios.LogueoUsuarios" />
-        <activity android:name=".Usuarios.OpcionesUsuarios" />
+        <activity android:name=".Usuarios.OpcionesUsuarios"/>
         <activity android:name=".Usuarios.UsuariosLista" />
         <activity android:name=".MainActivity" />
         <activity android:name=".CensoPoblacional" />
@@ -28,7 +30,4 @@
             </intent-filter>
         </activity>
     </application>
-
-    <uses-permission android:name="android.permission.INTERNET" />
-
 </manifest>
