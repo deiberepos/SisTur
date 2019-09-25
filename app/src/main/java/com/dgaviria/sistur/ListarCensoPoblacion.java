@@ -8,10 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.dgaviria.sistur.Adaptadores.AdaptadorListaCenso;
-import com.dgaviria.sistur.Adaptadores.AdaptadorListaUsuarios;
-import com.dgaviria.sistur.Clases.Censo;
-import com.dgaviria.sistur.Clases.Usuarios;
+import com.dgaviria.sistur.adaptadores.AdaptadorListaCenso;
+import com.dgaviria.sistur.clases.Censo;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

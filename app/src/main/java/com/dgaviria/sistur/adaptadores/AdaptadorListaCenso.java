@@ -1,8 +1,6 @@
-package com.dgaviria.sistur.Adaptadores;
+package com.dgaviria.sistur.adaptadores;
 
-import android.content.ClipData;
 import android.content.Context;
-import android.os.strictmode.CleartextNetworkViolation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.dgaviria.sistur.Clases.Censo;
-import com.dgaviria.sistur.Clases.Usuarios;
+import com.dgaviria.sistur.clases.Censo;
 import com.dgaviria.sistur.R;
-import com.dgaviria.sistur.Clases.CdiHcb;
 
 import java.util.List;
 public class AdaptadorListaCenso extends RecyclerView.Adapter<AdaptadorListaCenso.CensoViewHolder> {

@@ -1,4 +1,4 @@
-package com.dgaviria.sistur.Clases;
+package com.dgaviria.sistur.clases;
 
 public class Censo {
 

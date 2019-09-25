@@ -114,7 +114,4 @@ public class CdiHcb {
                 ", telContacto='" + telContacto + '\'' +
                 ", tipo=" + tipo;
     }
-
-
-
 }

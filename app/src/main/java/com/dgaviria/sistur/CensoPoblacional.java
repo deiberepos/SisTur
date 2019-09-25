@@ -7,12 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.Toast;
 
-import com.dgaviria.sistur.Clases.CdiHcb;
-import com.dgaviria.sistur.Clases.Censo;
-import com.dgaviria.sistur.Usuarios.CrearUsuarios;
+import com.dgaviria.sistur.clases.Censo;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 

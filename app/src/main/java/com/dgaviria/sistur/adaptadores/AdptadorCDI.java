@@ -1,4 +1,4 @@
-package com.dgaviria.sistur.Adaptadores;
+package com.dgaviria.sistur.adaptadores;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,9 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.dgaviria.sistur.Clases.CdiHcb;
-import com.dgaviria.sistur.Clases.Usuarios;
+
 import com.dgaviria.sistur.R;
+import com.dgaviria.sistur.clases.CdiHcb;
 
 import java.util.List;
 

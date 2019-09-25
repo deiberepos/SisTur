@@ -11,10 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.dgaviria.sistur.Adaptadores.AdaptadorListaUsuarios;
-import com.dgaviria.sistur.Adaptadores.AdptadorCDI;
-import com.dgaviria.sistur.Clases.CdiHcb;
-import com.dgaviria.sistur.Clases.Usuarios;
+import com.dgaviria.sistur.adaptadores.AdptadorCDI;
+import com.dgaviria.sistur.clases.CdiHcb;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

@@ -12,11 +12,10 @@ import android.widget.Toast;
 import com.dgaviria.sistur.adaptadores.AdaptadorMenuPpal;
 import com.dgaviria.sistur.CensoPoblacional;
 import com.dgaviria.sistur.clases.MenuOpciones;
-import com.dgaviria.sistur.alimentos.ListarPlanAlimenticio;
+import com.dgaviria.sistur.GestionarCDIHCB;
 import com.dgaviria.sistur.R;
 import com.dgaviria.sistur.RegistrarCDIHCB;
 import com.dgaviria.sistur.usuarios.OpcionesUsuarios;
-import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,23 +26,47 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MenuPrincipal extends AppCompatActivity {
-    RecyclerView miRecyclerM;
+    RecyclerView miRecycler;
     List<MenuOpciones> listadoOpciones;
     AdaptadorMenuPpal adaptadorMenu;
-    DatabaseReference miReferenciaM;
-    FirebaseAnalytics miAnalisis;
+    DatabaseReference miReferencia;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_principal);
 
         referenciar();
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
+        miRecycler.setLayoutManager(linearLayoutManager);
         llenarRecyclerOpciones();
 
         adaptadorMenu=new AdaptadorMenuPpal(this,listadoOpciones, new AdaptadorMenuPpal.OnItemClick() {
             @Override
             public void itemClick(MenuOpciones misOpciones, int posicion) {
                 switch (posicion){
+                    case 0:
+                        Intent miIntento1 = new Intent(MenuPrincipal.this, OpcionesUsuarios.class);
+                        startActivity(miIntento1);
+                        break;
+                    case 1:
+                        //Intent miIntento2 = new Intent(MenuPrincipal.this, RegistrarCDIHCB.class);
+                        //startActivity(miIntento2);
+                        Intent intent = new Intent(MenuPrincipal.this, GestionarCDIHCB.class);
+                        startActivity(intent);
+                        break;
+                    case 2:
+                        Intent miIntento3 = new Intent(MenuPrincipal.this, CensoPoblacional.class);
+                        startActivity(miIntento3);
+                        break;
+                    default:
+                        Toast.makeText(getApplicationContext(),"Opción "+misOpciones.getTitulo(),Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+
+            @Override
+            public void imagenClick(MenuOpciones misOpciones, int posicion) {
+                switch (posicion) {
                     case 0:
                         Intent miIntento1 = new Intent(MenuPrincipal.this, OpcionesUsuarios.class);
                         startActivity(miIntento1);
@@ -57,55 +80,24 @@ public class MenuPrincipal extends AppCompatActivity {
                         Intent miIntento3 = new Intent(MenuPrincipal.this, CensoPoblacional.class);
                         startActivity(miIntento3);
                         break;
-                    case 3:
-                        Intent miIntento4 = new Intent(MenuPrincipal.this, ListarPlanAlimenticio.class);
-                        startActivity(miIntento4);
-                        break;
                     default:
-                        Toast.makeText(getApplicationContext(),"Opción seleccionada",Toast.LENGTH_SHORT).show();
-                        break;
-                }
-            }
-
-            @Override
-            public void imagenClick(MenuOpciones misOpciones, int posicion) {
-                switch (posicion) {
-                    case 0:
-                        Intent miIntento1 = new Intent(MenuPrincipal.this, OpcionesUsuarios.class);
-                        startActivity(miIntento1);
-                        break;
-                    case 1:
-                        Intent miIntento2 = new Intent(MenuPrincipal.this, RegistrarCDIHCB.class);
-                        startActivity(miIntento2);
-                        break;
-                    case 2:
-                        Intent miIntento3 = new Intent(MenuPrincipal.this, CensoPoblacional.class);
-                        startActivity(miIntento3);
-                        break;
-                    case 3:
-                        Intent miIntento4 = new Intent(MenuPrincipal.this, ListarPlanAlimenticio.class);
-                        startActivity(miIntento4);
-                        break;
-                    default:
-                        Toast.makeText(getApplicationContext(),"Opción seleccionada",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Imagen " + misOpciones.getTitulo(), Toast.LENGTH_SHORT).show();
                         break;
                 }
             }
         });
-        miRecyclerM.setAdapter(adaptadorMenu);
+
+        miRecycler.setAdapter(adaptadorMenu);
     }
     private void referenciar() {
-        miRecyclerM =findViewById(R.id.recyclerOpciones);
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
-        miRecyclerM.setLayoutManager(linearLayoutManager);
-        miReferenciaM = FirebaseDatabase.getInstance().getReference();
-        miAnalisis=FirebaseAnalytics.getInstance(this);
-        listadoOpciones=new ArrayList<>();
+        miRecycler=findViewById(R.id.recyclerOpciones);
     }
 
     private void llenarRecyclerOpciones() {
+        miReferencia= FirebaseDatabase.getInstance().getReference();
+        listadoOpciones=new ArrayList<>();
         //busca las opciones del menú y llena la lista
-        miReferenciaM.child("menu").addValueEventListener(new ValueEventListener() {
+        miReferencia.child("menu").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 listadoOpciones.clear();
