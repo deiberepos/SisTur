@@ -25,12 +25,12 @@ public class ListarCensoPoblacion extends AppCompatActivity {
     List<Censo> listaDeCenso;
     AdaptadorListaCenso adaptadorCenso;
     DatabaseReference miReferencia;
+    Censo personaseleted;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.listar_censo_poblacion);
-
         miReferencia = FirebaseDatabase.getInstance().getReference();
         referenciar();
         llenarRecyclerCenso();
@@ -48,9 +48,13 @@ public class ListarCensoPoblacion extends AppCompatActivity {
 
             @Override
             public void eliminaClick(Censo miCenso, int posicion) {
-                Toast.makeText(getApplicationContext(),"Eliminar usuario",Toast.LENGTH_SHORT).show();
+                Censo c=new Censo();
+                miReferencia.child("CensoInfante").child(Integer.toString(posicion)).removeValue();
+                Toast.makeText(getApplicationContext(),"ELIMINADO",Toast.LENGTH_SHORT).show();
             }
+
         });
+
         miRecyclerCenso.setAdapter(adaptadorCenso);
     }
     private void referenciar()

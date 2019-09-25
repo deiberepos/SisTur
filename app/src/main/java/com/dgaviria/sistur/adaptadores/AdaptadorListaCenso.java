@@ -31,12 +31,13 @@ public class AdaptadorListaCenso extends RecyclerView.Adapter<AdaptadorListaCens
     public static  class CensoViewHolder extends RecyclerView.ViewHolder
     {
         ImageView modifica,elimina;
-        TextView nombre,centroAsociado;
+        TextView nombre,centroAsociado,apellido;
 
         public CensoViewHolder(@NonNull View itemView) {
             super(itemView);
             nombre=itemView.findViewById(R.id.txtNombreInfan);
-            centroAsociado=itemView.findViewById(R.id.txtCentroAsociado);
+            apellido=itemView.findViewById(R.id.txtCentroAsociado);
+            //centroAsociado=itemView.findViewById(R.id.txtCentroAsociado);
             modifica=itemView.findViewById(R.id.imgModificaCenso);
             elimina=itemView.findViewById(R.id.imgEliminacenso);
         }
@@ -86,7 +87,7 @@ public class AdaptadorListaCenso extends RecyclerView.Adapter<AdaptadorListaCens
     {
     Censo micensoo=listadoCenso.get(position);
         holder.nombre.setText(micensoo.getNombre());
-        holder.centroAsociado.setText(micensoo.getApellidos());
+        holder.apellido.setText(micensoo.getApellidos());
         holder.modifica.setImageResource(R.mipmap.ic_actualiza);
         holder.elimina.setImageResource(R.mipmap.ic_elimina);
         holder.bind(listadoCenso.get(position),position,listener);
