@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.widget.ImageView;
 
-import com.dgaviria.sistur.Usuarios.LogueoUsuarios;
+import com.dgaviria.sistur.usuarios.LogueoUsuarios;
 
 public class Splash extends AppCompatActivity {
     ImageView imagen;

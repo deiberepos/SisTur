@@ -41,8 +41,7 @@ public class AdaptadorListaUsuarios extends RecyclerView.Adapter<AdaptadorListaU
             nombres=vistaItem.findViewById(R.id.txtNombres);
             rol=vistaItem.findViewById(R.id.txtRol);
         }
-        public void bind (final Usuarios misUsuarios, final int posicion, final OnItemClick onItemClick)
-        {
+        public void bind (final Usuarios misUsuarios, final int posicion, final OnItemClick onItemClick){
             nombres.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

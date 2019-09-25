@@ -1,4 +1,4 @@
-package com.dgaviria.sistur.menus;
+package com.dgaviria.sistur.alimentos;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.dgaviria.sistur.R;
 
-public class OpcionesMenuPpal extends AppCompatActivity {
+public class AlimentosLista extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.opciones_menu_ppal);
+        setContentView(R.layout.alimentos_lista);
     }
 }

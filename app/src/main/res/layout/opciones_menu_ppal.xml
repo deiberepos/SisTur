@@ -9,7 +9,7 @@
     android:paddingBottom="10dp"
     android:padding="10dp"
     android:orientation="vertical"
-    tools:context=".Menus.OpcionesMenuPpal">
+    tools:context=".menus.OpcionesMenuPpal">
     <RelativeLayout
         android:id="@+id/relativo"
         android:layout_width="match_parent"

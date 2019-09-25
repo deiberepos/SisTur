@@ -8,7 +8,7 @@
     android:layout_marginTop="10dp"
     android:paddingBottom="10dp"
     android:orientation="vertical"
-    tools:context=".Usuarios.UsuariosLista">
+    tools:context=".usuarios.UsuariosLista">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

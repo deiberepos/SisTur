@@ -7,74 +7,57 @@
     android:orientation="vertical"
     android:id="@+id/contenedor"
     android:gravity="center"
-    tools:context=".Usuarios.LogueoUsuarios">
+    tools:context=".usuarios.LogueoUsuarios">
 
     <ImageView
         android:layout_width="75dp"
         android:layout_height="89dp"
         android:background="@drawable/logoinicial" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:shadowColor="@color/colorClaro"
-                    android:shadowDx="-2"
-                    android:shadowDy="-2"
-                    android:shadowRadius="1.5"
-                    android:text="Ingreso de usuarios"
-                    android:textColor="@color/colorNegro"
-                    android:textSize="25dp"
-                    android:textStyle="bold" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:shadowColor="@color/colorClaro"
+            android:shadowDx="-2"
+            android:shadowDy="-2"
+            android:shadowRadius="1.5"
+            android:text="Ingreso de usuarios"
+            android:textColor="@color/colorNegro"
+            android:textSize="25dp"
+            android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/editTextUsuario"
-        style="@style/edit"
-        android:padding="10dp"
-        android:layout_width="337dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="25dp"
-        android:background="@drawable/personalizar_edit"
-        android:drawableLeft="@drawable/user"
-        android:fontFamily="monospace"
-        android:hint="usuario"
-        android:inputType="textPostalAddress"
-        android:textColor="@color/colorPrimarioOscuro"
-        android:textColorHint="@color/colorPrimarioSuave"
-        android:textCursorDrawable="@color/colorNegro"
-        android:textSize="15dp" />
+        <EditText
+            android:id="@+id/editTextUsuario"
+            style="@style/IngresoDatos"
+            android:drawableStart="@drawable/user"
+            android:hint="usuario"
+            android:inputType="textPostalAddress"
+            />
 
-    <EditText
-        android:id="@+id/editTextPassword"
-        style="@style/edit"
-        android:layout_height="48dp"
-        android:background="@drawable/personalizar_edit"
-        android:drawableLeft="@drawable/pass"
-        android:fontFamily="monospace"
-        android:hint="contraseña"
-        android:inputType="textPassword"
-        android:padding="10dp"
-        android:textColor="@color/colorPrimarioOscuro"
-        android:textColorHint="@color/colorPrimarioSuave"
-        android:textCursorDrawable="@color/colorNegro"
-        android:textSize="15dp" />
-                <Button
-                    android:id="@+id/botonIngreso"
-                    android:layout_width="200dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="20dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/personalizar_button"
-                    android:text="Ingresar"
-                    android:textAllCaps="false"
-                    android:textColor="@color/colorClaro" />
+        <EditText
+            android:id="@+id/editTextPassword"
+            style="@style/IngresoDatos"
+            android:drawableLeft="@drawable/pass"
+            android:hint="contraseña"
+            android:inputType="textPassword"
+             />
+        <Button
+            android:id="@+id/botonIngreso"
+            android:layout_width="200dp"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:layout_height="40dp"
+            android:background="@drawable/personalizar_button"
+            android:text="Ingresar"
+            android:textAllCaps="false"
+            android:textColor="@color/colorClaro" />
 
-
-            <ProgressBar
-                android:id="@+id/barraProgreso"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:visibility="gone"
-                />
+        <ProgressBar
+            android:id="@+id/barraProgreso"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:visibility="gone"
+            />
 </LinearLayout>

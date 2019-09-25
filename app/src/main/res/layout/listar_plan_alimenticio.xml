@@ -9,10 +9,10 @@
     android:paddingBottom="16dp"
     android:paddingTop="16dp"
     android:orientation="vertical"
-    tools:context=".usuarios.ListarUsuarios">
+    tools:context=".alimentos.ListarPlanAlimenticio">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerListaU"
+        android:id="@+id/recyclerListaA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />

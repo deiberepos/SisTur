@@ -39,5 +39,17 @@
         <item name="android:background">@color/colorGrisClaro</item>
     </style>
 
+    <style name="IngresoDatos">
+        <item name="android:layout_width">200dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:paddingBottom">15dp</item>
+        <item name="android:textColor">@color/colorNegro</item>
+        <item name="android:textColorHint">@color/colorNegro</item>
+        <item name="android:backgroundTint">@color/colorRojo</item>
+    </style>
 
 </resources>
