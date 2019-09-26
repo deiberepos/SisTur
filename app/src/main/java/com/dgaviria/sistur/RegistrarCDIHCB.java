@@ -207,7 +207,6 @@ public class RegistrarCDIHCB extends AppCompatActivity {
         miReferencia= FirebaseDatabase.getInstance().getReference();
         //guarda los datos del usuario
         misDatos=miReferencia.child("Centros");
-
         misDatos.child(nombrecentro).setValue(new CdiHcb(nombrecentro,nombreE,nombreC,vereda,direccionE,direccionC,telE,telC,tipo));
         Toast.makeText(getApplicationContext(),"Datos guardados correctamente",Toast.LENGTH_SHORT).show();
         /*Usar para actualizar

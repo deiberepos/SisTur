@@ -1,4 +1,4 @@
-package com.dgaviria.sistur.usuarios;
+package com.dgaviria.sistur.Usuarios;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.dgaviria.sistur.adaptadores.AdaptadorListaUsuarios;
-import com.dgaviria.sistur.clases.Usuarios;
+import com.dgaviria.sistur.Adaptadores.AdaptadorListaUsuarios;
+import com.dgaviria.sistur.Clases.Usuarios;
 import com.dgaviria.sistur.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,13 +25,13 @@ public class ListarUsuarios extends AppCompatActivity {
     RecyclerView miRecyclerUsuarios;
     List<Usuarios> listaDeUsuarios;
     AdaptadorListaUsuarios adaptadorUsuarios;
-    DatabaseReference miReferenciaU;
+    DatabaseReference miReferencia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.listar_usuarios);
-
+        miReferencia= FirebaseDatabase.getInstance().getReference();
         referenciar();
         llenarRecyclerUsuarios();
 
@@ -55,19 +55,18 @@ public class ListarUsuarios extends AppCompatActivity {
     }
 
     private void referenciar() {
-        miRecyclerUsuarios=findViewById(R.id.recyclerListaU);
+        miRecyclerUsuarios=findViewById(R.id.recyclerLista);
         listaDeUsuarios =new ArrayList<>();
-        miRecyclerUsuarios.setLayoutManager(new LinearLayoutManager(this));
-        miReferenciaU = FirebaseDatabase.getInstance().getReference();
     }
 
     private void llenarRecyclerUsuarios() {
+        miRecyclerUsuarios.setLayoutManager(new LinearLayoutManager(this));
         //busca el nombre de todos los usuarios y llena la lista
-        miReferenciaU.child("usuarios").addValueEventListener(new ValueEventListener() {
+        miReferencia.child("usuarios").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                listaDeUsuarios.clear();
-                for (DataSnapshot usuariosExisten : dataSnapshot.getChildren()) {
+                for (DataSnapshot usuariosExisten : dataSnapshot.getChildren())
+                {
                     Usuarios miUsuario=usuariosExisten.getValue(Usuarios.class);
                     listaDeUsuarios.add(miUsuario);
                 }

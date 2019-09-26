@@ -104,7 +104,6 @@
                     android:layout_weight="1"
                     android:layout_x="147dp"
                     android:layout_y="16dp" />
-
             </LinearLayout>
 
             <EditText
@@ -146,7 +145,6 @@
                 android:background="@drawable/personalizar_edit"
                 android:fontFamily="monospace"
                 android:hint="Direccion del Padre"
-                android:text="Dirección del Padre"
                 android:textColor="@color/colorPrimarioOscuro"
                 android:textColorHint="@color/colorPrimarioSuave"
                 android:textSize="15dp" />
@@ -156,7 +154,7 @@
                 style="@style/edit"
                 android:background="@drawable/personalizar_edit"
                 android:fontFamily="monospace"
-                android:text="Nombres/apellidos Madre"
+                android:hint="Nombres/apellisdos madre"
                 android:textColor="@color/colorPrimarioOscuro"
                 android:textColorHint="@color/colorPrimarioSuave"
                 android:textSize="15dp" />
@@ -166,7 +164,7 @@
                 style="@style/edit"
                 android:background="@drawable/personalizar_edit"
                 android:fontFamily="monospace"
-                android:text="Teléfono de la Madre"
+                android:hint="Teléfono de la Madre"
                 android:textColor="@color/colorPrimarioOscuro"
                 android:textColorHint="@color/colorPrimarioSuave"
                 android:textSize="15dp" />
@@ -176,7 +174,7 @@
                 style="@style/edit"
                 android:background="@drawable/personalizar_edit"
                 android:fontFamily="monospace"
-                android:text="Dirección de la Madre"
+                android:hint="Dirección de la Madre"
                 android:textColor="@color/colorPrimarioOscuro"
                 android:textColorHint="@color/colorPrimarioSuave"
                 android:textSize="15dp" />

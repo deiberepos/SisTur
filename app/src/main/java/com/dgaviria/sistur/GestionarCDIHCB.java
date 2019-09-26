@@ -79,13 +79,11 @@ public class GestionarCDIHCB extends AppCompatActivity {
                     listaDeCDI.add(cdiHcb);
                 }
                 adaptadorCentros.notifyDataSetChanged();
-
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Toast.makeText(getApplicationContext(),"Error en la lectura de los centros, contacte al administrador",Toast.LENGTH_SHORT).show();
-
             }
         });
     }

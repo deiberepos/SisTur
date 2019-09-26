@@ -17,7 +17,7 @@ public class CensoPoblacional extends AppCompatActivity {
     Button btnguardar,btnlistar;
     EditText editnombreInfante, editapellidoInfante, editobservaciones, editnombrePadre, editnombreMadre, editTeleMadre, editTelePadre, editDirPadre, editDirMadre;
     DatabaseReference miReferencia, misDatos;
-    String nombreinfante, nombre, apellido, observacion, nombreMadr, nombrePadr, telM, telP, dirM, dirP,genero;
+    String nombre, apellido, observacion, nombreMadr, nombrePadr, telM, telP, dirM, dirP,genero;
 
 
     @Override
@@ -61,7 +61,8 @@ public class CensoPoblacional extends AppCompatActivity {
         miReferencia = FirebaseDatabase.getInstance().getReference();
         //guarda los datos del usuario
         misDatos = miReferencia.child("CensoInfante");
-        misDatos.child(nombreinfante).setValue(new Censo(nombre, apellido, genero, observacion, nombreMadr, nombrePadr, telM, telP, dirM, dirP));
+        misDatos.child(nombre).setValue(new Censo(nombre, apellido, genero, observacion, nombreMadr, nombrePadr, telM, telP, dirM, dirP));
+        Toast.makeText(getApplicationContext(),"DATOS GUARDADOS CORRECTAMENTE",Toast.LENGTH_SHORT).show();
     }
 
     private void cargarDatos() {
@@ -73,7 +74,7 @@ public class CensoPoblacional extends AppCompatActivity {
             Toast.makeText(this, "TODOS LOS CAMPOS SON REQUERIDOS", Toast.LENGTH_SHORT).show();
         } else {
             miReferencia = FirebaseDatabase.getInstance().getReference("CensoInfante");
-            nombreinfante = editnombreInfante.getText().toString();
+            nombre = editnombreInfante.getText().toString();
             apellido = editapellidoInfante.getText().toString();
             observacion = editobservaciones.getText().toString();
             nombreMadr = editnombreMadre.getText().toString();
