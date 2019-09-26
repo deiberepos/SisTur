@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.dgaviria.sistur.clases.Censo;
@@ -18,6 +20,7 @@ public class CensoPoblacional extends AppCompatActivity {
     EditText editnombreInfante, editapellidoInfante, editobservaciones, editnombrePadre, editnombreMadre, editTeleMadre, editTelePadre, editDirPadre, editDirMadre;
     DatabaseReference miReferencia, misDatos;
     String nombre, apellido, observacion, nombreMadr, nombrePadr, telM, telP, dirM, dirP,genero;
+    RadioGroup gen;
 
 
     @Override
@@ -39,6 +42,20 @@ public class CensoPoblacional extends AppCompatActivity {
                 startActivity(mi);
             }
         });
+        gen.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                switch (i){
+                    case R.id.masculino:
+                        genero="masculino";
+                        break;
+                    case R.id.femenino:
+                        genero="femenino";
+                        break;
+                }
+            }
+        });
+
     }
 
     public void referenciar() {
@@ -53,6 +70,7 @@ public class CensoPoblacional extends AppCompatActivity {
         editTelePadre = findViewById(R.id.telefonopadre);
         editDirMadre = findViewById(R.id.direccionmadre);
         editDirPadre = findViewById(R.id.direccionpadre);
+        gen=findViewById(R.id.radiogenero);
     }
 
 
@@ -83,6 +101,7 @@ public class CensoPoblacional extends AppCompatActivity {
             telP = editTelePadre.getText().toString();
             dirM = editDirMadre.getText().toString();
             dirP = editDirPadre.getText().toString();
+
             guardarCenso();
         }
     }

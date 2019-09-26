@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
 import com.dgaviria.sistur.adaptadores.AdaptadorListaCenso;
 import com.dgaviria.sistur.clases.Censo;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,7 +27,6 @@ public class ListarCensoPoblacion extends AppCompatActivity {
     List<Censo> listaDeCenso;
     AdaptadorListaCenso adaptadorCenso;
     DatabaseReference miReferencia;
-    Censo personaseleted;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,26 +36,25 @@ public class ListarCensoPoblacion extends AppCompatActivity {
         referenciar();
         llenarRecyclerCenso();
 
+
         adaptadorCenso=new AdaptadorListaCenso(this,listaDeCenso, new AdaptadorListaCenso.OnItemClick() {
             @Override
             public void itemClick(Censo miCenso, int posicion) {
-                Toast.makeText(getApplicationContext(),"Modificar datos",Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void modificaClick(Censo miCenso, int posicion) {
-                Toast.makeText(getApplicationContext(),"Modificar información",Toast.LENGTH_SHORT).show();
+                Intent mi = new Intent(ListarCensoPoblacion.this, CensoPoblacional.class);
+                startActivity(mi);
+                Toast.makeText(getApplicationContext(),"MODIFICAR",Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void eliminaClick(Censo miCenso, int posicion) {
-                Censo c=new Censo();
-                miReferencia.child("CensoInfante").child(Integer.toString(posicion)).removeValue();
+            public void eliminaClick(Censo miCenso,int posicion ) {
                 Toast.makeText(getApplicationContext(),"ELIMINADO",Toast.LENGTH_SHORT).show();
             }
 
         });
-
         miRecyclerCenso.setAdapter(adaptadorCenso);
     }
     private void referenciar()

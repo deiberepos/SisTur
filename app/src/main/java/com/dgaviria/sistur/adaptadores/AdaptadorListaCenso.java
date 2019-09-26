@@ -10,13 +10,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dgaviria.sistur.ListarCensoPoblacion;
 import com.dgaviria.sistur.clases.Censo;
 import com.dgaviria.sistur.R;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 public class AdaptadorListaCenso extends RecyclerView.Adapter<AdaptadorListaCenso.CensoViewHolder> {
     List<Censo> listadoCenso;
     Context contexto;
+    Censo persona;
 
     public AdaptadorListaCenso(List<Censo> listadoCenso) {
         this.listadoCenso=listadoCenso;
@@ -33,8 +37,13 @@ public class AdaptadorListaCenso extends RecyclerView.Adapter<AdaptadorListaCens
         ImageView modifica,elimina;
         TextView nombre,centroAsociado,apellido;
 
+
+        DatabaseReference mir= FirebaseDatabase.getInstance().getReference();
+
         public CensoViewHolder(@NonNull View itemView) {
             super(itemView);
+
+
             nombre=itemView.findViewById(R.id.txtNombreInfan);
             apellido=itemView.findViewById(R.id.txtCentroAsociado);
             //centroAsociado=itemView.findViewById(R.id.txtCentroAsociado);
@@ -53,6 +62,8 @@ public class AdaptadorListaCenso extends RecyclerView.Adapter<AdaptadorListaCens
             elimina.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    miCenso.setNombre(miCenso.getNombre());
+                    mir.child("CensoInfante").child(miCenso.getNombre()).removeValue();
                     onItemClick.eliminaClick(miCenso,posicion);
                 }
             });
@@ -83,7 +94,7 @@ public class AdaptadorListaCenso extends RecyclerView.Adapter<AdaptadorListaCens
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CensoViewHolder holder, int position)
+    public void onBindViewHolder(@NonNull CensoViewHolder holder, final int position)
     {
     Censo micensoo=listadoCenso.get(position);
         holder.nombre.setText(micensoo.getNombre());
@@ -91,6 +102,8 @@ public class AdaptadorListaCenso extends RecyclerView.Adapter<AdaptadorListaCens
         holder.modifica.setImageResource(R.mipmap.ic_actualiza);
         holder.elimina.setImageResource(R.mipmap.ic_elimina);
         holder.bind(listadoCenso.get(position),position,listener);
+
+
     }
 
     @Override

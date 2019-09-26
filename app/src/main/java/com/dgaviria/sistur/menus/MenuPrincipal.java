@@ -16,6 +16,7 @@ import com.dgaviria.sistur.clases.MenuOpciones;
 import com.dgaviria.sistur.GestionarCDIHCB;
 import com.dgaviria.sistur.R;
 import com.dgaviria.sistur.RegistrarCDIHCB;
+import com.dgaviria.sistur.clases.PlanAlimenticio;
 import com.dgaviria.sistur.usuarios.OpcionesUsuarios;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -75,7 +76,6 @@ public class MenuPrincipal extends AppCompatActivity {
                     case 0:
                         Intent miIntento1 = new Intent(MenuPrincipal.this, OpcionesUsuarios.class);
                         startActivity(miIntento1);
-                        //crearAlertaDialogo();
                         break;
                     case 1:
                         Intent miIntento2 = new Intent(MenuPrincipal.this, RegistrarCDIHCB.class);
