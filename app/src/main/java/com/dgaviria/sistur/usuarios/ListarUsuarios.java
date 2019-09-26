@@ -27,6 +27,8 @@ public class ListarUsuarios extends AppCompatActivity {
     AdaptadorListaUsuarios adaptadorUsuarios;
     DatabaseReference miReferencia;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
