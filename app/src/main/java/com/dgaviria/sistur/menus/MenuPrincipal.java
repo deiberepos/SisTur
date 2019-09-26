@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.dgaviria.sistur.adaptadores.AdaptadorMenuPpal;
 import com.dgaviria.sistur.CensoPoblacional;
+import com.dgaviria.sistur.alimentos.ListarPlanAlimenticio;
 import com.dgaviria.sistur.clases.MenuOpciones;
 import com.dgaviria.sistur.GestionarCDIHCB;
 import com.dgaviria.sistur.R;
@@ -58,6 +59,10 @@ public class MenuPrincipal extends AppCompatActivity {
                         Intent miIntento3 = new Intent(MenuPrincipal.this, CensoPoblacional.class);
                         startActivity(miIntento3);
                         break;
+                    case 3:
+                        Intent miIntento4 = new Intent(MenuPrincipal.this, ListarPlanAlimenticio.class);
+                        startActivity(miIntento4);
+                        break;
                     default:
                         Toast.makeText(getApplicationContext(),"Opción "+misOpciones.getTitulo(),Toast.LENGTH_SHORT).show();
                         break;
@@ -79,6 +84,10 @@ public class MenuPrincipal extends AppCompatActivity {
                     case 2:
                         Intent miIntento3 = new Intent(MenuPrincipal.this, CensoPoblacional.class);
                         startActivity(miIntento3);
+                        break;
+                    case 3:
+                        Intent miIntento4 = new Intent(MenuPrincipal.this, ListarPlanAlimenticio.class);
+                        startActivity(miIntento4);
                         break;
                     default:
                         Toast.makeText(getApplicationContext(), "Imagen " + misOpciones.getTitulo(), Toast.LENGTH_SHORT).show();

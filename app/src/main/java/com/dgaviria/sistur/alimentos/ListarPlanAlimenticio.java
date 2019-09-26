@@ -63,7 +63,6 @@ public class ListarPlanAlimenticio extends AppCompatActivity {
                     PlanAlimenticio miAlimento=alimentosExisten.getValue(PlanAlimenticio.class);
                     listaDeAlimentos.add(miAlimento);
                 }
-                //Toast.makeText(getApplicationContext(),"El Plan nutricional contiene "+String.valueOf(listaDeAlimentos.size())+" alimentos.",Toast.LENGTH_SHORT).show();
                 adaptadorAlimentos.notifyDataSetChanged();
             }
             @Override

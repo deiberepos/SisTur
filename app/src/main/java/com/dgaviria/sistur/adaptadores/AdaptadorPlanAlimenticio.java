@@ -9,8 +9,8 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.dgaviria.sistur.clases.PlanAlimenticio;
 import com.dgaviria.sistur.R;
+import com.dgaviria.sistur.clases.PlanAlimenticio;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ public class AdaptadorPlanAlimenticio extends RecyclerView.Adapter<AdaptadorPlan
     Context contexto;
 
     public interface OnItemClick{
-        void itemClick(PlanAlimenticio misAlimentos,int posicion);
+        void itemClick(PlanAlimenticio misAlimentos, int posicion);
         void seleccionaClick(PlanAlimenticio misAlimentos,int posicion);
     }
     private OnItemClick listener;

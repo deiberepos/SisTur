@@ -19,6 +19,8 @@
         <activity android:name=".usuarios.LogueoUsuarios" />
         <activity android:name=".usuarios.OpcionesUsuarios"/>
         <activity android:name=".usuarios.UsuariosLista" />
+        <activity android:name=".alimentos.ListarPlanAlimenticio" />
+        <activity android:name=".alimentos.AlimentosLista" />
         <activity android:name=".MainActivity" />
         <activity android:name=".CensoPoblacional" />
         <activity android:name=".RegistrarCDIHCB" />
