@@ -1,4 +1,4 @@
-package com.dgaviria.sistur.Usuarios;
+package com.dgaviria.sistur.usuarios;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.dgaviria.sistur.Adaptadores.AdaptadorListaUsuarios;
-import com.dgaviria.sistur.Clases.Usuarios;
+import com.dgaviria.sistur.adaptadores.AdaptadorListaUsuarios;
+import com.dgaviria.sistur.clases.Usuarios;
 import com.dgaviria.sistur.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -55,7 +55,7 @@ public class ListarUsuarios extends AppCompatActivity {
     }
 
     private void referenciar() {
-        miRecyclerUsuarios=findViewById(R.id.recyclerLista);
+        miRecyclerUsuarios=findViewById(R.id.recyclerListaU);
         listaDeUsuarios =new ArrayList<>();
     }
 
