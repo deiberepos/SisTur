@@ -59,6 +59,7 @@
                 android:textSize="15dp" />
 
             <RadioGroup
+                android:id="@+id/radiogenero"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -140,9 +141,11 @@
             <EditText
                 android:id="@+id/telefonopadre"
                 style="@style/edit"
+                android:layout_height="36dp"
                 android:background="@drawable/personalizar_edit"
                 android:fontFamily="monospace"
                 android:hint="Teléfono del Padre"
+                android:inputType="number"
                 android:textColor="@color/colorPrimarioOscuro"
                 android:textColorHint="@color/colorPrimarioSuave"
                 android:textSize="15dp" />
@@ -170,9 +173,11 @@
             <EditText
                 android:id="@+id/telefonomadre"
                 style="@style/edit"
+                android:layout_height="47dp"
                 android:background="@drawable/personalizar_edit"
                 android:fontFamily="monospace"
                 android:hint="Teléfono de la Madre"
+                android:inputType="number"
                 android:textColor="@color/colorPrimarioOscuro"
                 android:textColorHint="@color/colorPrimarioSuave"
                 android:textSize="15dp" />
