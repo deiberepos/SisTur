@@ -6,6 +6,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.dgaviria.sistur.adaptadores.AdaptadorPlanAlimenticio;
@@ -21,6 +24,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListarPlanAlimenticio extends AppCompatActivity {
+    EditText buscar;
+    ImageButton buscarImagen;
     RecyclerView miRecyclerA;
     List<PlanAlimenticio> listaDeAlimentos;
     AdaptadorPlanAlimenticio adaptadorAlimentos;
@@ -29,6 +34,7 @@ public class ListarPlanAlimenticio extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.listar_plan_alimenticio);
+
 
         referenciar();
         llenarRecyclerAlimentos();
@@ -47,10 +53,32 @@ public class ListarPlanAlimenticio extends AppCompatActivity {
     }
 
     private void referenciar() {
+        buscar = findViewById(R.id.txtBuscar);
+        buscarImagen = findViewById(R.id.imgBuscar);
         miRecyclerA =findViewById(R.id.recyclerListaA);
         miRecyclerA.setLayoutManager(new LinearLayoutManager(this));
         miReferenciaA=FirebaseDatabase.getInstance().getReference();
         listaDeAlimentos =new ArrayList<>();
+
+       /* buscarImagen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                firebasePlanesSearch();
+            }
+        });*/
+    }
+
+
+
+    public class planViewHolder extends RecyclerView.ViewHolder{
+
+        View view;
+
+        public planViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            view = itemView;
+        }
     }
 
     private void llenarRecyclerAlimentos() {

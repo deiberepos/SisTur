@@ -11,9 +11,37 @@
     android:orientation="vertical"
     tools:context=".alimentos.ListarPlanAlimenticio">
 
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewOne"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+
+        <ImageButton
+            android:id="@+id/imgBuscar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="290dp"
+            android:src="@drawable/ic_buscar"></ImageButton>
+
+
+        <EditText
+            android:id="@+id/txtBuscar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></EditText>
+    </androidx.cardview.widget.CardView>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerListaA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+
 </RelativeLayout>

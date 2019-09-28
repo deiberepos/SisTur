@@ -12,6 +12,8 @@ import com.dgaviria.sistur.usuarios.LogueoUsuarios;
 public class Splash extends AppCompatActivity {
     ImageView imagen;
     private final int DURACION_SPLASH = 2000;
+    
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

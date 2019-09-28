@@ -98,13 +98,21 @@
                     android:layout_x="7dp"
                     android:layout_y="14dp" />
 
-                <CalendarView
-                    android:layout_width="248dp"
-                    android:layout_height="221dp"
-                    android:layout_weight="1"
-                    android:layout_x="147dp"
-                    android:layout_y="16dp" />
+                <EditText
+                    android:onClick="mostrarCalendario"
+                    android:id="@+id/fecha"
+                    android:ems="20"
+                    android:layout_width="217dp"
+                    android:layout_height="wrap_content"></EditText>
+
+
             </LinearLayout>
+
+            <TextView
+                android:layout_gravity="center"
+                android:id="@+id/myDate"
+                android:layout_width="169dp"
+                android:layout_height="36dp"></TextView>
 
             <EditText
 

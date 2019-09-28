@@ -1,23 +1,38 @@
 package com.dgaviria.sistur;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CalendarView;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dgaviria.sistur.clases.Censo;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class CensoPoblacional extends AppCompatActivity {
+import java.util.Calendar;
+
+public class CensoPoblacional extends AppCompatActivity{
+
+
+    private int año , mes,dia;
+    CalendarView calendarView;
+    TextView myDate;
     Button btnguardar,btnlistar;
-    EditText editnombreInfante, editapellidoInfante, editobservaciones, editnombrePadre, editnombreMadre, editTeleMadre, editTelePadre, editDirPadre, editDirMadre;
+    EditText  campoFecha ,editnombreInfante, editapellidoInfante, editobservaciones, editnombrePadre, editnombreMadre, editTeleMadre, editTelePadre, editDirPadre, editDirMadre;
     DatabaseReference miReferencia, misDatos;
     String nombre, apellido, observacion, nombreMadr, nombrePadr, telM, telP, dirM, dirP,genero;
+    private static final int TIPO_DIALOGO = 0;
+    private static DatePickerDialog.OnDateSetListener selectorFecha;
 
 
     @Override
@@ -26,6 +41,16 @@ public class CensoPoblacional extends AppCompatActivity {
         setContentView(R.layout.censo_poblacional);
         referenciar();
 
+
+
+       /* calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
+                String date = i2 + "/" + (i1 + 1)  + "/" + i;
+                myDate.setText(date);
+
+            }
+        });*/
         btnguardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -39,8 +64,46 @@ public class CensoPoblacional extends AppCompatActivity {
                 startActivity(mi);
             }
         });
+
+        Calendar calendar = Calendar.getInstance();
+        año = calendar.get(Calendar.YEAR);
+        mes = calendar.get(Calendar.MONTH + 1);
+        dia = calendar.get(Calendar.DAY_OF_MONTH);
+
+        mostrarFecha();
+
+        selectorFecha = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int i, int i1  , int i2) {
+               año = i;
+               mes = i1 + 1;
+               dia = i2;
+               mostrarFecha();
+            }
+        };
     }
 
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        switch (id) {
+            case 0:
+
+                return new DatePickerDialog(this , selectorFecha , año, mes + 1, dia);
+
+        }
+
+        return null;
+    }
+
+    public void mostrarCalendario(View view){
+        showDialog(TIPO_DIALOGO);
+    }
+
+    public void mostrarFecha (){
+
+        campoFecha.setText(año + " / " + mes + "/" + dia);
+
+    }
     public void referenciar() {
         btnlistar=findViewById(R.id.btnlistar);
         btnguardar = findViewById(R.id.btnguardarcenso);
@@ -53,6 +116,10 @@ public class CensoPoblacional extends AppCompatActivity {
         editTelePadre = findViewById(R.id.telefonopadre);
         editDirMadre = findViewById(R.id.direccionmadre);
         editDirPadre = findViewById(R.id.direccionpadre);
+        //calendarView = findViewById(R.id.calendario);
+        myDate = findViewById(R.id.myDate);
+        campoFecha = (EditText) findViewById(R.id.fecha);
+
     }
 
 
