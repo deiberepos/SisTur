@@ -31,4 +31,5 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment:2.1.0'
     implementation 'androidx.navigation:navigation-ui:2.1.0'
     implementation 'com.google.firebase:firebase-database:19.0.0'
+    implementation 'com.balysv:material-ripple:1.0.2'
 }

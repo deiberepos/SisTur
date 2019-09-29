@@ -13,4 +13,7 @@
     <color name="colorGrisClaro">#E7E6E6</color>
     <color name="txvtitulo">#0481B4</color>
     <color name="txvsubtitulo">#080809</color>
+    <color name="colorAzulOscuro1">#272C4F</color>
+    <color name="colorAzulOscuro2">#42456f</color>
+    <color name="colorAzulOscuro3">#565A7B</color>
 </resources>
