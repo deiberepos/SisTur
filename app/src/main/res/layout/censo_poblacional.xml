@@ -86,25 +86,26 @@
             </RadioGroup>
 
             <LinearLayout
+
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="242dp"
                 android:layout_gravity="center"
                 android:layout_weight="2"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <ImageButton
-                    android:layout_width="140dp"
-                    android:layout_height="223dp"
-                    android:layout_weight="1"
+                <ImageView
+                    android:id="@+id/imagen"
+                    android:layout_width="155dp"
+                    android:layout_height="186dp" />
+
+                <Button
+                    android:id="@+id/btnimagen"
+                    android:layout_width="153dp"
+                    android:layout_height="wrap_content"
                     android:layout_x="7dp"
-                    android:layout_y="14dp" />
+                    android:layout_y="14dp"
+                    android:text="Tomar Foto" />
 
-                <CalendarView
-                    android:layout_width="248dp"
-                    android:layout_height="221dp"
-                    android:layout_weight="1"
-                    android:layout_x="147dp"
-                    android:layout_y="16dp" />
             </LinearLayout>
 
             <EditText

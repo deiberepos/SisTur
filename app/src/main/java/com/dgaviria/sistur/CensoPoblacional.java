@@ -1,33 +1,52 @@
 package com.dgaviria.sistur;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.dgaviria.sistur.clases.Censo;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.util.Date;
 
 public class CensoPoblacional extends AppCompatActivity {
-    Button btnguardar,btnlistar;
+
+    Button btnguardar,btnlistar, btnstore ;
     EditText editnombreInfante, editapellidoInfante, editobservaciones, editnombrePadre, editnombreMadre, editTeleMadre, editTelePadre, editDirPadre, editDirMadre;
     DatabaseReference miReferencia, misDatos;
-    String nombre, apellido, observacion, nombreMadr, nombrePadr, telM, telP, dirM, dirP,genero;
+    String nombre, apellido, observacion, nombreMadr, nombrePadr, telM, telP, dirM, dirP,genero,imagenn;
     RadioGroup gen;
+    ImageView imagen;
 
+    FirebaseStorage storage;
+    StorageReference storageReference;
+    private static final int GALLERY_INTENT=1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.censo_poblacional);
         referenciar();
+        storageReference = FirebaseStorage.getInstance().getReference();
 
         btnguardar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,7 +75,41 @@ public class CensoPoblacional extends AppCompatActivity {
             }
         });
 
+        btnstore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               intentoGaleria();
+
+
+            }
+        });
     }
+    private void intentoGaleria(){
+        Intent miIntento=new Intent(Intent.ACTION_PICK);
+        miIntento.setType("image/*");
+        startActivityForResult(miIntento,GALLERY_INTENT);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == GALLERY_INTENT && resultCode==RESULT_OK)
+        {
+            Uri miUri=data.getData();
+            final StorageReference rutaArchivo=storageReference.child("fotos").child(miUri.getLastPathSegment());
+            rutaArchivo.putFile(miUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Task<Uri> otraUri=taskSnapshot.getStorage().getDownloadUrl();
+                    while (!otraUri.isComplete());
+                    Uri miUrl=otraUri.getResult();
+                    Glide.with(CensoPoblacional.this).load(miUrl).fitCenter().into(imagen);
+                    Toast.makeText(getApplicationContext(),"Acción finalizada",Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
+
 
     public void referenciar() {
         btnlistar=findViewById(R.id.btnlistar);
@@ -70,14 +123,15 @@ public class CensoPoblacional extends AppCompatActivity {
         editTelePadre = findViewById(R.id.telefonopadre);
         editDirMadre = findViewById(R.id.direccionmadre);
         editDirPadre = findViewById(R.id.direccionpadre);
+        btnstore=findViewById(R.id.btnimagen);
+        imagen=findViewById(R.id.imagen);
         gen=findViewById(R.id.radiogenero);
+
     }
 
 
     private void guardarCenso() {
-        //construye el objeto que se va a guardar en la base de datos
         miReferencia = FirebaseDatabase.getInstance().getReference();
-        //guarda los datos del usuario
         misDatos = miReferencia.child("CensoInfante");
         misDatos.child(nombre).setValue(new Censo(nombre, apellido, genero, observacion, nombreMadr, nombrePadr, telM, telP, dirM, dirP));
         Toast.makeText(getApplicationContext(),"DATOS GUARDADOS CORRECTAMENTE",Toast.LENGTH_SHORT).show();
@@ -101,7 +155,6 @@ public class CensoPoblacional extends AppCompatActivity {
             telP = editTelePadre.getText().toString();
             dirM = editDirMadre.getText().toString();
             dirP = editDirPadre.getText().toString();
-
             guardarCenso();
         }
     }
