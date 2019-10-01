@@ -51,5 +51,13 @@
         <item name="android:textColorHint">@color/colorNegro</item>
         <item name="android:backgroundTint">@color/colorRojo</item>
     </style>
-
+    <style name="IngresoBuscar" parent="IngresoDatos">
+        <item name="android:layout_width">180dp</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:paddingBottom">0dp</item>
+    </style>
 </resources>

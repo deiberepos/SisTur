@@ -1,10 +1,12 @@
 package com.dgaviria.sistur;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -29,6 +31,7 @@ public class GestionarCDIHCB extends AppCompatActivity {
     DatabaseReference miReferencia;
     Button btncrear;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,12 +48,51 @@ public class GestionarCDIHCB extends AppCompatActivity {
 
             @Override
             public void modificaClick(CdiHcb centros, int posicion) {
-                Toast.makeText(getApplicationContext(),"Modificar datos",Toast.LENGTH_SHORT).show();
+                int tipo=2;
+                if(centros.getTipo().equals("Centro de Desarrollo Infantil")){
+                    tipo=1;
+                }
+                Intent intent = new Intent(getApplicationContext(), RegistrarCDIHCB.class);
+                //String ncentroactual = centros.getNombreCDI();
+                Toast.makeText(getApplicationContext(),"Selecciono: "+ tipo,Toast.LENGTH_SHORT).show();
+                intent.putExtra("opcion","actualizar");
+                intent.putExtra("nombrecentro",centros.getNombreCDI());
+                intent.putExtra("tipo",tipo);
+                intent.putExtra("nombreen",centros.getNombreEncargado());
+                intent.putExtra("direccionen",centros.getDirEncargado());
+                intent.putExtra("telefonoen",centros.getTelEncargado());
+                intent.putExtra("nombrecon",centros.getNombreContacto());
+                intent.putExtra("direccioncon",centros.getDirContacto());
+                intent.putExtra("telefonocon",centros.getTelContacto());
+
+                startActivity(intent);
+                //Toast.makeText(getApplicationContext(),"Modificar datos",Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void eliminaClick(CdiHcb centros, int posicion) {
-                Toast.makeText(getApplicationContext(),"Eliminar centros",Toast.LENGTH_SHORT).show();
+
+                final String nombreeli = centros.getNombreCDI();
+                AlertDialog.Builder builder = new AlertDialog.Builder(GestionarCDIHCB.this);
+                builder.setTitle("msj Eliminar");
+                builder.setMessage("Está seguro que desea eliminar a "+centros.getNombreCDI()+" de la base de datos?");
+                builder.setPositiveButton("ELIMINAR", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        miReferencia.child("Centros").child(nombreeli).removeValue();
+                        //llenarRecyclerCDI();
+                        //miRecyclerCDI.setAdapter(adaptadorCentros);
+                        //miRecyclerCDI.
+                        Toast.makeText(getApplicationContext(),"Centro eliminado de la base de datos",Toast.LENGTH_SHORT).show();
+                    }
+                });
+                builder.setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(getApplicationContext(),"Acción de eliminación cancelada",Toast.LENGTH_SHORT).show();
+                    }
+                });
+                builder.show();
             }
         });
         miRecyclerCDI.setAdapter(adaptadorCentros);
@@ -59,6 +101,7 @@ public class GestionarCDIHCB extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), RegistrarCDIHCB.class);
+                intent.putExtra("opcion","crear");
                 startActivity(intent);
             }
         });
@@ -67,6 +110,24 @@ public class GestionarCDIHCB extends AppCompatActivity {
         miRecyclerCDI=findViewById(R.id.idrecyclerGestCDI);
         listaDeCDI=new ArrayList<>();
         btncrear=findViewById(R.id.idbtnCrearCDI);
+
+    }
+
+    private CdiHcb obtenercentro(String nombre){
+        final CdiHcb centro= new CdiHcb();
+        miReferencia.child("Centros").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                //centro=dataSnapshot.getChildren().equals()
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        return centro;
     }
 
     private void llenarRecyclerCDI(){

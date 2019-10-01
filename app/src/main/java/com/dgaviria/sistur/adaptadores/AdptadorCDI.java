@@ -43,9 +43,9 @@ public class AdptadorCDI extends RecyclerView.Adapter <AdptadorCDI.CDIViewHolder
 
         public CDIViewHolder(View vistaItem){
             super(vistaItem);
-            nombreCDI=vistaItem.findViewById(R.id.txtNombres);
-            ubicacion=vistaItem.findViewById(R.id.txtUsuario);
-            tipo=vistaItem.findViewById(R.id.txtRol);
+            tipo=vistaItem.findViewById(R.id.txtNombres);
+            nombreCDI=vistaItem.findViewById(R.id.txtUsuario);
+            ubicacion=vistaItem.findViewById(R.id.txtRol);
             modifica=vistaItem.findViewById(R.id.imgModifica);
             elimina=vistaItem.findViewById(R.id.imgElimina);
         }

@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "518528650096-q48noil1m8557064e66uekhi4qlip7gh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dgaviria.sistur",
+            "certificate_hash": "fd29c53b36581d2004944fa78082fb0bffa5f2fb"
+          }
+        },
+        {
           "client_id": "518528650096-7kvd1ns5a3qh2d0nt0t9rula25ljt6fp.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.Spinner;
@@ -25,15 +26,19 @@ public class RegistrarCDIHCB extends AppCompatActivity {
     private AnimationDrawable animacion;
     private ScrollView contenedorScroll;
     private EditText edtnombreCentro, edtnombreEncargado, edtnomContacto, edtdirEncargado, edtdirContacto, edttelEncargado, edttelContacto;
-    private Button btnGuardar;
+    private Button btnGuardar, btnActualizar;
     ListView listaveredas;
+    private int actTipo;
+    Bundle bundle;
     private Spinner spnVeredas;
+    private String opcion ="",actNombre, actnombreen, actdiren, acttelen, actnombrecon, actdircon, acttelcon;
     DatabaseReference miReferencia,misDatos;
 
     ProgressBar barraProgreso;
     String nombrecentro, nombreE, nombreC, direccionE, direccionC, telE, telC;
     public static String vereda, tipo;
     RadioGroup rgbtipo, rgbvereda;
+    RadioButton rbCentro, rbHogar;
     //public static int tipo=2;
 
     @Override
@@ -41,14 +46,46 @@ public class RegistrarCDIHCB extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrar_cdihcb);
         referenciar();
-
+        if(opcion.equals("crear")) {
+            btnActualizar.setVisibility(View.INVISIBLE);
+        }else {
+            btnGuardar.setVisibility(View.INVISIBLE);
+            actNombre=bundle.getString("nombrecentro");
+            edtnombreCentro.setText(actNombre);
+            actTipo=bundle.getInt("tipo");
+            if(actTipo==1){
+                rbCentro.setChecked(true);
+            }else {rbHogar.setChecked(true);}
+            actnombreen=bundle.getString("nombreen");
+            edtnombreEncargado.setText(actnombreen);
+            actdiren=bundle.getString("direccionen");
+            edtdirEncargado.setText(actdiren);
+            acttelen=bundle.getString("telefonoen");
+            edttelEncargado.setText(acttelen);
+            actnombrecon=bundle.getString("nombrecon");
+            edtnomContacto.setText(actnombrecon);
+            actdircon=bundle.getString("direccioncon");
+            edtdirContacto.setText(actdircon);
+            acttelcon=bundle.getString("telefonocon");
+            edttelContacto.setText(acttelcon);
+            spnVeredas.setSelection(2);
+        }
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 cargarDatos();
-                //guardarCentro();
+                guardarCentro();
             }
         });
+
+        btnActualizar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cargarDatos();
+                actualizarCentros();
+            }
+        });
+
         rgbtipo.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -56,7 +93,7 @@ public class RegistrarCDIHCB extends AppCompatActivity {
                     case R.id.idrbCentro:
                         tipo="Centro de Desarrollo Infantil";
                         break;
-                    case R.id.rbHogar:
+                    case R.id.idrbHogar:
                         tipo="Hogar Comunitario Básico";
                         break;
                 }
@@ -83,7 +120,6 @@ public class RegistrarCDIHCB extends AppCompatActivity {
         edtnomContacto.getText().toString().isEmpty()||edtdirContacto.getText().toString().isEmpty()||edttelContacto.getText().toString().isEmpty()){
             Toast.makeText(this,"Todos los campos son requeridos",Toast.LENGTH_SHORT).show();
         }else {
-            miReferencia = FirebaseDatabase.getInstance().getReference("CDI&HCB");
             nombrecentro = edtnombreCentro.getText().toString();
             nombreE = edtnombreEncargado.getText().toString();
             nombreC = edtnomContacto.getText().toString();
@@ -91,7 +127,7 @@ public class RegistrarCDIHCB extends AppCompatActivity {
             direccionC = edtdirContacto.getText().toString();
             telE = edttelEncargado.getText().toString();
             telC = edttelContacto.getText().toString();
-            guardarCentro();
+            //guardarCentro();
         }
             /*
             //Verifica que escriba los valores en todos los campos requeridos
@@ -219,6 +255,20 @@ public class RegistrarCDIHCB extends AppCompatActivity {
 
     }
 
+    private void actualizarCentros(){
+
+        miReferencia=FirebaseDatabase.getInstance().getReference();
+        if(actNombre.equals(nombrecentro)){
+            miReferencia.child("Centros").child(nombrecentro).setValue(new CdiHcb(nombrecentro,nombreE,nombreC,vereda,direccionE,direccionC,telE,telC,tipo));
+        }else {
+            miReferencia.child("Centros").child(actNombre).removeValue();
+            miReferencia.child("Centros").child(nombrecentro).setValue(new CdiHcb(nombrecentro, nombreE, nombreC, vereda, direccionE, direccionC, telE, telC, tipo));
+        }
+        Toast.makeText(this,"Actualizado con éxito",Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getApplicationContext(), GestionarCDIHCB.class);
+        startActivity(intent);
+    }
+
     private void referenciar() {
         edtnombreCentro =findViewById(R.id.idedtnombreregCentro);
         edtnombreEncargado =findViewById(R.id.idedtnombreencargado);
@@ -228,15 +278,19 @@ public class RegistrarCDIHCB extends AppCompatActivity {
         edttelEncargado =findViewById(R.id.idedttelEncargado);
         edttelContacto =findViewById(R.id.idedttelContacto);
         rgbtipo=findViewById(R.id.idrgUbicaRegCDI);
+        rbCentro=findViewById(R.id.idrbCentro);
+        rbHogar=findViewById(R.id.idrbHogar);
         spnVeredas=findViewById(R.id.idspnVeredas);
         //rgbvereda=findViewById(R.id.idrgveredaCDI);
        // listaveredas=findViewById(R.id.idlisVeredas);
         btnGuardar=findViewById(R.id.idbtnregCDI);
+        btnActualizar=findViewById(R.id.idbtnactCDI);
         contenedorScroll=findViewById(R.id.idcontenerRegCDI);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.veredas,android.R.layout.simple_spinner_item);
         spnVeredas.setAdapter(adapter);
         //listaveredas.setAdapter(adapter);
-
+        bundle=getIntent().getExtras();
+        opcion=bundle.getString("opcion");
 
     }
 }
