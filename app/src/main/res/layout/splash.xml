@@ -7,9 +7,5 @@
     android:gravity="center"
     tools:context=".Splash">
 
-    <ImageView
-        android:id="@+id/imagenSplash"
-        android:layout_width="255dp"
-        android:layout_height="319dp"
-        android:src="@drawable/logoinicial" />
+
 </LinearLayout>
