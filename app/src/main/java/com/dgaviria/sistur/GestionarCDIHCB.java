@@ -53,8 +53,6 @@ public class GestionarCDIHCB extends AppCompatActivity {
                     tipo=1;
                 }
                 Intent intent = new Intent(getApplicationContext(), RegistrarCDIHCB.class);
-                //String ncentroactual = centros.getNombreCDI();
-                Toast.makeText(getApplicationContext(),"Selecciono: "+ tipo,Toast.LENGTH_SHORT).show();
                 intent.putExtra("opcion","actualizar");
                 intent.putExtra("nombrecentro",centros.getNombreCDI());
                 intent.putExtra("tipo",tipo);
@@ -64,9 +62,8 @@ public class GestionarCDIHCB extends AppCompatActivity {
                 intent.putExtra("nombrecon",centros.getNombreContacto());
                 intent.putExtra("direccioncon",centros.getDirContacto());
                 intent.putExtra("telefonocon",centros.getTelContacto());
-
                 startActivity(intent);
-                //Toast.makeText(getApplicationContext(),"Modificar datos",Toast.LENGTH_SHORT).show();
+
             }
 
             @Override
