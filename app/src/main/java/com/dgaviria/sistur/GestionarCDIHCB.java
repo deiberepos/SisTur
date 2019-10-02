@@ -63,7 +63,6 @@ public class GestionarCDIHCB extends AppCompatActivity {
                 intent.putExtra("direccioncon",centros.getDirContacto());
                 intent.putExtra("telefonocon",centros.getTelContacto());
                 startActivity(intent);
-
             }
 
             @Override
@@ -80,6 +79,7 @@ public class GestionarCDIHCB extends AppCompatActivity {
                         //llenarRecyclerCDI();
                         //miRecyclerCDI.setAdapter(adaptadorCentros);
                         //miRecyclerCDI.
+                        adaptadorCentros.notifyDataSetChanged();
                         Toast.makeText(getApplicationContext(),"Centro eliminado de la base de datos",Toast.LENGTH_SHORT).show();
                     }
                 });
