@@ -1,7 +1,9 @@
 package com.dgaviria.sistur;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
@@ -258,15 +260,32 @@ public class RegistrarCDIHCB extends AppCompatActivity {
     private void actualizarCentros(){
 
         miReferencia=FirebaseDatabase.getInstance().getReference();
-        if(actNombre.equals(nombrecentro)){
-            miReferencia.child("Centros").child(nombrecentro).setValue(new CdiHcb(nombrecentro,nombreE,nombreC,vereda,direccionE,direccionC,telE,telC,tipo));
-        }else {
-            miReferencia.child("Centros").child(actNombre).removeValue();
-            miReferencia.child("Centros").child(nombrecentro).setValue(new CdiHcb(nombrecentro, nombreE, nombreC, vereda, direccionE, direccionC, telE, telC, tipo));
-        }
-        Toast.makeText(this,"Actualizado con éxito",Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(getApplicationContext(), GestionarCDIHCB.class);
-        startActivity(intent);
+        AlertDialog.Builder builder = new AlertDialog.Builder(RegistrarCDIHCB.this);
+        builder.setTitle("msj Actualizar");
+        builder.setMessage("Está seguro que desea actualizar este centro?");
+        builder.setPositiveButton("ACTUALIZAR", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if(actNombre.equals(nombrecentro)){
+                    miReferencia.child("Centros").child(nombrecentro).setValue(new CdiHcb(nombrecentro,nombreE,nombreC,vereda,direccionE,direccionC,telE,telC,tipo));
+                }else {
+                    miReferencia.child("Centros").child(actNombre).removeValue();
+                    miReferencia.child("Centros").child(nombrecentro).setValue(new CdiHcb(nombrecentro, nombreE, nombreC, vereda, direccionE, direccionC, telE, telC, tipo));
+                }
+                Toast.makeText(getApplicationContext(),"Actualizado con éxito",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), GestionarCDIHCB.class);
+                startActivity(intent);
+            }
+        });
+        builder.setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(getApplicationContext(),"No se realizó ninguna actualización",Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.show();
+        //Intent intent = new Intent(getApplicationContext(), GestionarCDIHCB.class);
+        //startActivity(intent);
     }
 
     private void referenciar() {
