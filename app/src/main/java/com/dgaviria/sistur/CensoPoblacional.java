@@ -3,11 +3,15 @@ package com.dgaviria.sistur;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CalendarView;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -26,20 +30,26 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class CensoPoblacional extends AppCompatActivity {
 
+    private int año , mes,dia;
+    CalendarView calendarView;
     Button btnguardar,btnlistar, btnstore ;
-    EditText editnombreInfante, editapellidoInfante, editobservaciones, editnombrePadre, editnombreMadre, editTeleMadre, editTelePadre, editDirPadre, editDirMadre;
+    EditText campoFecha ,editnombreInfante, editapellidoInfante, editobservaciones, editnombrePadre, editnombreMadre, editTeleMadre, editTelePadre, editDirPadre, editDirMadre;
     DatabaseReference miReferencia, misDatos;
     String nombre, apellido, observacion, nombreMadr, nombrePadr, telM, telP, dirM, dirP,genero,imagenn;
     RadioGroup gen;
     ImageView imagen;
+    private static final int TIPO_DIALOGO = 0;
+    private static DatePickerDialog.OnDateSetListener selectorFecha;
 
     FirebaseStorage storage;
     StorageReference storageReference;
     private static final int GALLERY_INTENT=1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +93,44 @@ public class CensoPoblacional extends AppCompatActivity {
 
             }
         });
+        Calendar calendar = Calendar.getInstance();
+        año = calendar.get(Calendar.YEAR);
+        mes = calendar.get(Calendar.MONTH);
+        dia = calendar.get(Calendar.DAY_OF_MONTH);
+
+        mostrarFecha();
+
+        selectorFecha = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                año = i;
+                mes = i1 + 1;
+                dia = i2;
+                mostrarFecha();
+            }
+        };
     }
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        switch (id) {
+            case 0:
+
+                return new DatePickerDialog(this , selectorFecha , año, mes + 1, dia);
+        }
+        return null;
+    }
+
+    public void mostrarCalendario(View view){
+        showDialog(TIPO_DIALOGO);
+    }
+
+
+
+    private void mostrarFecha() {
+        campoFecha.setText(dia + " / " + mes + "/" + año);
+    }
+
     private void intentoGaleria(){
         Intent miIntento=new Intent(Intent.ACTION_PICK);
         miIntento.setType("image/*");
@@ -126,6 +173,7 @@ public class CensoPoblacional extends AppCompatActivity {
         btnstore=findViewById(R.id.btnimagen);
         imagen=findViewById(R.id.imagen);
         gen=findViewById(R.id.radiogenero);
+        campoFecha = findViewById(R.id.fecha);
 
     }
 

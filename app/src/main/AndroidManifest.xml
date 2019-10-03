@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.dgaviria.sistur">
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/logoinicial"
@@ -11,6 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Minutas"></activity>
         <activity android:name=".menus.MenuPrincipal" />
         <activity android:name=".menus.OpcionesMenuPpal" />
         <activity android:name=".usuarios.CrearUsuarios" />
@@ -18,7 +21,7 @@
         <activity android:name=".CensoLista" />
         <activity android:name=".ListarCensoPoblacion" />
         <activity android:name=".usuarios.LogueoUsuarios" />
-        <activity android:name=".usuarios.OpcionesUsuarios"/>
+        <activity android:name=".usuarios.OpcionesUsuarios" />
         <activity android:name=".usuarios.ListarUsuarios" />
         <activity android:name=".usuarios.UsuariosLista" />
         <activity android:name=".alimentos.ListarPlanAlimenticio" />
@@ -29,8 +32,10 @@
         <activity android:name=".Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
+
 </manifest>
