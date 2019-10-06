@@ -6,6 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -40,6 +43,7 @@ public class AdaptadorPlanAlimenticio extends RecyclerView.Adapter<AdaptadorPlan
         TextView grupoA, codigoA,nombreA,regionalA,primeraLetra;
         RelativeLayout lyt_marcado,lyt_imagen;
         View lyt_padre;
+        Button botonBuscar;
 
         //private CircularImageView imagen;
 
@@ -50,6 +54,7 @@ public class AdaptadorPlanAlimenticio extends RecyclerView.Adapter<AdaptadorPlan
             nombreA=vistaItem.findViewById(R.id.txtNombreA);
             regionalA=vistaItem.findViewById(R.id.txtARegional);
             selecciona =vistaItem.findViewById(R.id.imgSeleccionaA);
+            botonBuscar=vistaItem.findViewById(R.id.btnBuscarS);
             lyt_marcado=vistaItem.findViewById(R.id.lytMarcado);
             lyt_padre=vistaItem.findViewById(R.id.lytPadre);
             lyt_imagen=vistaItem.findViewById(R.id.lytImagen);
@@ -111,6 +116,7 @@ public class AdaptadorPlanAlimenticio extends RecyclerView.Adapter<AdaptadorPlan
         activaAlimentoSeleccionado(holder,posicion);
         muestraCodigo(holder,miAlimento);
     }
+
 
     private void activaAlimentoSeleccionado(AlimentosViewHolder holder, int posicion) {
         if (itemsSeleccionados.get(posicion,false)){

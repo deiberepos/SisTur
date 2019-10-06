@@ -43,18 +43,7 @@ public class ListarPlanAlimenticio extends AppCompatActivity {
         llenarRecyclerAlimentos();
         adaptadorAlimentos=new AdaptadorPlanAlimenticio(this,listaDeAlimentos);
 
-        /*
-        adaptadorAlimentos=new AdaptadorPlanAlimenticio(this, listaDeAlimentos) { //, new AdaptadorPlanAlimenticio.OnItemClick() {
-            @Override
-            public void itemClick(PlanAlimenticio misAlimentos, int posicion) {
-                Toast.makeText(getApplicationContext(), "Seleccionado 1", Toast.LENGTH_SHORT).show();
-            }
 
-            @Override
-            public void seleccionaClick(PlanAlimenticio misAlimentos, int posicion) {
-                Toast.makeText(getApplicationContext(), "Seleccionado 2", Toast.LENGTH_SHORT).show();
-            }
-        });*/
         miRecyclerA.setAdapter(adaptadorAlimentos);
         adaptadorAlimentos.setOnClickListener(new AdaptadorPlanAlimenticio.EscuchaPresionaClick() {
             @Override

@@ -60,4 +60,21 @@
         <item name="android:textStyle">italic</item>
         <item name="android:paddingBottom">0dp</item>
     </style>
+    <style name="Selectores">
+        <item name="android:textSize">20dp</item>
+        <item name="android:textColor">@color/colorNegro</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
+        <item name="android:verticalSpacing">5dp</item>
+        <item name="android:horizontalSpacing">5dp</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:backgroundTint">@color/colorGrisClaro</item>
+    </style>
+    <style name="SelectorSemana" parent="Selectores">
+        <item name="android:textSize">15dp</item>
+        <item name="android:verticalSpacing">0dp</item>
+        <item name="android:horizontalSpacing">0dp</item>
+        <item name="android:padding">0dp</item>
+    </style>
 </resources>

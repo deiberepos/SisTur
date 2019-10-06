@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.dgaviria.sistur.CrearCalendario;
 import com.dgaviria.sistur.adaptadores.AdaptadorMenuPpal;
 import com.dgaviria.sistur.CensoPoblacional;
 import com.dgaviria.sistur.alimentos.ListarPlanAlimenticio;
@@ -16,7 +17,6 @@ import com.dgaviria.sistur.clases.MenuOpciones;
 import com.dgaviria.sistur.GestionarCDIHCB;
 import com.dgaviria.sistur.R;
 import com.dgaviria.sistur.RegistrarCDIHCB;
-import com.dgaviria.sistur.clases.PlanAlimenticio;
 import com.dgaviria.sistur.usuarios.OpcionesUsuarios;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -45,24 +45,28 @@ public class MenuPrincipal extends AppCompatActivity {
         adaptadorMenu=new AdaptadorMenuPpal(this,listadoOpciones, new AdaptadorMenuPpal.OnItemClick() {
             @Override
             public void itemClick(MenuOpciones misOpciones, int posicion) {
-                switch (posicion){
-                    case 0:
+                switch (misOpciones.getOrden()){
+                    case 1:
                         Intent miIntento1 = new Intent(MenuPrincipal.this, OpcionesUsuarios.class);
                         startActivity(miIntento1);
                         break;
-                    case 1:
+                    case 2:
                         //Intent miIntento2 = new Intent(MenuPrincipal.this, RegistrarCDIHCB.class);
                         //startActivity(miIntento2);
                         Intent intent = new Intent(MenuPrincipal.this, GestionarCDIHCB.class);
                         startActivity(intent);
                         break;
-                    case 2:
+                    case 3:
                         Intent miIntento3 = new Intent(MenuPrincipal.this, CensoPoblacional.class);
                         startActivity(miIntento3);
                         break;
-                    case 3:
+                    case 4:
                         Intent miIntento4 = new Intent(MenuPrincipal.this, ListarPlanAlimenticio.class);
                         startActivity(miIntento4);
+                        break;
+                    case 6:
+                        Intent miIntento5 = new Intent(MenuPrincipal.this, CrearCalendario.class);
+                        startActivity(miIntento5);
                         break;
                     default:
                         Toast.makeText(getApplicationContext(),"Opción "+misOpciones.getTitulo(),Toast.LENGTH_SHORT).show();
@@ -72,22 +76,26 @@ public class MenuPrincipal extends AppCompatActivity {
 
             @Override
             public void imagenClick(MenuOpciones misOpciones, int posicion) {
-                switch (posicion) {
-                    case 0:
+                switch (misOpciones.getOrden()) {
+                    case 1:
                         Intent miIntento1 = new Intent(MenuPrincipal.this, OpcionesUsuarios.class);
                         startActivity(miIntento1);
                         break;
-                    case 1:
+                    case 2:
                         Intent miIntento2 = new Intent(MenuPrincipal.this, RegistrarCDIHCB.class);
                         startActivity(miIntento2);
                         break;
-                    case 2:
+                    case 3:
                         Intent miIntento3 = new Intent(MenuPrincipal.this, CensoPoblacional.class);
                         startActivity(miIntento3);
                         break;
-                    case 3:
+                    case 4:
                         Intent miIntento4 = new Intent(MenuPrincipal.this, ListarPlanAlimenticio.class);
                         startActivity(miIntento4);
+                        break;
+                    case 6:
+                        Intent miIntento5 = new Intent(MenuPrincipal.this, CrearCalendario.class);
+                        startActivity(miIntento5);
                         break;
                     default:
                         Toast.makeText(getApplicationContext(), "Imagen " + misOpciones.getTitulo(), Toast.LENGTH_SHORT).show();
@@ -124,4 +132,5 @@ public class MenuPrincipal extends AppCompatActivity {
             }
         });
     }
+
 }
