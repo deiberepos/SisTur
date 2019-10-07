@@ -1,54 +1,73 @@
 package com.dgaviria.sistur;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.SearchableInfo;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.dgaviria.sistur.adaptadores.AdptadorCDI;
+import com.dgaviria.sistur.clases.CdiHcb;
 import com.dgaviria.sistur.clases.Censo;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class CensoPoblacional extends AppCompatActivity {
 
-    private int año , mes,dia;
-    CalendarView calendarView;
-    Button btnguardar,btnlistar, btnstore ;
-    EditText campoFecha ,editnombreInfante, editapellidoInfante, editobservaciones, editnombrePadre, editnombreMadre, editTeleMadre, editTelePadre, editDirPadre, editDirMadre;
-    DatabaseReference miReferencia, misDatos;
-    String nombre, apellido, observacion, nombreMadr, nombrePadr, telM, telP, dirM, dirP,genero,imagenn;
+    private int año, mes, dia;
+    Button btnguardar, btnactualizar;
+    EditText editnombreInfante, editapellidoInfante, campoFecha, editobservaciones, editnombrePadre, editnombreMadre, editTeleMadre, editTelePadre, editDirPadre, editDirMadre;
+    DatabaseReference miReferencia, misDatos, miReferenciaCentro;
+    String nombre, apellido, fecha, observacion, nombreMadr, nombrePadr, telM, telP, dirM, dirP, genero, centroasociado;
+    Boolean activo;
     RadioGroup gen;
-    ImageView imagen;
+    RadioButton mas, fem;
+    Bundle bundle;
+    CheckBox acti;
+    private String opcion = "", nombree, apellidoo, fechaa, observacionn, nombreMadrr, telMM, dirMM, nombrePadrr, telPP, dirPP;
     private static final int TIPO_DIALOGO = 0;
     private static DatePickerDialog.OnDateSetListener selectorFecha;
-
-    FirebaseStorage storage;
-    StorageReference storageReference;
-    private static final int GALLERY_INTENT=1;
+    private Spinner spin;
 
 
     @Override
@@ -56,43 +75,104 @@ public class CensoPoblacional extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.censo_poblacional);
         referenciar();
-        storageReference = FirebaseStorage.getInstance().getReference();
 
+
+
+        if (opcion.equals("crear")) {
+            llernarspinner();
+            btnactualizar.setVisibility(View.INVISIBLE);
+        } else {
+            int actgeneroo, activoo;
+            btnguardar.setVisibility(View.INVISIBLE);
+            nombree = bundle.getString("nombre");
+            editnombreInfante.setText(nombree);
+            apellidoo = bundle.getString("apellido");
+            editapellidoInfante.setText(apellidoo);
+            actgeneroo = bundle.getInt("tipo");
+            if (actgeneroo == 1) {
+                mas.setChecked(true);
+            }
+            if (actgeneroo == 2) {
+                fem.setChecked(true);
+            }
+            fechaa = bundle.getString("fecha");
+            campoFecha.setText(fechaa);
+            observacionn = bundle.getString("observaciones");
+            editobservaciones.setText(observacionn);
+            nombrePadrr = bundle.getString("nombrePadr");
+            editnombrePadre.setText(nombrePadrr);
+            telPP = bundle.getString("telefonpadre");
+            editTelePadre.setText(telPP);
+            dirPP = bundle.getString("dirpadre");
+            editDirPadre.setText(dirPP);
+            nombreMadrr = bundle.getString("nombreMaadre");
+            editnombreMadre.setText(nombreMadrr);
+            telMM = bundle.getString("telefonoMadre");
+            editTeleMadre.setText(telMM);
+            dirMM = bundle.getString("dirMadre");
+            editDirMadre.setText(dirMM);
+            activoo = bundle.getInt("activo");
+            if (activoo == 1) {
+                acti.setChecked(true);
+            }
+
+            llernarspinner();
+        }
         btnguardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 cargarDatos();
+                //guardarCenso();
             }
         });
-        btnlistar.setOnClickListener(new View.OnClickListener() {
+        btnactualizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent mi = new Intent(CensoPoblacional.this, ListarCensoPoblacion.class);
-                startActivity(mi);
+                cargarDatosDos();
+                //actualizarCenso();
+            }
+        });
+        spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                centroasociado = adapterView.getItemAtPosition(i).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        acti.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (acti.isChecked()) {
+                    activo = true;
+                } else {
+                    activo = false;
+                }
             }
         });
         gen.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                switch (i){
+                switch (i) {
                     case R.id.masculino:
-                        genero="masculino";
+                        genero = "masculino";
                         break;
                     case R.id.femenino:
-                        genero="femenino";
+                        genero = "femenino";
                         break;
+
                 }
             }
         });
+        if (acti.isChecked()) {
+            activo = true;
+        } else {
+            activo = false;
+        }
 
-        btnstore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               intentoGaleria();
-
-
-            }
-        });
         Calendar calendar = Calendar.getInstance();
         año = calendar.get(Calendar.YEAR);
         mes = calendar.get(Calendar.MONTH);
@@ -110,100 +190,260 @@ public class CensoPoblacional extends AppCompatActivity {
             }
         };
     }
-
     @Override
     protected Dialog onCreateDialog(int id) {
         switch (id) {
             case 0:
 
-                return new DatePickerDialog(this , selectorFecha , año, mes + 1, dia);
+                return new DatePickerDialog(this, selectorFecha, año, mes + 1, dia);
         }
         return null;
     }
 
-    public void mostrarCalendario(View view){
+    public void mostrarCalendario(View view) {
         showDialog(TIPO_DIALOGO);
     }
-
 
 
     private void mostrarFecha() {
         campoFecha.setText(dia + " / " + mes + "/" + año);
     }
 
-    private void intentoGaleria(){
-        Intent miIntento=new Intent(Intent.ACTION_PICK);
-        miIntento.setType("image/*");
-        startActivityForResult(miIntento,GALLERY_INTENT);
-    }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == GALLERY_INTENT && resultCode==RESULT_OK)
-        {
-            Uri miUri=data.getData();
-            final StorageReference rutaArchivo=storageReference.child("fotos").child(miUri.getLastPathSegment());
-            rutaArchivo.putFile(miUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Task<Uri> otraUri=taskSnapshot.getStorage().getDownloadUrl();
-                    while (!otraUri.isComplete());
-                    Uri miUrl=otraUri.getResult();
-                    Glide.with(CensoPoblacional.this).load(miUrl).fitCenter().into(imagen);
-                    Toast.makeText(getApplicationContext(),"Acción finalizada",Toast.LENGTH_SHORT).show();
+    private void llernarspinner() {
+        miReferenciaCentro = FirebaseDatabase.getInstance().getReference();
+        miReferenciaCentro.child("Centros").addValueEventListener(new ValueEventListener() {
+            final CdiHcb centro = new CdiHcb();
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                List<CdiHcb> titleList = new ArrayList<CdiHcb>();
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                    CdiHcb titlename = dataSnapshot1.getValue(CdiHcb.class);
+                    titleList.add(titlename);
                 }
-            });
-        }
+                ArrayAdapter<CdiHcb> arrayAdapter = new ArrayAdapter<CdiHcb>(CensoPoblacional.this, android.R.layout.simple_spinner_item, titleList);
+                arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spin.setAdapter(arrayAdapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
     }
 
+    public void cargarDatos() {
+        if (editnombreInfante.getText().toString().trim().isEmpty()) {
+            editnombreInfante.setError("Nombre requerido");
+            editnombreInfante.requestFocus();
+            return;
+        } else {
+            nombre = editnombreInfante.getText().toString().trim().toLowerCase();
+            editnombreInfante.setText(nombre);
+        }
+        if (editapellidoInfante.getText().toString().trim().isEmpty()) {
+            editapellidoInfante.setError("Apellido requerido");
+            editapellidoInfante.requestFocus();
+            return;
+        } else {
+            apellido = editapellidoInfante.getText().toString().trim();
+            editapellidoInfante.setText(apellido);
+        }
+        if (campoFecha.getText().toString().trim().isEmpty()) {
+            campoFecha.setError("Campo Requerido");
+            campoFecha.requestFocus();
+            return;
+        } else {
+            fecha = campoFecha.getText().toString().trim();
+            campoFecha.setText(fecha);
+
+        }
+        if (editnombrePadre.getText().toString().trim().isEmpty()) {
+            editnombrePadre.setError("Los nombres y apellidos son requeridos");
+            editnombrePadre.requestFocus();
+            return;
+        } else {
+            nombrePadr = editnombrePadre.getText().toString().trim();
+            editnombrePadre.setText(nombrePadr);
+        }
+        if (editTelePadre.getText().toString().trim().isEmpty()) {
+            editTelePadre.setError("Telefono Requerido");
+            editTelePadre.requestFocus();
+            return;
+        } else {
+            telP = editTelePadre.getText().toString().trim();
+            editTelePadre.setText(telP);
+        }
+        if (editDirPadre.getText().toString().trim().isEmpty()) {
+            editDirPadre.setError("Direccion Requerido");
+            editDirPadre.requestFocus();
+            return;
+        } else {
+            dirP = editDirPadre.getText().toString().trim();
+            editDirPadre.setText(dirP);
+        }
+        if (editnombreMadre.getText().toString().trim().isEmpty()) {
+            editnombreMadre.setError("Los nombres y apellidos son requeridos");
+            editnombreMadre.requestFocus();
+            return;
+        } else {
+            nombreMadr = editnombreMadre.getText().toString().trim();
+            editnombreMadre.setText(nombreMadr);
+        }
+        if (editTeleMadre.getText().toString().trim().isEmpty()) {
+            editTeleMadre.setError("Telefono Requerido");
+            editTeleMadre.requestFocus();
+            return;
+        } else {
+            telM = editTeleMadre.getText().toString().trim();
+            editTeleMadre.setText(telM);
+        }
+        if (editDirMadre.getText().toString().trim().isEmpty()) {
+            editDirMadre.setError("Direccion Requerida");
+            editDirMadre.requestFocus();
+            return;
+        } else {
+            dirM = editDirMadre.getText().toString().trim();
+            editDirMadre.setText(dirM);
+        }
+        guardarCenso();
+    }
+    public void cargarDatosDos() {
+        if (editnombreInfante.getText().toString().trim().isEmpty()) {
+            editnombreInfante.setError("Nombre requerido");
+            editnombreInfante.requestFocus();
+            return;
+        } else {
+            nombre = editnombreInfante.getText().toString().trim().toLowerCase();
+            editnombreInfante.setText(nombre);
+        }
+        if (editapellidoInfante.getText().toString().trim().isEmpty()) {
+            editapellidoInfante.setError("Apellido requerido");
+            editapellidoInfante.requestFocus();
+            return;
+        } else {
+            apellido = editapellidoInfante.getText().toString().trim();
+            editapellidoInfante.setText(apellido);
+        }
+        if (campoFecha.getText().toString().trim().isEmpty()) {
+            campoFecha.setError("Campo Requerido");
+            campoFecha.requestFocus();
+            return;
+        } else {
+            fecha = campoFecha.getText().toString().trim();
+            campoFecha.setText(fecha);
+
+        }
+        if (editnombrePadre.getText().toString().trim().isEmpty()) {
+            editnombrePadre.setError("Los nombres y apellidos son requeridos");
+            editnombrePadre.requestFocus();
+            return;
+        } else {
+            nombrePadr = editnombrePadre.getText().toString().trim();
+            editnombrePadre.setText(nombrePadr);
+        }
+        if (editTelePadre.getText().toString().trim().isEmpty()) {
+            editTelePadre.setError("Telefono Requerido");
+            editTelePadre.requestFocus();
+            return;
+        } else {
+            telP = editTelePadre.getText().toString().trim();
+            editTelePadre.setText(telP);
+        }
+        if (editDirPadre.getText().toString().trim().isEmpty()) {
+            editDirPadre.setError("Direccion Requerido");
+            editDirPadre.requestFocus();
+            return;
+        } else {
+            dirP = editDirPadre.getText().toString().trim();
+            editDirPadre.setText(dirP);
+        }
+        if (editnombreMadre.getText().toString().trim().isEmpty()) {
+            editnombreMadre.setError("Los nombres y apellidos son requeridos");
+            editnombreMadre.requestFocus();
+            return;
+        } else {
+            nombreMadr = editnombreMadre.getText().toString().trim();
+            editnombreMadre.setText(nombreMadr);
+        }
+        if (editTeleMadre.getText().toString().trim().isEmpty()) {
+            editTeleMadre.setError("Telefono Requerido");
+            editTeleMadre.requestFocus();
+            return;
+        } else {
+            telM = editTeleMadre.getText().toString().trim();
+            editTeleMadre.setText(telM);
+        }
+        if (editDirMadre.getText().toString().trim().isEmpty()) {
+            editDirMadre.setError("Direccion Requerida");
+            editDirMadre.requestFocus();
+            return;
+        } else {
+            dirM = editDirMadre.getText().toString().trim();
+            editDirMadre.setText(dirM);
+        }
+        actualizarCenso();
+    }
+
+
+    private void guardarCenso() {
+        miReferencia = FirebaseDatabase.getInstance().getReference();
+        misDatos = miReferencia.child("censoinfante");
+        misDatos.child("" + nombre).setValue(new Censo(nombre, apellido, genero, fecha, observacion, centroasociado, nombrePadr, telP, dirP, nombreMadr, telM, dirM, activo));
+        Toast.makeText(getApplicationContext(), "DATOS GUARDADOS CORRECTAMENTE", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getApplicationContext(), ListarCensoPoblacion.class);
+        startActivity(intent);
+    }
+
+    private void actualizarCenso() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(CensoPoblacional.this);
+        builder.setTitle("Desea actualizar: " + nombre);
+        builder.setMessage("Está seguro que desea actualizar este Infante?");
+        builder.setPositiveButton("ACTUALIZAR", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                miReferencia = FirebaseDatabase.getInstance().getReference();
+                final Censo censo = new Censo();
+                if (nombree.equals(nombre)) {
+                    miReferencia.child("censoinfante").child(nombre).setValue(new Censo(nombre, apellido, genero, fecha, observacion, centroasociado, nombrePadr, telP, dirP, nombreMadr, telM, dirM, activo));
+                } else {
+                    miReferencia.child("censoinfante").child(nombree).removeValue();
+                    miReferencia.child("censoinfante").child(nombre).setValue(new Censo(nombre, apellido, genero, fecha, observacion, centroasociado, nombrePadr, telP, dirP, nombreMadr, telM, dirM, activo));
+                }
+                Toast.makeText(CensoPoblacional.this, "Actualizado con éxito", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), ListarCensoPoblacion.class);
+                startActivity(intent);
+            }
+        });
+        builder.setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(getApplicationContext(), "No se realizó ninguna actualización", Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.show();
+    }
 
     public void referenciar() {
-        btnlistar=findViewById(R.id.btnlistar);
         btnguardar = findViewById(R.id.btnguardarcenso);
+        btnactualizar = findViewById(R.id.btnactualizar);
         editnombreInfante = findViewById(R.id.nombreinfante);
         editapellidoInfante = findViewById(R.id.apellidoinfante);
+        fem = findViewById(R.id.femenino);
+        mas = findViewById(R.id.masculino);
+        campoFecha = findViewById(R.id.fecha);
         editobservaciones = findViewById(R.id.editobsrvaciones);
+        spin = findViewById(R.id.spiner);
         editnombrePadre = findViewById(R.id.nom_ape_padre);
         editnombreMadre = findViewById(R.id.nom_ape_madre);
         editTeleMadre = findViewById(R.id.telefonomadre);
         editTelePadre = findViewById(R.id.telefonopadre);
         editDirMadre = findViewById(R.id.direccionmadre);
         editDirPadre = findViewById(R.id.direccionpadre);
-        btnstore=findViewById(R.id.btnimagen);
-        imagen=findViewById(R.id.imagen);
-        gen=findViewById(R.id.radiogenero);
-        campoFecha = findViewById(R.id.fecha);
-
-    }
-
-
-    private void guardarCenso() {
-        miReferencia = FirebaseDatabase.getInstance().getReference();
-        misDatos = miReferencia.child("CensoInfante");
-        misDatos.child(nombre).setValue(new Censo(nombre, apellido, genero, observacion, nombreMadr, nombrePadr, telM, telP, dirM, dirP));
-        Toast.makeText(getApplicationContext(),"DATOS GUARDADOS CORRECTAMENTE",Toast.LENGTH_SHORT).show();
-    }
-
-    private void cargarDatos() {
-        if (editnombreInfante.getText().toString().isEmpty() || editapellidoInfante.getText().toString().isEmpty() ||
-                editobservaciones.getText().toString().isEmpty() || editnombrePadre.getText().toString().isEmpty() ||
-                editnombreMadre.getText().toString().isEmpty() || editTelePadre.getText().toString().isEmpty() ||
-                editTeleMadre.getText().toString().isEmpty() || editDirMadre.getText().toString().isEmpty() ||
-                editDirPadre.getText().toString().isEmpty()) {
-            Toast.makeText(this, "TODOS LOS CAMPOS SON REQUERIDOS", Toast.LENGTH_SHORT).show();
-        } else {
-            miReferencia = FirebaseDatabase.getInstance().getReference("CensoInfante");
-            nombre = editnombreInfante.getText().toString();
-            apellido = editapellidoInfante.getText().toString();
-            observacion = editobservaciones.getText().toString();
-            nombreMadr = editnombreMadre.getText().toString();
-            nombrePadr = editTelePadre.getText().toString();
-            telM = editTeleMadre.getText().toString();
-            telP = editTelePadre.getText().toString();
-            dirM = editDirMadre.getText().toString();
-            dirP = editDirPadre.getText().toString();
-            guardarCenso();
-        }
+        gen = findViewById(R.id.radiogenero);
+        acti = findViewById(R.id.chekactivo);
+        bundle = getIntent().getExtras();
+        opcion = bundle.getString("opcion");
     }
 }

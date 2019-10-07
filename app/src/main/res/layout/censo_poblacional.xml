@@ -65,7 +65,6 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal">
-
                 <RadioButton
                     android:id="@+id/masculino"
                     android:layout_width="wrap_content"
@@ -88,49 +87,46 @@
             <LinearLayout
 
                 android:layout_width="match_parent"
-                android:layout_height="242dp"
+                android:layout_height="170dp"
                 android:layout_gravity="center"
                 android:layout_weight="2"
                 android:orientation="vertical">
 
 
-                <ImageView
-                    android:id="@+id/imagen"
-                    android:layout_width="157dp"
-                    android:layout_height="183dp" />
-
+                <EditText
+                    android:id="@+id/fecha"
+                    android:layout_width="217dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:ems="20"
+                    android:gravity="center"
+                    android:hint="Agrega la fecha"
+                    android:onClick="mostrarCalendario"></EditText>
 
                 <EditText
-                    android:hint="Agrega la fecha"
-                android:onClick="mostrarCalendario"
-                android:id="@+id/fecha"
-                android:ems="20"
-                android:layout_width="217dp"
-                android:layout_height="wrap_content"></EditText>
 
 
-                <Button
-                    android:id="@+id/btnimagen"
-                    android:layout_width="153dp"
-                    android:layout_height="wrap_content"
-                    android:layout_x="7dp"
-                    android:layout_y="14dp"
-                    android:text="Tomar Foto" />
-
+                    android:id="@+id/editobsrvaciones"
+                    style="@style/edit"
+                    android:layout_width="318dp"
+                    android:layout_height="88dp"
+                    android:background="@drawable/personalizar_edit"
+                    android:fontFamily="monospace"
+                    android:hint="Observaciones"
+                    android:lines="3"
+                    android:textColor="@color/colorPrimarioOscuro"
+                    android:textColorHint="@color/colorPrimarioSuave"
+                    android:textSize="15dp" />
             </LinearLayout>
 
-            <EditText
-
-
-                android:id="@+id/editobsrvaciones"
-                style="@style/edit"
-                android:background="@drawable/personalizar_edit"
-                android:fontFamily="monospace"
-                android:hint="Observaciones"
-                android:lines="3"
-                android:textColor="@color/colorPrimarioOscuro"
-                android:textColorHint="@color/colorPrimarioSuave"
-                android:textSize="15dp" />
+            <TextView
+                android:text="sleccione el centro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <Spinner
+                android:id="@+id/spiner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
             <EditText
                 android:id="@+id/nom_ape_padre"
@@ -186,6 +182,7 @@
                 android:textColorHint="@color/colorPrimarioSuave"
                 android:textSize="15dp" />
 
+
             <EditText
                 android:id="@+id/direccionmadre"
                 style="@style/edit"
@@ -196,6 +193,12 @@
                 android:textColorHint="@color/colorPrimarioSuave"
                 android:textSize="15dp" />
 
+            <CheckBox
+                android:id="@+id/chekactivo"
+                android:layout_gravity="center"
+                android:text="activo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
             <Button
                 android:id="@+id/btnguardarcenso"
                 android:layout_width="200dp"
@@ -203,14 +206,20 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/personalizar_button"
-                android:text="Guardar"
+                android:text="GUARDAR"
                 android:textAllCaps="false"
                 android:textColor="@color/colorClaro" />
+
             <Button
-                android:id="@+id/btnlistar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="LISTAR" />
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/personalizar_button"
+                android:id="@+id/btnactualizar"
+                android:text="ACTUALIZAR"
+                android:textColor="@color/colorClaro"/>
+
         </LinearLayout>
     </RelativeLayout>
 </ScrollView>

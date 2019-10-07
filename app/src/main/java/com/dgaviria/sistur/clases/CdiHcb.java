@@ -4,6 +4,7 @@ public class CdiHcb {
 
     private String nombreCDI, nombreEncargado, nombreContacto, ubicacion, dirEncargado, dirContacto;
     private String telEncargado, telContacto, tipo;
+    private Boolean activo;
 
 
     public CdiHcb() {
@@ -18,7 +19,7 @@ public class CdiHcb {
         this.tipo = "";
     }
 
-    public CdiHcb(String nombreCDI, String nombreEncargado, String nombreContacto, String ubicacion, String dirEncargado, String dirContacto, String telEncargado, String telContacto, String tipo) {
+    public CdiHcb(String nombreCDI, String nombreEncargado, String nombreContacto, String ubicacion, String dirEncargado, String dirContacto, String telEncargado, String telContacto, String tipo, Boolean activo) {
         this.nombreCDI = nombreCDI;
         this.nombreEncargado = nombreEncargado;
         this.nombreContacto = nombreContacto;
@@ -28,6 +29,15 @@ public class CdiHcb {
         this.telEncargado = telEncargado;
         this.telContacto = telContacto;
         this.tipo = tipo;
+        this.activo = activo;
+    }
+
+    public Boolean getActivo() {
+        return activo;
+    }
+
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
     }
 
     public String getNombreCDI() {

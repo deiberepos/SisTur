@@ -1,17 +1,24 @@
 package com.dgaviria.sistur.usuarios;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.dgaviria.sistur.CensoPoblacional;
+import com.dgaviria.sistur.ListarCensoPoblacion;
+import com.dgaviria.sistur.clases.Censo;
 import com.dgaviria.sistur.clases.Roles;
 import com.dgaviria.sistur.clases.Usuarios;
 import com.dgaviria.sistur.R;
@@ -26,17 +33,61 @@ public class CrearUsuarios extends AppCompatActivity {
     EditText editTextUsuario, editTextContrasena,editTextVerificaContrasena,editTextCorreo,editTextNombres ;
     ProgressBar barraProgreso;
     String usuarioU,contrasenaU,contrasenaV,correoE,nombresU,nombreRol;
-    //AnimationDrawable animacion;
     LinearLayout miContenedor;
-    Button botonRegistra;
+    Button botonRegistra,botonactualizar;
     RadioGroup rolSeleccionado;
     Integer rolUsuario=0;
+    RadioButton roladmin,rolgest,rolcomp,rolbasic;
+    private String opciones ="",usuarioo,nombre,contraseña,correo;
+    private int tipo;
+    Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.crear_usuarios);
         referenciar();
+
+        if(opciones.equals("crear")) {
+            botonactualizar.setVisibility(View.INVISIBLE);
+        }else {
+            botonRegistra.setVisibility(View.INVISIBLE);
+            usuarioo = bundle.getString("usuario");
+            editTextUsuario.setText(usuarioo);
+            nombre = bundle.getString("nombre");
+            editTextNombres.setText(nombre);
+            contraseña = bundle.getString("contrasena");
+            editTextContrasena.setText(contraseña);
+            contraseña = bundle.getString("contrasena");
+            editTextVerificaContrasena.setText(contraseña);
+            correo = bundle.getString("correo");
+            editTextCorreo.setText(correo);
+            tipo = bundle.getInt("tipo");
+            if (tipo==1)
+            {
+                roladmin.setChecked(true);
+            }
+            if (tipo==2)
+            {
+                rolgest.setChecked(true);
+            }
+            if (tipo==3)
+            {
+                rolcomp.setChecked(true);
+            }
+            if (tipo==4)
+            {
+                rolbasic.setChecked(true);
+            }
+
+        }
+
+        botonactualizar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+              //  actualizarUsuario();
+            }
+        });
         botonRegistra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,6 +105,15 @@ public class CrearUsuarios extends AppCompatActivity {
         barraProgreso = findViewById(R.id.barraProgreso);
         botonRegistra=findViewById(R.id.botonRegistrar);
         rolSeleccionado=findViewById(R.id.rgRoles);
+        botonactualizar=findViewById(R.id.botonActualizar);
+        roladmin=findViewById(R.id.roladmin);
+        rolgest=findViewById(R.id.rolgest);
+        rolcomp=findViewById(R.id.rolcomp);
+        rolbasic=findViewById(R.id.rolbasi);
+        bundle=getIntent().getExtras();
+        opciones=bundle.getString("opcion");
+
+
     }
 
     private void verificarDatosUsuario(){
@@ -135,19 +195,19 @@ public class CrearUsuarios extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int cualRol) {
                 switch (cualRol) {
-                    case R.id.opbRolUno:
+                    case R.id.roladmin:
                         rolUsuario=1;
                         nombreRol="administrador";
                         break;
-                    case R.id.opbRolDos:
+                    case R.id.rolgest:
                         rolUsuario=2;
                         nombreRol="gestor";
                         break;
-                    case R.id.opbRolTres:
+                    case R.id.rolcomp:
                         rolUsuario=3;
                         nombreRol="compras";
                         break;
-                    case R.id.opbRolCuatro:
+                    case R.id.rolbasi:
                         rolUsuario=4;
                         nombreRol="basico";
                         break;
@@ -158,6 +218,7 @@ public class CrearUsuarios extends AppCompatActivity {
                 }
             }
         });
+
         barraProgreso.setVisibility(View.GONE);
         if (rolUsuario!=0) {
             //verifica que no se repita el nombre del usuario
@@ -168,7 +229,6 @@ public class CrearUsuarios extends AppCompatActivity {
                         //valida el nombre del usuario
                         if (dataSnapshot.child("usuario").getValue(String.class).equals(usuarioU)) {
                             Toast.makeText(getApplicationContext(), "Este usuario ya existe, intente otro nombre", Toast.LENGTH_SHORT).show();
-
                         }
                         else {
                             crearNuevoUsuario();
@@ -189,6 +249,39 @@ public class CrearUsuarios extends AppCompatActivity {
         else
             Toast.makeText(getApplicationContext(), "Debe seleccionar un rol", Toast.LENGTH_SHORT).show();
     }
+
+    /*private void actualizarUsuario(){
+
+        miReferencia=FirebaseDatabase.getInstance().getReference();
+        AlertDialog.Builder builder = new AlertDialog.Builder(CrearUsuarios.this);
+        builder.setTitle("Desea actualizar: "+usuarioU);
+        builder.setMessage("Está seguro que desea actualizar este Infante?");
+        builder.setPositiveButton("ACTUALIZAR", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                miReferencia=FirebaseDatabase.getInstance().getReference();
+                if(usuarioo.equals(usuarioU)){
+                    miReferencia.child("usuarios").child(usuarioU).setValue(new Usuarios(usuarioU,contrasenaU,nombresU,correoE,false,rolUsuario==1,rolUsuario==2,rolUsuario==3,rolUsuario==4));
+                }else {
+                    miReferencia.child("usuarios").child(usuarioo).removeValue();
+                    miReferencia.child("usuarios").child(usuarioU).setValue(new Usuarios(usuarioU,contrasenaU,nombresU,correoE,false,rolUsuario==1,rolUsuario==2,rolUsuario==3,rolUsuario==4));
+                    misDatos=miReferencia.child("rol").child(nombreRol).child("miembros");
+                    misDatos.child(usuarioU).setValue(new Roles(true));
+                }
+                Toast.makeText(CrearUsuarios.this,"Actualizado con éxito",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), ListarCensoPoblacion.class);
+                startActivity(intent);
+            }
+        });
+        builder.setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(getApplicationContext(),"No se realizó ninguna actualización",Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.show();
+    }*/
+
 
     private void crearNuevoUsuario() {
         //construye el objeto que se va a guardar en la base de datos

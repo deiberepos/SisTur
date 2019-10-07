@@ -61,26 +61,26 @@ public class ListarPlanAlimenticio extends AppCompatActivity {
                 habilitarAcciones(posicion);
             }
         });
-        botonGuarda.setOnClickListener(new View.OnClickListener() {
+/*        botonGuarda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getApplicationContext(),"Guardando lista alimentos...",Toast.LENGTH_SHORT).show();
             }
-        });
-        botonVolver.setOnClickListener(new View.OnClickListener() {
+        });*/
+/*        botonVolver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
-        });
-        botonBuscar.setOnClickListener(new View.OnClickListener() {
+        });*/
+        /*botonBuscar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String textoBuscar = buscarAlimento.getText().toString().trim();
                 Toast.makeText(getApplicationContext(),"Buscando "+textoBuscar,Toast.LENGTH_SHORT).show();
             }
         });
-
+*/
     }
 
     private void habilitarAcciones(int posicion) {
@@ -95,10 +95,7 @@ public class ListarPlanAlimenticio extends AppCompatActivity {
         miRecyclerA =findViewById(R.id.recyclerListaA);
         numSelecc=findViewById(R.id.numSeleccionados);
         numTotal=findViewById(R.id.numAlimentos);
-        botonGuarda=findViewById(R.id.btnGuardarS);
-        botonVolver =findViewById(R.id.btnVolverS);
-        botonBuscar=findViewById(R.id.btnBuscarS);
-        buscarAlimento=findViewById(R.id.editBuscar);
+
         miRecyclerA.setLayoutManager(new LinearLayoutManager(this));
         miReferenciaA=FirebaseDatabase.getInstance().getReference();
         listaDeAlimentos =new ArrayList<>();

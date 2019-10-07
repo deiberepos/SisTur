@@ -152,7 +152,7 @@
                         android:paddingEnd="15dp">
 
                         <RadioButton
-                            android:id="@+id/opbRolUno"
+                            android:id="@+id/roladmin"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:checked="true"
@@ -162,7 +162,7 @@
                             app:buttonTint="@color/colorRojo" />
 
                         <RadioButton
-                            android:id="@+id/opbRolDos"
+                            android:id="@+id/rolgest"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:checked="true"
@@ -172,7 +172,7 @@
                             app:buttonTint="@color/colorRojo" />
 
                         <RadioButton
-                            android:id="@+id/opbRolTres"
+                            android:id="@+id/rolcomp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:checked="true"
@@ -182,7 +182,7 @@
                             app:buttonTint="@color/colorRojo" />
 
                         <RadioButton
-                            android:id="@+id/opbRolCuatro"
+                            android:id="@+id/rolbasi"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:checked="true"
@@ -209,6 +209,16 @@
                         android:layout_marginTop="20dp"
                         android:background="@drawable/personalizar_button"
                         android:text="Registrar Usuario"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorClaro" />
+                    <Button
+                        android:id="@+id/botonActualizar"
+                        android:layout_width="180dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/personalizar_button"
+                        android:text="Actualizar Usuario"
                         android:textAllCaps="false"
                         android:textColor="@color/colorClaro" />
                 </LinearLayout>

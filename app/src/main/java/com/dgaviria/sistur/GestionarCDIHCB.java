@@ -52,6 +52,11 @@ public class GestionarCDIHCB extends AppCompatActivity {
                 if(centros.getTipo().equals("Centro de Desarrollo Infantil")){
                     tipo=1;
                 }
+                int tipoact=1;
+                if (centros.getActivo().equals("true"))
+                {
+                    tipoact=2;
+                }
                 Intent intent = new Intent(getApplicationContext(), RegistrarCDIHCB.class);
                 intent.putExtra("opcion","actualizar");
                 intent.putExtra("nombrecentro",centros.getNombreCDI());
@@ -62,6 +67,7 @@ public class GestionarCDIHCB extends AppCompatActivity {
                 intent.putExtra("nombrecon",centros.getNombreContacto());
                 intent.putExtra("direccioncon",centros.getDirContacto());
                 intent.putExtra("telefonocon",centros.getTelContacto());
+                intent.putExtra("activo",tipoact);
                 startActivity(intent);
             }
 
@@ -123,7 +129,6 @@ public class GestionarCDIHCB extends AppCompatActivity {
 
             }
         });
-
         return centro;
     }
 
@@ -133,7 +138,9 @@ public class GestionarCDIHCB extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot datosbd : dataSnapshot.getChildren()) {
+
                     CdiHcb cdiHcb=datosbd.getValue(CdiHcb.class);
+                    if (cdiHcb.getActivo()==true)
                     listaDeCDI.add(cdiHcb);
                 }
                 adaptadorCentros.notifyDataSetChanged();

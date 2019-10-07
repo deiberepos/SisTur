@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.dgaviria.sistur.CrearCalendario;
+import com.dgaviria.sistur.ListarCensoPoblacion;
 import com.dgaviria.sistur.adaptadores.AdaptadorMenuPpal;
 import com.dgaviria.sistur.CensoPoblacional;
 import com.dgaviria.sistur.alimentos.ListarPlanAlimenticio;
@@ -17,6 +18,7 @@ import com.dgaviria.sistur.clases.MenuOpciones;
 import com.dgaviria.sistur.GestionarCDIHCB;
 import com.dgaviria.sistur.R;
 import com.dgaviria.sistur.RegistrarCDIHCB;
+import com.dgaviria.sistur.usuarios.ListarUsuarios;
 import com.dgaviria.sistur.usuarios.OpcionesUsuarios;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -47,7 +49,7 @@ public class MenuPrincipal extends AppCompatActivity {
             public void itemClick(MenuOpciones misOpciones, int posicion) {
                 switch (misOpciones.getOrden()){
                     case 1:
-                        Intent miIntento1 = new Intent(MenuPrincipal.this, OpcionesUsuarios.class);
+                        Intent miIntento1 = new Intent(MenuPrincipal.this, ListarUsuarios.class);
                         startActivity(miIntento1);
                         break;
                     case 2:
@@ -57,7 +59,7 @@ public class MenuPrincipal extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case 3:
-                        Intent miIntento3 = new Intent(MenuPrincipal.this, CensoPoblacional.class);
+                        Intent miIntento3 = new Intent(MenuPrincipal.this, ListarCensoPoblacion.class);
                         startActivity(miIntento3);
                         break;
                     case 4:
@@ -78,7 +80,7 @@ public class MenuPrincipal extends AppCompatActivity {
             public void imagenClick(MenuOpciones misOpciones, int posicion) {
                 switch (misOpciones.getOrden()) {
                     case 1:
-                        Intent miIntento1 = new Intent(MenuPrincipal.this, OpcionesUsuarios.class);
+                        Intent miIntento1 = new Intent(MenuPrincipal.this, ListarUsuarios.class);
                         startActivity(miIntento1);
                         break;
                     case 2:
@@ -86,7 +88,7 @@ public class MenuPrincipal extends AppCompatActivity {
                         startActivity(miIntento2);
                         break;
                     case 3:
-                        Intent miIntento3 = new Intent(MenuPrincipal.this, CensoPoblacional.class);
+                        Intent miIntento3 = new Intent(MenuPrincipal.this, ListarCensoPoblacion.class);
                         startActivity(miIntento3);
                         break;
                     case 4:

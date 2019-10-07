@@ -217,6 +217,11 @@
              android:hint="Escribe aqui"
              android:layout_width="match_parent"
              android:id="@+id/idedttelContacto" />
+        <CheckBox
+            android:id="@+id/activocdi"
+            android:text="activo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
         <LinearLayout
             android:orientation="horizontal"

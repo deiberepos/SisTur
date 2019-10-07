@@ -54,7 +54,6 @@ public class AdaptadorPlanAlimenticio extends RecyclerView.Adapter<AdaptadorPlan
             nombreA=vistaItem.findViewById(R.id.txtNombreA);
             regionalA=vistaItem.findViewById(R.id.txtARegional);
             selecciona =vistaItem.findViewById(R.id.imgSeleccionaA);
-            botonBuscar=vistaItem.findViewById(R.id.btnBuscarS);
             lyt_marcado=vistaItem.findViewById(R.id.lytMarcado);
             lyt_padre=vistaItem.findViewById(R.id.lytPadre);
             lyt_imagen=vistaItem.findViewById(R.id.lytImagen);

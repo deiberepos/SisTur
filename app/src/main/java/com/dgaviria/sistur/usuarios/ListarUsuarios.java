@@ -5,9 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
+import com.dgaviria.sistur.CensoPoblacional;
+import com.dgaviria.sistur.ListarCensoPoblacion;
 import com.dgaviria.sistur.adaptadores.AdaptadorListaUsuarios;
 import com.dgaviria.sistur.clases.Usuarios;
 import com.dgaviria.sistur.R;
@@ -29,6 +34,7 @@ public class ListarUsuarios extends AppCompatActivity {
     AdaptadorListaUsuarios adaptadorUsuarios;
     DatabaseReference miReferencia;
 
+    Button guardar;
 
 
     @Override
@@ -39,6 +45,14 @@ public class ListarUsuarios extends AppCompatActivity {
         referenciar();
         llenarRecyclerUsuarios();
 
+        guardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent mi = new Intent(ListarUsuarios.this, CrearUsuarios.class);
+                mi.putExtra("opcion","crear");
+                startActivity(mi);
+            }
+        });
         adaptadorUsuarios=new AdaptadorListaUsuarios(this,listaDeUsuarios, new AdaptadorListaUsuarios.OnItemClick() {
             @Override
             public void itemClick(Usuarios misUsuarios, int posicion) {
@@ -47,7 +61,33 @@ public class ListarUsuarios extends AppCompatActivity {
 
             @Override
             public void modificaClick(Usuarios misUsuarios, int posicion) {
-                Toast.makeText(getApplicationContext(),"Modificar información",Toast.LENGTH_SHORT).show();
+
+                int tipo=1;
+                if(misUsuarios.getRoladmin().equals(true))
+                {
+                    tipo=2;
+                }
+                if (misUsuarios.getRolgestor().equals(true))
+                {
+                    tipo=3;
+                }
+                if (misUsuarios.getRolcompras().equals(true))
+                {
+                    tipo=4;
+                }
+                if (misUsuarios.getRolbasico().equals(true))
+                {
+                    tipo=5;
+                }
+                Intent intent = new Intent(getApplicationContext(), CrearUsuarios.class);
+                intent.putExtra("opcion","actualizar");
+                intent.putExtra("usuario",misUsuarios.getUsuario());
+                intent.putExtra("nombre",misUsuarios.getNombre());
+                intent.putExtra("contrasena",misUsuarios.getContrasena());
+                intent.putExtra("correo",misUsuarios.getCorreo());
+                intent.putExtra("tipo",tipo);
+                startActivity(intent);
+
             }
 
             @Override
@@ -61,6 +101,7 @@ public class ListarUsuarios extends AppCompatActivity {
     private void referenciar() {
         miRecyclerUsuarios=findViewById(R.id.recyclerListaU);
         listaDeUsuarios =new ArrayList<>();
+        guardar=findViewById(R.id.guardar);
     }
 
     private void llenarRecyclerUsuarios() {
@@ -71,7 +112,9 @@ public class ListarUsuarios extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot usuariosExisten : dataSnapshot.getChildren())
                 {
+
                     Usuarios miUsuario=usuariosExisten.getValue(Usuarios.class);
+                    //if (miUsuario.getActivar()==true)
                     listaDeUsuarios.add(miUsuario);
                 }
                 adaptadorUsuarios.notifyDataSetChanged();

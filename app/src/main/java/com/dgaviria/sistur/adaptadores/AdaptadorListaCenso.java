@@ -20,7 +20,6 @@ import java.util.List;
 public class AdaptadorListaCenso extends RecyclerView.Adapter<AdaptadorListaCenso.CensoViewHolder> {
     List<Censo> listadoCenso;
     Context contexto;
-    Censo persona;
 
     public AdaptadorListaCenso(List<Censo> listadoCenso) {
         this.listadoCenso=listadoCenso;
@@ -34,8 +33,8 @@ public class AdaptadorListaCenso extends RecyclerView.Adapter<AdaptadorListaCens
 
     public static  class CensoViewHolder extends RecyclerView.ViewHolder
     {
-        ImageView modifica,elimina;
-        TextView nombre,centroAsociado,apellido;
+        ImageView modifica;
+        TextView nombre,apellido;
 
 
         DatabaseReference mir= FirebaseDatabase.getInstance().getReference();
@@ -46,9 +45,7 @@ public class AdaptadorListaCenso extends RecyclerView.Adapter<AdaptadorListaCens
 
             nombre=itemView.findViewById(R.id.txtNombreInfan);
             apellido=itemView.findViewById(R.id.txtCentroAsociado);
-            //centroAsociado=itemView.findViewById(R.id.txtCentroAsociado);
             modifica=itemView.findViewById(R.id.imgModificaCenso);
-            elimina=itemView.findViewById(R.id.imgEliminacenso);
         }
 
         public void bind(final Censo miCenso,final int posicion,final OnItemClick onItemClick)
@@ -56,15 +53,8 @@ public class AdaptadorListaCenso extends RecyclerView.Adapter<AdaptadorListaCens
             nombre.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
                     onItemClick.itemClick(miCenso,posicion);
-                }
-            });
-            elimina.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    miCenso.setNombre(miCenso.getNombre());
-                    mir.child("CensoInfante").child(miCenso.getNombre()).removeValue();
-                    onItemClick.eliminaClick(miCenso,posicion);
                 }
             });
             modifica.setOnClickListener(new View.OnClickListener() {
@@ -100,10 +90,7 @@ public class AdaptadorListaCenso extends RecyclerView.Adapter<AdaptadorListaCens
         holder.nombre.setText(micensoo.getNombre());
         holder.apellido.setText(micensoo.getApellidos());
         holder.modifica.setImageResource(R.mipmap.ic_actualiza);
-        holder.elimina.setImageResource(R.mipmap.ic_elimina);
         holder.bind(listadoCenso.get(position),position,listener);
-
-
     }
 
     @Override
