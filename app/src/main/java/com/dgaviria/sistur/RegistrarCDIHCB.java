@@ -39,12 +39,10 @@ public class RegistrarCDIHCB extends AppCompatActivity {
     DatabaseReference miReferencia,misDatos;
     Boolean activo;
     CheckBox acti;
-    ProgressBar barraProgreso;
     String nombrecentro, nombreE, nombreC, direccionE, direccionC, telE, telC;
     public static String vereda, tipo;
-    RadioGroup rgbtipo, rgbvereda;
+    RadioGroup rgbtipo;
     RadioButton rbCentro, rbHogar;
-    //public static int tipo=2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,15 +88,15 @@ public class RegistrarCDIHCB extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 cargarDatos();
-                guardarCentro();
+                //guardarCentro();
             }
         });
 
         btnActualizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cargarDatos();
-                actualizarCentros();
+                cargarDatosDos();
+                //actualizarCentros();
             }
         });
 
@@ -151,7 +149,6 @@ public class RegistrarCDIHCB extends AppCompatActivity {
         }
     }
 
-
     private void cargarDatos(){
             Boolean finalizar=false;
         if(edtnombreCentro.getText().toString().isEmpty()||edtdirEncargado.getText().toString().isEmpty()||
@@ -167,8 +164,9 @@ public class RegistrarCDIHCB extends AppCompatActivity {
             telE = edttelEncargado.getText().toString();
             telC = edttelContacto.getText().toString();
 
-            //guardarCentro();
+            guardarCentro();
         }
+
             /*
             //Verifica que escriba los valores en todos los campos requeridos
             if (editTextUsuario.getText().toString().trim().toLowerCase().isEmpty()){
@@ -277,6 +275,7 @@ public class RegistrarCDIHCB extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Debe seleccionar un rol", Toast.LENGTH_SHORT).show();
         */
     }
+
     private void guardarCentro(){
         //construye el objeto que se va a guardar en la base de datos
 
@@ -324,6 +323,22 @@ public class RegistrarCDIHCB extends AppCompatActivity {
         builder.show();
         //Intent intent = new Intent(getApplicationContext(), GestionarCDIHCB.class);
         //startActivity(intent);
+    }
+    private void cargarDatosDos() {
+        if (edtnombreCentro.getText().toString().isEmpty() || edtdirEncargado.getText().toString().isEmpty() ||
+                edtnombreEncargado.getText().toString().isEmpty() || edttelEncargado.getText().toString().isEmpty() ||
+                edtnomContacto.getText().toString().isEmpty() || edtdirContacto.getText().toString().isEmpty() || edttelContacto.getText().toString().isEmpty()) {
+            Toast.makeText(this, "Todos los campos son requeridos", Toast.LENGTH_SHORT).show();
+        } else {
+            nombrecentro = edtnombreCentro.getText().toString();
+            nombreE = edtnombreEncargado.getText().toString();
+            nombreC = edtnomContacto.getText().toString();
+            direccionE = edtdirEncargado.getText().toString();
+            direccionC = edtdirContacto.getText().toString();
+            telE = edttelEncargado.getText().toString();
+            telC = edttelContacto.getText().toString();
+            actualizarCentros();
+        }
     }
 
     private void referenciar() {

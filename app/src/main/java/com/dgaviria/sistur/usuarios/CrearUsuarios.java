@@ -85,7 +85,7 @@ public class CrearUsuarios extends AppCompatActivity {
         botonactualizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              //  actualizarUsuario();
+                actualizarUsuario();
             }
         });
         botonRegistra.setOnClickListener(new View.OnClickListener() {
@@ -250,12 +250,12 @@ public class CrearUsuarios extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Debe seleccionar un rol", Toast.LENGTH_SHORT).show();
     }
 
-    /*private void actualizarUsuario(){
-
+    private void actualizarUsuario(){
+        verificarDatosUsuario();
         miReferencia=FirebaseDatabase.getInstance().getReference();
         AlertDialog.Builder builder = new AlertDialog.Builder(CrearUsuarios.this);
-        builder.setTitle("Desea actualizar: "+usuarioU);
-        builder.setMessage("Está seguro que desea actualizar este Infante?");
+        builder.setTitle("Desea actualizar: "+ usuarioU);
+        builder.setMessage("Está seguro que desea actualizar este Usuario?");
         builder.setPositiveButton("ACTUALIZAR", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -269,7 +269,7 @@ public class CrearUsuarios extends AppCompatActivity {
                     misDatos.child(usuarioU).setValue(new Roles(true));
                 }
                 Toast.makeText(CrearUsuarios.this,"Actualizado con éxito",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), ListarCensoPoblacion.class);
+                Intent intent = new Intent(getApplicationContext(), ListarUsuarios.class);
                 startActivity(intent);
             }
         });
@@ -280,7 +280,7 @@ public class CrearUsuarios extends AppCompatActivity {
             }
         });
         builder.show();
-    }*/
+    }
 
 
     private void crearNuevoUsuario() {
