@@ -137,6 +137,7 @@ public class CrearCalendario extends AppCompatActivity {
             miReferenciaCal = FirebaseDatabase.getInstance().getReference("semanas").child(semanaSeleccionada).child("minuta5");
             miReferenciaCal.setValue(minutaViernes);
         }
+        Toast.makeText(this, "Se programó exitosamente la semana", Toast.LENGTH_SHORT).show();
     }
 
     private void buscarMinutas(){

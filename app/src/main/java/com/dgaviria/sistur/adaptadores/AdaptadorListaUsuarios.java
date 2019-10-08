@@ -90,7 +90,7 @@ public class AdaptadorListaUsuarios extends RecyclerView.Adapter<AdaptadorListaU
         else if (miUsuario.getRoladmin())
             nombreRol="Gestor";
         else if (miUsuario.getRoladmin())
-            nombreRol="Compras";
+            nombreRol="CompraGaleria";
         else if (miUsuario.getRoladmin())
             nombreRol="Basico";
         holder.nombreU.setText(miUsuario.getUsuario());

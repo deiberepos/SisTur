@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.dgaviria.sistur.CompraGaleria;
+import com.dgaviria.sistur.ConsultaMinutas;
 import com.dgaviria.sistur.CrearCalendario;
 import com.dgaviria.sistur.ListarCensoPoblacion;
 import com.dgaviria.sistur.adaptadores.AdaptadorMenuPpal;
@@ -66,10 +68,18 @@ public class MenuPrincipal extends AppCompatActivity {
                         Intent miIntento4 = new Intent(MenuPrincipal.this, ListarPlanAlimenticio.class);
                         startActivity(miIntento4);
                         break;
-                    case 6:
-                        Intent miIntento5 = new Intent(MenuPrincipal.this, CrearCalendario.class);
+                    case 5:
+                        Intent miIntento5 = new Intent(MenuPrincipal.this, ConsultaMinutas.class);
                         startActivity(miIntento5);
                         break;
+                    case 6:
+                        Intent miIntento6 = new Intent(MenuPrincipal.this, CrearCalendario.class);
+                        startActivity(miIntento6);
+                        break;
+                    /*case 7:
+                        Intent miIntento7 = new Intent(MenuPrincipal.this, CompraGaleria.class);
+                        startActivity(miIntento7);
+                        break;*/
                     default:
                         Toast.makeText(getApplicationContext(),"Opción "+misOpciones.getTitulo(),Toast.LENGTH_SHORT).show();
                         break;
@@ -95,10 +105,18 @@ public class MenuPrincipal extends AppCompatActivity {
                         Intent miIntento4 = new Intent(MenuPrincipal.this, ListarPlanAlimenticio.class);
                         startActivity(miIntento4);
                         break;
-                    case 6:
-                        Intent miIntento5 = new Intent(MenuPrincipal.this, CrearCalendario.class);
+                    case 5:
+                        Intent miIntento5 = new Intent(MenuPrincipal.this, ConsultaMinutas.class);
                         startActivity(miIntento5);
                         break;
+                    case 6:
+                        Intent miIntento6 = new Intent(MenuPrincipal.this, CrearCalendario.class);
+                        startActivity(miIntento6);
+                        break;
+                    /*case 7:
+                        Intent miIntento7 = new Intent(MenuPrincipal.this, CompraGaleria.class);
+                        startActivity(miIntento7);
+                        break;*/
                     default:
                         Toast.makeText(getApplicationContext(), "Imagen " + misOpciones.getTitulo(), Toast.LENGTH_SHORT).show();
                         break;
