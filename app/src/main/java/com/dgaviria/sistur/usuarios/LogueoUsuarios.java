@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -25,7 +26,7 @@ public class LogueoUsuarios extends AppCompatActivity{
     EditText editTextUsuario, editTextContrasena;
     String nombreU,contrasenaU;
     LinearLayout miContenedor;
-    Button botonIngresar;
+    ImageButton botonIngresar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +42,7 @@ public class LogueoUsuarios extends AppCompatActivity{
     }
 
     private void referenciar() {
-        miContenedor=findViewById(R.id.contenedor);
+      //  miContenedor=findViewById(R.id.contenedor);
         editTextUsuario =  findViewById(R.id.editTextUsuario);
         editTextContrasena= findViewById(R.id.editTextPassword);
         botonIngresar=findViewById(R.id.botonIngreso);

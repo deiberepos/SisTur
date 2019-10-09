@@ -22,7 +22,8 @@
         <activity android:name=".GestionarCDIHCB" />
         <activity android:name=".CensoLista" />
         <activity android:name=".ListarCensoPoblacion" />
-        <activity android:name=".usuarios.LogueoUsuarios" />
+        <activity android:name=".usuarios.LogueoUsuarios"
+            android:theme="@style/AppTheme.FullScreen"/>
         <activity android:name=".usuarios.OpcionesUsuarios" />
         <activity android:name=".usuarios.ListarUsuarios" />
         <activity android:name=".usuarios.UsuariosLista" />

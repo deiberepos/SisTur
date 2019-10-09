@@ -1,62 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/contenedor"
-    android:gravity="center"
     tools:context=".usuarios.LogueoUsuarios">
 
     <ImageView
+        android:id="@+id/bgHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="header"
+        android:scaleType="fitXY"
+        android:src="@drawable/trazado1" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="247dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="-13dp"
+        android:contentDescription="foter"
+        android:scaleType="fitXY"
+        android:src="@drawable/trazado2" />
+
+    <ImageView
+        android:layout_marginTop="20dp"
+        android:id="@+id/logo"
+        android:layout_centerHorizontal="true"
         android:layout_width="75dp"
         android:layout_height="89dp"
+        android:layout_below="@+id/tvlogin"
         android:background="@drawable/logoinicial" />
-        <TextView
-            android:layout_width="wrap_content"
+
+    <TextView
+        android:id="@+id/tvlogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="-5dp"
+        android:shadowColor="@color/colorClaro"
+        android:text="Ingreso de Usuarios"
+        android:layout_below="@+id/bgHeader"
+        android:textSize="40sp"
+        android:textStyle="bold" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logo"
+        android:layout_marginBottom="-100dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:shadowColor="@color/colorClaro"
-            android:shadowDx="-2"
-            android:shadowDy="-2"
-            android:shadowRadius="1.5"
-            android:text="Ingreso de usuarios"
-            android:textColor="@color/colorNegro"
-            android:textSize="25dp"
-            android:textStyle="bold" />
+            android:layout_marginLeft="-50dp"
+            android:layout_marginTop="50dp">
 
-        <EditText
-            android:id="@+id/editTextUsuario"
-            style="@style/IngresoDatos"
-            android:drawableStart="@drawable/user"
-            android:hint="usuario"
-            android:inputType="textPostalAddress"
-            />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv"
+                android:layout_width="425dp"
+                android:layout_height="178dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginBottom="15dp"
+                android:padding="10dp"
+                app:cardCornerRadius="70dp"
+                app:cardElevation="3dp">
 
-        <EditText
-            android:id="@+id/editTextPassword"
-            style="@style/IngresoDatos"
-            android:drawableLeft="@drawable/pass"
-            android:hint="contraseña"
-            android:inputType="textPassword"
-             />
-        <Button
-            android:id="@+id/botonIngreso"
-            android:layout_width="200dp"
-            android:layout_gravity="center"
-            android:layout_margin="20dp"
-            android:layout_height="40dp"
-            android:background="@drawable/personalizar_button"
-            android:text="Ingresar"
-            android:textAllCaps="false"
-            android:textColor="@color/colorClaro" />
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="168dp"
+                    android:layout_marginLeft="60dp"
+                    android:padding="10dp">
 
-        <ProgressBar
-            android:id="@+id/barraProgreso"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:visibility="gone"
-            />
-</LinearLayout>
+                    <EditText
+                        android:id="@+id/editTextUsuario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="15dp"
+                        android:background="@color/transparent"
+                        android:drawableStart="@drawable/user"
+                        android:drawablePadding="30dp"
+                        android:hint="usuario"
+                        android:inputType="textPostalAddress"
+                        android:padding="10dp"
+                        />
+
+                    <View
+                        android:id="@+id/view1"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_below="@+id/editTextUsuario"
+                        android:background="#71d2d2d2" />
+
+                    <EditText
+                        android:id="@+id/editTextPassword"
+                        android:layout_width="315dp"
+                        android:layout_height="80dp"
+                        android:layout_below="@id/view1"
+                        android:layout_margin="15dp"
+                        android:background="@color/transparent"
+                        android:drawableStart="@drawable/pass"
+                        android:drawablePadding="30dp"
+                        android:hint="contraseña"
+                        android:inputType="textPassword"
+                        android:padding="10dp" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <RelativeLayout
+                android:layout_width="60dp"
+                android:layout_height="171dp"
+                android:layout_alignTop="@id/cv"
+                android:layout_alignRight="@id/cv"
+                android:layout_alignBottom="@id/cv"
+                android:layout_marginTop="-4dp"
+                android:layout_marginRight="-41dp"
+                android:layout_marginBottom="1dp"
+                android:elevation="10dp">
+
+                <ImageButton
+                    android:id="@+id/botonIngreso"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/btninicio"
+                    android:src="@drawable/arrow" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
+    <ProgressBar
+        android:id="@+id/barraProgreso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="gone"
+        />
+</RelativeLayout>
