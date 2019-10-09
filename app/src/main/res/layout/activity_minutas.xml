@@ -47,60 +47,6 @@
             style="@style/SelectorSemana"
             />
     </RelativeLayout>
-    <!--<RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dp">
-        <TextView
-            android:id="@+id/txtEncab1"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textSize="14sp"
-            android:textStyle="bold|italic"
-            android:text="Ingrediente"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="5dp"
-            />
-        <TextView
-            android:id="@+id/txtEncab2"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textSize="14sp"
-            android:textStyle="bold|italic"
-            android:text="Und."
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@+id/txtEncab1"
-            />
-
-        <TextView
-            android:id="@+id/txtEncab3"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textSize="14sp"
-            android:textStyle="bold|italic"
-            android:text="Cantidad"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@+id/txtEncab2"
-            />
-
-        <TextView
-            android:id="@+id/txtEncab4"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textSize="14sp"
-            android:textStyle="bold|italic"
-            android:text="Total Cantidad"
-            android:layout_marginTop="2dp"
-            android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@+id/txtEncab3"
-            />
-    </RelativeLayout>-->
     <ExpandableListView
         android:id="@+id/listaPreparacion"
         android:layout_width="match_parent"

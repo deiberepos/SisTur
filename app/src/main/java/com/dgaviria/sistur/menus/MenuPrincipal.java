@@ -76,10 +76,10 @@ public class MenuPrincipal extends AppCompatActivity {
                         Intent miIntento6 = new Intent(MenuPrincipal.this, CrearCalendario.class);
                         startActivity(miIntento6);
                         break;
-                    /*case 7:
+                    case 7:
                         Intent miIntento7 = new Intent(MenuPrincipal.this, CompraGaleria.class);
                         startActivity(miIntento7);
-                        break;*/
+                        break;
                     default:
                         Toast.makeText(getApplicationContext(),"Opción "+misOpciones.getTitulo(),Toast.LENGTH_SHORT).show();
                         break;
@@ -113,10 +113,10 @@ public class MenuPrincipal extends AppCompatActivity {
                         Intent miIntento6 = new Intent(MenuPrincipal.this, CrearCalendario.class);
                         startActivity(miIntento6);
                         break;
-                    /*case 7:
+                    case 7:
                         Intent miIntento7 = new Intent(MenuPrincipal.this, CompraGaleria.class);
                         startActivity(miIntento7);
-                        break;*/
+                        break;
                     default:
                         Toast.makeText(getApplicationContext(), "Imagen " + misOpciones.getTitulo(), Toast.LENGTH_SHORT).show();
                         break;

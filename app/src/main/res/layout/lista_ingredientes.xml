@@ -7,63 +7,18 @@
     android:orientation="vertical"
     android:paddingLeft="40dp"
     tools:context=".ConsultaMinutas">
-    <!--<RelativeLayout
+    <TextView
+        android:id="@+id/txtIngrediente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:layout_gravity="left"
         android:gravity="center_vertical"
-        >-->
-        <TextView
-            android:id="@+id/txtIngrediente"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:text="VACIO"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="5dp"
-            />
-        <!--<TextView
-            android:id="@+id/txtUnidad"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@+id/txtIngrediente"
-            android:background="@drawable/personalizar_edit"
-            />
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:text="VACIO"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="5dp"
+        />
 
-        <TextView
-            android:id="@+id/txtCantidad"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@+id/txtUnidad"
-            android:background="@drawable/personalizar_edit"
-            />
-
-        <TextView
-            android:id="@+id/txtTotal"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@+id/txtCantidad"
-            android:background="@drawable/personalizar_edit"
-            />
-    </RelativeLayout>-->
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"

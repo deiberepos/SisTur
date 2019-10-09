@@ -47,21 +47,28 @@
             style="@style/SelectorSemana"
             />
     </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
+    <EditText
+        android:id="@+id/editFechaCompra"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/layListado">
-        <TextView
-            android:id="@+id/tituloLista"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:textColor="@color/colorNegro"
-            android:layout_marginTop="10dp"
-            android:textStyle="italic|bold"
-            android:textSize="20dp"
-            android:text="Listado de Productos"
-            android:layout_centerHorizontal="true"
-            />
+        android:hint="fecha de compra"
+        android:layout_gravity="center"
+        style="@style/IngresoDatos"
+        android:onClick="mostrarCalendario"
+        />
+    <TextView
+        android:id="@+id/tituloLista"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Listado de Productos"
+        android:textColor="@color/colorNegro"
+        android:textSize="20dp"
+        android:layout_gravity="center"
+        android:textStyle="italic|bold" />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
         <TextView
             android:id="@+id/titulo1"
             android:layout_width="120dp"
@@ -71,7 +78,6 @@
             android:textColor="@color/colorNegro"
             android:textStyle="bold"
             android:layout_marginTop="8dp"
-            android:layout_below="@id/tituloLista"
             />
         <TextView
             android:id="@+id/titulo2"
@@ -82,7 +88,6 @@
             android:textColor="@color/colorNegro"
             android:textStyle="bold"
             android:layout_marginTop="8dp"
-            android:layout_below="@id/tituloLista"
             android:layout_toRightOf="@id/titulo1"
             />
         <TextView
@@ -94,8 +99,7 @@
             android:textColor="@color/colorNegro"
             android:textStyle="bold"
             android:layout_marginTop="8dp"
-            android:layout_below="@id/tituloLista"
-            android:layout_toRightOf="@+id/titulo2"
+            android:layout_toRightOf="@id/titulo2"
             />
         <TextView
             android:id="@+id/titulo4"
@@ -105,7 +109,6 @@
             android:gravity="center"
             android:textColor="@color/colorNegro"
             android:textStyle="bold"
-            android:layout_below="@id/tituloLista"
             android:layout_toRightOf="@id/titulo3"
             />
         <TextView
@@ -116,59 +119,25 @@
             android:gravity="center"
             android:textColor="@color/colorNegro"
             android:textStyle="bold"
-            android:layout_below="@id/tituloLista"
             android:layout_toRightOf="@id/titulo4"
             />
+        <ListView
+            android:id="@+id/listaCompras"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/titulo1"
+            />
+        <Button
+            android:id="@+id/botonGuardaGal"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:background="@drawable/personalizar_button"
+            android:layout_gravity="center_horizontal"
+            android:text="Guardar"
+            android:textAllCaps="false"
+            android:textColor="@color/colorClaro"
+            android:layout_below="@id/listaCompras"
+            />
     </RelativeLayout>
-    <ListView
-        android:id="@+id/listaCompras"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
-        android:layout_alignParentStart="true"
-        >
-        <TextView
-            android:id="@+id/itemProducto"
-            android:layout_width="120dp"
-            android:layout_height="match_parent"
-            android:maxLines="2"
-            android:textAlignment="center"
-            />
-        <TextView
-            android:id="@+id/itemUnidad"
-            android:layout_width="600dp"
-            android:layout_height="match_parent"
-            android:maxLines="1"
-            android:textAlignment="center"
-            />
-        <TextView
-            android:id="@+id/itemCantidad"
-            android:layout_width="60dp"
-            android:layout_height="match_parent"
-            android:maxLines="1"
-            android:textAlignment="center"
-            />
-        <EditText
-            android:id="@+id/itemValor"
-            android:layout_width="80dp"
-            android:layout_height="match_parent"
-            android:inputType="number"
-            />
-        <TextView
-            android:id="@+id/itemTotal"
-            android:layout_width="80dp"
-            android:layout_height="match_parent"
-            android:textAlignment="center"
-            />
-    </ListView>
-    <Button
-        android:id="@+id/botonGuardaGal"
-        android:layout_width="200dp"
-        android:layout_height="40dp"
-        android:background="@drawable/personalizar_button"
-        android:layout_gravity="center_horizontal"
-        android:text="Guardar"
-        android:textAllCaps="false"
-        android:textColor="@color/colorClaro"
-        />
 </LinearLayout>
