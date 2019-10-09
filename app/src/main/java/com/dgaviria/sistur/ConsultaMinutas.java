@@ -106,7 +106,6 @@ public class ConsultaMinutas extends Activity {
                 if (dataSnapshot != null && dataSnapshot.getChildren() != null) {
                     for (DataSnapshot miPrepara:dataSnapshot.getChildren()){
                         String codPrepara=miPrepara.getKey();
-
                         String nombrePreparacion=miPrepara.child("preparacion").getValue(String.class);
                         String procedPreparacion=miPrepara.child("procedimiento").getValue(String.class);
                         String datosPreparacion=codPrepara+": "+nombrePreparacion+"\n"+"Procedimiento: "+procedPreparacion;
