@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GrupoMinuta {
-    public String textoGrupo;
-    public final List<String> grupoPrepara=new ArrayList<String>();
+    public String textoPrepara;
+    public String textoProcedimiento;
+    public final List<GrupoAlimento> grupoPrepara=new ArrayList<GrupoAlimento>();
 
-    public GrupoMinuta(String texto){
-        this.textoGrupo=texto;
+    public GrupoMinuta(String preparacion,String procedimiento){
+        this.textoPrepara=preparacion;
+        this.textoProcedimiento=procedimiento;
     }
 }

@@ -17,9 +17,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.dgaviria.sistur.adaptadores.AdaptadorListaCompra;
-import com.dgaviria.sistur.adaptadores.AdaptadorListaMinutas;
 import com.dgaviria.sistur.clases.AlimentoCompra;
-import com.dgaviria.sistur.clases.Calendario;
 import com.dgaviria.sistur.clases.Minutas;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -36,13 +34,13 @@ public class CompraGaleria extends AppCompatActivity {
     private int año, mes, dia;
     EditText campoFecha;
     AdaptadorListaCompra miAdaptadorCompra;
-    Spinner spnSemanas;
+    Spinner selectorSemanas;
     String nombreSemana;
-    DatabaseReference miReferenciaSem;
+    DatabaseReference miReferenciaMin,miReferenciaSem;
     ArrayAdapter<String> adaptadorSemana;
-    ArrayList<String> listaSemanas,listaMinutas;
+    ArrayList<String> listadoSemanas, listadoMinutas;
     ArrayList<AlimentoCompra> listaGaleria;
-    RecyclerView miRecyclerLista;
+    RecyclerView miRecyclerListaCompra;
     Button botonGuardar;
     int numItem;
 
@@ -53,47 +51,44 @@ public class CompraGaleria extends AppCompatActivity {
 
         referenciar();
         mostrarFecha();
-        llenarListaMinutas();
         botonGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(CompraGaleria.this, "Guardando la lista de compras", Toast.LENGTH_SHORT).show();
             }
         });
-        spnSemanas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        selectorSemanas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int item, long l) {
-                nombreSemana=adapterView.getItemAtPosition(item).toString();
+            public void onItemSelected(AdapterView<?> adaptadorVista, View view, int i, long l) {
+                nombreSemana=adaptadorVista.getItemAtPosition(i).toString();
                 lecturaMinutas();
-                listarIngredientes();
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
         });
-
     }
 
     private void listarIngredientes() {
+        listaGaleria=new ArrayList<AlimentoCompra>();
         listaGaleria=lecturaIngredientes();
         miAdaptadorCompra=new AdaptadorListaCompra(this,listaGaleria);
-        miRecyclerLista.setAdapter(miAdaptadorCompra);
-        miRecyclerLista.setLayoutManager(new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,false));
+        miRecyclerListaCompra.setAdapter(miAdaptadorCompra);
+        miRecyclerListaCompra.setLayoutManager(new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,false));
     }
-
 
     private ArrayList<AlimentoCompra> lecturaIngredientes() {
         final ArrayList<AlimentoCompra> lista=new ArrayList<>();
         numItem=0;
-        miReferenciaSem = FirebaseDatabase.getInstance().getReference("minutas");
-        miReferenciaSem.addValueEventListener(new ValueEventListener() {
+        miReferenciaMin = FirebaseDatabase.getInstance().getReference("minutas");
+        miReferenciaMin.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot != null && dataSnapshot.getChildren() != null) {
                     for(DataSnapshot miMinuta:dataSnapshot.getChildren()){
-                        for (int item=0;item<listaMinutas.size();item++){
-                            if (miMinuta.getKey().equals(listaMinutas.get(item))){
+                        for (int item = 0; item< listadoMinutas.size(); item++){
+                            if (miMinuta.getKey().equals(listadoMinutas.get(item))){
                                 for(DataSnapshot miPrepara:miMinuta.getChildren()){
                                     for(DataSnapshot miAlimento:miPrepara.getChildren()){
                                         if (!miAlimento.getKey().equals("preparacion") && !miAlimento.getKey().equals("procedimiento")) {
@@ -106,7 +101,7 @@ public class CompraGaleria extends AppCompatActivity {
                                             ingrediente.setEditValorCompra("0");
                                             ingrediente.setTotal("0");
                                             lista.add(ingrediente);
-
+                                            miAdaptadorCompra.notifyDataSetChanged();
                                         }
                                     }
                                 }
@@ -134,11 +129,10 @@ public class CompraGaleria extends AppCompatActivity {
         año = miCalendario.get(Calendar.YEAR);
         mes = miCalendario.get(Calendar.MONTH)+1;
         dia = miCalendario.get(Calendar.DAY_OF_MONTH);
-        spnSemanas=findViewById(R.id.spinSemana);
-        listaSemanas=new ArrayList<String>();
-        listaMinutas=new ArrayList<String>();
-        miRecyclerLista=findViewById(R.id.recyclerCompras);
+        selectorSemanas=findViewById(R.id.selectorSemana);
+        miRecyclerListaCompra=findViewById(R.id.recyclerCompras);
         botonGuardar=findViewById(R.id.botonGuardaGal);
+        llenarListaMinutas();
     }
 
     private void mostrarFecha() {
@@ -158,19 +152,25 @@ public class CompraGaleria extends AppCompatActivity {
         }, miCalendario.get(Calendar.YEAR), miCalendario.get(Calendar.MONTH), miCalendario.get(Calendar.DAY_OF_MONTH)).show();
     }
     private void llenarListaMinutas() {
+        listadoSemanas=new ArrayList<String>();
         miReferenciaSem = FirebaseDatabase.getInstance().getReference("semanas");
         miReferenciaSem.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot != null && dataSnapshot.getChildren() != null) {
-                    for (DataSnapshot miMinuta : dataSnapshot.getChildren()) {
-                        listaSemanas.add(miMinuta.getKey());
+                    for (DataSnapshot miSemana : dataSnapshot.getChildren()) {
+                        String textoSemana=miSemana.getKey();
+                        /*String texto="("+textoSemana.substring(0,2)+"):"+miSemana.child("mesinicial").getValue(String.class)+" "+
+                                miSemana.child("diainicial").getValue(String.class)+" A "+
+                                miSemana.child("mesfinal").getValue(String.class)+" "+
+                                miSemana.child("diafinal").getValue(String.class);*/
+                        listadoSemanas.add(miSemana.getKey());
                     }
-                    adaptadorSemana = new ArrayAdapter<String>(CompraGaleria.this, android.R.layout.simple_spinner_item, listaSemanas);
+                    adaptadorSemana = new ArrayAdapter<String>(CompraGaleria.this, android.R.layout.simple_spinner_item, listadoSemanas);
                     adaptadorSemana.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    spnSemanas.setAdapter(adaptadorSemana);
-                    spnSemanas.setSelected(false);
-                    spnSemanas.setSelection(0, false); //no selecciona un elemento del spinner
+                    selectorSemanas.setAdapter(adaptadorSemana);
+                    //selectorSemanas.setSelected(false);
+                    selectorSemanas.setSelection(0, true); //selecciona el primer elemento del spinner
                 } else {
                     Toast.makeText(getApplicationContext(), "Error de lectura de semanas, contacte al administrador", Toast.LENGTH_SHORT).show();
                 }
@@ -185,6 +185,7 @@ public class CompraGaleria extends AppCompatActivity {
 
     private void lecturaMinutas(){
         //Lectura de las minutas que hacen parte de la semana
+        listadoMinutas =new ArrayList<String>();
         miReferenciaSem = FirebaseDatabase.getInstance().getReference("semanas").child(nombreSemana);
         miReferenciaSem.addValueEventListener(new ValueEventListener() {
             @Override
@@ -196,19 +197,19 @@ public class CompraGaleria extends AppCompatActivity {
                     String minuta4=dataSnapshot.child("minuta4").getValue(String.class);
                     String minuta5=dataSnapshot.child("minuta5").getValue(String.class);
                     if (!minuta1.equals("X") && !minuta1.equals("V")){
-                        listaMinutas.add(minuta1);
+                        listadoMinutas.add(minuta1);
                     }
                     if (!minuta2.equals("X") && !minuta2.equals("V")){
-                        listaMinutas.add(minuta2);
+                        listadoMinutas.add(minuta2);
                     }
                     if (!minuta3.equals("X") && !minuta3.equals("V")){
-                        listaMinutas.add(minuta3);
+                        listadoMinutas.add(minuta3);
                     }
                     if (!minuta4.equals("X") && !minuta4.equals("V")){
-                        listaMinutas.add(minuta4);
+                        listadoMinutas.add(minuta4);
                     }
                     if (!minuta5.equals("X") && !minuta5.equals("V")){
-                        listaMinutas.add(minuta5);
+                        listadoMinutas.add(minuta5);
                     }
                 }
                 else {
@@ -221,5 +222,6 @@ public class CompraGaleria extends AppCompatActivity {
 
             }
         });
+        listarIngredientes();
     }
 }

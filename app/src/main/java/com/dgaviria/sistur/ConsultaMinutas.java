@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.dgaviria.sistur.adaptadores.AdaptadorListaMinutas;
 import com.dgaviria.sistur.clases.Calendario;
+import com.dgaviria.sistur.clases.GrupoAlimento;
 import com.dgaviria.sistur.clases.GrupoMinuta;
 import com.dgaviria.sistur.clases.Minutas;
 import com.google.firebase.database.DataSnapshot;
@@ -69,12 +70,10 @@ public class ConsultaMinutas extends Activity {
                         listaMinutas.add(miMinuta.getKey());
                     }
                     adaptadorMinuta=new ArrayAdapter<String>(ConsultaMinutas.this,android.R.layout.simple_spinner_item,listaMinutas);
-
                     adaptadorMinuta.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
                     spnMinutas.setAdapter(adaptadorMinuta);
-                    spnMinutas.setSelected(false);
-                    spnMinutas.setSelection(0, false); //no selecciona un elemento del spinner
+                    //spnMinutas.setSelected(false);
+                    spnMinutas.setSelection(0, true); //selecciona el primer elemento del spinner
                 }
                 else{
                     Toast.makeText(getApplicationContext(),"Error de lectura de minutas, contacte al administrador",Toast.LENGTH_SHORT).show();
@@ -108,16 +107,19 @@ public class ConsultaMinutas extends Activity {
                         String codPrepara=miPrepara.getKey();
                         String nombrePreparacion=miPrepara.child("preparacion").getValue(String.class);
                         String procedPreparacion=miPrepara.child("procedimiento").getValue(String.class);
-                        String datosPreparacion=codPrepara+": "+nombrePreparacion+"\n"+"Procedimiento: "+procedPreparacion;
-                        GrupoMinuta miGrupo=new GrupoMinuta(datosPreparacion);
+                        String datosPreparacion="Preparación ("+codPrepara+"): "+nombrePreparacion;
+                        String datosProcedimiento="Procedimiento: "+procedPreparacion;
+                        GrupoMinuta miGrupo=new GrupoMinuta(datosPreparacion,datosProcedimiento);
 
                         for (DataSnapshot miAlimento:miPrepara.getChildren()) {
                             if (!miAlimento.getKey().equals("preparacion") && !miAlimento.getKey().equals("procedimiento")) {
                                 Minutas miMinuta = miAlimento.getValue(Minutas.class);
                                 //Construye la lista de ingredientes con sus detalles
-                                String datosIngrediente = miMinuta.getCodigo() + ": " + miMinuta.getReal() + "\n" + "Cant.: " + miMinuta.getCantidad() + " " + miMinuta.getUnidad().toLowerCase() +
-                                        ", Total Cant.: " + miMinuta.getTotal();
-                                miGrupo.grupoPrepara.add(datosIngrediente);
+                                String datosIngrediente = miAlimento.getKey()+"-Ingrediente ("+miMinuta.getCodigo() + "): " + miMinuta.getReal();
+                                String datosInformacion = "Cantidad: " + miMinuta.getCantidad() + " " + miMinuta.getUnidad().toLowerCase() +
+                                        ", Total Cantidad: " + miMinuta.getTotal();
+                                GrupoAlimento miIngrediente=new GrupoAlimento(datosIngrediente,datosInformacion);
+                                miGrupo.grupoPrepara.add(miIngrediente);
                             }
                         }
                         preparaciones.append(itemPrepara,miGrupo);

@@ -25,7 +25,6 @@ public class AdaptadorListaCompra extends RecyclerView.Adapter<AdaptadorListaCom
 
 
     public AdaptadorListaCompra(Context contexto, ArrayList<AlimentoCompra> listaCompras){
-
         miInflater = LayoutInflater.from(contexto);
         this.editValorCompraLista = listaCompras;
     }

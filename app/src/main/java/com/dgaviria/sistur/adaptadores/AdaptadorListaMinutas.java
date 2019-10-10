@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dgaviria.sistur.R;
+import com.dgaviria.sistur.clases.GrupoAlimento;
 import com.dgaviria.sistur.clases.GrupoMinuta;
 
 public class AdaptadorListaMinutas extends BaseExpandableListAdapter {
@@ -36,22 +37,25 @@ public class AdaptadorListaMinutas extends BaseExpandableListAdapter {
 
     @Override
     public View getChildView(int posicionPrepara,final int posicionIngrediente, boolean esUltimoIngrediente, View vista, ViewGroup nombrePrepara) {
-        final String nombreAlimento = (String) getChild(posicionPrepara, posicionIngrediente);
+        GrupoAlimento miDetalle= (GrupoAlimento) getChild(posicionPrepara, posicionIngrediente);
         TextView item1 = null;
+        TextView item2 = null;
 
         if (vista == null) {
             vista = miInflater.inflate(R.layout.lista_ingredientes,null);
         }
         item1 = vista.findViewById(R.id.txtIngrediente);
+        item2 = vista.findViewById(R.id.txtInformacion);
 
-        item1.setText(nombreAlimento);
+        item1.setText(miDetalle.textoALimento);
+        item2.setText(miDetalle.textoInformacion);
 
-        vista.setOnClickListener(new View.OnClickListener() {
+        /*vista.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(miActividad, nombreAlimento, Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
         return vista;
     }
 
@@ -92,8 +96,10 @@ public class AdaptadorListaMinutas extends BaseExpandableListAdapter {
             vista = miInflater.inflate(R.layout.lista_preparaciones, null);
         }
         GrupoMinuta miGrupo = (GrupoMinuta) getGroup(posicionPrepara);
-        ((CheckedTextView) vista).setText(miGrupo.textoGrupo);
-        ((CheckedTextView) vista).setChecked(estaExpandido);
+        TextView miPreparacion= vista.findViewById(R.id.txtPreparacion);
+        TextView miProcedimiento= vista.findViewById(R.id.txtProcedimiento);
+        miPreparacion.setText(miGrupo.textoPrepara);
+        miProcedimiento.setText(miGrupo.textoProcedimiento);
         return vista;
     }
 

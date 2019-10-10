@@ -41,7 +41,7 @@
         android:layout_gravity="center"
         android:background="@color/colorClaro">
         <Spinner
-            android:id="@+id/spinSemana"
+            android:id="@+id/selectorSemana"
             android:layout_width="280dp"
             android:layout_height="35dp"
             style="@style/SelectorSemana"

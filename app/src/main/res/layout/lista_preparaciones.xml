@@ -1,12 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<CheckedTextView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/txtIngrediente"
     android:layout_width="wrap_content"
-    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:layout_height="match_parent"
     android:layout_marginLeft="8dp"
     android:paddingLeft="5dp"
-    android:paddingTop="8dp"
-    android:text="Prueba"
-    android:textSize="14dp"
-    android:textAlignment="textStart"
-    android:textStyle="italic" />
+    android:paddingTop="8dp" >
+    <TextView
+        android:id="@+id/txtPreparacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Preparación"
+        android:textSize="14dp"
+        android:textAlignment="textStart"
+        android:textColor="@color/colorNegro"
+        />
+    <TextView
+        android:id="@+id/txtProcedimiento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Procedimiento"
+        android:textSize="14dp"
+        android:textAlignment="textStart"
+        android:paddingLeft="10dp"
+        android:textColor="@color/colorVerde"
+        android:layout_below="@id/txtPreparacion"
+        />
+</RelativeLayout>
