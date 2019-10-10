@@ -25,7 +25,8 @@
         <activity android:name=".usuarios.LogueoUsuarios"
             android:theme="@style/AppTheme.FullScreen"/>
         <activity android:name=".usuarios.OpcionesUsuarios" />
-        <activity android:name=".usuarios.ListarUsuarios" />
+        <activity android:name=".usuarios.ListarUsuarios"
+            android:theme="@style/noaction"/>
         <activity android:name=".usuarios.UsuariosLista" />
         <activity android:name=".alimentos.ListarPlanAlimenticio" />
         <activity android:name=".alimentos.AlimentosLista" />

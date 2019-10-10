@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.dgaviria.sistur.adaptadores.AdptadorCDI;
 import com.dgaviria.sistur.clases.CdiHcb;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,7 +30,7 @@ public class GestionarCDIHCB extends AppCompatActivity {
     List<CdiHcb> listaDeCDI;
     AdptadorCDI adaptadorCentros;
     DatabaseReference miReferencia;
-    Button btncrear;
+    FloatingActionButton btncrear;
 
 
     @Override

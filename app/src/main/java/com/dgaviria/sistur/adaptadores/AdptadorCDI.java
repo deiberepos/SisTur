@@ -47,7 +47,6 @@ public class AdptadorCDI extends RecyclerView.Adapter <AdptadorCDI.CDIViewHolder
             nombreCDI=vistaItem.findViewById(R.id.txtUsuario);
             ubicacion=vistaItem.findViewById(R.id.txtRol);
             modifica=vistaItem.findViewById(R.id.imgModifica);
-            elimina=vistaItem.findViewById(R.id.imgElimina);
         }
 
         public void bind(final CdiHcb centros, final int pos, final OnItemClick onItemClick){
@@ -61,12 +60,6 @@ public class AdptadorCDI extends RecyclerView.Adapter <AdptadorCDI.CDIViewHolder
                 @Override
                 public void onClick(View view) {
                     onItemClick.modificaClick(centros,pos);
-                }
-            });
-            elimina.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    onItemClick.eliminaClick(centros,pos);
                 }
             });
         }
@@ -87,8 +80,7 @@ public class AdptadorCDI extends RecyclerView.Adapter <AdptadorCDI.CDIViewHolder
         holder.nombreCDI.setText(centro.getNombreCDI());
         holder.tipo.setText(centro.getTipo());
         holder.ubicacion.setText(centro.getUbicacion());
-        holder.elimina.setImageResource(R.mipmap.ic_elimina);
-        holder.modifica.setImageResource(R.mipmap.ic_actualiza);
+        holder.modifica.setImageResource(R.mipmap.usuarios);
         holder.bind(listadoCentros.get(position),position,listener);
     }
 

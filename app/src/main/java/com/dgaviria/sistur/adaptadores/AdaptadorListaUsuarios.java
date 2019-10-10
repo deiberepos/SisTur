@@ -18,9 +18,9 @@ public class AdaptadorListaUsuarios extends RecyclerView.Adapter<AdaptadorListaU
     List<Usuarios> listadoUsuarios;
     Context contexto;
 
-    /*public AdaptadorListaUsuarios(List<Usuarios> listadoUsuarios) {
+    public AdaptadorListaUsuarios(List<Usuarios> listadoUsuarios) {
         this.listadoUsuarios = listadoUsuarios;
-    }*/
+    }
 
     public interface OnItemClick{
         void itemClick(Usuarios misUsuarios,int posicion);
@@ -37,7 +37,6 @@ public class AdaptadorListaUsuarios extends RecyclerView.Adapter<AdaptadorListaU
             super(vistaItem);
             nombreU=vistaItem.findViewById(R.id.txtUsuario);
             modifica =vistaItem.findViewById(R.id.imgModifica);
-            elimina =vistaItem.findViewById(R.id.imgElimina);
             nombres=vistaItem.findViewById(R.id.txtNombres);
             rol=vistaItem.findViewById(R.id.txtRol);
         }
@@ -47,12 +46,6 @@ public class AdaptadorListaUsuarios extends RecyclerView.Adapter<AdaptadorListaU
                 @Override
                 public void onClick(View view) {
                     onItemClick.itemClick(misUsuarios,posicion);
-                }
-            });
-            elimina.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    onItemClick.eliminaClick(misUsuarios,posicion);
                 }
             });
             modifica.setOnClickListener(new View.OnClickListener() {
@@ -83,21 +76,20 @@ public class AdaptadorListaUsuarios extends RecyclerView.Adapter<AdaptadorListaU
     public void onBindViewHolder(UsuariosViewHolder holder, int position) {
         String nombreRol="";
         Usuarios miUsuario=listadoUsuarios.get(position);
-        if(miUsuario.getRoladmin())
+        if(miUsuario.getRolsuper())
             nombreRol="SuperUsuario";
         else if (miUsuario.getRoladmin())
             nombreRol="Administrador";
-        else if (miUsuario.getRoladmin())
+        else if (miUsuario.getRolgestor())
             nombreRol="Gestor";
-        else if (miUsuario.getRoladmin())
+        else if (miUsuario.getRolcompras())
             nombreRol="CompraGaleria";
-        else if (miUsuario.getRoladmin())
+        else if (miUsuario.getRolbasico())
             nombreRol="Basico";
         holder.nombreU.setText(miUsuario.getUsuario());
         holder.nombres.setText(miUsuario.getNombre());
         holder.rol.setText(nombreRol);
-        holder.modifica.setImageResource(R.mipmap.ic_actualiza);
-        holder.elimina.setImageResource(R.mipmap.ic_elimina);
+        holder.modifica.setImageResource(R.mipmap.usuarios);
         holder.bind(listadoUsuarios.get(position),position,listener);
     }
 

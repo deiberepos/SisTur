@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.dgaviria.sistur.adaptadores.AdaptadorListaCenso;
 import com.dgaviria.sistur.clases.Censo;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -31,7 +32,7 @@ public class ListarCensoPoblacion extends AppCompatActivity {
     List<Censo> listaDeCenso;
     AdaptadorListaCenso adaptadorCenso;
     DatabaseReference miReferencia;
-    Button btncrearInfante;
+    FloatingActionButton btncrearInfante;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

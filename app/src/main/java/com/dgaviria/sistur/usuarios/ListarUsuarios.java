@@ -18,6 +18,7 @@ import com.dgaviria.sistur.clases.Usuarios;
 import com.dgaviria.sistur.R;
 import com.dgaviria.sistur.adaptadores.AdaptadorListaUsuarios;
 import com.dgaviria.sistur.clases.Usuarios;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,7 +35,7 @@ public class ListarUsuarios extends AppCompatActivity {
     AdaptadorListaUsuarios adaptadorUsuarios;
     DatabaseReference miReferencia;
 
-    Button guardar;
+    FloatingActionButton guardar;
 
 
     @Override
@@ -110,9 +111,9 @@ public class ListarUsuarios extends AppCompatActivity {
         miReferencia.child("usuarios").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                listaDeUsuarios.clear();
                 for (DataSnapshot usuariosExisten : dataSnapshot.getChildren())
                 {
-
                     Usuarios miUsuario=usuariosExisten.getValue(Usuarios.class);
                     //if (miUsuario.getActivar()==true)
                     listaDeUsuarios.add(miUsuario);

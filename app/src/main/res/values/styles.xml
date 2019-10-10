@@ -7,6 +7,12 @@
         <item name="colorPrimaryDark">@color/colorPrimarioOscuro</item>
         <item name="colorAccent">@color/colorClaro</item>
     </style>
+    <style name="noaction" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimario</item>
+        <item name="colorPrimaryDark">@color/colorPrimarioOscuro</item>
+        <item name="colorAccent">@color/colorClaro</item>
+    </style>
 
     <style name="RippleStyleWhite">
         <item name="mrl_rippleOverlay">true</item>

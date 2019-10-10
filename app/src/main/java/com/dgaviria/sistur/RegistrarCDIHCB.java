@@ -357,7 +357,6 @@ public class RegistrarCDIHCB extends AppCompatActivity {
        // listaveredas=findViewById(R.id.idlisVeredas);
         btnGuardar=findViewById(R.id.idbtnregCDI);
         btnActualizar=findViewById(R.id.idbtnactCDI);
-        contenedorScroll=findViewById(R.id.idcontenerRegCDI);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.veredas,android.R.layout.simple_spinner_item);
         spnVeredas.setAdapter(adapter);
         acti=findViewById(R.id.activocdi);
