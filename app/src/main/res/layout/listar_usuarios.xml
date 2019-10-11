@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".usuarios.ListarUsuarios">
 
@@ -52,7 +52,7 @@
         </LinearLayout>
     </ScrollView>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:background="@drawable/btninicio"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/guardar"
@@ -62,7 +62,7 @@
         android:layout_marginEnd="15dp"
         android:layout_marginRight="10dp"
         android:backgroundTint="@color/colorPrimarioSuave"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="10dp"
         android:src="@drawable/agregar"
         />
 </RelativeLayout>

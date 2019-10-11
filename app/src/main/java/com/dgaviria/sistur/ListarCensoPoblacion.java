@@ -2,6 +2,7 @@ package com.dgaviria.sistur;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -101,7 +102,7 @@ public class ListarCensoPoblacion extends AppCompatActivity {
     }
     private void llenarRecyclerCenso()
     {
-        miRecyclerCenso.setLayoutManager(new LinearLayoutManager(this));
+        miRecyclerCenso.setLayoutManager(new GridLayoutManager(this,2));
         miReferencia.child("censoinfante").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
