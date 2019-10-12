@@ -11,7 +11,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="572dp">
+        android:layout_height="match_parent">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -191,16 +191,6 @@
                             android:typeface="monospace"
                             app:buttonTint="@color/colorRojo" />
                     </RadioGroup>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
                     <Button
                         android:id="@+id/botonRegistrar"
                         android:layout_width="180dp"
@@ -223,7 +213,18 @@
                         android:textColor="@color/colorClaro" />
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
             </LinearLayout>
+
 
             <ProgressBar
                 android:id="@+id/barraProgreso"

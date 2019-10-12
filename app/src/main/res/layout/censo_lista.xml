@@ -6,6 +6,8 @@
     android:layout_height="120dp"
     tools:context=".CensoLista">
 
+
+
 <androidx.cardview.widget.CardView
     app:cardCornerRadius="10dp"
     android:layout_marginTop="10dp"
@@ -15,8 +17,7 @@
     android:layout_marginLeft="20dp">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:id="@+id/layTextos"

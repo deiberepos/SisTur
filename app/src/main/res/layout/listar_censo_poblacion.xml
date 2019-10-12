@@ -7,6 +7,8 @@
     android:orientation="vertical"
     tools:context=".ListarCensoPoblacion">
 
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listacenso"
         android:layout_width="match_parent"
