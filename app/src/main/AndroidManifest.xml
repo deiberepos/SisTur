@@ -13,13 +13,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CompraGaleria"></activity>
+        <activity android:name=".CompraGaleria"
+            android:theme="@style/noaction"/>
         <activity android:name=".CrearCalendario" />
         <activity android:name=".ConsultaMinutas" />
         <activity android:name=".menus.MenuPrincipal" />
         <activity android:name=".menus.OpcionesMenuPpal" />
         <activity android:name=".usuarios.CrearUsuarios" />
-        <activity android:name=".GestionarCDIHCB" />
+        <activity android:name=".GestionarCDIHCB"
+            android:theme="@style/noaction"/>
         <activity android:name=".CensoLista" />
         <activity android:name=".ListarCensoPoblacion"
             android:theme="@style/noaction"/>

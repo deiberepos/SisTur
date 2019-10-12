@@ -152,16 +152,6 @@
                         android:paddingEnd="15dp">
 
                         <RadioButton
-                            android:id="@+id/roladmin"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:checked="true"
-                            android:text="Administrador"
-                            android:textColor="@color/colorPrimarioOscuro"
-                            android:typeface="monospace"
-                            app:buttonTint="@color/colorRojo" />
-
-                        <RadioButton
                             android:id="@+id/rolgest"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
