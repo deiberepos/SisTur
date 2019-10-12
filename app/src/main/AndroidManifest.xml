@@ -27,17 +27,21 @@
         <activity android:name=".ListarCensoPoblacion"
             android:theme="@style/noaction"/>
         <activity android:name=".usuarios.LogueoUsuarios"
-            android:theme="@style/AppTheme.FullScreen"/>
+            android:theme="@style/AppTheme.FullScreen"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            />
         <activity android:name=".usuarios.OpcionesUsuarios"/>
         <activity android:name=".usuarios.ListarUsuarios"
-            android:theme="@style/noaction"/>
+            android:theme="@style/noaction"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
         <activity android:name=".alimentos.ListarPlanAlimenticio"
             android:theme="@style/noaction"/>
         <activity android:name=".alimentos.AlimentosLista" />
         <activity android:name=".MainActivity" />
         <activity android:name=".CensoPoblacional" />
         <activity android:name=".RegistrarCDIHCB"
-            android:theme="@style/noaction"/>
+            android:theme="@style/noaction"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
         <activity android:name=".PublicarMinutas"
             android:theme="@style/noaction"/>
         <activity android:name=".Splash"

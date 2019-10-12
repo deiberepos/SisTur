@@ -8,16 +8,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
-import com.dgaviria.sistur.CensoPoblacional;
-import com.dgaviria.sistur.ListarCensoPoblacion;
 import com.dgaviria.sistur.adaptadores.AdaptadorListaUsuarios;
 import com.dgaviria.sistur.clases.Usuarios;
 import com.dgaviria.sistur.R;
-import com.dgaviria.sistur.adaptadores.AdaptadorListaUsuarios;
-import com.dgaviria.sistur.clases.Usuarios;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -35,7 +30,7 @@ public class ListarUsuarios extends AppCompatActivity {
     AdaptadorListaUsuarios adaptadorUsuarios;
     DatabaseReference miReferencia;
 
-    FloatingActionButton guardar;
+    private FloatingActionButton btnguardar;
 
 
     @Override
@@ -46,7 +41,7 @@ public class ListarUsuarios extends AppCompatActivity {
         referenciar();
         llenarRecyclerUsuarios();
 
-        guardar.setOnClickListener(new View.OnClickListener() {
+        btnguardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent mi = new Intent(ListarUsuarios.this, CrearUsuarios.class);
@@ -97,7 +92,7 @@ public class ListarUsuarios extends AppCompatActivity {
     private void referenciar() {
         miRecyclerUsuarios=findViewById(R.id.recyclerListaU);
         listaDeUsuarios =new ArrayList<>();
-        guardar=findViewById(R.id.guardar);
+        btnguardar =findViewById(R.id.guardar);
     }
 
     private void llenarRecyclerUsuarios() {
@@ -121,4 +116,16 @@ public class ListarUsuarios extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //finish();
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
+    }
+
 }

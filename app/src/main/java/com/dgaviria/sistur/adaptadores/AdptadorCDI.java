@@ -80,7 +80,7 @@ public class AdptadorCDI extends RecyclerView.Adapter <AdptadorCDI.CDIViewHolder
         holder.nombreCDI.setText(centro.getNombreCDI());
         holder.tipo.setText(centro.getTipo());
         holder.ubicacion.setText(centro.getUbicacion());
-        holder.modifica.setImageResource(R.mipmap.usuarios);
+        holder.modifica.setImageResource(R.mipmap.cdi);
         holder.bind(listadoCentros.get(position),position,listener);
     }
 

@@ -153,5 +153,11 @@ public class GestionarCDIHCB extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
+    }
 }
 

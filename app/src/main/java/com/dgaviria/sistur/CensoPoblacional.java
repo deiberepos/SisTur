@@ -441,4 +441,10 @@ public class CensoPoblacional extends AppCompatActivity {
         bundle = getIntent().getExtras();
         opcion = bundle.getString("opcion");
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
+    }
 }

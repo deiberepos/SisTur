@@ -221,12 +221,14 @@ public class CrearUsuarios extends AppCompatActivity {
                         }
                         else {
                             crearNuevoUsuario();
-                            finish();
+                            Intent intent = new Intent(getApplicationContext(),ListarUsuarios.class);
+                            startActivity(intent);
                         }
                     }
                     else {
                         crearNuevoUsuario();
-                        finish();
+                        Intent intent = new Intent(getApplicationContext(),ListarUsuarios.class);
+                        startActivity(intent);
                     }
                 }
                 @Override
@@ -287,11 +289,11 @@ public class CrearUsuarios extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
+        //finish();
     }
     @Override
     protected void onPause() {
         super.onPause();
-
+        finish();
     }
 }

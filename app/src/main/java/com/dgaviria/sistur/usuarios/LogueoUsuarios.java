@@ -112,10 +112,12 @@ public class LogueoUsuarios extends AppCompatActivity{
     @Override
     protected void onResume() {
         super.onResume();
+        //finish();
     }
     @Override
     protected void onPause() {
         super.onPause();
+        finish();
     }
 
     @Override

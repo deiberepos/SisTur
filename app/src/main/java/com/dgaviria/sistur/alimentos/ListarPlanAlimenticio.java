@@ -120,4 +120,10 @@ public class ListarPlanAlimenticio extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
+    }
 }

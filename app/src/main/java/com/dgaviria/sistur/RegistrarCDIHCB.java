@@ -365,4 +365,10 @@ public class RegistrarCDIHCB extends AppCompatActivity {
         opcion=bundle.getString("opcion");
 
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
+    }
 }
