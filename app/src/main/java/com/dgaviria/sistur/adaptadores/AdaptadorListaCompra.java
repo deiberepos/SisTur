@@ -27,6 +27,7 @@ public class AdaptadorListaCompra extends RecyclerView.Adapter<AdaptadorListaCom
     public AdaptadorListaCompra(Context contexto, ArrayList<AlimentoCompra> listaCompras){
         miInflater = LayoutInflater.from(contexto);
         this.editValorCompraLista = listaCompras;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -38,14 +39,41 @@ public class AdaptadorListaCompra extends RecyclerView.Adapter<AdaptadorListaCom
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AlimentoViewHolder holder, int position) {
-        holder.numItem.setText(editValorCompraLista.get(position).getOrden());
-        holder.producto.setText(editValorCompraLista.get(position).getIngrediente());
-        holder.unidad.setText(editValorCompraLista.get(position).getMedida());
-        holder.cantidad.setText(editValorCompraLista.get(position).getCantidad());
-        holder.total.setText(editValorCompraLista.get(position).getTotal());
-        holder.valorEditar.setText(editValorCompraLista.get(position).getEditValorCompra());
-        //Log.d("print","yes");
+    public void onBindViewHolder(@NonNull final AlimentoViewHolder holder, final int posicion) {
+        AlimentoCompra alimentoLista=editValorCompraLista.get(posicion);
+        holder.numItem.setText(alimentoLista.getOrden());
+        holder.producto.setText(alimentoLista.getIngrediente());
+        holder.unidad.setText(alimentoLista.getMedida());
+        holder.cantidad.setText(alimentoLista.getCantidad());
+        holder.valorEditar.setText(alimentoLista.getEditValorCompra());
+        holder.total.setText(alimentoLista.getTotal());
+        TextWatcher calculaTotal = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                int miValorUnitario,miTotal,miCantidad;
+                try {
+                    //Calcula el valor total y lo guarda
+                    miCantidad = Integer.valueOf(holder.cantidad.getText().toString());
+                    miValorUnitario = Integer.valueOf(holder.valorEditar.getText().toString());
+                    miTotal = miCantidad * miValorUnitario;
+                    holder.total.setText(String.valueOf(miTotal));
+                }catch (Exception e) {
+                    holder.total.setText(editValorCompraLista.get(posicion).getTotal());
+                }
+            }
+        };
+        holder.valorEditar.addTextChangedListener(calculaTotal);
+
     }
 
     @Override
@@ -54,7 +82,6 @@ public class AdaptadorListaCompra extends RecyclerView.Adapter<AdaptadorListaCom
     }
 
     class AlimentoViewHolder extends RecyclerView.ViewHolder{
-
         protected EditText valorEditar;
         protected TextView producto,unidad,cantidad,total,numItem;
 
@@ -76,15 +103,48 @@ public class AdaptadorListaCompra extends RecyclerView.Adapter<AdaptadorListaCom
 
                 @Override
                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+                    int miValorUnitario,miTotal,miCantidad;
+                    //Guarda el valor digitado en el valor unitario
                     editValorCompraLista.get(getAdapterPosition()).setEditValorCompra(valorEditar.getText().toString());
                 }
 
                 @Override
                 public void afterTextChanged(Editable editable) {
+                    int miValorUnitario,miTotal,miCantidad;
 
+                    try {
+                        //Calcula el valor total y lo guarda
+                        miCantidad = Integer.valueOf(cantidad.getText().toString());
+                        miValorUnitario = Integer.valueOf(valorEditar.getText().toString());
+                        miTotal = miCantidad * miValorUnitario;
+                        editValorCompraLista.get(getAdapterPosition()).setTotal(String.valueOf(miTotal));
+                    }catch (Exception e) {
+                        editValorCompraLista.get(getAdapterPosition()).setTotal(total.getText().toString());
+                    }
                 }
             });
         }
+    }
+    public int conteoParcial(){
+        int conteo=0,valor;
+        for (int items=0;items<editValorCompraLista.size();items++) {
+            valor = Integer.valueOf(editValorCompraLista.get(items).getTotal());
+            if (valor!=0)
+                conteo += 1;
+        }
+        return conteo;
+    }
+
+    public int conteoTotal(){
+        return editValorCompraLista.size();
+    }
+
+    public int sumaTotal(){
+        int subTotal=0,valor=0;
+        for (int items=0;items<editValorCompraLista.size();items++) {
+            valor = Integer.valueOf(editValorCompraLista.get(items).getTotal());
+            subTotal += valor;
+        }
+        return subTotal;
     }
 }

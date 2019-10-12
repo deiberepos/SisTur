@@ -74,6 +74,7 @@ public class ConsultaMinutas extends Activity {
                     spnMinutas.setAdapter(adaptadorMinuta);
                     //spnMinutas.setSelected(false);
                     spnMinutas.setSelection(0, true); //selecciona el primer elemento del spinner
+                    adaptadorMinuta.notifyDataSetChanged();
                 }
                 else{
                     Toast.makeText(getApplicationContext(),"Error de lectura de minutas, contacte al administrador",Toast.LENGTH_SHORT).show();

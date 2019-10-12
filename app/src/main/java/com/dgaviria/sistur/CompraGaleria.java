@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dgaviria.sistur.adaptadores.AdaptadorListaCompra;
@@ -31,7 +32,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class CompraGaleria extends AppCompatActivity {
-    private int año, mes, dia;
+    int año, mes, dia,sumaTotal,conteoTotal,conteoParcial;
     EditText campoFecha;
     AdaptadorListaCompra miAdaptadorCompra;
     Spinner selectorSemanas;
@@ -41,8 +42,9 @@ public class CompraGaleria extends AppCompatActivity {
     ArrayList<String> listadoSemanas, listadoMinutas;
     ArrayList<AlimentoCompra> listaGaleria;
     RecyclerView miRecyclerListaCompra;
-    Button botonGuardar;
+    Button botonGuardar,botonCalcular;
     int numItem;
+    TextView totalCompra,totalConteo,parcialConteo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +53,18 @@ public class CompraGaleria extends AppCompatActivity {
 
         referenciar();
         mostrarFecha();
+        botonCalcular.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                actualizaConteos();
+            }
+        });
         botonGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                /*sumaTotal=miAdaptadorCompra.sumaTotal();
+                totalCompra.setText(String.valueOf(sumaTotal));*/
+                actualizaConteos();
                 Toast.makeText(CompraGaleria.this, "Guardando la lista de compras", Toast.LENGTH_SHORT).show();
             }
         });
@@ -68,6 +79,17 @@ public class CompraGaleria extends AppCompatActivity {
 
             }
         });
+
+    }
+
+    private void actualizaConteos() {
+        conteoParcial=miAdaptadorCompra.conteoParcial();
+        conteoTotal=miAdaptadorCompra.conteoTotal();
+        sumaTotal=miAdaptadorCompra.sumaTotal();
+
+        parcialConteo.setText(String.valueOf(conteoParcial));
+        totalConteo.setText(String.valueOf(conteoTotal));
+        totalCompra.setText(String.valueOf(sumaTotal));
     }
 
     private void listarIngredientes() {
@@ -76,6 +98,7 @@ public class CompraGaleria extends AppCompatActivity {
         miAdaptadorCompra=new AdaptadorListaCompra(this,listaGaleria);
         miRecyclerListaCompra.setAdapter(miAdaptadorCompra);
         miRecyclerListaCompra.setLayoutManager(new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,false));
+        miAdaptadorCompra.notifyDataSetChanged();
     }
 
     private ArrayList<AlimentoCompra> lecturaIngredientes() {
@@ -92,16 +115,39 @@ public class CompraGaleria extends AppCompatActivity {
                                 for(DataSnapshot miPrepara:miMinuta.getChildren()){
                                     for(DataSnapshot miAlimento:miPrepara.getChildren()){
                                         if (!miAlimento.getKey().equals("preparacion") && !miAlimento.getKey().equals("procedimiento")) {
+                                            Boolean guarda=true;
                                             Minutas alimento=miAlimento.getValue(Minutas.class);
                                             AlimentoCompra ingrediente=new AlimentoCompra();
-                                            ingrediente.setOrden(String.valueOf(++numItem).trim()+".");
-                                            ingrediente.setIngrediente(alimento.getReal());
-                                            ingrediente.setMedida(alimento.getUnidad());
-                                            ingrediente.setCantidad(alimento.getTotal());
-                                            ingrediente.setEditValorCompra("0");
-                                            ingrediente.setTotal("0");
-                                            lista.add(ingrediente);
-                                            miAdaptadorCompra.notifyDataSetChanged();
+                                            if (lista.size()>0) {
+                                                for (int numItem = 0; numItem < lista.size(); numItem++) {
+                                                    if (alimento.getReal().equals(lista.get(numItem).getIngrediente())) {
+                                                        String textoAntes=lista.get(numItem).getCantidad();
+                                                        String textoMas=alimento.getTotal();
+                                                        textoAntes=textoAntes.replace(",",".");
+                                                        textoMas=textoMas.replace(",",".");
+                                                        float cantAntes=Float.parseFloat(textoAntes);
+                                                        float cantMas=Float.parseFloat(textoMas);
+                                                        cantMas = cantMas + cantAntes;
+                                                        int valorSuma=Math.round(cantMas);
+                                                        lista.get(numItem).setCantidad(String.valueOf(valorSuma));
+                                                        miAdaptadorCompra.notifyDataSetChanged();
+                                                        guarda=false;
+                                                        break;
+                                                    } else {
+                                                        guarda=true;
+                                                    }
+                                                }
+                                            }
+                                            if (guarda){
+                                                ingrediente.setOrden(String.valueOf(++numItem).trim()+".");
+                                                ingrediente.setIngrediente(alimento.getReal());
+                                                ingrediente.setMedida(alimento.getUnidad());
+                                                ingrediente.setCantidad(alimento.getTotal());
+                                                ingrediente.setEditValorCompra("0");
+                                                ingrediente.setTotal("0");
+                                                lista.add(ingrediente);
+                                                miAdaptadorCompra.notifyDataSetChanged();
+                                            }
                                         }
                                     }
                                 }
@@ -132,6 +178,10 @@ public class CompraGaleria extends AppCompatActivity {
         selectorSemanas=findViewById(R.id.selectorSemana);
         miRecyclerListaCompra=findViewById(R.id.recyclerCompras);
         botonGuardar=findViewById(R.id.botonGuardaGal);
+        botonCalcular=findViewById(R.id.botonCalcular);
+        totalConteo=findViewById(R.id.txtTotalIngredientes);
+        parcialConteo=findViewById(R.id.txtSubconteoIngredientes);
+        totalCompra=findViewById(R.id.txtValorCompra);
         llenarListaMinutas();
     }
 
@@ -159,11 +209,6 @@ public class CompraGaleria extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot != null && dataSnapshot.getChildren() != null) {
                     for (DataSnapshot miSemana : dataSnapshot.getChildren()) {
-                        String textoSemana=miSemana.getKey();
-                        /*String texto="("+textoSemana.substring(0,2)+"):"+miSemana.child("mesinicial").getValue(String.class)+" "+
-                                miSemana.child("diainicial").getValue(String.class)+" A "+
-                                miSemana.child("mesfinal").getValue(String.class)+" "+
-                                miSemana.child("diafinal").getValue(String.class);*/
                         listadoSemanas.add(miSemana.getKey());
                     }
                     adaptadorSemana = new ArrayAdapter<String>(CompraGaleria.this, android.R.layout.simple_spinner_item, listadoSemanas);
@@ -171,6 +216,7 @@ public class CompraGaleria extends AppCompatActivity {
                     selectorSemanas.setAdapter(adaptadorSemana);
                     //selectorSemanas.setSelected(false);
                     selectorSemanas.setSelection(0, true); //selecciona el primer elemento del spinner
+                    adaptadorSemana.notifyDataSetChanged();
                 } else {
                     Toast.makeText(getApplicationContext(), "Error de lectura de semanas, contacte al administrador", Toast.LENGTH_SHORT).show();
                 }
@@ -223,5 +269,6 @@ public class CompraGaleria extends AppCompatActivity {
             }
         });
         listarIngredientes();
+        actualizaConteos();
     }
 }

@@ -9,7 +9,7 @@
     <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/card_view"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="55dp"
         android:layout_gravity="center"
         card_view:cardCornerRadius="4dp"
         >
@@ -22,7 +22,7 @@
                 android:layout_width="22dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:textColor="@color/colorVerde"
+                android:textColor="@color/colorAzulOscuro2"
                 android:gravity="center_vertical"
                 android:textSize="12dp"
                 android:fontFamily="sans-serif-condensed"
@@ -30,7 +30,7 @@
                 android:text="100."/>
             <TextView
                 android:id="@+id/listaProducto"
-                android:layout_width="120dp"
+                android:layout_width="115dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:textColor="@color/colorNegro"
@@ -43,7 +43,7 @@
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textColor="@color/colorNegro"
+                android:textColor="@color/colorAzulOscuro3"
                 android:gravity="center"
                 android:lines="2"
                 android:text="Und."/>
@@ -52,13 +52,13 @@
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:lines="2"
-                android:textColor="@color/colorNegro"
+                android:textColor="@color/colorAzulOscuro3"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="Cant."/>
 
             <EditText
-                android:layout_width="60dp"
+                android:layout_width="62dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/editValor"
                 android:textColor="@color/colorRojo"
@@ -69,18 +69,19 @@
                 android:textStyle="bold|italic"
                 android:textSize="18dp"
                 android:maxLength="6"
+                android:textCursorDrawable="@null"
                 android:selectAllOnFocus="true"
                 />
             <TextView
                 android:id="@+id/listaTotal"
-                android:layout_width="60dp"
+                android:layout_width="62dp"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorAzulOscuro3"
-                android:text="Total"
+                android:textColor="@color/colorNegro"
+                android:text="0"
                 android:gravity="right"
                 android:layout_gravity="center"
-                android:textSize="16dp"
-                android:textStyle="bold"
+                android:textSize="18dp"
+                android:textStyle="bold|italic"
                 android:maxLength="6"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

@@ -29,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:text="SEMANA"
         android:textSize="18dp"
         android:textColor="@color/colorNegro"
@@ -43,54 +43,181 @@
         <Spinner
             android:id="@+id/selectorSemana"
             android:layout_width="280dp"
-            android:layout_height="35dp"
+            android:layout_height="30dp"
             style="@style/SelectorSemana"
             />
     </RelativeLayout>
-    <EditText
-        android:id="@+id/editFechaCompra"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="fecha de compra"
-        android:layout_gravity="center"
-        style="@style/IngresoDatos"
-        android:onClick="mostrarCalendario"
-        />
+        android:layout_gravity="center">
+        <TextView
+            android:id="@+id/textoFecha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="6dp"
+            android:text="Fecha de compra: "
+            android:textSize="18dp"
+            android:textColor="@color/colorNegro"
+            android:textStyle="italic|bold"
+            />
+        <EditText
+            android:id="@+id/editFechaCompra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="seleccione fecha"
+            android:layout_gravity="center"
+            style="@style/IngresoDatos"
+            android:onClick="mostrarCalendario"
+            android:layout_marginTop="0dp"
+            android:layout_toRightOf="@+id/textoFecha"
+            />
+    </RelativeLayout>
+
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:columnCount="3"
-        android:rowCount="1"
-        android:paddingBottom="5dp">
+        android:columnCount="6"
+        android:rowCount="6">
+
         <TextView
-            android:id="@+id/tituloLista"
-            android:layout_width="wrap_content"
+            android:layout_width="90dp"
             android:layout_height="wrap_content"
-            android:text="Listado de Productos"
-            android:textColor="@color/colorNegro"
-            android:textSize="20dp"
+            android:layout_row="0"
+            android:layout_column="0"
             android:layout_gravity="center"
             android:gravity="center"
-            android:textStyle="italic|bold"
-            android:layout_column="0"/>
+            android:text="Ingredientes a comprar"
+            android:textColor="@color/colorAzulOscuro2"
+            android:textSize="12dp"
+            android:textStyle="italic|bold" />
+
+        <TextView
+            android:id="@+id/txtTotalIngredientes"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_column="0"
+            android:layout_row="1"
+            android:layout_gravity="center"
+            android:maxLines="1"
+            android:text="0"
+            android:textColor="@color/colorRojo"
+            android:textSize="15dp"
+            android:textStyle="italic|bold" />
+
         <View
-            android:layout_width="5dp"
-            android:layout_height="1dp"
+            android:layout_width="6dp"
+            android:layout_height="20dp"
             android:layout_column="1"
-            />
+            android:layout_row="0"
+            android:layout_rowSpan="2"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+            android:layout_column="2"
+            android:text="Ingredientes comprados"
+            android:textColor="@color/colorAzulOscuro2"
+            android:textSize="12dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textStyle="italic|bold" />
+
+        <TextView
+            android:id="@+id/txtSubconteoIngredientes"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_column="2"
+            android:layout_row="1"
+            android:layout_gravity="center"
+            android:maxLines="1"
+            android:text="0"
+            android:textColor="@color/colorRojo"
+            android:textSize="15dp"
+            android:textStyle="italic|bold" />
+
+        <View
+            android:layout_width="60dp"
+            android:layout_height="20dp"
+            android:layout_row="0"
+            android:layout_rowSpan="2"
+            android:layout_column="3"
+            android:layout_gravity="center" />
+
+        <View
+            android:layout_width="6dp"
+            android:layout_height="2dp"
+            android:layout_row="2"
+            android:layout_column="0"
+            android:layout_columnSpan="5"
+            android:layout_gravity="center" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="3"
+            android:layout_column="0"
+            android:layout_columnSpan="3"
+            android:layout_gravity="center"
+            android:text="Total comprado ($)"
+            android:textColor="@color/colorAzulOscuro3"
+            android:textStyle="italic|bold" />
+
+        <TextView
+            android:id="@+id/txtValorCompra"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_row="4"
+            android:layout_column="0"
+            android:layout_columnSpan="3"
+            android:layout_gravity="center"
+            android:maxLines="1"
+            android:text="0"
+            android:textColor="@color/colorRojo"
+            android:textSize="16dp"
+            android:textStyle="italic|bold" />
+
+
+        <View
+            android:layout_width="60dp"
+            android:layout_height="20dp"
+            android:layout_row="3"
+            android:layout_rowSpan="2"
+            android:layout_column="3"
+            android:layout_gravity="center" />
+
+        <Button
+            android:id="@+id/botonCalcular"
+            android:layout_width="110dp"
+            android:layout_height="40dp"
+            android:layout_row="0"
+            android:layout_rowSpan="2"
+            android:layout_column="4"
+            android:layout_gravity="center"
+            android:background="@drawable/personalizar_button"
+            android:gravity="center"
+            android:text="Calcular"
+            android:textAllCaps="false"
+            android:textColor="@color/colorClaro" />
+
         <Button
             android:id="@+id/botonGuardaGal"
-            android:layout_width="120dp"
+            android:layout_width="110dp"
             android:layout_height="40dp"
+            android:layout_row="3"
+            android:layout_rowSpan="2"
+            android:layout_column="4"
+            android:layout_gravity="center"
             android:background="@drawable/personalizar_button"
+            android:gravity="center"
             android:text="Guardar"
             android:textAllCaps="false"
-            android:textColor="@color/colorClaro"
-            android:layout_gravity="right"
-            android:layout_column="2"
-            />
+            android:textColor="@color/colorClaro" />
     </GridLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -113,7 +240,7 @@
             />
         <TextView
             android:id="@+id/titulo1"
-            android:layout_width="120dp"
+            android:layout_width="115dp"
             android:layout_height="wrap_content"
             android:text="Producto"
             android:gravity="left"
@@ -146,7 +273,7 @@
             />
         <TextView
             android:id="@+id/titulo4"
-            android:layout_width="60dp"
+            android:layout_width="62dp"
             android:layout_height="wrap_content"
             android:text="Valor Unidad"
             android:gravity="center"
@@ -157,7 +284,7 @@
             />
         <TextView
             android:id="@+id/titulo5"
-            android:layout_width="60dp"
+            android:layout_width="62dp"
             android:layout_height="wrap_content"
             android:text="Costo Total"
             android:gravity="center"
