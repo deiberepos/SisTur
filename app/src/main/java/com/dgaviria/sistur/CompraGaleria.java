@@ -83,6 +83,39 @@ public class CompraGaleria extends AppCompatActivity {
 
     }
 
+    private void referenciar() {
+        campoFecha=findViewById(R.id.editFechaCompra);
+        Calendar miCalendario = Calendar.getInstance();
+        año = miCalendario.get(Calendar.YEAR);
+        mes = miCalendario.get(Calendar.MONTH)+1;
+        dia = miCalendario.get(Calendar.DAY_OF_MONTH);
+        selectorSemanas=findViewById(R.id.selectorSemana);
+        miRecyclerListaCompra=findViewById(R.id.recyclerCompras);
+        botonGuardar=findViewById(R.id.botonGuardaGal);
+        botonCalcular=findViewById(R.id.botonCalcular);
+        totalConteo=findViewById(R.id.txtTotalIngredientes);
+        parcialConteo=findViewById(R.id.txtSubconteoIngredientes);
+        totalCompra=findViewById(R.id.txtValorCompra);
+        llenarListaSemanas();
+    }
+
+    private void mostrarFecha() {
+        campoFecha.setText(dia + "/" + mes + "/" + año);
+    }
+    public void mostrarCalendario(View view) {
+        Calendar miCalendario = new GregorianCalendar();//Calendar.getInstance();
+        miCalendario.setTime(new Date());
+        new DatePickerDialog(this, R.style.TemaCalendario, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                año = year;
+                mes = monthOfYear + 1;
+                dia = dayOfMonth;
+                mostrarFecha();
+            }
+        }, miCalendario.get(Calendar.YEAR), miCalendario.get(Calendar.MONTH), miCalendario.get(Calendar.DAY_OF_MONTH)).show();
+    }
+
     private void actualizaConteos() {
         conteoParcial=miAdaptadorCompra.conteoParcial();
         conteoTotal=miAdaptadorCompra.conteoTotal();
@@ -93,6 +126,76 @@ public class CompraGaleria extends AppCompatActivity {
         totalCompra.setText(String.valueOf(sumaTotal));
     }
 
+    private void lecturaMinutas(){
+        //Lectura de las minutas que hacen parte de la semana
+        listadoMinutas =new ArrayList<String>();
+        miReferenciaSem = FirebaseDatabase.getInstance().getReference("semanas").child(nombreSemana);
+        miReferenciaSem.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot != null && dataSnapshot.getChildren() != null) {
+                    String minuta1=dataSnapshot.child("minuta1").getValue(String.class);
+                    String minuta2=dataSnapshot.child("minuta2").getValue(String.class);
+                    String minuta3=dataSnapshot.child("minuta3").getValue(String.class);
+                    String minuta4=dataSnapshot.child("minuta4").getValue(String.class);
+                    String minuta5=dataSnapshot.child("minuta5").getValue(String.class);
+                    if (!minuta1.equals("X") && !minuta1.equals("V")){
+                        listadoMinutas.add(minuta1);
+                    }
+                    if (!minuta2.equals("X") && !minuta2.equals("V")){
+                        listadoMinutas.add(minuta2);
+                    }
+                    if (!minuta3.equals("X") && !minuta3.equals("V")){
+                        listadoMinutas.add(minuta3);
+                    }
+                    if (!minuta4.equals("X") && !minuta4.equals("V")){
+                        listadoMinutas.add(minuta4);
+                    }
+                    if (!minuta5.equals("X") && !minuta5.equals("V")){
+                        listadoMinutas.add(minuta5);
+                    }
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "Error de lectura de minutas, contacte al administrador", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        listarIngredientes();
+        actualizaConteos();
+    }
+
+    private void llenarListaSemanas() {
+        listadoSemanas=new ArrayList<String>();
+        miReferenciaSem = FirebaseDatabase.getInstance().getReference("semanas");
+        miReferenciaSem.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot != null && dataSnapshot.getChildren() != null) {
+                    for (DataSnapshot miSemana : dataSnapshot.getChildren()) {
+                        listadoSemanas.add(miSemana.getKey());
+                    }
+                    adaptadorSemana = new ArrayAdapter<String>(CompraGaleria.this, android.R.layout.simple_spinner_item, listadoSemanas);
+                    adaptadorSemana.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    selectorSemanas.setAdapter(adaptadorSemana);
+                    //selectorSemanas.setSelected(false);
+                    selectorSemanas.setSelection(0, true); //selecciona el primer elemento del spinner
+                    adaptadorSemana.notifyDataSetChanged();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Error de lectura de semanas, contacte al administrador", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
     private void listarIngredientes() {
         listaGaleria=new ArrayList<AlimentoCompra>();
         listaGaleria=lecturaIngredientes();
@@ -168,108 +271,5 @@ public class CompraGaleria extends AppCompatActivity {
             }
         });
         return lista;
-    }
-
-    private void referenciar() {
-        campoFecha=findViewById(R.id.editFechaCompra);
-        Calendar miCalendario = Calendar.getInstance();
-        año = miCalendario.get(Calendar.YEAR);
-        mes = miCalendario.get(Calendar.MONTH)+1;
-        dia = miCalendario.get(Calendar.DAY_OF_MONTH);
-        selectorSemanas=findViewById(R.id.selectorSemana);
-        miRecyclerListaCompra=findViewById(R.id.recyclerCompras);
-        botonGuardar=findViewById(R.id.botonGuardaGal);
-        botonCalcular=findViewById(R.id.botonCalcular);
-        totalConteo=findViewById(R.id.txtTotalIngredientes);
-        parcialConteo=findViewById(R.id.txtSubconteoIngredientes);
-        totalCompra=findViewById(R.id.txtValorCompra);
-        llenarListaMinutas();
-    }
-
-    private void mostrarFecha() {
-        campoFecha.setText(dia + "/" + mes + "/" + año);
-    }
-    public void mostrarCalendario(View view) {
-        Calendar miCalendario = new GregorianCalendar();//Calendar.getInstance();
-        miCalendario.setTime(new Date());
-        new DatePickerDialog(this, R.style.TemaCalendario, new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                año = year;
-                mes = monthOfYear + 1;
-                dia = dayOfMonth;
-                mostrarFecha();
-            }
-        }, miCalendario.get(Calendar.YEAR), miCalendario.get(Calendar.MONTH), miCalendario.get(Calendar.DAY_OF_MONTH)).show();
-    }
-    private void llenarListaMinutas() {
-        listadoSemanas=new ArrayList<String>();
-        miReferenciaSem = FirebaseDatabase.getInstance().getReference("semanas");
-        miReferenciaSem.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot != null && dataSnapshot.getChildren() != null) {
-                    for (DataSnapshot miSemana : dataSnapshot.getChildren()) {
-                        listadoSemanas.add(miSemana.getKey());
-                    }
-                    adaptadorSemana = new ArrayAdapter<String>(CompraGaleria.this, android.R.layout.simple_spinner_item, listadoSemanas);
-                    adaptadorSemana.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    selectorSemanas.setAdapter(adaptadorSemana);
-                    //selectorSemanas.setSelected(false);
-                    selectorSemanas.setSelection(0, true); //selecciona el primer elemento del spinner
-                    adaptadorSemana.notifyDataSetChanged();
-                } else {
-                    Toast.makeText(getApplicationContext(), "Error de lectura de semanas, contacte al administrador", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
-
-    private void lecturaMinutas(){
-        //Lectura de las minutas que hacen parte de la semana
-        listadoMinutas =new ArrayList<String>();
-        miReferenciaSem = FirebaseDatabase.getInstance().getReference("semanas").child(nombreSemana);
-        miReferenciaSem.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot != null && dataSnapshot.getChildren() != null) {
-                    String minuta1=dataSnapshot.child("minuta1").getValue(String.class);
-                    String minuta2=dataSnapshot.child("minuta2").getValue(String.class);
-                    String minuta3=dataSnapshot.child("minuta3").getValue(String.class);
-                    String minuta4=dataSnapshot.child("minuta4").getValue(String.class);
-                    String minuta5=dataSnapshot.child("minuta5").getValue(String.class);
-                    if (!minuta1.equals("X") && !minuta1.equals("V")){
-                        listadoMinutas.add(minuta1);
-                    }
-                    if (!minuta2.equals("X") && !minuta2.equals("V")){
-                        listadoMinutas.add(minuta2);
-                    }
-                    if (!minuta3.equals("X") && !minuta3.equals("V")){
-                        listadoMinutas.add(minuta3);
-                    }
-                    if (!minuta4.equals("X") && !minuta4.equals("V")){
-                        listadoMinutas.add(minuta4);
-                    }
-                    if (!minuta5.equals("X") && !minuta5.equals("V")){
-                        listadoMinutas.add(minuta5);
-                    }
-                }
-                else {
-                    Toast.makeText(getApplicationContext(), "Error de lectura de minutas, contacte al administrador", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-        listarIngredientes();
-        actualizaConteos();
     }
 }

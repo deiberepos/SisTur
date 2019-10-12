@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.cardview.widget.CardView
+        app:cardCornerRadius="10dp"
+        android:layout_width="match_parent"
+        app:cardBackgroundColor="@color/colorVerde"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            >
+            <TextView
+                android:id="@+id/txtNumPrepara"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:textSize="16dp"
+                android:textColor="@color/colorClaro"
+                android:background="@color/colorNaranja"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:text="HOLA"
+                />
+            <TextView
+                android:id="@+id/txtPreparaDiario"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:textSize="16dp"
+                android:textColor="@color/colorNegro"
+                android:gravity="center"
+                android:maxLines="3"
+                android:text="HOLA"
+                android:layout_below="@id/txtNumPrepara"
+                />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

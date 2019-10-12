@@ -39,6 +39,8 @@
         <activity android:name=".CensoPoblacional" />
         <activity android:name=".RegistrarCDIHCB"
             android:theme="@style/noaction"/>
+        <activity android:name=".PublicarMinutas"
+            android:theme="@style/noaction"/>
         <activity android:name=".Splash"
             android:theme="@style/AppTheme.FullScreen">
             <intent-filter>

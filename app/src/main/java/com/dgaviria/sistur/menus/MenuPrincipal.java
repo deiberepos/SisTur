@@ -13,15 +13,13 @@ import com.dgaviria.sistur.CompraGaleria;
 import com.dgaviria.sistur.ConsultaMinutas;
 import com.dgaviria.sistur.CrearCalendario;
 import com.dgaviria.sistur.ListarCensoPoblacion;
+import com.dgaviria.sistur.PublicarMinutas;
 import com.dgaviria.sistur.adaptadores.AdaptadorMenuPpal;
-import com.dgaviria.sistur.CensoPoblacional;
 import com.dgaviria.sistur.alimentos.ListarPlanAlimenticio;
 import com.dgaviria.sistur.clases.MenuOpciones;
 import com.dgaviria.sistur.GestionarCDIHCB;
 import com.dgaviria.sistur.R;
-import com.dgaviria.sistur.RegistrarCDIHCB;
 import com.dgaviria.sistur.usuarios.ListarUsuarios;
-import com.dgaviria.sistur.usuarios.OpcionesUsuarios;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -78,6 +76,10 @@ public class MenuPrincipal extends AppCompatActivity {
                         Intent miIntento7 = new Intent(MenuPrincipal.this, CompraGaleria.class);
                         startActivity(miIntento7);
                         break;
+                    case 8:
+                        Intent miIntento8 = new Intent(MenuPrincipal.this, PublicarMinutas.class);
+                        startActivity(miIntento8);
+                        break;
                     default:
                         Toast.makeText(getApplicationContext(),"Opción "+misOpciones.getTitulo(),Toast.LENGTH_SHORT).show();
                         break;
@@ -114,6 +116,10 @@ public class MenuPrincipal extends AppCompatActivity {
                     case 7:
                         Intent miIntento7 = new Intent(MenuPrincipal.this, CompraGaleria.class);
                         startActivity(miIntento7);
+                        break;
+                    case 8:
+                        Intent miIntento8 = new Intent(MenuPrincipal.this, PublicarMinutas.class);
+                        startActivity(miIntento8);
                         break;
                     default:
                         Toast.makeText(getApplicationContext(), "Imagen " + misOpciones.getTitulo(), Toast.LENGTH_SHORT).show();
