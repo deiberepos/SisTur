@@ -52,7 +52,6 @@ public class ListarCensoPoblacion extends AppCompatActivity {
             }
         });
 
-
         adaptadorCenso=new AdaptadorListaCenso(this,listaDeCenso, new AdaptadorListaCenso.OnItemClick() {
             @Override
             public void itemClick(Censo miCenso, int posicion) {

@@ -21,6 +21,7 @@ public class AdaptadorListaCenso extends RecyclerView.Adapter<AdaptadorListaCens
     List<Censo> listadoCenso;
     Context contexto;
 
+
     public AdaptadorListaCenso(List<Censo> listadoCenso) {
         this.listadoCenso=listadoCenso;
     }

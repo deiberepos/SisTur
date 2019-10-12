@@ -6,7 +6,6 @@ public class Usuarios {
     public String nombre;
     public String correo;
     public Boolean rolsuper;
-    public Boolean roladmin;
     public Boolean rolgestor;
     public Boolean rolcompras;
     public Boolean rolbasico;
@@ -17,19 +16,17 @@ public class Usuarios {
         this.nombre = "";
         this.correo = "";
         this.rolsuper = false;
-        this.roladmin = false;
         this.rolgestor = false;
         this.rolcompras = false;
         this.rolbasico = false;
     }
 
-    public Usuarios(String usuario, String contrasena, String nombre, String correo, Boolean rolSuper, Boolean rolAdmin, Boolean rolGestor, Boolean rolCompras, Boolean rolBasico) {
+    public Usuarios(String usuario, String contrasena, String nombre, String correo, Boolean rolSuper, Boolean rolGestor, Boolean rolCompras, Boolean rolBasico) {
         this.usuario = usuario;
         this.contrasena = contrasena;
         this.nombre = nombre;
         this.correo = correo;
         this.rolsuper = rolSuper;
-        this.roladmin = rolAdmin;
         this.rolgestor = rolGestor;
         this.rolcompras = rolCompras;
         this.rolbasico = rolBasico;
@@ -73,14 +70,6 @@ public class Usuarios {
 
     public void setRolsuper(Boolean rolsuper) {
         this.rolsuper = rolsuper;
-    }
-
-    public Boolean getRoladmin() {
-        return roladmin;
-    }
-
-    public void setRoladmin(Boolean roladmin) {
-        this.roladmin = roladmin;
     }
 
     public Boolean getRolgestor() {

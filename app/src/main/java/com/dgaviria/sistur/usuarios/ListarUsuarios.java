@@ -62,23 +62,18 @@ public class ListarUsuarios extends AppCompatActivity {
 
             @Override
             public void modificaClick(Usuarios misUsuarios, int posicion) {
-
                 int tipo=1;
-                if(misUsuarios.getRoladmin().equals(true))
+                if (misUsuarios.getRolgestor().equals(true))
                 {
                     tipo=2;
                 }
-                if (misUsuarios.getRolgestor().equals(true))
+                if (misUsuarios.getRolcompras().equals(true))
                 {
                     tipo=3;
                 }
-                if (misUsuarios.getRolcompras().equals(true))
-                {
-                    tipo=4;
-                }
                 if (misUsuarios.getRolbasico().equals(true))
                 {
-                    tipo=5;
+                    tipo=4;
                 }
                 Intent intent = new Intent(getApplicationContext(), CrearUsuarios.class);
                 intent.putExtra("opcion","actualizar");

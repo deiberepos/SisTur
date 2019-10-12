@@ -78,8 +78,6 @@ public class AdaptadorListaUsuarios extends RecyclerView.Adapter<AdaptadorListaU
         Usuarios miUsuario=listadoUsuarios.get(position);
         if(miUsuario.getRolsuper())
             nombreRol="SuperUsuario";
-        else if (miUsuario.getRoladmin())
-            nombreRol="Administrador";
         else if (miUsuario.getRolgestor())
             nombreRol="Gestor";
         else if (miUsuario.getRolcompras())

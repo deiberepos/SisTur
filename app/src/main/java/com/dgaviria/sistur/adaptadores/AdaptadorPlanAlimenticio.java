@@ -40,7 +40,7 @@ public class AdaptadorPlanAlimenticio extends RecyclerView.Adapter<AdaptadorPlan
 
     public static class AlimentosViewHolder extends RecyclerView.ViewHolder{
         ImageView selecciona;
-        TextView grupoA, codigoA,nombreA,regionalA,primeraLetra;
+        TextView grupoA, codigoA,nombreA,regionalA;
         RelativeLayout lyt_marcado,lyt_imagen;
         View lyt_padre;
         Button botonBuscar;

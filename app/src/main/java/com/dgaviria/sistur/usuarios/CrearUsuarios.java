@@ -65,23 +65,17 @@ public class CrearUsuarios extends AppCompatActivity {
             tipo = bundle.getInt("tipo");
             if (tipo==1)
             {
-                roladmin.setChecked(true);
+                rolgest.setChecked(true);
             }
             if (tipo==2)
             {
-                rolgest.setChecked(true);
+                rolcomp.setChecked(true);
             }
             if (tipo==3)
             {
-                rolcomp.setChecked(true);
-            }
-            if (tipo==4)
-            {
                 rolbasic.setChecked(true);
             }
-
         }
-
         botonactualizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -106,7 +100,6 @@ public class CrearUsuarios extends AppCompatActivity {
         botonRegistra=findViewById(R.id.botonRegistrar);
         rolSeleccionado=findViewById(R.id.rgRoles);
         botonactualizar=findViewById(R.id.botonActualizar);
-        roladmin=findViewById(R.id.roladmin);
         rolgest=findViewById(R.id.rolgest);
         rolcomp=findViewById(R.id.rolcomp);
         rolbasic=findViewById(R.id.rolbasi);
@@ -195,20 +188,16 @@ public class CrearUsuarios extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int cualRol) {
                 switch (cualRol) {
-                    case R.id.roladmin:
-                        rolUsuario=1;
-                        nombreRol="administrador";
-                        break;
                     case R.id.rolgest:
-                        rolUsuario=2;
+                        rolUsuario=1;
                         nombreRol="gestor";
                         break;
                     case R.id.rolcomp:
-                        rolUsuario=3;
+                        rolUsuario=2;
                         nombreRol="compras";
                         break;
                     case R.id.rolbasi:
-                        rolUsuario=4;
+                        rolUsuario=3;
                         nombreRol="basico";
                         break;
                     default:
@@ -261,10 +250,10 @@ public class CrearUsuarios extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 miReferencia=FirebaseDatabase.getInstance().getReference();
                 if(usuarioo.equals(usuarioU)){
-                    miReferencia.child("usuarios").child(usuarioU).setValue(new Usuarios(usuarioU,contrasenaU,nombresU,correoE,false,rolUsuario==1,rolUsuario==2,rolUsuario==3,rolUsuario==4));
+                    miReferencia.child("usuarios").child(usuarioU).setValue(new Usuarios(usuarioU,contrasenaU,nombresU,correoE,false,rolUsuario==1,rolUsuario==2,rolUsuario==3));
                 }else {
                     miReferencia.child("usuarios").child(usuarioo).removeValue();
-                    miReferencia.child("usuarios").child(usuarioU).setValue(new Usuarios(usuarioU,contrasenaU,nombresU,correoE,false,rolUsuario==1,rolUsuario==2,rolUsuario==3,rolUsuario==4));
+                    miReferencia.child("usuarios").child(usuarioU).setValue(new Usuarios(usuarioU,contrasenaU,nombresU,correoE,false,rolUsuario==1,rolUsuario==2,rolUsuario==3));
                     misDatos=miReferencia.child("rol").child(nombreRol).child("miembros");
                     misDatos.child(usuarioU).setValue(new Roles(true));
                 }
@@ -288,7 +277,7 @@ public class CrearUsuarios extends AppCompatActivity {
         miReferencia= FirebaseDatabase.getInstance().getReference();
         //guarda los datos del usuario
         misDatos=miReferencia.child("usuarios");
-        misDatos.child(usuarioU).setValue(new Usuarios(usuarioU,contrasenaU,nombresU,correoE,false,rolUsuario==1,rolUsuario==2,rolUsuario==3,rolUsuario==4));
+        misDatos.child(usuarioU).setValue(new Usuarios(usuarioU,contrasenaU,nombresU,correoE,false,rolUsuario==1,rolUsuario==2,rolUsuario==3));
         misDatos=miReferencia.child("rol").child(nombreRol).child("miembros");
         misDatos.child(usuarioU).setValue(new Roles(true));
 

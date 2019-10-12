@@ -77,7 +77,7 @@ public class GestionarCDIHCB extends AppCompatActivity {
 
                 final String nombreeli = centros.getNombreCDI();
                 AlertDialog.Builder builder = new AlertDialog.Builder(GestionarCDIHCB.this);
-                builder.setTitle("msj Eliminar");
+                builder.setTitle("msj Eliminar"+nombreeli);
                 builder.setMessage("Está seguro que desea eliminar a "+centros.getNombreCDI()+" de la base de datos?");
                 builder.setPositiveButton("ELIMINAR", new DialogInterface.OnClickListener() {
                     @Override

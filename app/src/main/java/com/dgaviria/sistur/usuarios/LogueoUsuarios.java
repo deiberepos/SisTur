@@ -81,7 +81,6 @@ public class LogueoUsuarios extends AppCompatActivity{
                             dataSnapshot.child("nombre").getValue(String.class),
                             dataSnapshot.child("correo").getValue(String.class),
                             dataSnapshot.child("rolsuper").getValue(Boolean.class),
-                            dataSnapshot.child("roladmin").getValue(Boolean.class),
                             dataSnapshot.child("rolgestor").getValue(Boolean.class),
                             dataSnapshot.child("rolcompras").getValue(Boolean.class),
                             dataSnapshot.child("rolbasico").getValue(Boolean.class));
