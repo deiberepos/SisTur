@@ -77,8 +77,6 @@ public class AdaptadorMenuPpal extends RecyclerView.Adapter<AdaptadorMenuPpal.Op
         switch (misOpciones.getMinimorol()){
             case "superusuario":
                 break;
-            case "administrador":
-                break;
             case "gestor":
                 break;
             case "compras":

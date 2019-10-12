@@ -55,8 +55,6 @@ public class MenuPrincipal extends AppCompatActivity {
                         startActivity(miIntento1);
                         break;
                     case 2:
-                        //Intent miIntento2 = new Intent(MenuPrincipal.this, RegistrarCDIHCB.class);
-                        //startActivity(miIntento2);
                         Intent intent = new Intent(MenuPrincipal.this, GestionarCDIHCB.class);
                         startActivity(intent);
                         break;

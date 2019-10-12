@@ -97,6 +97,8 @@ public class AdaptadorPlanAlimenticio extends RecyclerView.Adapter<AdaptadorPlan
         holder.regionalA.setText(miAlimento.getRegional());
 
         holder.lyt_padre.setActivated(itemsSeleccionados.get(posicion,false));
+
+
         holder.lyt_padre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View vista) {

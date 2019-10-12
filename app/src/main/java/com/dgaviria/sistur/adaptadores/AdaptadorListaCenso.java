@@ -21,7 +21,6 @@ public class AdaptadorListaCenso extends RecyclerView.Adapter<AdaptadorListaCens
     List<Censo> listadoCenso;
     Context contexto;
 
-
     public AdaptadorListaCenso(List<Censo> listadoCenso) {
         this.listadoCenso=listadoCenso;
     }
@@ -37,12 +36,10 @@ public class AdaptadorListaCenso extends RecyclerView.Adapter<AdaptadorListaCens
         ImageView modifica;
         TextView nombre,apellido;
 
-
         DatabaseReference mir= FirebaseDatabase.getInstance().getReference();
 
         public CensoViewHolder(@NonNull View itemView) {
             super(itemView);
-
 
             nombre=itemView.findViewById(R.id.txtNombreInfan);
             apellido=itemView.findViewById(R.id.txtCentroAsociado);
