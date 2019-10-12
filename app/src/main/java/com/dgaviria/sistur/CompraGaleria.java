@@ -53,6 +53,7 @@ public class CompraGaleria extends AppCompatActivity {
 
         referenciar();
         mostrarFecha();
+
         botonCalcular.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
