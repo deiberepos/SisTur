@@ -210,12 +210,14 @@ public class CensoPoblacional extends AppCompatActivity {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                List<CdiHcb> titleList = new ArrayList<CdiHcb>();
+                //List<CdiHcb> titleList = new ArrayList<CdiHcb>();
+                List<String> nombres = new ArrayList<>();
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     CdiHcb titlename = dataSnapshot1.getValue(CdiHcb.class);
-                    titleList.add(titlename);
+                    //titleList.add(titlename);
+                    nombres.add(titlename.getNombreCDI());
                 }
-                ArrayAdapter<CdiHcb> arrayAdapter = new ArrayAdapter<CdiHcb>(CensoPoblacional.this, android.R.layout.simple_spinner_item, titleList);
+                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(CensoPoblacional.this, android.R.layout.simple_spinner_item, nombres);
                 arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spin.setAdapter(arrayAdapter);
             }
