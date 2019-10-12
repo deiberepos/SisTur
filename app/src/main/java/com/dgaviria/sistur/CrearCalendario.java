@@ -12,6 +12,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.dgaviria.sistur.clases.Calendario;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,7 +26,7 @@ public class CrearCalendario extends AppCompatActivity {
     ArrayList<String> listaSemanas,listaMinutaLunes,listaMinutaMartes,listaMinutaMiercoles,listaMinutaJueves,listaMinutaViernes;
     DatabaseReference miReferenciaCal;
     ArrayAdapter<String> adaptadorSemana,adaptadorLunes,adaptadorMartes,adaptadorMiercoles,adaptadorJueves,adaptadorViernes;
-    Button btnGuardarCal;
+    FloatingActionButton btnGuardarCal;
     String semanaSeleccionada="",minutaLunes="",minutaMartes="",minutaMiercoles="",minutaJueves="",minutaViernes="";
 
     @Override

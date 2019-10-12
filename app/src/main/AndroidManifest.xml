@@ -15,7 +15,8 @@
         android:theme="@style/AppTheme">
         <activity android:name=".CompraGaleria"
             android:theme="@style/noaction"/>
-        <activity android:name=".CrearCalendario" />
+        <activity android:name=".CrearCalendario"
+            android:theme="@style/noaction"/>
         <activity android:name=".ConsultaMinutas" />
         <activity android:name=".menus.MenuPrincipal" />
         <activity android:name=".menus.OpcionesMenuPpal" />
@@ -31,7 +32,8 @@
         <activity android:name=".usuarios.ListarUsuarios"
             android:theme="@style/noaction"/>
         <activity android:name=".usuarios.UsuariosLista" />
-        <activity android:name=".alimentos.ListarPlanAlimenticio" />
+        <activity android:name=".alimentos.ListarPlanAlimenticio"
+            android:theme="@style/noaction"/>
         <activity android:name=".alimentos.AlimentosLista" />
         <activity android:name=".MainActivity" />
         <activity android:name=".CensoPoblacional" />
