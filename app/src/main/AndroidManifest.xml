@@ -31,7 +31,6 @@
         <activity android:name=".usuarios.OpcionesUsuarios"/>
         <activity android:name=".usuarios.ListarUsuarios"
             android:theme="@style/noaction"/>
-        <activity android:name=".usuarios.UsuariosLista" />
         <activity android:name=".alimentos.ListarPlanAlimenticio"
             android:theme="@style/noaction"/>
         <activity android:name=".alimentos.AlimentosLista" />
