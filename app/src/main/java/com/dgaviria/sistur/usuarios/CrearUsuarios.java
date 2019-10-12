@@ -280,7 +280,6 @@ public class CrearUsuarios extends AppCompatActivity {
         misDatos.child(usuarioU).setValue(new Usuarios(usuarioU,contrasenaU,nombresU,correoE,false,rolUsuario==1,rolUsuario==2,rolUsuario==3));
         misDatos=miReferencia.child("rol").child(nombreRol).child("miembros");
         misDatos.child(usuarioU).setValue(new Roles(true));
-
         Toast.makeText(this,"Usuario creado exitosamente",Toast.LENGTH_LONG).show();
         finish();
     }

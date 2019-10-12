@@ -204,21 +204,18 @@
                 android:layout_width="200dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp"
                 android:background="@drawable/personalizar_button"
                 android:text="GUARDAR"
                 android:textAllCaps="false"
                 android:textColor="@color/colorClaro" />
-
             <Button
+                android:id="@+id/btnactualizar"
                 android:layout_width="200dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp"
                 android:background="@drawable/personalizar_button"
-                android:id="@+id/btnactualizar"
                 android:text="ACTUALIZAR"
-                android:textColor="@color/colorClaro"/>
+                android:textColor="@color/colorClaro" />
 
         </LinearLayout>
     </RelativeLayout>
