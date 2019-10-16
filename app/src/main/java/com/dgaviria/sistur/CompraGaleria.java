@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.dgaviria.sistur.adaptadores.AdaptadorListaCompra;
 import com.dgaviria.sistur.clases.AlimentoCompra;
+import com.dgaviria.sistur.clases.ComparadorAlimentoCompra;
 import com.dgaviria.sistur.clases.Minutas;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,6 +29,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -243,13 +246,14 @@ public class CompraGaleria extends AppCompatActivity {
                                                 }
                                             }
                                             if (guarda){
-                                                ingrediente.setOrden(String.valueOf(++numItem).trim()+".");
+                                                ingrediente.setOrden("*");//String.valueOf(++numItem).trim()+".");
                                                 ingrediente.setIngrediente(alimento.getReal());
                                                 ingrediente.setMedida(alimento.getUnidad());
                                                 ingrediente.setCantidad(alimento.getTotal());
                                                 ingrediente.setEditValorCompra("0");
                                                 ingrediente.setTotal("0");
                                                 lista.add(ingrediente);
+                                                Collections.sort(lista, new ComparadorAlimentoCompra());
                                                 miAdaptadorCompra.notifyDataSetChanged();
                                             }
                                         }

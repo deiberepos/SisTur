@@ -9,7 +9,7 @@
         android:layout_width="65dp"
         android:layout_height="70dp"
         android:background="@drawable/logoinicial"
-        android:layout_gravity="end"
+        android:layout_gravity="start"
         />
     <TextView
         android:layout_width="wrap_content"
@@ -242,7 +242,7 @@
             android:layout_width="115dp"
             android:layout_height="wrap_content"
             android:text="Producto"
-            android:gravity="end"
+            android:gravity="start"
             android:textColor="@color/colorNegro"
             android:textStyle="bold"
             android:layout_marginTop="8dp"
@@ -304,6 +304,7 @@
             android:id="@+id/recyclerCompras"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:paddingStart="5dp"
             android:layout_marginTop="40dp" />
 
         <View
