@@ -6,9 +6,11 @@
     <androidx.cardview.widget.CardView
         app:cardCornerRadius="10dp"
         android:layout_width="match_parent"
-        app:cardBackgroundColor="@color/colorVerde"
+        app:cardBackgroundColor="@color/colorGrisClaro"
         android:layout_height="wrap_content"
-        android:paddingBottom="10dp">
+        android:paddingBottom="10dp"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -18,9 +20,9 @@
                 android:id="@+id/txtNumPrepara"
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:textColor="@color/colorClaro"
-                android:background="@color/colorNaranja"
+                android:background="@color/colorAzulOscuro1"
                 android:gravity="center"
                 android:textStyle="bold"
                 android:text="HOLA"
@@ -29,7 +31,7 @@
                 android:id="@+id/txtPreparaDiario"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:textSize="16dp"
+                android:textSize="14sp"
                 android:textColor="@color/colorNegro"
                 android:gravity="center"
                 android:maxLines="3"

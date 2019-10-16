@@ -75,6 +75,7 @@ public class ConsultaMinutas extends Activity {
                     //spnMinutas.setSelected(false);
                     spnMinutas.setSelection(0, true); //selecciona el primer elemento del spinner
                     adaptadorMinuta.notifyDataSetChanged();
+                    Toast.makeText(ConsultaMinutas.this, "Seleccione la minuta a consultar", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     Toast.makeText(getApplicationContext(),"Error de lectura de minutas, contacte al administrador",Toast.LENGTH_SHORT).show();
