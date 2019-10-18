@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
@@ -16,7 +15,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.dgaviria.sistur.adaptadores.AdaptadorListaCompra;
 import com.dgaviria.sistur.clases.AlimentoCompra;
 import com.dgaviria.sistur.clases.ComparadorAlimentoCompra;
@@ -26,13 +24,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CompraGaleria extends AppCompatActivity {
     int año, mes, dia,sumaTotal,conteoTotal,conteoParcial;
@@ -40,12 +38,14 @@ public class CompraGaleria extends AppCompatActivity {
     AdaptadorListaCompra miAdaptadorCompra;
     Spinner selectorSemanas;
     String nombreSemana;
-    DatabaseReference miReferenciaMin,miReferenciaSem;
+    DatabaseReference miReferenciaMin,miReferenciaSem,miReferenciaLista;
     ArrayAdapter<String> adaptadorSemana;
     ArrayList<String> listadoSemanas, listadoMinutas;
     ArrayList<AlimentoCompra> listaGaleria;
     RecyclerView miRecyclerListaCompra;
     Button botonGuardar,botonCalcular;
+    Calendar miCalendario;
+    Boolean existeLista=false;
     int numItem;
     TextView totalCompra,totalConteo,parcialConteo;
 
@@ -66,10 +66,8 @@ public class CompraGaleria extends AppCompatActivity {
         botonGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*sumaTotal=miAdaptadorCompra.sumaTotal();
-                totalCompra.setText(String.valueOf(sumaTotal));*/
                 actualizaConteos();
-                Toast.makeText(CompraGaleria.this, "Guardando la lista de compras", Toast.LENGTH_SHORT).show();
+                guardarLista();
             }
         });
         selectorSemanas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -83,12 +81,11 @@ public class CompraGaleria extends AppCompatActivity {
 
             }
         });
-
     }
 
     private void referenciar() {
         campoFecha=findViewById(R.id.editFechaCompra);
-        Calendar miCalendario = Calendar.getInstance();
+        miCalendario = Calendar.getInstance();
         año = miCalendario.get(Calendar.YEAR);
         mes = miCalendario.get(Calendar.MONTH)+1;
         dia = miCalendario.get(Calendar.DAY_OF_MONTH);
@@ -130,36 +127,74 @@ public class CompraGaleria extends AppCompatActivity {
     }
 
     private void lecturaMinutas(){
-        //Lectura de las minutas que hacen parte de la semana
-        listadoMinutas =new ArrayList<String>();
-        miReferenciaSem = FirebaseDatabase.getInstance().getReference("semanas").child(nombreSemana);
-        miReferenciaSem.addValueEventListener(new ValueEventListener() {
+        //Verifica la existencia de la lista de compras para la semana
+        miReferenciaLista= FirebaseDatabase.getInstance().getReference("galeria").child(nombreSemana);
+        miReferenciaLista.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot != null && dataSnapshot.getChildren() != null) {
-                    String minuta1=dataSnapshot.child("minuta1").getValue(String.class);
-                    String minuta2=dataSnapshot.child("minuta2").getValue(String.class);
-                    String minuta3=dataSnapshot.child("minuta3").getValue(String.class);
-                    String minuta4=dataSnapshot.child("minuta4").getValue(String.class);
-                    String minuta5=dataSnapshot.child("minuta5").getValue(String.class);
-                    if (!minuta1.equals("X") && !minuta1.equals("V")){
-                        listadoMinutas.add(minuta1);
+                if (dataSnapshot.exists()){ //Si existe
+                    listaGaleria=new ArrayList<AlimentoCompra>();
+                    for(DataSnapshot miIngrediente:dataSnapshot.getChildren()) {
+                        if (!miIngrediente.getKey().equals("itemscomprados") && !miIngrediente.getKey().equals("totalcompra")) {
+                            AlimentoCompra ingrediente = miIngrediente.getValue(AlimentoCompra.class);
+                            listaGaleria.add(ingrediente);
+                            Collections.sort(listaGaleria, new ComparadorAlimentoCompra()); //ordena la lista por el nombre del ingrediente
+                        }
                     }
-                    if (!minuta2.equals("X") && !minuta2.equals("V")){
-                        listadoMinutas.add(minuta2);
-                    }
-                    if (!minuta3.equals("X") && !minuta3.equals("V")){
-                        listadoMinutas.add(minuta3);
-                    }
-                    if (!minuta4.equals("X") && !minuta4.equals("V")){
-                        listadoMinutas.add(minuta4);
-                    }
-                    if (!minuta5.equals("X") && !minuta5.equals("V")){
-                        listadoMinutas.add(minuta5);
-                    }
+                    miAdaptadorCompra = new AdaptadorListaCompra(CompraGaleria.this, listaGaleria);
+                    miRecyclerListaCompra.setAdapter(miAdaptadorCompra);
+                    miRecyclerListaCompra.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
+                    miAdaptadorCompra.notifyDataSetChanged();
+                    actualizaConteos();
                 }
-                else {
-                    Toast.makeText(getApplicationContext(), "Error de lectura de minutas, contacte al administrador", Toast.LENGTH_SHORT).show();
+                else{ //si no existe realiza la lectura de las minutas asociadas en la semana seleccionada
+                    //Lectura de las minutas que hacen parte de la semana, cuando no existe una lista de compras previa
+                    listadoMinutas = new ArrayList<String>();
+                    miReferenciaSem = FirebaseDatabase.getInstance().getReference("semanas").child(nombreSemana);
+                    miReferenciaSem.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if (dataSnapshot != null && dataSnapshot.getChildren() != null) {
+                                Boolean hayMinutas=false;
+                                String minuta1 = dataSnapshot.child("minuta1").getValue(String.class);
+                                String minuta2 = dataSnapshot.child("minuta2").getValue(String.class);
+                                String minuta3 = dataSnapshot.child("minuta3").getValue(String.class);
+                                String minuta4 = dataSnapshot.child("minuta4").getValue(String.class);
+                                String minuta5 = dataSnapshot.child("minuta5").getValue(String.class);
+                                if (!minuta1.equals("X") && !minuta1.equals("V")) {
+                                    listadoMinutas.add(minuta1);
+                                    hayMinutas=true;
+                                }
+                                if (!minuta2.equals("X") && !minuta2.equals("V")) {
+                                    listadoMinutas.add(minuta2);
+                                    hayMinutas=true;
+                                }
+                                if (!minuta3.equals("X") && !minuta3.equals("V")) {
+                                    listadoMinutas.add(minuta3);
+                                    hayMinutas=true;
+                                }
+                                if (!minuta4.equals("X") && !minuta4.equals("V")) {
+                                    listadoMinutas.add(minuta4);
+                                    hayMinutas=true;
+                                }
+                                if (!minuta5.equals("X") && !minuta5.equals("V")) {
+                                    listadoMinutas.add(minuta5);
+                                }
+                                if (!hayMinutas)
+                                    Toast.makeText(CompraGaleria.this, "No hay minutas asociadas en esta semana", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Error de lectura de minutas, contacte al administrador", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
+                    listarIngredientes();
+                    actualizaConteos();
                 }
             }
 
@@ -168,8 +203,6 @@ public class CompraGaleria extends AppCompatActivity {
 
             }
         });
-        listarIngredientes();
-        actualizaConteos();
     }
 
     private void llenarListaSemanas() {
@@ -199,6 +232,7 @@ public class CompraGaleria extends AppCompatActivity {
             }
         });
     }
+
     private void listarIngredientes() {
         listaGaleria=new ArrayList<AlimentoCompra>();
         listaGaleria=lecturaIngredientes();
@@ -237,7 +271,7 @@ public class CompraGaleria extends AppCompatActivity {
                                                         cantMas = cantMas + cantAntes;
                                                         int valorSuma=Math.round(cantMas);
                                                         lista.get(numItem).setCantidad(String.valueOf(valorSuma));
-                                                        miAdaptadorCompra.notifyDataSetChanged();
+                                                        //miAdaptadorCompra.notifyDataSetChanged();
                                                         guarda=false;
                                                         break;
                                                     } else {
@@ -246,21 +280,22 @@ public class CompraGaleria extends AppCompatActivity {
                                                 }
                                             }
                                             if (guarda){
-                                                ingrediente.setOrden("*");//String.valueOf(++numItem).trim()+".");
                                                 ingrediente.setIngrediente(alimento.getReal());
+                                                ingrediente.setCodigo(alimento.getCodigo());
                                                 ingrediente.setMedida(alimento.getUnidad());
                                                 ingrediente.setCantidad(alimento.getTotal());
-                                                ingrediente.setEditValorCompra("0");
+                                                ingrediente.setValorcompra("0");
                                                 ingrediente.setTotal("0");
                                                 lista.add(ingrediente);
                                                 Collections.sort(lista, new ComparadorAlimentoCompra());
-                                                miAdaptadorCompra.notifyDataSetChanged();
+
+                                                totalConteo.setText(String.valueOf(lista.size()));
                                             }
                                         }
                                     }
                                 }
                             }
-
+                            miAdaptadorCompra.notifyDataSetChanged();
                         }
                     }
                 }
@@ -275,5 +310,64 @@ public class CompraGaleria extends AppCompatActivity {
             }
         });
         return lista;
+    }
+
+   private void guardarLista(){
+        if (existeLista) {
+            //si la lista de compras existe la actualiza
+            miReferenciaLista=FirebaseDatabase.getInstance().getReference("galeria").child(nombreSemana);
+            Map<String,Object> actualizaNivel1=new HashMap<String,Object>();
+            actualizaNivel1.put("totalcompra",sumaTotal);
+            actualizaNivel1.put("itemscomprados",conteoTotal);
+            miReferenciaLista.updateChildren(actualizaNivel1);
+            for (int numItem = 0; numItem < listaGaleria.size(); numItem++) {
+                String codigoAlimento = listaGaleria.get(numItem).getCodigo();
+                miReferenciaLista=FirebaseDatabase.getInstance().getReference("galeria").child(nombreSemana).child(codigoAlimento);
+                Map<String,Object> actualizaNivel2=new HashMap<String,Object>();
+                actualizaNivel2.put("fechacompra",String.valueOf(campoFecha.getText()));
+                actualizaNivel2.put("total",listaGaleria.get(numItem).getTotal());
+                actualizaNivel2.put("porentregar",listaGaleria.get(numItem).getTotal());
+                actualizaNivel2.put("valorcompra",listaGaleria.get(numItem).getValorcompra());
+                miReferenciaLista.updateChildren((actualizaNivel2));
+            }
+            Toast.makeText(this, "Lista de compras actualizada", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            //crear la llave con sus hijos con los datos nuevos
+            miReferenciaLista = FirebaseDatabase.getInstance().getReference("galeria").child(nombreSemana);
+            miReferenciaLista.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    miReferenciaLista.child("totalcompra").setValue(sumaTotal);
+                    miReferenciaLista.child("itemscomprados").setValue(conteoTotal);
+                    for (int numItem = 0; numItem < listaGaleria.size(); numItem++) {
+                        String codigoAlimento = listaGaleria.get(numItem).getCodigo();
+                        AlimentoCompra miItemAlimento = new AlimentoCompra();
+                        miItemAlimento.setIngrediente(listaGaleria.get(numItem).getIngrediente());
+                        miItemAlimento.setFechacompra(String.valueOf(campoFecha.getText()));
+                        miItemAlimento.setMedida(listaGaleria.get(numItem).getMedida());
+                        miItemAlimento.setValorcompra(listaGaleria.get(numItem).getValorcompra());
+                        miItemAlimento.setTotal(listaGaleria.get(numItem).getTotal());
+                        miItemAlimento.setCantidad(listaGaleria.get(numItem).getCantidad());
+                        miItemAlimento.setEntregado("0");
+                        miItemAlimento.setPorentregar(listaGaleria.get(numItem).getCantidad());
+                        miItemAlimento.setCodigo(listaGaleria.get(numItem).getCodigo());
+                        miReferenciaLista.child(codigoAlimento).setValue(miItemAlimento);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+            Toast.makeText(this, "Lista de compras guardada", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
     }
 }

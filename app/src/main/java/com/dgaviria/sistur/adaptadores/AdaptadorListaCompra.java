@@ -3,7 +3,6 @@ package com.dgaviria.sistur.adaptadores;
 import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +16,6 @@ import com.dgaviria.sistur.R;
 import com.dgaviria.sistur.clases.AlimentoCompra;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class AdaptadorListaCompra extends RecyclerView.Adapter<AdaptadorListaCompra.AlimentoViewHolder>{
     private LayoutInflater miInflater;
@@ -41,11 +39,10 @@ public class AdaptadorListaCompra extends RecyclerView.Adapter<AdaptadorListaCom
     @Override
     public void onBindViewHolder(@NonNull final AlimentoViewHolder holder, final int posicion) {
         AlimentoCompra alimentoLista=editValorCompraLista.get(posicion);
-        holder.numItem.setText(alimentoLista.getOrden());
         holder.producto.setText(alimentoLista.getIngrediente());
         holder.unidad.setText(alimentoLista.getMedida());
         holder.cantidad.setText(alimentoLista.getCantidad());
-        holder.valorEditar.setText(alimentoLista.getEditValorCompra());
+        holder.valorEditar.setText(alimentoLista.getValorcompra());
         holder.total.setText(alimentoLista.getTotal());
         TextWatcher calculaTotal = new TextWatcher() {
             @Override
@@ -105,7 +102,7 @@ public class AdaptadorListaCompra extends RecyclerView.Adapter<AdaptadorListaCom
                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                     int miValorUnitario,miTotal,miCantidad;
                     //Guarda el valor digitado en el valor unitario
-                    editValorCompraLista.get(getAdapterPosition()).setEditValorCompra(valorEditar.getText().toString());
+                    editValorCompraLista.get(getAdapterPosition()).setValorcompra(valorEditar.getText().toString());
                 }
 
                 @Override

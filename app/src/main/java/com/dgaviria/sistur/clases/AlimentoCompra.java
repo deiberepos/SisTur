@@ -1,30 +1,60 @@
 package com.dgaviria.sistur.clases;
 
 public class AlimentoCompra {
-    private String orden;
+    private String fechacompra;
     private String ingrediente;
     private String medida;
     private String cantidad;
-    private String editValorCompra;
+    private String valorcompra;
     private String total;
+    private String entregado;
+    private String porentregar;
+    private String codigo;
 
     public AlimentoCompra() {
     }
 
-    public AlimentoCompra(String orden,String ingrediente, String medida, String cantidad, String total) {
-        this.orden = orden;
+    public AlimentoCompra(String codigo,String fechacompra,String ingrediente, String medida, String cantidad, String total,String entregado,String porentregar) {
         this.ingrediente = ingrediente;
         this.medida = medida;
         this.cantidad = cantidad;
         this.total = total;
+        this.entregado = entregado;
+        this.porentregar = porentregar;
+        this.fechacompra = fechacompra;
+        this.codigo = codigo;
     }
 
-    public String getOrden() {
-        return orden;
+    public String getCodigo() {
+        return codigo;
     }
 
-    public void setOrden(String orden) {
-        this.orden = orden;
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getFechacompra() {
+        return fechacompra;
+    }
+
+    public void setFechacompra(String fechacompra) {
+        this.fechacompra = fechacompra;
+    }
+
+    public String getEntregado() {
+        return entregado;
+    }
+
+    public void setEntregado(String entregado) {
+        this.entregado = entregado;
+    }
+
+    public String getPorentregar() {
+        return porentregar;
+    }
+
+    public void setPorentregar(String porentregar) {
+        this.porentregar = porentregar;
     }
 
     public String getIngrediente() {
@@ -59,12 +89,12 @@ public class AlimentoCompra {
         this.total = total;
     }
 
-    public String getEditValorCompra() {
-        return editValorCompra;
+    public String getValorcompra() {
+        return valorcompra;
     }
 
-    public void setEditValorCompra(String editValorCompra) {
-        this.editValorCompra = editValorCompra;
+    public void setValorcompra(String valorcompra) {
+        this.valorcompra = valorcompra;
     }
 
 }
