@@ -34,12 +34,15 @@ public class MenuPrincipal extends AppCompatActivity {
     List<MenuOpciones> listadoOpciones;
     AdaptadorMenuPpal adaptadorMenu;
     DatabaseReference miReferencia;
+    private Bundle bundle;
+    public static String recibeRol, recibeUsuario;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_principal);
 
         referenciar();
+        Toast.makeText(getApplicationContext(),"el usuario es: "+recibeUsuario+" y el rol "+recibeRol, Toast.LENGTH_SHORT).show();
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         miRecycler.setLayoutManager(linearLayoutManager);
         llenarRecyclerOpciones();
@@ -132,6 +135,9 @@ public class MenuPrincipal extends AppCompatActivity {
     }
     private void referenciar() {
         miRecycler=findViewById(R.id.recyclerOpciones);
+        bundle = getIntent().getExtras();
+        recibeRol = bundle.getString("rol");
+        recibeUsuario= bundle.getString("usuario");
     }
 
     private void llenarRecyclerOpciones() {
@@ -145,8 +151,21 @@ public class MenuPrincipal extends AppCompatActivity {
                 for (DataSnapshot opcionesExisten : dataSnapshot.getChildren()) {
                     MenuOpciones misOpciones=opcionesExisten.getValue(MenuOpciones.class);
                     //solo adiciona las opciones del menú activas
-                    if (misOpciones.getActivo()==true)
+                    //if (misOpciones.getActivo()==true)
+                      //  listadoOpciones.add(misOpciones);
+                    if(recibeRol.equals("compras")&& misOpciones.getActivo()){
+                        if(misOpciones.getOrden().equals(5) ||misOpciones.getOrden().equals(7) ||misOpciones.getOrden().equals(8)){
+                            listadoOpciones.add(misOpciones);
+                        }
+                    }else
+                        if(recibeRol.equals("basico")&& misOpciones.getActivo()){
+                            if(misOpciones.getOrden().equals(5) ||misOpciones.getOrden().equals(8)){
+                                listadoOpciones.add(misOpciones);
+                        }
+                    }else
+                        if (recibeRol.equals("gestor") && misOpciones.getActivo()){
                         listadoOpciones.add(misOpciones);
+                    }
                 }
                 adaptadorMenu.notifyDataSetChanged();
             }

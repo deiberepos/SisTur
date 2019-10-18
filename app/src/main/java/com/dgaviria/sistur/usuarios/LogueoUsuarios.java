@@ -27,6 +27,7 @@ public class LogueoUsuarios extends AppCompatActivity{
     String nombreU,contrasenaU;
     LinearLayout miContenedor;
     ImageButton botonIngresar;
+    public static String enviarol;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +47,7 @@ public class LogueoUsuarios extends AppCompatActivity{
         editTextUsuario =  findViewById(R.id.editTextUsuario);
         editTextContrasena= findViewById(R.id.editTextPassword);
         botonIngresar=findViewById(R.id.botonIngreso);
+        enviarol="";
     }
 
     private void verificarPermiso(){
@@ -89,7 +91,12 @@ public class LogueoUsuarios extends AppCompatActivity{
                         //valida la contraseña
                         if(usuarioC.getContrasena().equals(contrasenaU)) {
                             //verifica si tiene el rol de administrador
+                            if(usuarioC.rolbasico){enviarol="basico";}
+                            if(usuarioC.rolgestor){enviarol="gestor";}
+                            if(usuarioC.rolcompras){enviarol="compras";}
                             Intent miIntento = new Intent(LogueoUsuarios.this, MenuPrincipal.class);
+                            miIntento.putExtra("usuario",nombreU);
+                            miIntento.putExtra("rol",enviarol);
                             startActivity(miIntento);
                         }
                         else
