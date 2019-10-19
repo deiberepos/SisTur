@@ -49,15 +49,15 @@ public class CensoPoblacional extends AppCompatActivity {
 
     private int año, mes, dia;
     Button btnguardar, btnactualizar;
-    EditText editnombreInfante, editapellidoInfante, campoFecha, editobservaciones, editnombrePadre, editnombreMadre, editTeleMadre, editTelePadre, editDirPadre, editDirMadre;
+    EditText editRegistroInfante,editnombreInfante, editapellidoInfante, campoFecha, editobservaciones, editnombrePadre, editnombreMadre, editTeleMadre, editTelePadre, editDirPadre, editDirMadre;
     DatabaseReference miReferencia, misDatos, miReferenciaCentro;
-    String nombre, apellido, fecha, observacion, nombreMadr, nombrePadr, telM, telP, dirM, dirP, genero, centroasociado;
+    String registro, nombre, apellido, fecha, observacion, nombreMadr, nombrePadr, telM, telP, dirM, dirP, genero, centroasociado;
     Boolean activo;
     RadioGroup gen;
     RadioButton mas, fem;
     Bundle bundle;
     CheckBox acti;
-    private String opcion = "", nombree, apellidoo, fechaa, observacionn, nombreMadrr, telMM, dirMM, nombrePadrr, telPP, dirPP;
+    private String opcion = "", registroo,nombree, apellidoo, fechaa, observacionn, nombreMadrr, telMM, dirMM, nombrePadrr, telPP, dirPP;
     private static final int TIPO_DIALOGO = 0;
     private static DatePickerDialog.OnDateSetListener selectorFecha;
     private Spinner spin;
@@ -77,6 +77,8 @@ public class CensoPoblacional extends AppCompatActivity {
         } else {
             int actgeneroo, activoo;
             btnguardar.setVisibility(View.INVISIBLE);
+            registroo=bundle.getString("registro");
+            editRegistroInfante.setText(registroo);
             nombree = bundle.getString("nombre");
             editnombreInfante.setText(nombree);
             apellidoo = bundle.getString("apellido");
@@ -227,6 +229,14 @@ public class CensoPoblacional extends AppCompatActivity {
     }
 
     public void cargarDatos() {
+        if (editRegistroInfante.getText().toString().trim().isEmpty()) {
+            editRegistroInfante.setError("Registro requerido");
+            editRegistroInfante.requestFocus();
+            return;
+        } else {
+            registro = editRegistroInfante.getText().toString().trim().toLowerCase();
+            editRegistroInfante.setText(registro);
+        }
         if (editnombreInfante.getText().toString().trim().isEmpty()) {
             editnombreInfante.setError("Nombre requerido");
             editnombreInfante.requestFocus();
@@ -303,6 +313,14 @@ public class CensoPoblacional extends AppCompatActivity {
         guardarCenso();
     }
     public void cargarDatosDos() {
+        if (editRegistroInfante.getText().toString().trim().isEmpty()) {
+            editRegistroInfante.setError("Registro requerido");
+            editRegistroInfante.requestFocus();
+            return;
+        } else {
+            registro = editRegistroInfante.getText().toString().trim().toLowerCase();
+            editRegistroInfante.setText(registro);
+        }
         if (editnombreInfante.getText().toString().trim().isEmpty()) {
             editnombreInfante.setError("Nombre requerido");
             editnombreInfante.requestFocus();
@@ -383,7 +401,7 @@ public class CensoPoblacional extends AppCompatActivity {
     private void guardarCenso() {
         miReferencia = FirebaseDatabase.getInstance().getReference();
         misDatos = miReferencia.child("censoinfante");
-        misDatos.child("" + nombre).setValue(new Censo(nombre, apellido, genero, fecha, observacion, centroasociado, nombrePadr, telP, dirP, nombreMadr, telM, dirM, activo));
+        misDatos.child(registro).setValue(new Censo(registro,nombre, apellido, genero, fecha, observacion, centroasociado, nombrePadr, telP, dirP, nombreMadr, telM, dirM, activo));
         Toast.makeText(getApplicationContext(), "DATOS GUARDADOS CORRECTAMENTE", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getApplicationContext(), ListarCensoPoblacion.class);
         startActivity(intent);
@@ -391,18 +409,18 @@ public class CensoPoblacional extends AppCompatActivity {
 
     private void actualizarCenso() {
         AlertDialog.Builder builder = new AlertDialog.Builder(CensoPoblacional.this);
-        builder.setTitle("Desea actualizar: " + nombre);
+        builder.setTitle("Desea actualizar: " + registro);
         builder.setMessage("Está seguro que desea actualizar este Infante?");
         builder.setPositiveButton("ACTUALIZAR", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 miReferencia = FirebaseDatabase.getInstance().getReference();
                 final Censo censo = new Censo();
-                if (nombree.equals(nombre)) {
-                    miReferencia.child("censoinfante").child(nombre).setValue(new Censo(nombre, apellido, genero, fecha, observacion, centroasociado, nombrePadr, telP, dirP, nombreMadr, telM, dirM, activo));
+                if (registroo.equals(registro)) {
+                    miReferencia.child("censoinfante").child(registro).setValue(new Censo(registro,nombre, apellido, genero, fecha, observacion, centroasociado, nombrePadr, telP, dirP, nombreMadr, telM, dirM, activo));
                 } else {
-                    miReferencia.child("censoinfante").child(nombree).removeValue();
-                    miReferencia.child("censoinfante").child(nombre).setValue(new Censo(nombre, apellido, genero, fecha, observacion, centroasociado, nombrePadr, telP, dirP, nombreMadr, telM, dirM, activo));
+                    miReferencia.child("censoinfante").child(registroo).removeValue();
+                    miReferencia.child("censoinfante").child(registro).setValue(new Censo(registro,nombre, apellido, genero, fecha, observacion, centroasociado, nombrePadr, telP, dirP, nombreMadr, telM, dirM, activo));
                 }
                 Toast.makeText(CensoPoblacional.this, "Actualizado con éxito", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), ListarCensoPoblacion.class);
@@ -421,6 +439,7 @@ public class CensoPoblacional extends AppCompatActivity {
     public void referenciar() {
         btnguardar = findViewById(R.id.btnguardarcenso);
         btnactualizar = findViewById(R.id.btnactualizar);
+        editRegistroInfante=findViewById(R.id.registroinfante);
         editnombreInfante = findViewById(R.id.nombreinfante);
         editapellidoInfante = findViewById(R.id.apellidoinfante);
         fem = findViewById(R.id.femenino);

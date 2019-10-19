@@ -71,6 +71,7 @@ public class ListarCensoPoblacion extends AppCompatActivity {
                 }
                 Intent intent = new Intent(getApplicationContext(), CensoPoblacional.class);
                 intent.putExtra("opcion","actualizar");
+                intent.putExtra("registro",miCenso.getRegistro());
                 intent.putExtra("nombre",miCenso.getNombre());
                 intent.putExtra("apellido",miCenso.getApellidos());
                 intent.putExtra("tipo",tipo);

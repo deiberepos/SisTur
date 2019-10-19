@@ -2,6 +2,7 @@ package com.dgaviria.sistur.clases;
 
 public class Censo {
 
+    private String registro;
     private String nombre;
     private String apellidos;
     private String genero;
@@ -30,9 +31,11 @@ public class Censo {
         this.telfonomadre = "";
         this.dirmadre = "";
         this.centroasociado="";
+        this.registro="";
     }
 
-    public Censo(String nombre, String apellidos, String genero, String fecha, String observaciones, String centroasociado,String nombrepadre, String telfonopadre, String dirpadre, String nombremadre, String telfonomadre, String dirmadre, Boolean activo) {
+    public Censo(String registro,String nombre, String apellidos, String genero, String fecha, String observaciones, String centroasociado,String nombrepadre, String telfonopadre, String dirpadre, String nombremadre, String telfonomadre, String dirmadre, Boolean activo) {
+        this.registro=registro;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.genero = genero;
@@ -47,6 +50,14 @@ public class Censo {
         this.activo = activo;
         this.centroasociado=centroasociado;
 
+    }
+
+    public String getRegistro() {
+        return registro;
+    }
+
+    public void setRegistro(String registro) {
+        this.registro = registro;
     }
 
     public String getNombrepadre() {

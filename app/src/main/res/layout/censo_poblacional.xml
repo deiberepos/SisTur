@@ -35,12 +35,23 @@
                 android:textColor="@color/colorNegro"
                 android:textSize="25dp"
                 android:textStyle="bold" />
+            <EditText
+                android:id="@+id/registroinfante"
+                style="@style/edit"
+                android:inputType="number"
+                android:layout_height="42dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/personalizar_edit"
+                android:fontFamily="monospace"
+                android:hint="Registro del infante"
+                android:textColor="@color/colorPrimarioOscuro"
+                android:textColorHint="@color/colorPrimarioSuave"
+                android:textSize="15dp" />
 
             <EditText
                 android:id="@+id/nombreinfante"
                 style="@style/edit"
                 android:layout_height="42dp"
-                android:layout_marginTop="30dp"
                 android:background="@drawable/personalizar_edit"
                 android:fontFamily="monospace"
                 android:hint="Nombres del infante"
