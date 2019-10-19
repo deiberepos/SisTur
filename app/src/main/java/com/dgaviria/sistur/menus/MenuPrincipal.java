@@ -154,12 +154,14 @@ public class MenuPrincipal extends AppCompatActivity {
                     //if (misOpciones.getActivo()==true)
                       //  listadoOpciones.add(misOpciones);
                     if(recibeRol.equals("compras")&& misOpciones.getActivo()){
-                        if(misOpciones.getOrden().equals(5) ||misOpciones.getOrden().equals(7) ||misOpciones.getOrden().equals(8)){
-                            listadoOpciones.add(misOpciones);
+                        //if(misOpciones.getOrden().equals(5) ||misOpciones.getOrden().equals(7) ||misOpciones.getOrden().equals(8)){
+                        if(misOpciones.getMinimorol().equals("compras")||misOpciones.getMinimorol().equals("basico"))  {
+                        listadoOpciones.add(misOpciones);
                         }
                     }else
                         if(recibeRol.equals("basico")&& misOpciones.getActivo()){
-                            if(misOpciones.getOrden().equals(5) ||misOpciones.getOrden().equals(8)){
+                            //if(misOpciones.getOrden().equals(5) ||misOpciones.getOrden().equals(8)){
+                            if(misOpciones.getMinimorol().equals("basico"))  {
                                 listadoOpciones.add(misOpciones);
                         }
                     }else
