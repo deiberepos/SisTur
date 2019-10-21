@@ -1,6 +1,7 @@
 package com.dgaviria.sistur;
 
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -50,14 +51,14 @@ public class CensoPoblacional extends AppCompatActivity {
     private int año, mes, dia;
     Button btnguardar, btnactualizar;
     EditText editRegistroInfante,editnombreInfante, editapellidoInfante, campoFecha, editobservaciones, editnombrePadre, editnombreMadre, editTeleMadre, editTelePadre, editDirPadre, editDirMadre;
-    DatabaseReference miReferencia, misDatos, miReferenciaCentro;
-    String registro, nombre, apellido, fecha, observacion, nombreMadr, nombrePadr, telM, telP, dirM, dirP, genero, centroasociado;
+    DatabaseReference miReferencia, misDatos, miReferenciaCentro, poblacionC;
+    String registro, nombre, apellido, fecha, observacion, nombreMadr, nombrePadr, telM, telP, dirM, dirP, genero, centroasociado, recibecentro;
     Boolean activo;
     RadioGroup gen;
     RadioButton mas, fem;
     Bundle bundle;
     CheckBox acti;
-    private String opcion = "", registroo,nombree, apellidoo, fechaa, observacionn, nombreMadrr, telMM, dirMM, nombrePadrr, telPP, dirPP;
+    private String opcion = "", reciberegistro,nombree, apellidoo, fechaa, observacionn, nombreMadrr, telMM, dirMM, nombrePadrr, telPP, dirPP;
     private static final int TIPO_DIALOGO = 0;
     private static DatePickerDialog.OnDateSetListener selectorFecha;
     private Spinner spin;
@@ -77,12 +78,13 @@ public class CensoPoblacional extends AppCompatActivity {
         } else {
             int actgeneroo, activoo;
             btnguardar.setVisibility(View.INVISIBLE);
-            registroo=bundle.getString("registro");
-            editRegistroInfante.setText(registroo);
+            reciberegistro =bundle.getString("registro");
+            editRegistroInfante.setText(reciberegistro);
             nombree = bundle.getString("nombre");
             editnombreInfante.setText(nombree);
             apellidoo = bundle.getString("apellido");
             editapellidoInfante.setText(apellidoo);
+            recibecentro = bundle.getString("centroa");
             actgeneroo = bundle.getInt("tipo");
             if (actgeneroo == 1) {
                 mas.setChecked(true);
@@ -401,7 +403,22 @@ public class CensoPoblacional extends AppCompatActivity {
     private void guardarCenso() {
         miReferencia = FirebaseDatabase.getInstance().getReference();
         misDatos = miReferencia.child("censoinfante");
+        poblacionC = miReferencia.child("poblacionCentros");
         misDatos.child(registro).setValue(new Censo(registro,nombre, apellido, genero, fecha, observacion, centroasociado, nombrePadr, telP, dirP, nombreMadr, telM, dirM, activo));
+        poblacionC.child(centroasociado).child(registro).setValue(new Censo(registro,nombre, apellido, genero, fecha, observacion, centroasociado, nombrePadr, telP, dirP, nombreMadr, telM, dirM, activo));
+        poblacionC.child(centroasociado).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            long totalchild = dataSnapshot.getChildrenCount();
+            totalchild = totalchild-1;
+            poblacionC.child(centroasociado).child("totalcenso").setValue(totalchild);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         Toast.makeText(getApplicationContext(), "DATOS GUARDADOS CORRECTAMENTE", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getApplicationContext(), ListarCensoPoblacion.class);
         startActivity(intent);
@@ -415,13 +432,75 @@ public class CensoPoblacional extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 miReferencia = FirebaseDatabase.getInstance().getReference();
+                poblacionC = miReferencia.child("poblacionCentros");
                 final Censo censo = new Censo();
-                if (registroo.equals(registro)) {
+                if (reciberegistro.equals(registro)&& recibecentro.equals(centroasociado)) {
                     miReferencia.child("censoinfante").child(registro).setValue(new Censo(registro,nombre, apellido, genero, fecha, observacion, centroasociado, nombrePadr, telP, dirP, nombreMadr, telM, dirM, activo));
-                } else {
-                    miReferencia.child("censoinfante").child(registroo).removeValue();
+                    poblacionC.child(centroasociado).child(registro).setValue(new Censo(registro,nombre, apellido, genero, fecha, observacion, centroasociado, nombrePadr, telP, dirP, nombreMadr, telM, dirM, activo));
+
+                } else if(reciberegistro.equals(registro)&& !(recibecentro.equals(centroasociado))){
                     miReferencia.child("censoinfante").child(registro).setValue(new Censo(registro,nombre, apellido, genero, fecha, observacion, centroasociado, nombrePadr, telP, dirP, nombreMadr, telM, dirM, activo));
+                    poblacionC.child(recibecentro).child(reciberegistro).removeValue();
+                    poblacionC.child(centroasociado).child(registro).setValue(new Censo(registro,nombre, apellido, genero, fecha, observacion, centroasociado, nombrePadr, telP, dirP, nombreMadr, telM, dirM, activo));
+                    poblacionC.child(recibecentro).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            long totalchild = dataSnapshot.getChildrenCount();
+                            totalchild = totalchild-1;
+                            poblacionC.child(recibecentro).child("totalcenso").setValue(totalchild);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                    poblacionC.child(centroasociado).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            long totalchild = dataSnapshot.getChildrenCount();
+                            totalchild = totalchild-1;
+                            poblacionC.child(centroasociado).child("totalcenso").setValue(totalchild);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                }else if(!(reciberegistro.equals(registro))){
+                    miReferencia.child("censoinfante").child(reciberegistro).removeValue();
+                    poblacionC.child(recibecentro).child(reciberegistro).removeValue();
+                    miReferencia.child("censoinfante").child(registro).setValue(new Censo(registro,nombre, apellido, genero, fecha, observacion, centroasociado, nombrePadr, telP, dirP, nombreMadr, telM, dirM, activo));
+                    poblacionC.child(centroasociado).child(registro).setValue(new Censo(registro,nombre, apellido, genero, fecha, observacion, centroasociado, nombrePadr, telP, dirP, nombreMadr, telM, dirM, activo));
+                    poblacionC.child(centroasociado).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            long totalchild = dataSnapshot.getChildrenCount();
+                            totalchild = totalchild-1;
+                            poblacionC.child(centroasociado).child("totalcenso").setValue(totalchild);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                    poblacionC.child(recibecentro).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            long totalchild = dataSnapshot.getChildrenCount();
+                            totalchild = totalchild-1;
+                            poblacionC.child(recibecentro).child("totalcenso").setValue(totalchild);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
                 }
+
                 Toast.makeText(CensoPoblacional.this, "Actualizado con éxito", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), ListarCensoPoblacion.class);
                 startActivity(intent);

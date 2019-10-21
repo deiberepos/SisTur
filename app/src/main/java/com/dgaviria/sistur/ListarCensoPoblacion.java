@@ -78,6 +78,7 @@ public class ListarCensoPoblacion extends AppCompatActivity {
                 intent.putExtra("fecha",miCenso.getfecha());
                 intent.putExtra("observaciones",miCenso.getObservaciones());
                 intent.putExtra("nombrePadr",miCenso.getNombrepadre());
+                intent.putExtra("centroa",miCenso.getCentroasociado());
                 intent.putExtra("telefonpadre",miCenso.getTelfonopadre());
                 intent.putExtra("dirpadre",miCenso.getDirpadre());
                 intent.putExtra("nombreMaadre",miCenso.getNombremadre());
