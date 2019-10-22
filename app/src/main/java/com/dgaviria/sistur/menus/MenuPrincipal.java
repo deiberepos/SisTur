@@ -42,7 +42,7 @@ public class MenuPrincipal extends AppCompatActivity {
         setContentView(R.layout.menu_principal);
 
         referenciar();
-        Toast.makeText(getApplicationContext(),"el usuario es: "+recibeUsuario+" y el rol "+recibeRol, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(),"Bienvenido: "+recibeUsuario+" al menú "+recibeRol, Toast.LENGTH_SHORT).show();
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         miRecycler.setLayoutManager(linearLayoutManager);
         llenarRecyclerOpciones();

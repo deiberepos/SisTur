@@ -405,20 +405,24 @@ public class CensoPoblacional extends AppCompatActivity {
         misDatos = miReferencia.child("censoinfante");
         poblacionC = miReferencia.child("poblacionCentros");
         misDatos.child(registro).setValue(new Censo(registro,nombre, apellido, genero, fecha, observacion, centroasociado, nombrePadr, telP, dirP, nombreMadr, telM, dirM, activo));
-        poblacionC.child(centroasociado).child(registro).setValue(new Censo(registro,nombre, apellido, genero, fecha, observacion, centroasociado, nombrePadr, telP, dirP, nombreMadr, telM, dirM, activo));
-        poblacionC.child(centroasociado).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-            long totalchild = dataSnapshot.getChildrenCount();
-            totalchild = totalchild-1;
-            poblacionC.child(centroasociado).child("totalcenso").setValue(totalchild);
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+        if(activo){
+            poblacionC.child(centroasociado).child(registro).setValue(new Censo(registro,nombre, apellido, genero, fecha, observacion, centroasociado, nombrePadr, telP, dirP, nombreMadr, telM, dirM, activo));
+            poblacionC.child(centroasociado).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    long totalchild = dataSnapshot.getChildrenCount();
+                    totalchild = totalchild-1;
+                    poblacionC.child(centroasociado).child("totalcenso").setValue(totalchild);
+                }
 
-            }
-        });
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+        }
+
         Toast.makeText(getApplicationContext(), "DATOS GUARDADOS CORRECTAMENTE", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getApplicationContext(), ListarCensoPoblacion.class);
         startActivity(intent);
@@ -436,12 +440,30 @@ public class CensoPoblacional extends AppCompatActivity {
                 final Censo censo = new Censo();
                 if (reciberegistro.equals(registro)&& recibecentro.equals(centroasociado)) {
                     miReferencia.child("censoinfante").child(registro).setValue(new Censo(registro,nombre, apellido, genero, fecha, observacion, centroasociado, nombrePadr, telP, dirP, nombreMadr, telM, dirM, activo));
-                    poblacionC.child(centroasociado).child(registro).setValue(new Censo(registro,nombre, apellido, genero, fecha, observacion, centroasociado, nombrePadr, telP, dirP, nombreMadr, telM, dirM, activo));
+                    if(activo){
+                        poblacionC.child(centroasociado).child(registro).setValue(new Censo(registro,nombre, apellido, genero, fecha, observacion, centroasociado, nombrePadr, telP, dirP, nombreMadr, telM, dirM, activo));
+                    }else {
+                        poblacionC.child(centroasociado).child(registro).removeValue();
+                    }
+                    poblacionC.child(centroasociado).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            long totalchild = dataSnapshot.getChildrenCount();
+                            totalchild = totalchild-1;
+                            poblacionC.child(centroasociado).child("totalcenso").setValue(totalchild);
+                        }
 
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
                 } else if(reciberegistro.equals(registro)&& !(recibecentro.equals(centroasociado))){
                     miReferencia.child("censoinfante").child(registro).setValue(new Censo(registro,nombre, apellido, genero, fecha, observacion, centroasociado, nombrePadr, telP, dirP, nombreMadr, telM, dirM, activo));
                     poblacionC.child(recibecentro).child(reciberegistro).removeValue();
-                    poblacionC.child(centroasociado).child(registro).setValue(new Censo(registro,nombre, apellido, genero, fecha, observacion, centroasociado, nombrePadr, telP, dirP, nombreMadr, telM, dirM, activo));
+                    if(activo){
+                        poblacionC.child(centroasociado).child(registro).setValue(new Censo(registro,nombre, apellido, genero, fecha, observacion, centroasociado, nombrePadr, telP, dirP, nombreMadr, telM, dirM, activo));
+                    }
                     poblacionC.child(recibecentro).addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -472,7 +494,9 @@ public class CensoPoblacional extends AppCompatActivity {
                     miReferencia.child("censoinfante").child(reciberegistro).removeValue();
                     poblacionC.child(recibecentro).child(reciberegistro).removeValue();
                     miReferencia.child("censoinfante").child(registro).setValue(new Censo(registro,nombre, apellido, genero, fecha, observacion, centroasociado, nombrePadr, telP, dirP, nombreMadr, telM, dirM, activo));
-                    poblacionC.child(centroasociado).child(registro).setValue(new Censo(registro,nombre, apellido, genero, fecha, observacion, centroasociado, nombrePadr, telP, dirP, nombreMadr, telM, dirM, activo));
+                    if(activo){
+                        poblacionC.child(centroasociado).child(registro).setValue(new Censo(registro,nombre, apellido, genero, fecha, observacion, centroasociado, nombrePadr, telP, dirP, nombreMadr, telM, dirM, activo));
+                    }
                     poblacionC.child(centroasociado).addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -491,7 +515,7 @@ public class CensoPoblacional extends AppCompatActivity {
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             long totalchild = dataSnapshot.getChildrenCount();
                             totalchild = totalchild-1;
-                            poblacionC.child(recibecentro).child("totalcenso").setValue(totalchild);
+                            poblacionC.child(recibecentro         ).child("totalcenso").setValue(totalchild);
                         }
 
                         @Override
