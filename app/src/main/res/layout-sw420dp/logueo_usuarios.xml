@@ -27,8 +27,8 @@
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="195dp"
-        android:layout_height="125dp"
+        android:layout_width="194dp"
+        android:layout_height="119dp"
         android:layout_below="@+id/tvlogin"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
