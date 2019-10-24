@@ -27,11 +27,11 @@
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="64dp"
-        android:layout_height="72dp"
+        android:layout_width="195dp"
+        android:layout_height="125dp"
         android:layout_below="@+id/tvlogin"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/logoinicial" />
 
     <TextView

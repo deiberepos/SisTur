@@ -229,7 +229,6 @@ public class CensoPoblacional extends AppCompatActivity {
             }
         });
     }
-
     public void cargarDatos() {
         if (editRegistroInfante.getText().toString().trim().isEmpty()) {
             editRegistroInfante.setError("Registro requerido");

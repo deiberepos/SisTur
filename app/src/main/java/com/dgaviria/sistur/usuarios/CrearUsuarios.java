@@ -36,10 +36,10 @@ public class CrearUsuarios extends AppCompatActivity {
     LinearLayout miContenedor;
     Button botonRegistra,botonactualizar;
     RadioGroup rolSeleccionado;
-    Integer rolUsuario=0;
-    RadioButton roladmin,rolgest,rolcomp,rolbasic;
-    private String opciones ="",usuarioo,nombre,contraseña,correo;
-    private int tipo;
+    Integer rolUsuario;
+    RadioButton rolgest,rolcomp,rolbasic;
+    String opciones ="",usuarioo,nombre,contraseña,correo;
+    int tipo;
     Bundle bundle;
 
     @Override
@@ -62,16 +62,17 @@ public class CrearUsuarios extends AppCompatActivity {
             editTextVerificaContrasena.setText(contraseña);
             correo = bundle.getString("correo");
             editTextCorreo.setText(correo);
+
             tipo = bundle.getInt("tipo");
-            if (tipo==1)
+            if (tipo==2)
             {
                 rolgest.setChecked(true);
             }
-            if (tipo==2)
+            else
             {
                 rolcomp.setChecked(true);
             }
-            if (tipo==3)
+            if (tipo==4)
             {
                 rolbasic.setChecked(true);
             }
@@ -105,8 +106,6 @@ public class CrearUsuarios extends AppCompatActivity {
         rolbasic=findViewById(R.id.rolbasi);
         bundle=getIntent().getExtras();
         opciones=bundle.getString("opcion");
-
-
     }
 
     private void verificarDatosUsuario(){
@@ -189,20 +188,16 @@ public class CrearUsuarios extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup radioGroup, int cualRol) {
                 switch (cualRol) {
                     case R.id.rolgest:
-                        rolUsuario=1;
+                        rolUsuario=2;
                         nombreRol="gestor";
                         break;
                     case R.id.rolcomp:
-                        rolUsuario=2;
+                        rolUsuario=3;
                         nombreRol="compras";
                         break;
                     case R.id.rolbasi:
-                        rolUsuario=3;
+                        rolUsuario=4;
                         nombreRol="basico";
-                        break;
-                    default:
-                        rolUsuario=0;
-                        nombreRol="";
                         break;
                 }
             }
@@ -218,11 +213,6 @@ public class CrearUsuarios extends AppCompatActivity {
                         //valida el nombre del usuario
                         if (dataSnapshot.child("usuario").getValue(String.class).equals(usuarioU)) {
                             Toast.makeText(getApplicationContext(), "Este usuario ya existe, intente otro nombre", Toast.LENGTH_SHORT).show();
-                        }
-                        else {
-                            crearNuevoUsuario();
-                            Intent intent = new Intent(getApplicationContext(),ListarUsuarios.class);
-                            startActivity(intent);
                         }
                     }
                     else {
@@ -252,12 +242,10 @@ public class CrearUsuarios extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 miReferencia=FirebaseDatabase.getInstance().getReference();
                 if(usuarioo.equals(usuarioU)){
-                    miReferencia.child("usuarios").child(usuarioU).setValue(new Usuarios(usuarioU,contrasenaU,nombresU,correoE,false,rolUsuario==1,rolUsuario==2,rolUsuario==3));
+                    miReferencia.child("usuarios").child(usuarioU).setValue(new Usuarios(usuarioU,contrasenaU,nombresU,correoE,false,rolUsuario==2,rolUsuario==3,rolUsuario==4));
                 }else {
                     miReferencia.child("usuarios").child(usuarioo).removeValue();
-                    miReferencia.child("usuarios").child(usuarioU).setValue(new Usuarios(usuarioU,contrasenaU,nombresU,correoE,false,rolUsuario==1,rolUsuario==2,rolUsuario==3));
-                    misDatos=miReferencia.child("rol").child(nombreRol).child("miembros");
-                    misDatos.child(usuarioU).setValue(new Roles(true));
+                    miReferencia.child("usuarios").child(usuarioU).setValue(new Usuarios(usuarioU,contrasenaU,nombresU,correoE,false,rolUsuario==2,rolUsuario==3,rolUsuario==4));
                 }
                 Toast.makeText(CrearUsuarios.this,"Actualizado con éxito",Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), ListarUsuarios.class);

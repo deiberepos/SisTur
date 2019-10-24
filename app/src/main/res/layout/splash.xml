@@ -9,7 +9,7 @@
 
     <ImageView
         android:id="@+id/imagenSplash"
-        android:layout_width="199dp"
-        android:layout_height="221dp"
+        android:layout_width="487dp"
+        android:layout_height="905dp"
         android:src="@drawable/logoinicial" />
 </LinearLayout>
