@@ -138,8 +138,8 @@ public class GestionarCDIHCB extends AppCompatActivity {
         miReferencia.child("Centros").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                listaDeCDI.clear();
                 for (DataSnapshot datosbd : dataSnapshot.getChildren()) {
-
                     CdiHcb cdiHcb=datosbd.getValue(CdiHcb.class);
                     if (cdiHcb.getActivo()==true)
                     listaDeCDI.add(cdiHcb);

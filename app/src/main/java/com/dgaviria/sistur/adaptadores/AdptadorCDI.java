@@ -63,7 +63,6 @@ public class AdptadorCDI extends RecyclerView.Adapter <AdptadorCDI.CDIViewHolder
                 }
             });
         }
-
     }
     @NonNull
     @Override
