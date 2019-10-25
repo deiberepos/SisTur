@@ -17,11 +17,6 @@
             android:layout_gravity="center_horizontal"
             android:gravity="center">
 
-            <ImageView
-                android:layout_width="65dp"
-                android:layout_height="70dp"
-                android:background="@drawable/logoinicial" />
-
             <LinearLayout
                 android:id="@+id/layCalenda"
                 android:layout_width="match_parent"

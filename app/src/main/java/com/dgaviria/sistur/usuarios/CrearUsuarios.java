@@ -36,7 +36,7 @@ public class CrearUsuarios extends AppCompatActivity {
     LinearLayout miContenedor;
     Button botonRegistra,botonactualizar;
     RadioGroup rolSeleccionado;
-    Integer rolUsuario;
+    Integer rolUsuario=0;
     RadioButton rolgest,rolcomp,rolbasic;
     String opciones ="",usuarioo,nombre,contraseña,correo;
     int tipo;

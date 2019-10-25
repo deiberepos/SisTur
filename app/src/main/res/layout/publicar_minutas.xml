@@ -8,12 +8,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <ImageView
-            android:layout_width="65dp"
-            android:layout_height="70dp"
-            android:background="@drawable/logoinicial"
-            android:layout_gravity="start"
-            />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -24,7 +18,6 @@
             android:shadowRadius="1.5"
             android:text="Publicación de Minutas"
             android:textColor="@color/colorNegro"
-            android:layout_marginTop="-70dp"
             android:textSize="25sp"
             android:textStyle="bold" />
 
