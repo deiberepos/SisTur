@@ -7,14 +7,9 @@
     app:cardCornerRadius="2dp"
     app:cardElevation="0dp"
     android:layout_margin="1dp"
-    app:cardBackgroundColor="@color/colorAzulOscuro2"
-    tools:context=".alimentos.AlimentosLista">
-    <com.balysv.materialripple.MaterialRippleLayout
-        style="@style/RippleStyleBlack"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    tools:context=".alimentos.ListarPlanAlimenticio">
+
         <LinearLayout
-            android:id="@+id/lytPadre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/selector_alimentos"
@@ -29,24 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-                <RelativeLayout
-                    android:id="@+id/lytMarcado"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    >
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:src="@drawable/circulo"
-                        android:tint="@color/colorRojo"
-                        />
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:src="@drawable/ic_marcado"
-                        android:layout_centerInParent="true"
-                        />
-                </RelativeLayout>
+
                 <RelativeLayout
                     android:id="@+id/lytImagen"
                     android:layout_width="wrap_content"
@@ -65,7 +43,7 @@
                         android:maxLines="1"
                         android:singleLine="true"
                         android:text="Código"
-                        android:textColor="@color/colorClaro"
+                        android:textColor="@color/colorAzulOscuro3"
                         android:textSize="14dp"
                         />
                 </RelativeLayout>
@@ -89,7 +67,7 @@
                         android:text="Nombre Grupo"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                         android:textStyle="normal"
-                        android:textColor="@color/colorClaro"
+                        android:textColor="@color/colorAzulOscuro3"
                         />
                     <TextView
                         android:id="@+id/txtNombreA"
@@ -98,9 +76,9 @@
                         android:layout_marginTop="2dp"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:text="Código"
+                        android:text="Nombre Alimento"
                         android:textStyle="bold"
-                        android:textColor="@color/colorClaro"
+                        android:textColor="@color/colorAzulOscuro3"
                         android:textSize="12dp"
                         />
                     <TextView
@@ -110,13 +88,12 @@
                         android:layout_marginTop="2dp"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:text="Código"
-                        android:textColor="@color/colorClaro"
+                        android:text="Nombre Regional"
+                        android:textColor="@color/colorRojo"
                         android:textSize="12dp"
                         android:textStyle="italic"
                         />
                 </LinearLayout>
             </RelativeLayout>
         </LinearLayout>
-    </com.balysv.materialripple.MaterialRippleLayout>
 </androidx.cardview.widget.CardView>

@@ -7,10 +7,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,8 +28,6 @@ public class ListarPlanAlimenticio extends AppCompatActivity {
     AdaptadorPlanAlimenticio adaptadorAlimentos;
     DatabaseReference miReferenciaA;
     TextView numSelecc,numTotal;
-    EditText buscarAlimento;
-    Button botonGuarda, botonVolver,botonBuscar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,60 +36,11 @@ public class ListarPlanAlimenticio extends AppCompatActivity {
         referenciar();
         llenarRecyclerAlimentos();
         adaptadorAlimentos=new AdaptadorPlanAlimenticio(this,listaDeAlimentos);
-
-
         miRecyclerA.setAdapter(adaptadorAlimentos);
-        adaptadorAlimentos.setOnClickListener(new AdaptadorPlanAlimenticio.EscuchaPresionaClick() {
-            @Override
-            public void itemClick(View vista, PlanAlimenticio misAlimentos, int posicion) {
-                if (adaptadorAlimentos.numeroDeAlimentosSeleccionados()>0){
-                    habilitarAcciones(posicion);
-                }
-                else{
-                    Toast.makeText(getApplicationContext(), "Mantenga presionado para iniciar con la selección" , Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void itemClickLargo(View vista, PlanAlimenticio misAlimentos, int posicion) {
-                habilitarAcciones(posicion);
-            }
-        });
-/*        botonGuarda.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(),"Guardando lista alimentos...",Toast.LENGTH_SHORT).show();
-            }
-        });*/
-/*        botonVolver.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });*/
-        /*botonBuscar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String textoBuscar = buscarAlimento.getText().toString().trim();
-                Toast.makeText(getApplicationContext(),"Buscando "+textoBuscar,Toast.LENGTH_SHORT).show();
-            }
-        });
-*/
-    }
-
-    private void habilitarAcciones(int posicion) {
-        adaptadorAlimentos.habilitaSeleccion(posicion);
-        int conteo=adaptadorAlimentos.numeroDeAlimentosSeleccionados();
-        numSelecc.setText(String.valueOf(conteo).trim());
-        PlanAlimenticio miAlimento=adaptadorAlimentos.traigaAlimento(posicion);
-        miAlimento.setActivo(!miAlimento.getActivo());
     }
 
     private void referenciar() {
         miRecyclerA =findViewById(R.id.recyclerListaA);
-        numSelecc=findViewById(R.id.numSeleccionados);
-        numTotal=findViewById(R.id.numAlimentos);
-
         miRecyclerA.setLayoutManager(new LinearLayoutManager(this));
         miReferenciaA=FirebaseDatabase.getInstance().getReference();
         listaDeAlimentos =new ArrayList<>();
@@ -111,7 +56,6 @@ public class ListarPlanAlimenticio extends AppCompatActivity {
                     PlanAlimenticio miAlimento=alimentosExisten.getValue(PlanAlimenticio.class);
                     listaDeAlimentos.add(miAlimento);
                 }
-                numTotal.setText(String.valueOf(listaDeAlimentos.size()).trim());
                 adaptadorAlimentos.notifyDataSetChanged();
             }
             @Override

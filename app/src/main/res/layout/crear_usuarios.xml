@@ -47,7 +47,6 @@
                     android:id="@+id/editTextUsuario"
                     style="@style/edit"
                     android:layout_marginTop="35dp"
-                    android:background="@drawable/personalizar_edit"
                     android:fontFamily="monospace"
                     android:hint="usuario"
                     android:inputType="textPostalAddress"
@@ -181,6 +180,16 @@
                             android:typeface="monospace"
                             app:buttonTint="@color/colorRojo" />
                     </RadioGroup>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
                     <Button
                         android:id="@+id/botonRegistrar"
                         android:layout_width="180dp"
@@ -201,16 +210,6 @@
                         android:text="Actualizar Usuario"
                         android:textAllCaps="false"
                         android:textColor="@color/colorClaro" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
                 </LinearLayout>
 
             </LinearLayout>

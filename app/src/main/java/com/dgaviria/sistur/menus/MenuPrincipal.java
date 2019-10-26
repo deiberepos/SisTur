@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.dgaviria.sistur.CompraGaleria;
 import com.dgaviria.sistur.ConsultaMinutas;
 import com.dgaviria.sistur.CrearCalendario;
+import com.dgaviria.sistur.EntregaGaleria;
 import com.dgaviria.sistur.ListarCensoPoblacion;
 import com.dgaviria.sistur.PublicarMinutas;
 import com.dgaviria.sistur.adaptadores.AdaptadorMenuPpal;
@@ -80,8 +81,12 @@ public class MenuPrincipal extends AppCompatActivity {
                         startActivity(miIntento7);
                         break;
                     case 8:
-                        Intent miIntento8 = new Intent(MenuPrincipal.this, PublicarMinutas.class);
+                        Intent miIntento8 = new Intent(MenuPrincipal.this, EntregaGaleria.class);
                         startActivity(miIntento8);
+                        break;
+                    case 9:
+                        Intent miIntento9 = new Intent(MenuPrincipal.this, PublicarMinutas.class);
+                        startActivity(miIntento9);
                         break;
                     default:
                         Toast.makeText(getApplicationContext(),"Opción "+misOpciones.getTitulo(),Toast.LENGTH_SHORT).show();
@@ -121,8 +126,12 @@ public class MenuPrincipal extends AppCompatActivity {
                         startActivity(miIntento7);
                         break;
                     case 8:
-                        Intent miIntento8 = new Intent(MenuPrincipal.this, PublicarMinutas.class);
+                        Intent miIntento8 = new Intent(MenuPrincipal.this, EntregaGaleria.class);
                         startActivity(miIntento8);
+                        break;
+                    case 9:
+                        Intent miIntento9 = new Intent(MenuPrincipal.this, PublicarMinutas.class);
+                        startActivity(miIntento9);
                         break;
                     default:
                         Toast.makeText(getApplicationContext(), "Imagen " + misOpciones.getTitulo(), Toast.LENGTH_SHORT).show();

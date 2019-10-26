@@ -5,81 +5,54 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".alimentos.ListarPlanAlimenticio">
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:orientation="vertical">
+        android:layout_gravity="center_horizontal"
+        android:gravity="center">
 
-        <RelativeLayout
-            android:layout_gravity="center"
+        <ImageView
+            android:layout_width="65dp"
+            android:layout_height="70dp"
+            android:background="@drawable/logoinicial" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="33dp"
-            android:layout_marginStart="2dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="2dp">
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/txtAlimentos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginTop="2dp"
-                android:text="Alimentos: "
-                android:textAllCaps="false"
+                android:layout_gravity="center"
+                android:shadowColor="@color/colorPrimarioOscuro"
+                android:shadowDx="-2"
+                android:shadowDy="-2"
+                android:shadowRadius="1.5"
+                android:text="Plan Alimenticio"
                 android:textColor="@color/colorNegro"
-                android:textSize="14sp"
+                android:textSize="25dp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/numSeleccionados"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_toEndOf="@+id/txtAlimentos"
-                android:maxLength="3"
-                android:text="000"
-                android:textColor="@color/colorRojo"
-                android:textSize="14sp"
-                android:layout_marginTop="2dp"
-                android:textStyle="bold" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="30dp"
+                    android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/txtDe"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginTop="2dp"
-                android:layout_toEndOf="@id/numSeleccionados"
-                android:text=" de "
-                android:textColor="@color/colorNegro"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"/>
 
-            <TextView
-                android:id="@+id/numAlimentos"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_toEndOf="@+id/txtDe"
-                android:maxLength="3"
-                android:layout_marginEnd="8dp"
-                android:text="000"
-                android:textColor="@color/colorRojo"
-                android:textSize="14sp"
-                android:layout_marginTop="2dp"
-                android:textStyle="bold" />
-        </RelativeLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerListaA"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:scrollbars="vertical" />
-    </LinearLayout>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerListaA"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:scrollbars="vertical" />
+                </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

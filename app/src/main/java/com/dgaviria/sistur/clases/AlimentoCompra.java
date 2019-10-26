@@ -14,22 +14,15 @@ public class AlimentoCompra {
     public AlimentoCompra() {
     }
 
-    public AlimentoCompra(String codigo,String fechacompra,String ingrediente, String medida, String cantidad, String total,String entregado,String porentregar) {
+    public AlimentoCompra(String fechacompra, String ingrediente, String medida, String cantidad, String valorcompra, String total, String entregado, String porentregar, String codigo) {
+        this.fechacompra = fechacompra;
         this.ingrediente = ingrediente;
         this.medida = medida;
         this.cantidad = cantidad;
+        this.valorcompra = valorcompra;
         this.total = total;
         this.entregado = entregado;
         this.porentregar = porentregar;
-        this.fechacompra = fechacompra;
-        this.codigo = codigo;
-    }
-
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 
@@ -39,6 +32,46 @@ public class AlimentoCompra {
 
     public void setFechacompra(String fechacompra) {
         this.fechacompra = fechacompra;
+    }
+
+    public String getIngrediente() {
+        return ingrediente;
+    }
+
+    public void setIngrediente(String ingrediente) {
+        this.ingrediente = ingrediente;
+    }
+
+    public String getMedida() {
+        return medida;
+    }
+
+    public void setMedida(String medida) {
+        this.medida = medida;
+    }
+
+    public String getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(String cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public String getValorcompra() {
+        return valorcompra;
+    }
+
+    public void setValorcompra(String valorcompra) {
+        this.valorcompra = valorcompra;
+    }
+
+    public String getTotal() {
+        return total;
+    }
+
+    public void setTotal(String total) {
+        this.total = total;
     }
 
     public String getEntregado() {
@@ -57,44 +90,11 @@ public class AlimentoCompra {
         this.porentregar = porentregar;
     }
 
-    public String getIngrediente() {
-        return ingrediente;
+    public String getCodigo() {
+        return codigo;
     }
 
-    public String getMedida() {
-        return medida;
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
-
-    public String getCantidad() {
-        return cantidad;
-    }
-
-    public String getTotal() {
-        return total;
-    }
-
-    public void setIngrediente(String ingrediente) {
-        this.ingrediente = ingrediente;
-    }
-
-    public void setMedida(String medida) {
-        this.medida = medida;
-    }
-
-    public void setCantidad(String cantidad) {
-        this.cantidad = cantidad;
-    }
-
-    public void setTotal(String total) {
-        this.total = total;
-    }
-
-    public String getValorcompra() {
-        return valorcompra;
-    }
-
-    public void setValorcompra(String valorcompra) {
-        this.valorcompra = valorcompra;
-    }
-
 }
