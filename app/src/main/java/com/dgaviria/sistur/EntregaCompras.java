@@ -50,7 +50,6 @@ public class EntregaCompras extends AppCompatActivity {
     DatabaseReference miReferenciaCDIEI,miReferenciaSemEI,miReferenciaLista;
     ArrayAdapter<String> adaptadorSemanaEI,adaptadorCDIEI;
     ArrayList<String> listadoSemanasEI, listadoCDIEI;
-    RecyclerView miRecyclerListaEntrega;
     Calendar miCalendarioEI;
     Boolean aprobarQR;
 
@@ -62,6 +61,7 @@ public class EntregaCompras extends AppCompatActivity {
         setContentView(R.layout.entrega_compras);
 
         referenciar();
+        mostrarFechaEI();
         selectorCDIEI.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adaptadorVista, View view, int i, long l) {
@@ -87,33 +87,30 @@ public class EntregaCompras extends AppCompatActivity {
         botonGenerar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (aprobarQR)
+                if (aprobarQR && nombreSemanaEI!=null && !nombreSemanaEI.isEmpty() && nombreCDIEI!=null && !nombreCDIEI.isEmpty())
                     try {
-                        imagenQR = convierteTextoAQR("76309798");
-
+                        String textoQR=nombreSemanaEI+nombreCDIEI+"76309798";
+                        imagenQR = convierteTextoAQR(textoQR);
                         codigoQR.setImageBitmap(imagenQR);
-
                     } catch (WriterException e) {
                         e.printStackTrace();
                     }
                 else
-                    Toast.makeText(EntregaCompras.this, "No se puede generar el código porque no hay lista de compras asociada", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EntregaCompras.this, "Debe seleccionar una semana y un CDI", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     private void referenciar() {
         codigoQR= findViewById(R.id.imagenQR);
         botonGenerar = findViewById(R.id.botonQR);
-        campoFechaEI=findViewById(R.id.editFechaEntrega);
+        campoFechaEI=findViewById(R.id.editFechaEntregaEI);
         miCalendarioEI = Calendar.getInstance();
         año = miCalendarioEI.get(Calendar.YEAR);
         mes = miCalendarioEI.get(Calendar.MONTH)+1;
         dia = miCalendarioEI.get(Calendar.DAY_OF_MONTH);
-        selectorSemanasEI=findViewById(R.id.selectorSemanaE);
-        selectorCDIEI=findViewById(R.id.selectorCDIE);
-        miRecyclerListaEntrega =findViewById(R.id.recyclerEntregas);
+        selectorSemanasEI=findViewById(R.id.selectorSemanaEI);
+        selectorCDIEI=findViewById(R.id.selectorCDIEI);
         aprobarQR=false;
         llenarListaCDIEI();
         llenarListaSemanasEI();
@@ -136,7 +133,7 @@ public class EntregaCompras extends AppCompatActivity {
             int offset = y * bitMatrixWidth;
             for (int x = 0; x < bitMatrixWidth; x++) {
                 pixels[offset + x] = bitMatrix.get(x, y) ?
-                        getResources().getColor(R.color.colorNegro):getResources().getColor(R.color.colorClaro);
+                        getResources().getColor(R.color.colorNegro):getResources().getColor(R.color.colorBlanco);
             }
         }
         Bitmap bitmap = Bitmap.createBitmap(bitMatrixWidth, bitMatrixHeight, Bitmap.Config.ARGB_4444);
@@ -147,7 +144,7 @@ public class EntregaCompras extends AppCompatActivity {
     private void mostrarFechaEI() {
         campoFechaEI.setText(dia + "/" + mes + "/" + año);
     }
-    public void mostrarCalendarioE(View view) {
+    public void mostrarCalendarioEI(View view) {
         Calendar miCalendario = new GregorianCalendar();//Calendar.getInstance();
         miCalendario.setTime(new Date());
         new DatePickerDialog(this, R.style.TemaCalendario, new DatePickerDialog.OnDateSetListener() {
@@ -161,10 +158,10 @@ public class EntregaCompras extends AppCompatActivity {
         }, miCalendario.get(Calendar.YEAR), miCalendario.get(Calendar.MONTH), miCalendario.get(Calendar.DAY_OF_MONTH)).show();
     }
     private void lecturaCDIEI(){
-        final ArrayList<AlimentoEntrega> lista=new ArrayList<>();
         fechaEntregaI=campoFechaEI.getText().toString();
         if (nombreCDIEI!=null && !nombreCDIEI.isEmpty() && nombreSemanaEI!=null && !nombreSemanaEI.isEmpty() && fechaEntregaI!=null && !fechaEntregaI.isEmpty()){
             //Verifica la existencia de la lista de entregas para el CDI en la semana seleccionada
+            aprobarQR=true;
             miReferenciaLista= FirebaseDatabase.getInstance().getReference("entregas").child(nombreCDIEI);
             miReferenciaLista.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -172,8 +169,8 @@ public class EntregaCompras extends AppCompatActivity {
                     if (dataSnapshot.exists()){ //Si existen entregas para el CDI
                         for (DataSnapshot miSemana:dataSnapshot.getChildren()){
                             if (miSemana.getValue(String.class).equals(nombreSemanaEI)){ //verifica si la semana de entrega es la que seleccionó
-                                //Encontró que si está guardada la lista de compras
-                                aprobarQR=true;
+                                //Encontró que ya ha existe una entrega
+                                aprobarQR=false;
                             }
                         }
                     }
@@ -184,6 +181,8 @@ public class EntregaCompras extends AppCompatActivity {
 
                 }
             });
+            if (!aprobarQR)
+                Toast.makeText(this, "Ya se ha realizado una entrega, no se puede volver a realizar", Toast.LENGTH_SHORT).show();
         }
         else
             Toast.makeText(this, "Debes seleccionar todos los datos para continuar", Toast.LENGTH_SHORT).show();

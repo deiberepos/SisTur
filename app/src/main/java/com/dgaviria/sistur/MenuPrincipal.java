@@ -1,4 +1,4 @@
-package com.dgaviria.sistur.menus;
+package com.dgaviria.sistur;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,18 +9,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.dgaviria.sistur.CompraGaleria;
-import com.dgaviria.sistur.ConsultaMinutas;
-import com.dgaviria.sistur.CrearCalendario;
-import com.dgaviria.sistur.EntregaCompras;
-import com.dgaviria.sistur.EntregaGaleria;
-import com.dgaviria.sistur.ListarCensoPoblacion;
-import com.dgaviria.sistur.PublicarMinutas;
 import com.dgaviria.sistur.adaptadores.AdaptadorMenuPpal;
 import com.dgaviria.sistur.alimentos.ListarPlanAlimenticio;
 import com.dgaviria.sistur.clases.MenuOpciones;
-import com.dgaviria.sistur.GestionarCDIHCB;
-import com.dgaviria.sistur.R;
 import com.dgaviria.sistur.usuarios.ListarUsuarios;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -44,7 +35,7 @@ public class MenuPrincipal extends AppCompatActivity {
         setContentView(R.layout.menu_principal);
 
         referenciar();
-        Toast.makeText(getApplicationContext(),"Bienvenido: "+recibeUsuario+" al menú "+recibeRol, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(),"Bienvenido(a) "+recibeUsuario+"\n"+"Tu rol es "+recibeRol, Toast.LENGTH_SHORT).show();
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         miRecycler.setLayoutManager(linearLayoutManager);
         llenarRecyclerOpciones();

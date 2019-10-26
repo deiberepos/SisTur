@@ -23,7 +23,7 @@
             android:name=".CrearCalendario"
             android:theme="@style/noaction" />
         <activity android:name=".ConsultaMinutas" />
-        <activity android:name=".menus.MenuPrincipal" />
+        <activity android:name=".MenuPrincipal" />
         <activity android:name=".usuarios.CrearUsuarios" />
         <activity
             android:name=".GestionarCDIHCB"

@@ -5,6 +5,7 @@
     <color name="colorPrimarioOscuro">#0E1F94</color>
     <color name="colorAzulsuave">#01D3F0</color>
     <color name="colorClaro">#dff2fa</color>
+    <color name="colorBlanco">#FFFFFF</color>
     <color name="colorRojo">#B40512</color>
     <color name="colorAmarillo">#F3D905</color>
     <color name="colorNaranja">#FF9800</color>
