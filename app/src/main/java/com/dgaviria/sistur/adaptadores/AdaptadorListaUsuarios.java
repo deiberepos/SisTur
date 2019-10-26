@@ -25,12 +25,11 @@ public class AdaptadorListaUsuarios extends RecyclerView.Adapter<AdaptadorListaU
     public interface OnItemClick{
         void itemClick(Usuarios misUsuarios,int posicion);
         void modificaClick(Usuarios misUsuarios,int posicion);
-        void eliminaClick(Usuarios misUsuarios,int posicion);
     }
     private OnItemClick listener;
 
     public static class UsuariosViewHolder extends RecyclerView.ViewHolder{
-        ImageView modifica, elimina;
+        ImageView modifica;
         TextView nombreU,nombres,rol;
 
         public UsuariosViewHolder(View vistaItem){
@@ -74,19 +73,10 @@ public class AdaptadorListaUsuarios extends RecyclerView.Adapter<AdaptadorListaU
 
     @Override
     public void onBindViewHolder(UsuariosViewHolder holder, int position) {
-        String nombreRol="";
         Usuarios miUsuario=listadoUsuarios.get(position);
-        if(miUsuario.getRolsuper())
-            nombreRol="SuperUsuario";
-        else if (miUsuario.getRolgestor())
-            nombreRol="Gestor";
-        else if (miUsuario.getRolcompras())
-            nombreRol="CompraGaleria";
-        else if (miUsuario.getRolbasico())
-            nombreRol="Basico";
         holder.nombreU.setText(miUsuario.getUsuario());
         holder.nombres.setText(miUsuario.getNombre());
-        holder.rol.setText(nombreRol);
+        holder.rol.setText(miUsuario.getRolusuario());
         holder.modifica.setImageResource(R.mipmap.usuarios);
         holder.bind(listadoUsuarios.get(position),position,listener);
     }

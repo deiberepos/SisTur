@@ -6,10 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.dgaviria.sistur.clases.Usuarios;
@@ -25,7 +23,6 @@ public class LogueoUsuarios extends AppCompatActivity{
     DatabaseReference miReferencia;
     EditText editTextUsuario, editTextContrasena;
     String nombreU,contrasenaU;
-    LinearLayout miContenedor;
     ImageButton botonIngresar;
     public static String enviarol;
     @Override
@@ -82,18 +79,13 @@ public class LogueoUsuarios extends AppCompatActivity{
                             dataSnapshot.child("contrasena").getValue(String.class),
                             dataSnapshot.child("nombre").getValue(String.class),
                             dataSnapshot.child("correo").getValue(String.class),
-                            dataSnapshot.child("rolsuper").getValue(Boolean.class),
-                            dataSnapshot.child("rolgestor").getValue(Boolean.class),
-                            dataSnapshot.child("rolcompras").getValue(Boolean.class),
-                            dataSnapshot.child("rolbasico").getValue(Boolean.class));
+                            dataSnapshot.child("rolusuario").getValue(String.class));
                     //valida el nombre del usuario
                     if (usuarioC.getUsuario().equals(nombreU)) {
                         //valida la contraseña
                         if(usuarioC.getContrasena().equals(contrasenaU)) {
                             //verifica si tiene el rol de administrador
-                            if(usuarioC.rolbasico){enviarol="basico";}
-                            if(usuarioC.rolgestor){enviarol="gestor";}
-                            if(usuarioC.rolcompras){enviarol="compras";}
+                            enviarol=usuarioC.rolusuario;
                             Intent miIntento = new Intent(LogueoUsuarios.this, MenuPrincipal.class);
                             miIntento.putExtra("usuario",nombreU);
                             miIntento.putExtra("rol",enviarol);

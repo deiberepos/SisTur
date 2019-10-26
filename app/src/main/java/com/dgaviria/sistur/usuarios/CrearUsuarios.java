@@ -15,11 +15,6 @@ import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
-
-import com.dgaviria.sistur.CensoPoblacional;
-import com.dgaviria.sistur.ListarCensoPoblacion;
-import com.dgaviria.sistur.clases.Censo;
-import com.dgaviria.sistur.clases.Roles;
 import com.dgaviria.sistur.clases.Usuarios;
 import com.dgaviria.sistur.R;
 import com.google.firebase.database.DataSnapshot;
@@ -37,9 +32,8 @@ public class CrearUsuarios extends AppCompatActivity {
     Button botonRegistra,botonactualizar;
     RadioGroup rolSeleccionado;
     Integer rolUsuario=0;
-    RadioButton roladmin,rolgest,rolcomp,rolbasic;
-    private String opciones ="",usuarioo,nombre,contraseña,correo;
-    private int tipo;
+    RadioButton rolgest,rolcomp,rolbasic;
+    private String opciones ="",usuario,nombre,contraseña,correo;
     Bundle bundle;
 
     @Override
@@ -52,8 +46,8 @@ public class CrearUsuarios extends AppCompatActivity {
             botonactualizar.setVisibility(View.INVISIBLE);
         }else {
             botonRegistra.setVisibility(View.INVISIBLE);
-            usuarioo = bundle.getString("usuario");
-            editTextUsuario.setText(usuarioo);
+            usuario= bundle.getString("usuario");
+            editTextUsuario.setText(usuario);
             nombre = bundle.getString("nombre");
             editTextNombres.setText(nombre);
             contraseña = bundle.getString("contrasena");
@@ -62,18 +56,16 @@ public class CrearUsuarios extends AppCompatActivity {
             editTextVerificaContrasena.setText(contraseña);
             correo = bundle.getString("correo");
             editTextCorreo.setText(correo);
-            tipo = bundle.getInt("tipo");
-            if (tipo==1)
-            {
-                rolgest.setChecked(true);
-            }
-            if (tipo==2)
-            {
-                rolcomp.setChecked(true);
-            }
-            if (tipo==3)
-            {
-                rolbasic.setChecked(true);
+            switch (bundle.getString("tipo")){
+                case "gestor":
+                    rolgest.setChecked(true);
+                    break;
+                case "compras":
+                    rolcomp.setChecked(true);
+                    break;
+                case "basico":
+                    rolbasic.setChecked(true);
+                    break;
             }
         }
         botonactualizar.setOnClickListener(new View.OnClickListener() {
@@ -105,8 +97,6 @@ public class CrearUsuarios extends AppCompatActivity {
         rolbasic=findViewById(R.id.rolbasi);
         bundle=getIntent().getExtras();
         opciones=bundle.getString("opcion");
-
-
     }
 
     private void verificarDatosUsuario(){
@@ -189,19 +179,15 @@ public class CrearUsuarios extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup radioGroup, int cualRol) {
                 switch (cualRol) {
                     case R.id.rolgest:
-                        rolUsuario=1;
                         nombreRol="gestor";
                         break;
                     case R.id.rolcomp:
-                        rolUsuario=2;
                         nombreRol="compras";
                         break;
                     case R.id.rolbasi:
-                        rolUsuario=3;
                         nombreRol="basico";
                         break;
                     default:
-                        rolUsuario=0;
                         nombreRol="";
                         break;
                 }
@@ -251,13 +237,11 @@ public class CrearUsuarios extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 miReferencia=FirebaseDatabase.getInstance().getReference();
-                if(usuarioo.equals(usuarioU)){
-                    miReferencia.child("usuarios").child(usuarioU).setValue(new Usuarios(usuarioU,contrasenaU,nombresU,correoE,false,rolUsuario==1,rolUsuario==2,rolUsuario==3));
+                if(usuario.equals(usuarioU)){
+                    miReferencia.child("usuarios").child(usuarioU).setValue(new Usuarios(usuarioU,contrasenaU,nombresU,correoE,nombreRol));
                 }else {
-                    miReferencia.child("usuarios").child(usuarioo).removeValue();
-                    miReferencia.child("usuarios").child(usuarioU).setValue(new Usuarios(usuarioU,contrasenaU,nombresU,correoE,false,rolUsuario==1,rolUsuario==2,rolUsuario==3));
-                    misDatos=miReferencia.child("rol").child(nombreRol).child("miembros");
-                    misDatos.child(usuarioU).setValue(new Roles(true));
+                    miReferencia.child("usuarios").child(usuario).removeValue();
+                    miReferencia.child("usuarios").child(usuarioU).setValue(new Usuarios(usuarioU,contrasenaU,nombresU,correoE,nombreRol));
                 }
                 Toast.makeText(CrearUsuarios.this,"Actualizado con éxito",Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), ListarUsuarios.class);
@@ -279,9 +263,7 @@ public class CrearUsuarios extends AppCompatActivity {
         miReferencia= FirebaseDatabase.getInstance().getReference();
         //guarda los datos del usuario
         misDatos=miReferencia.child("usuarios");
-        misDatos.child(usuarioU).setValue(new Usuarios(usuarioU,contrasenaU,nombresU,correoE,false,rolUsuario==1,rolUsuario==2,rolUsuario==3));
-        /*misDatos=miReferencia.child("rol").child(nombreRol).child("miembros");
-        misDatos.child(usuarioU).setValue(new Roles(true));*/
+        misDatos.child(usuarioU).setValue(new Usuarios(usuarioU,contrasenaU,nombresU,correoE,nombreRol));
         Toast.makeText(this,"Usuario creado exitosamente",Toast.LENGTH_LONG).show();
         finish();
     }

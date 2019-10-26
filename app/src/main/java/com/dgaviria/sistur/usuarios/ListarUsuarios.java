@@ -57,34 +57,16 @@ public class ListarUsuarios extends AppCompatActivity {
 
             @Override
             public void modificaClick(Usuarios misUsuarios, int posicion) {
-                int tipo=1;
-                if (misUsuarios.getRolgestor().equals(true))
-                {
-                    tipo=2;
-                }
-                if (misUsuarios.getRolcompras().equals(true))
-                {
-                    tipo=3;
-                }
-                if (misUsuarios.getRolbasico().equals(true))
-                {
-                    tipo=4;
-                }
                 Intent intent = new Intent(getApplicationContext(), CrearUsuarios.class);
                 intent.putExtra("opcion","actualizar");
                 intent.putExtra("usuario",misUsuarios.getUsuario());
                 intent.putExtra("nombre",misUsuarios.getNombre());
                 intent.putExtra("contrasena",misUsuarios.getContrasena());
                 intent.putExtra("correo",misUsuarios.getCorreo());
-                intent.putExtra("tipo",tipo);
+                intent.putExtra("tipo",misUsuarios.getRolusuario());
                 startActivity(intent);
-
             }
 
-            @Override
-            public void eliminaClick(Usuarios misUsuarios, int posicion) {
-                Toast.makeText(getApplicationContext(),"Eliminar usuario",Toast.LENGTH_SHORT).show();
-            }
         });
         miRecyclerUsuarios.setAdapter(adaptadorUsuarios);
     }
