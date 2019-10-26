@@ -37,20 +37,49 @@ public class AdaptadorListaEntrega extends RecyclerView.Adapter<AdaptadorListaEn
         holder.producto.setText(alimentoLista.getIngrediente());
         holder.unidad.setText(alimentoLista.getMedida());
         holder.cantidad.setText(alimentoLista.getCantidadentregada());
-        holder.estadoGeneral.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        holder.estadoBueno.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int itemSeleccionado) {
-                switch (itemSeleccionado){
-                    case R.id.rbBueno:
-                        break;
-                    case R.id.rbMalo:
-                        break;
-                    case R.id.rbRegular:
-                        break;
-                }
+            public void onClick(View view) {
+                alimentoLista.setEstadoBueno(holder.estadoBueno.isChecked());
+                holder.estadoBueno.setChecked(holder.estadoBueno.isChecked());
 
+                alimentoLista.setEstadoRegular(false);
+                holder.estadoRegular.setChecked(false);
+
+                alimentoLista.setEstadoMalo(false);
+                holder.estadoMalo.setChecked(false);
             }
         });
+        holder.estadoRegular.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alimentoLista.setEstadoRegular(holder.estadoRegular.isChecked());
+                holder.estadoRegular.setChecked(holder.estadoRegular.isChecked());
+
+                alimentoLista.setEstadoBueno(false);
+                holder.estadoBueno.setChecked(false);
+
+                alimentoLista.setEstadoMalo(false);
+                holder.estadoMalo.setChecked(false);
+            }
+        });
+        holder.estadoMalo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alimentoLista.setEstadoMalo(holder.estadoMalo.isChecked());
+                holder.estadoMalo.setChecked(holder.estadoMalo.isChecked());
+
+                alimentoLista.setEstadoBueno(false);
+                holder.estadoBueno.setChecked(false);
+
+                alimentoLista.setEstadoRegular(false);
+                holder.estadoRegular.setChecked(false);
+            }
+        });
+
+        holder.estadoBueno.setChecked(alimentoLista.getEstadoBueno());
+        holder.estadoRegular.setChecked(alimentoLista.getEstadoRegular());
+        holder.estadoMalo.setChecked(alimentoLista.getEstadoMalo());
     }
 
     @Override
@@ -59,20 +88,17 @@ public class AdaptadorListaEntrega extends RecyclerView.Adapter<AdaptadorListaEn
     }
 
     class AlimentoViewHolder extends RecyclerView.ViewHolder{
-        protected RadioGroup estadoGeneral;
-        protected RadioButton estadoBueno,estadoRegular,estadoMalo;
-        protected TextView producto,unidad,cantidad;
+        RadioButton estadoBueno,estadoRegular,estadoMalo;
+        TextView producto,unidad,cantidad;
 
         public AlimentoViewHolder(View itemView) {
             super(itemView);
-            estadoGeneral=itemView.findViewById(R.id.rgEstado);
             estadoBueno=itemView.findViewById(R.id.rbBueno);
             estadoMalo=itemView.findViewById(R.id.rbMalo);
             estadoRegular=itemView.findViewById(R.id.rbRegular);
             producto=itemView.findViewById(R.id.listaProductoE);
             unidad=itemView.findViewById(R.id.listaUnidadE);
             cantidad=itemView.findViewById(R.id.listaCantidadE);
-
         }
     }
 }

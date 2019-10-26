@@ -1,6 +1,5 @@
 package com.dgaviria.sistur.clases;
 
-import android.widget.RadioButton;
 
 public class AlimentoEntrega {
     private String nombresemana;
@@ -14,12 +13,13 @@ public class AlimentoEntrega {
     private Boolean estadoBueno;
     private Boolean estadoRegular;
     private Boolean estadoMalo;
+    private String entregadopor;
     private String recibidopor;
 
     public AlimentoEntrega() {
     }
 
-    public AlimentoEntrega(String nombresemana, String nombreCDI, String fechacompra, String fechaentrega, String codigo, String ingrediente, String medida, String cantidadentregada, Boolean estadoBueno, Boolean estadoRegular, Boolean estadoMalo, String recibidopor) {
+    public AlimentoEntrega(String nombresemana, String nombreCDI, String fechacompra, String fechaentrega, String codigo, String ingrediente, String medida, String cantidadentregada, Boolean estadoBueno, Boolean estadoRegular, Boolean estadoMalo, String entregadopor, String recibidopor) {
         this.nombresemana = nombresemana;
         this.nombreCDI = nombreCDI;
         this.fechacompra = fechacompra;
@@ -31,6 +31,7 @@ public class AlimentoEntrega {
         this.estadoBueno = estadoBueno;
         this.estadoRegular = estadoRegular;
         this.estadoMalo = estadoMalo;
+        this.entregadopor = entregadopor;
         this.recibidopor = recibidopor;
     }
 
@@ -120,6 +121,14 @@ public class AlimentoEntrega {
 
     public void setEstadoMalo(Boolean estadoMalo) {
         this.estadoMalo = estadoMalo;
+    }
+
+    public String getEntregadopor() {
+        return entregadopor;
+    }
+
+    public void setEntregadopor(String entregadopor) {
+        this.entregadopor = entregadopor;
     }
 
     public String getRecibidopor() {
