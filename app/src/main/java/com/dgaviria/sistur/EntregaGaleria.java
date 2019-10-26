@@ -193,10 +193,10 @@ public class EntregaGaleria extends AppCompatActivity {
                                             ingredienteE.setMedida(ingredienteC.getMedida());
                                             int cantidadEntregada,miCantidad;
                                             miCantidad=Integer.valueOf(ingredienteC.getCantidad());
-                                            if (numInfantes>12)
+                                            //if (numInfantes>12)
                                                 cantidadEntregada=Math.round((float) ((numInfantes/12.0)*miCantidad));
-                                            else
-                                                cantidadEntregada=miCantidad;
+                                            //else
+                                                //cantidadEntregada=miCantidad;
                                             ingredienteE.setCantidadentregada(String.valueOf(cantidadEntregada));
                                             ingredienteE.setEstadoBueno(false);
                                             ingredienteE.setEstadoRegular(false);

@@ -526,7 +526,7 @@ public class CensoPoblacional extends AppCompatActivity {
                 }
 
                 Toast.makeText(CensoPoblacional.this, "Actualizado con éxito", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), ListarCensoPoblacion.class);
+                Intent intent = new Intent(CensoPoblacional.this, ListarCensoPoblacion.class);
                 startActivity(intent);
             }
         });
