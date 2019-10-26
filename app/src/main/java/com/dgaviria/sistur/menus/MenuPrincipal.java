@@ -33,7 +33,7 @@ public class MenuPrincipal extends AppCompatActivity {
     RecyclerView miRecycler;
     List<MenuOpciones> listadoOpciones;
     AdaptadorMenuPpal adaptadorMenu;
-    DatabaseReference miReferencia;
+    DatabaseReference miReferencia, childpoblacion;
     private Bundle bundle;
     public static String recibeRol, recibeUsuario;
     @Override
@@ -42,11 +42,11 @@ public class MenuPrincipal extends AppCompatActivity {
         setContentView(R.layout.menu_principal);
 
         referenciar();
+
         Toast.makeText(getApplicationContext(),"Bienvenido: "+recibeUsuario+" al menú "+recibeRol, Toast.LENGTH_SHORT).show();
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         miRecycler.setLayoutManager(linearLayoutManager);
         llenarRecyclerOpciones();
-
         adaptadorMenu=new AdaptadorMenuPpal(this,listadoOpciones, new AdaptadorMenuPpal.OnItemClick() {
             @Override
             public void itemClick(MenuOpciones misOpciones, int posicion) {
@@ -76,8 +76,27 @@ public class MenuPrincipal extends AppCompatActivity {
                         startActivity(miIntento6);
                         break;
                     case 7:
-                        Intent miIntento7 = new Intent(MenuPrincipal.this, CompraGaleria.class);
-                        startActivity(miIntento7);
+                        //Antes de acceder al menu de galeria se saca el totaldeniños asociados a los Centros
+                        // y se envia para realizar el cálculo de el total de compras que se debe realizar
+                        miReferencia= FirebaseDatabase.getInstance().getReference();
+                        childpoblacion=miReferencia.child("poblacionCentros");
+                        childpoblacion.addValueEventListener(new ValueEventListener() {
+                            long total = 0;
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                for (DataSnapshot datos:dataSnapshot.getChildren()) {
+                                    total += datos.getChildrenCount()-1;
+                                }
+                                Intent miIntento7 = new Intent(MenuPrincipal.this, CompraGaleria.class);
+                                miIntento7.putExtra("total",total);
+                                startActivity(miIntento7);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
                         break;
                     case 8:
                         Intent miIntento8 = new Intent(MenuPrincipal.this, PublicarMinutas.class);
@@ -117,8 +136,25 @@ public class MenuPrincipal extends AppCompatActivity {
                         startActivity(miIntento6);
                         break;
                     case 7:
-                        Intent miIntento7 = new Intent(MenuPrincipal.this, CompraGaleria.class);
-                        startActivity(miIntento7);
+                        miReferencia= FirebaseDatabase.getInstance().getReference();
+                        childpoblacion=miReferencia.child("poblacionCentros");
+                        childpoblacion.addValueEventListener(new ValueEventListener() {
+                            long total = 0;
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                for (DataSnapshot datos:dataSnapshot.getChildren()) {
+                                     total += datos.getChildrenCount()-1;
+                                }
+                                Intent miIntento7 = new Intent(MenuPrincipal.this, CompraGaleria.class);
+                                miIntento7.putExtra("total",total);
+                                startActivity(miIntento7);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
                         break;
                     case 8:
                         Intent miIntento8 = new Intent(MenuPrincipal.this, PublicarMinutas.class);
@@ -169,6 +205,7 @@ public class MenuPrincipal extends AppCompatActivity {
                         listadoOpciones.add(misOpciones);
                     }
                 }
+
                 adaptadorMenu.notifyDataSetChanged();
             }
             @Override
@@ -181,5 +218,6 @@ public class MenuPrincipal extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+
     }
 }

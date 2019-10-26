@@ -30,6 +30,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CompraGaleria extends AppCompatActivity {
@@ -37,15 +38,18 @@ public class CompraGaleria extends AppCompatActivity {
     EditText campoFecha;
     AdaptadorListaCompra miAdaptadorCompra;
     Spinner selectorSemanas;
+    public static String cantidadReal;
     String nombreSemana;
-    DatabaseReference miReferenciaMin,miReferenciaSem,miReferenciaLista;
+    DatabaseReference miReferenciaMin,miReferenciaSem,miReferenciaLista, referenciaCenso;
     ArrayAdapter<String> adaptadorSemana;
     ArrayList<String> listadoSemanas, listadoMinutas;
-    ArrayList<AlimentoCompra> listaGaleria;
+    public static ArrayList<AlimentoCompra> listaGaleria;
     RecyclerView miRecyclerListaCompra;
     Button botonGuardar,botonCalcular;
+    Bundle bundle;
     Calendar miCalendario;
     Boolean existeLista=false;
+    public static long resultadoCantidad, auxcantidad, totalInfantes;
     int numItem;
     TextView totalCompra,totalConteo,parcialConteo;
 
@@ -56,6 +60,7 @@ public class CompraGaleria extends AppCompatActivity {
 
         referenciar();
         mostrarFecha();
+        Toast.makeText(getApplicationContext(),"El total de niños es: " + totalInfantes,Toast.LENGTH_LONG).show();
 
         botonCalcular.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,6 +75,7 @@ public class CompraGaleria extends AppCompatActivity {
                 guardarLista();
             }
         });
+
         selectorSemanas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adaptadorVista, View view, int i, long l) {
@@ -96,6 +102,8 @@ public class CompraGaleria extends AppCompatActivity {
         totalConteo=findViewById(R.id.txtTotalIngredientes);
         parcialConteo=findViewById(R.id.txtSubconteoIngredientes);
         totalCompra=findViewById(R.id.txtValorCompra);
+        bundle = getIntent().getExtras();
+        totalInfantes =bundle.getLong("total");
         llenarListaSemanas();
     }
 
@@ -268,9 +276,11 @@ public class CompraGaleria extends AppCompatActivity {
                                                         textoMas=textoMas.replace(",",".");
                                                         float cantAntes=Float.parseFloat(textoAntes);
                                                         float cantMas=Float.parseFloat(textoMas);
-                                                        cantMas = cantMas + cantAntes;
+                                                        float resultado = (cantMas/12)*totalInfantes;
+                                                        cantMas = resultado + cantAntes;
                                                         int valorSuma=Math.round(cantMas);
                                                         lista.get(numItem).setCantidad(String.valueOf(valorSuma));
+                                                        //lista.get(numItem).setCantidad("0");
                                                         //miAdaptadorCompra.notifyDataSetChanged();
                                                         guarda=false;
                                                         break;
@@ -283,7 +293,11 @@ public class CompraGaleria extends AppCompatActivity {
                                                 ingrediente.setIngrediente(alimento.getReal());
                                                 ingrediente.setCodigo(alimento.getCodigo());
                                                 ingrediente.setMedida(alimento.getUnidad());
-                                                ingrediente.setCantidad(alimento.getTotal());
+                                                //ingrediente.setCantidad(alimento.getTotal());
+                                                auxcantidad = Long.parseLong(alimento.getTotal());
+                                                resultadoCantidad = (auxcantidad/12)*totalInfantes;
+                                                cantidadReal = Long.toString(resultadoCantidad);
+                                                ingrediente.setCantidad(cantidadReal);
                                                 ingrediente.setValorcompra("0");
                                                 ingrediente.setTotal("0");
                                                 lista.add(ingrediente);
@@ -349,6 +363,8 @@ public class CompraGaleria extends AppCompatActivity {
                         miItemAlimento.setValorcompra(listaGaleria.get(numItem).getValorcompra());
                         miItemAlimento.setTotal(listaGaleria.get(numItem).getTotal());
                         miItemAlimento.setCantidad(listaGaleria.get(numItem).getCantidad());
+                        //miItemAlimento.setCantidad(cantidadReal);
+                        //miItemAlimento.setCantidad("0");
                         miItemAlimento.setEntregado("0");
                         miItemAlimento.setPorentregar(listaGaleria.get(numItem).getCantidad());
                         miItemAlimento.setCodigo(listaGaleria.get(numItem).getCodigo());
@@ -370,4 +386,5 @@ public class CompraGaleria extends AppCompatActivity {
         super.onPause();
         finish();
     }
+
 }
