@@ -143,7 +143,7 @@ public class CompraGaleria extends AppCompatActivity {
                 if (dataSnapshot.exists()){ //Si existe
                     listaGaleria=new ArrayList<AlimentoCompra>();
                     for(DataSnapshot miIngrediente:dataSnapshot.getChildren()) {
-                        if (!miIngrediente.getKey().equals("itemscomprados") && !miIngrediente.getKey().equals("totalcompra")) {
+                        if (!miIngrediente.getKey().equals("itemscomprados") && !miIngrediente.getKey().equals("totalcompra") && !miIngrediente.getKey().equals("quiencompra")) {
                             AlimentoCompra ingrediente = miIngrediente.getValue(AlimentoCompra.class);
                             listaGaleria.add(ingrediente);
                             Collections.sort(listaGaleria, new ComparadorAlimentoCompra()); //ordena la lista por el nombre del ingrediente
@@ -354,6 +354,7 @@ public class CompraGaleria extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     miReferenciaLista.child("totalcompra").setValue(sumaTotal);
                     miReferenciaLista.child("itemscomprados").setValue(conteoTotal);
+                    miReferenciaLista.child("quiencompra").setValue(recibeUsuario);
                     for (int numItem = 0; numItem < listaGaleria.size(); numItem++) {
                         String codigoAlimento = listaGaleria.get(numItem).getCodigo();
                         AlimentoCompra miItemAlimento = new AlimentoCompra();
@@ -366,7 +367,6 @@ public class CompraGaleria extends AppCompatActivity {
                         miItemAlimento.setEntregado("0");
                         miItemAlimento.setPorentregar(listaGaleria.get(numItem).getCantidad());
                         miItemAlimento.setCodigo(listaGaleria.get(numItem).getCodigo());
-                        miItemAlimento.setQuiencompra(listaGaleria.get(numItem).getQuiencompra());
                         miReferenciaLista.child(codigoAlimento).setValue(miItemAlimento);
                     }
                 }

@@ -96,11 +96,13 @@ public class MenuPrincipal extends AppCompatActivity {
                         break;
                     case 8:
                         if (recibeRol.equals("compras")){
-                            Intent miIntento8 = new Intent(MenuPrincipal.this, RecibeCompra.class);
+                            Intent miIntento8 = new Intent(MenuPrincipal.this, EntregaCompra.class);
+                            miIntento8.putExtra("usuario",recibeUsuario);
+                            miIntento8.putExtra("rol",recibeRol);
                             startActivity(miIntento8);
                         }
                         else{
-                            Intent miIntento8 = new Intent(MenuPrincipal.this, EntregaGaleria.class);
+                            Intent miIntento8 = new Intent(MenuPrincipal.this, RecibeCompra.class);
                             miIntento8.putExtra("usuario",recibeUsuario);
                             miIntento8.putExtra("rol",recibeRol);
                             startActivity(miIntento8);
@@ -172,11 +174,13 @@ public class MenuPrincipal extends AppCompatActivity {
                         break;
                     case 8:
                         if (recibeRol.equals("compras")){
-                            Intent miIntento8 = new Intent(MenuPrincipal.this, RecibeCompra.class);
+                            Intent miIntento8 = new Intent(MenuPrincipal.this, EntregaCompra.class);
+                            miIntento8.putExtra("usuario",recibeUsuario);
+                            miIntento8.putExtra("rol",recibeRol);
                             startActivity(miIntento8);
                         }
                         else{
-                            Intent miIntento8 = new Intent(MenuPrincipal.this, EntregaGaleria.class);
+                            Intent miIntento8 = new Intent(MenuPrincipal.this, RecibeCompra.class);
                             miIntento8.putExtra("usuario",recibeUsuario);
                             miIntento8.putExtra("rol",recibeRol);
                             startActivity(miIntento8);
