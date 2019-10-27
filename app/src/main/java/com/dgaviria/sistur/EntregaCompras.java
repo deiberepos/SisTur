@@ -99,6 +99,7 @@ public class EntregaCompras extends AppCompatActivity {
                     Toast.makeText(EntregaCompras.this, "Debe seleccionar una semana y un CDI", Toast.LENGTH_SHORT).show();
             }
         });
+
     }
 
     private void referenciar() {

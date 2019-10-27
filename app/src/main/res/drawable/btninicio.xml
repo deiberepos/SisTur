@@ -4,14 +4,14 @@
 
 <item android:state_pressed="true">
     <shape android:shape="oval">
-        <solid android:color="@color/colorVerde"/>
+        <solid android:color="@color/colorAzulOscuro2"/>
     </shape>
 </item>
 
     <item>
         <shape android:shape="oval">
-           <gradient android:startColor="@color/colorVerde"
-               android:endColor="@color/colorPrimarioOscuro"/>
+           <gradient android:startColor="@color/colorAzulOscuro3"
+               android:endColor="@color/colorAzulsuave"/>
         </shape>
     </item>
 

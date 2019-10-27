@@ -6,10 +6,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -28,6 +31,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -48,6 +53,7 @@ public class EntregaGaleria extends AppCompatActivity {
     ArrayList<AlimentoEntrega> listaEntrega;
     RecyclerView miRecyclerListaEntrega;
     Calendar miCalendarioE;
+    Button botonAprobar;
     int numInfantes,numIngredientes;
 
     @Override
@@ -78,6 +84,19 @@ public class EntregaGaleria extends AppCompatActivity {
 
             }
         });
+        botonAprobar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                IntentIntegrator integrator = new IntentIntegrator(EntregaGaleria.this);
+                integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
+                integrator.setPrompt("Escaneando código de verificación");
+                integrator.setCameraId(0);
+                integrator.setBeepEnabled(true);
+                integrator.setBarcodeImageEnabled(false);
+                integrator.initiateScan();
+            }
+        });
+
     }
 
     private void referenciar() {
@@ -91,6 +110,7 @@ public class EntregaGaleria extends AppCompatActivity {
         miRecyclerListaEntrega =findViewById(R.id.recyclerEntregas);
         totalInfantes=findViewById(R.id.txtTotalInfantesE);
         conteoIngredientes=findViewById(R.id.txtTotalIngredientesE);
+        botonAprobar=findViewById(R.id.botonApruebaE);
         llenarListaCDIE();
         llenarListaSemanasE();
     }
@@ -290,5 +310,21 @@ public class EntregaGaleria extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        IntentResult codigoLeido = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        if(codigoLeido != null) {
+            if(codigoLeido.getContents() == null) {
+                Toast.makeText(this, "Error en la lectura del código", Toast.LENGTH_LONG).show();
+
+            } else {
+                Toast.makeText(this, "Código leído: " +"\n" +codigoLeido.getContents(), Toast.LENGTH_LONG).show();
+            }
+        } else {
+            // This is important, otherwise the result will not be passed to the fragment
+            super.onActivityResult(requestCode, resultCode, data);
+        }
     }
 }

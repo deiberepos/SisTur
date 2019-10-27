@@ -14,8 +14,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EntregaCompras"></activity>
-        <activity android:name=".EntregaGaleria" />
+        <activity android:name=".EntregaCompras"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/noaction"/>
+        <activity android:name=".EntregaGaleria"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/noaction"/>
         <activity
             android:name=".CompraGaleria"
             android:theme="@style/noaction" />
