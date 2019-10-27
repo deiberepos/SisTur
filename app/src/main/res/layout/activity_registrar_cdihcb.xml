@@ -6,254 +6,297 @@
     android:id="@+id/idcontenerRegCDI"
     android:layout_height="match_parent"
     tools:context=".RegistrarCDIHCB">
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <LinearLayout
-        android:orientation="vertical"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:layout_width="65dp"
-            android:layout_height="70dp"
-            android:background="@drawable/logoinicial" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:shadowColor="@color/colorClaro"
-            android:shadowDx="-2"
-            android:shadowDy="-2"
-            android:shadowRadius="1.5"
-            android:layout_marginLeft="15dp"
-            android:text="Creación de CDI y HCB"
-            android:textColor="@color/colorNegro"
-            android:textSize="25dp"
-            android:textStyle="bold" />
-
-    </LinearLayout>
-
-    <TextView
-        style="@style/TexviewsubTitulo"
-        android:id="@+id/idtvtvnombreCentro"
-        android:text="@string/nombre_asignado"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <EditText
-        android:background="@drawable/personalizar_edit"
-        style="@style/edit"
-        android:layout_width="match_parent"
-        android:hint="Escribe Aqui"
-        android:id="@+id/idedtnombreregCentro" />
-        <TextView
-            style="@style/TexviewsubTitulo"
-            android:text="Tipo"
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <RadioGroup
-            android:orientation="horizontal"
-            android:id="@+id/idrgUbicaRegCDI"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <RadioButton
-                android:id="@+id/idrbCentro"
-                style="@style/TexviewsubTitulo"
-                android:text="Centro Desarrollo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <RadioButton
-                android:id="@+id/idrbHogar"
-                style="@style/TexviewsubTitulo"
-                android:text="Hogar Comunitario"
-                android:layout_marginLeft="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </RadioGroup>
-        <TextView
-            style="@style/TexviewsubTitulo"
-            android:text="Ubicación"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <Spinner
-            android:id="@+id/idspnVeredas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <!--
-                <RadioGroup
-                    android:orientation="vertical"
-                    android:id="@+id/idrgveredaCDI"
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="65dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/logoinicial" />
+                <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:shadowColor="@color/colorClaro"
+                    android:shadowDx="-2"
+                    android:shadowDy="-2"
+                    android:shadowRadius="1.5"
+                    android:layout_marginStart="15dp"
+                    android:text="Creación de CDI y HCB"
+                    android:textColor="@color/colorNegro"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+
+                <TextView
+                    android:id="@+id/idtvtvnombreCentro"
+                    style="@style/TexviewsubTitulo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nombre_asignado" />
+
+                <EditText
+                    android:id="@+id/idedtnombreregCentro"
+                    style="@style/edit"
+                    android:layout_width="match_parent"
+                    android:hint="Escribe aqui nombre" />
+
+                <TextView
+                    style="@style/TexviewsubTitulo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Tipo de CDI:"
+                    android:textColor="@color/colorNegro" />
+
+                <RadioGroup
+                    android:id="@+id/idrgUbicaRegCDI"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/colorRojo"
+                    android:orientation="horizontal"
+                    android:typeface="monospace">
 
                     <RadioButton
-                        android:id="@+id/idrbPlaya"
+                        android:id="@+id/idrbCentro"
                         style="@style/TexviewsubTitulo"
-                        android:text="Vereda La Playa"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/colorRojo"
+                        android:text="Centro Desarrollo"
+                        android:typeface="monospace" />
+
                     <RadioButton
-                        android:id="@+id/idrbAlpes"
+                        android:id="@+id/idrbHogar"
                         style="@style/TexviewsubTitulo"
-                        android:text="Vereda Alpes"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                    <RadioButton
-                        android:id="@+id/idrbVenecia"
-                        style="@style/TexviewsubTitulo"
-                        android:text="Vereda Venecia"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                    <RadioButton
-                        android:id="@+id/idrbSarzal"
-                        style="@style/TexviewsubTitulo"
-                        android:text="Vereda Sarzal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                    <RadioButton
-                        android:id="@+id/idrbTrujillo"
-                        style="@style/TexviewsubTitulo"
-                        android:text="Vereda Trujillo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:buttonTint="@color/colorRojo"
+                        android:text="Hogar Comunitario"
+                        android:typeface="monospace" />
                 </RadioGroup>
 
-                 <LinearLayout
-                     android:orientation="vertical"
-                     android:scrollY="@dimen/cardview_compat_inset_shadow"
-                     android:layout_width="match_parent"
-                     android:background="?attr/selectableItemBackground"
-                     android:layout_height="250dp">
-                     <ListView
-                         android:scrollbarAlwaysDrawVerticalTrack="true"
-                         android:id="@+id/idlisVeredas"
+                <TextView
+                    style="@style/TexviewsubTitulo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="31dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Ubicación:"
+                    android:textColor="@color/colorNegro" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/colorClaro">
+                <Spinner
+                    android:gravity="center"
+                    android:layout_width="280dp"
+                    android:layout_height="30dp"
+                    style="@style/SelectorSemana"
+                    android:id="@+id/idspnVeredas"/>
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"/>
+            <!--
+                    <RadioGroup
+                        android:orientation="vertical"
+                        android:id="@+id/idrgveredaCDI"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <RadioButton
+                            android:id="@+id/idrbPlaya"
+                            style="@style/TexviewsubTitulo"
+                            android:text="Vereda La Playa"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <RadioButton
+                            android:id="@+id/idrbAlpes"
+                            style="@style/TexviewsubTitulo"
+                            android:text="Vereda Alpes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <RadioButton
+                            android:id="@+id/idrbVenecia"
+                            style="@style/TexviewsubTitulo"
+                            android:text="Vereda Venecia"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <RadioButton
+                            android:id="@+id/idrbSarzal"
+                            style="@style/TexviewsubTitulo"
+                            android:text="Vereda Sarzal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <RadioButton
+                            android:id="@+id/idrbTrujillo"
+                            style="@style/TexviewsubTitulo"
+                            android:text="Vereda Trujillo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </RadioGroup>
+
+                     <LinearLayout
+                         android:orientation="vertical"
+                         android:scrollY="@dimen/cardview_compat_inset_shadow"
                          android:layout_width="match_parent"
-                         android:layout_height="match_parent"/>
+                         android:background="?attr/selectableItemBackground"
+                         android:layout_height="250dp">
+                         <ListView
+                             android:scrollbarAlwaysDrawVerticalTrack="true"
+                             android:id="@+id/idlisVeredas"
+                             android:layout_width="match_parent"
+                             android:layout_height="match_parent"/>
 
-                 </LinearLayout>-->
+                     </LinearLayout>-->
+            <LinearLayout
 
-     <TextView
-         style="@style/TexviewsubTitulo"
-         android:id="@+id/idtvresponsable"
-         android:text="Datos de la persona encargada"
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"/>
-     <TextView
-         style="@style/TexviewsubTitulo"
-         android:text="Nombre y apellido:"
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"/>
-     <EditText
-         android:background="@drawable/personalizar_edit"
-         style="@style/edit"
-         android:hint="Escribe aqui"
-         android:layout_width="match_parent"
-         android:id="@+id/idedtnombreencargado" />
-     <TextView
-         style="@style/TexviewsubTitulo"
-         android:text="Dirección:"
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"/>
-     <EditText
-         android:background="@drawable/personalizar_edit"
-         style="@style/edit"
-         android:hint="Escribe aqui"
-         android:layout_width="match_parent"
-         android:id="@+id/idedtdirEncargado" />
-     <TextView
-         style="@style/TexviewsubTitulo"
-         android:text="Telefono:"
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"/>
-     <EditText
-         android:background="@drawable/personalizar_edit"
-         style="@style/edit"
-         android:hint="Escribe aqui"
-         android:layout_width="match_parent"
-         android:id="@+id/idedttelEncargado" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    style="@style/TexviewsubTitulo"
+                    android:id="@+id/idtvresponsable"
+                    android:fontFamily="sans-serif-black"
+                    android:text="Datos de la persona encargada"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/TexviewsubTitulo"
+                    android:text="Nombre y apellido:"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <EditText
+                    style="@style/edit"
+                    android:hint="Escribe aqui nombre y apellido"
+                    android:layout_width="match_parent"
+                    android:id="@+id/idedtnombreencargado" />
+                <TextView
+                    style="@style/TexviewsubTitulo"
+                    android:text="Dirección:"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <EditText
 
-         <TextView
-             style="@style/TexviewsubTitulo"
-             android:id="@+id/idtvContacto"
-             android:text="Datos delcontacto"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"/>
-         <TextView
-             style="@style/TexviewsubTitulo"
-             android:text="Nombre y apellido:"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"/>
-         <EditText
-             android:background="@drawable/personalizar_edit"
-             style="@style/edit"
-             android:hint="Escribe aqui"
-             android:layout_width="match_parent"
-             android:id="@+id/idedtnombreContacto" />
-         <TextView
-             style="@style/TexviewsubTitulo"
-             android:text="Dirección:"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"/>
-         <EditText
-             android:background="@drawable/personalizar_edit"
-             style="@style/edit"
-             android:hint="Escribe aqui"
-             android:layout_width="match_parent"
-             android:id="@+id/idedtdirContacto" />
-         <TextView
-             style="@style/TexviewsubTitulo"
-             android:text="Telefono:"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"/>
-         <EditText
-             android:background="@drawable/personalizar_edit"
-             style="@style/edit"
-             android:hint="Escribe aqui"
-             android:layout_width="match_parent"
-             android:id="@+id/idedttelContacto" />
-        <CheckBox
-            android:id="@+id/activocdi"
-            android:text="activo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+                    style="@style/edit"
+                    android:hint="Escribe aqui direccion"
+                    android:layout_width="match_parent"
+                    android:id="@+id/idedtdirEncargado" />
+                <TextView
+                    style="@style/TexviewsubTitulo"
+                    android:text="Telefono:"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <EditText
+                    style="@style/edit"
+                    android:hint="Escribe aqui numero de telefono"
+                    android:layout_width="match_parent"
+                    android:id="@+id/idedttelEncargado" />
+            </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="137dp"
-            android:orientation="vertical">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="5dp"/>
 
-            <Button
-                android:id="@+id/idbtnregCDI"
-                android:layout_width="200dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
+            <LinearLayout
+
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    style="@style/TexviewsubTitulo"
+                    android:id="@+id/idtvContacto"
+                    android:fontFamily="sans-serif-black"
+                    android:text="Datos del contacto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/TexviewsubTitulo"
+                    android:text="Nombre y apellido:"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <EditText
+                    style="@style/edit"
+                    android:hint="Escribe aqui nombre y apellido"
+                    android:layout_width="match_parent"
+                    android:id="@+id/idedtnombreContacto" />
+                <TextView
+                    style="@style/TexviewsubTitulo"
+                    android:text="Dirección:"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <EditText
+                    style="@style/edit"
+                    android:hint="Escribe aqui direccion"
+                    android:layout_width="match_parent"
+                    android:id="@+id/idedtdirContacto" />
+                <TextView
+                    style="@style/TexviewsubTitulo"
+                    android:text="Telefono:"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <EditText
+                    style="@style/edit"
+                    android:hint="Escribe aqui numero de telefono"
+                    android:layout_width="match_parent"
+                    android:id="@+id/idedttelContacto" />
+
+            </LinearLayout>
+            <CheckBox
+                android:id="@+id/activocdi"
+                android:text="Activo"
+                android:textSize="20sp"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/personalizar_button"
-                android:text="Registrar"
-                android:textAllCaps="false"
-                android:textColor="@color/colorClaro" />
-
-            <Button
-                android:id="@+id/idbtnactCDI"
-                android:layout_width="200dp"
-                android:layout_height="40dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/personalizar_button"
-                android:text="actualizar"
-                android:textAllCaps="false"
-                android:textColor="@color/colorClaro" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="137dp"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/idbtnregCDI"
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/personalizar_button"
+                    android:text="REGISTRAR"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorClaro" />
+
+                <Button
+                    android:id="@+id/idbtnactCDI"
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/personalizar_button"
+                    android:text="ACTUALIZAR"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorClaro" />
+
+            </LinearLayout>
         </LinearLayout>
-
-     </LinearLayout>
-</ScrollView>
- </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

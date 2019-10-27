@@ -9,8 +9,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.dgaviria.sistur.ListarCensoPoblacion;
 import com.dgaviria.sistur.clases.Censo;
 import com.dgaviria.sistur.R;
 import com.google.firebase.database.DatabaseReference;
@@ -41,8 +39,8 @@ public class AdaptadorListaCenso extends RecyclerView.Adapter<AdaptadorListaCens
         public CensoViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            nombre=itemView.findViewById(R.id.txtNombreInfan);
-            apellido=itemView.findViewById(R.id.txtCentroAsociado);
+            nombre=itemView.findViewById(R.id.txtNombreInfante);
+            apellido=itemView.findViewById(R.id.txtApellido);
             modifica=itemView.findViewById(R.id.imgModificaCenso);
         }
 
@@ -87,7 +85,7 @@ public class AdaptadorListaCenso extends RecyclerView.Adapter<AdaptadorListaCens
     Censo micensoo=listadoCenso.get(position);
         holder.nombre.setText(micensoo.getNombre());
         holder.apellido.setText(micensoo.getApellidos());
-        holder.modifica.setImageResource(R.mipmap.ic_actualiza);
+        holder.modifica.setImageResource(R.mipmap.usuarios);
         holder.bind(listadoCenso.get(position),position,listener);
     }
 

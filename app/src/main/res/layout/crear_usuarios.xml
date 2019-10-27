@@ -20,8 +20,8 @@
             android:gravity="center">
 
             <ImageView
-                android:layout_width="65dp"
-                android:layout_height="70dp"
+                android:layout_width="72dp"
+                android:layout_height="62dp"
                 android:background="@drawable/logoinicial" />
 
             <LinearLayout
@@ -30,86 +30,124 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
+
                 <TextView
+                    android:layout_marginLeft="30dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:gravity="center"
                     android:shadowColor="@color/colorPrimarioOscuro"
                     android:shadowDx="-2"
                     android:shadowDy="-2"
                     android:shadowRadius="1.5"
                     android:text="Creación de usuarios"
                     android:textColor="@color/colorNegro"
-                    android:textSize="25dp"
+                    android:textSize="25sp"
                     android:textStyle="bold" />
+
+                <TextView
+                    style="@style/TexviewsubTitulo"
+                    android:textColor="@color/colorNegro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="25dp"
+                    android:gravity="center"
+                    android:text="Nombre Usuario:" />
 
                 <EditText
                     android:id="@+id/editTextUsuario"
                     style="@style/edit"
-                    android:layout_marginTop="35dp"
                     android:fontFamily="monospace"
-                    android:hint="usuario"
+                    android:hint="Escriba nombre de usuario"
                     android:inputType="textPostalAddress"
                     android:maxLength="15"
                     android:paddingBottom="15dp"
                     android:textColor="@color/colorPrimarioOscuro"
-                    android:textColorHint="@color/colorPrimarioSuave"
                     android:textCursorDrawable="@color/colorRojo"
                     android:textSize="15dp" />
+                <TextView
+                    style="@style/TexviewsubTitulo"
+                    android:textColor="@color/colorNegro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Contraseña:" />
 
                 <EditText
                     android:id="@+id/editTextPassword"
                     style="@style/edit"
-                    android:background="@drawable/personalizar_edit"
                     android:fontFamily="monospace"
-                    android:hint="contraseña"
+                    android:hint="Escriba aqui contraseña"
                     android:inputType="textPassword"
                     android:maxLength="15"
                     android:paddingBottom="15dp"
                     android:textColor="@color/colorPrimarioOscuro"
-                    android:textColorHint="@color/colorPrimarioSuave"
                     android:textCursorDrawable="@color/colorRojo"
                     android:textSize="15dp" />
+                <TextView
+                    style="@style/TexviewsubTitulo"
+                    android:textColor="@color/colorNegro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text=" Verifica Contraseña:" />
 
                 <EditText
                     android:id="@+id/editTextVerificaPassword"
                     style="@style/edit"
-                    android:background="@drawable/personalizar_edit"
                     android:fontFamily="monospace"
                     android:hint="verifica contraseña"
                     android:inputType="textPassword"
                     android:maxLength="15"
                     android:paddingBottom="15dp"
                     android:textColor="@color/colorPrimarioOscuro"
-                    android:textColorHint="@color/colorPrimarioSuave"
                     android:textCursorDrawable="@color/colorRojo"
                     android:textSize="15dp" />
+                <TextView
+                    style="@style/TexviewsubTitulo"
+                    android:textColor="@color/colorNegro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Correo:" />
 
                 <EditText
                     android:id="@+id/editTextCorreo"
                     style="@style/edit"
-                    android:background="@drawable/personalizar_edit"
                     android:fontFamily="monospace"
-                    android:hint="correo"
+                    android:hint="Escriba aqui direccion correo"
                     android:inputType="textEmailAddress"
                     android:maxLength="35"
                     android:paddingBottom="15dp"
                     android:textColor="@color/colorPrimarioOscuro"
-                    android:textColorHint="@color/colorPrimarioSuave"
                     android:textCursorDrawable="@color/colorRojo"
                     android:textSize="15dp" />
+
+                <TextView
+                    style="@style/TexviewsubTitulo"
+                    android:textColor="@color/colorNegro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Nombres y apelllidos:" />
+
+
 
                 <EditText
                     android:id="@+id/editTextNombre"
                     style="@style/edit"
-                    android:background="@drawable/personalizar_edit"
                     android:fontFamily="monospace"
-                    android:hint="nombres y apellidos"
+                    android:hint="Escriba aqui nombre y apellido"
                     android:inputType="textPersonName"
                     android:maxLength="35"
                     android:paddingBottom="15dp"
                     android:textColor="@color/colorPrimarioOscuro"
-                    android:textColorHint="@color/colorPrimarioSuave"
                     android:textCursorDrawable="@color/colorRojo"
                     android:textSize="15dp" />
             </LinearLayout>
@@ -117,14 +155,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="260dp"
+                android:layout_marginTop="365dp"
                 android:orientation="horizontal"
                 android:weightSum="2">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="95dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -188,6 +226,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1"
+                    android:layout_marginTop="50dp"
                     android:gravity="center"
                     android:orientation="vertical">
                     <Button
@@ -214,14 +253,6 @@
 
             </LinearLayout>
 
-
-            <ProgressBar
-                android:id="@+id/barraProgreso"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:visibility="gone" />
         </RelativeLayout>
     </ScrollView>
 </LinearLayout>

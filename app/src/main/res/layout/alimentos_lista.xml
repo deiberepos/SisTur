@@ -4,96 +4,99 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="2dp"
-    app:cardElevation="0dp"
-    android:layout_margin="1dp"
+    app:cardCornerRadius="15dp"
+    android:layout_marginTop="10dp"
+    android:paddingBottom="10dp"
+    android:padding="10dp"
     tools:context=".alimentos.ListarPlanAlimenticio">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+    <LinearLayout
+
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:layout_marginRight="2dp"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp">
+        <View
+            android:layout_width="10dp"
+            android:layout_height="0dp"/>
+        <RelativeLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/selector_alimentos"
-            android:clickable="true"
-            android:orientation="horizontal"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp">
-            <View
-                android:layout_width="10dp"
-                android:layout_height="0dp"/>
+            android:orientation="vertical">
+
             <RelativeLayout
+                android:id="@+id/lytImagen"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/imgSeleccionaA"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_centerInParent="true"
+                    />
+                <TextView
+                    android:id="@+id/txtCodigoA"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="Código"
+                    android:textColor="@color/colorAzulOscuro3"
+                    android:textSize="14dp"
+                    />
+            </RelativeLayout>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-
-                <RelativeLayout
-                    android:id="@+id/lytImagen"
+                <TextView
+                    android:id="@+id/txtGrupoA"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:id="@+id/imgSeleccionaA"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_centerInParent="true"
-                        />
-                    <TextView
-                        android:id="@+id/txtCodigoA"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:text="Código"
-                        android:textColor="@color/colorAzulOscuro3"
-                        android:textSize="14dp"
-                        />
-                </RelativeLayout>
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
-                <LinearLayout
-                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        android:id="@+id/txtGrupoA"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:fontFamily="monospace"
-                        android:textSize="14dp"
-                        android:text="Nombre Grupo"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textStyle="normal"
-                        android:textColor="@color/colorAzulOscuro3"
-                        />
-                    <TextView
-                        android:id="@+id/txtNombreA"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:text="Nombre Alimento"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorAzulOscuro3"
-                        android:textSize="12dp"
-                        />
-                    <TextView
-                        android:id="@+id/txtARegional"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:text="Nombre Regional"
-                        android:textColor="@color/colorRojo"
-                        android:textSize="12dp"
-                        android:textStyle="italic"
-                        />
-                </LinearLayout>
-            </RelativeLayout>
-        </LinearLayout>
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:fontFamily="monospace"
+                    android:textSize="14dp"
+                    android:text="Nombre Grupo"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textStyle="normal"
+                    android:textColor="@color/colorAzulOscuro3"
+                    />
+                <TextView
+                    android:id="@+id/txtNombreA"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="Nombre Alimento"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorAzulOscuro3"
+                    android:textSize="12dp"
+                    />
+                <TextView
+                    android:id="@+id/txtARegional"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="Nombre Regional"
+                    android:textColor="@color/colorRojo"
+                    android:textSize="12dp"
+                    android:textStyle="italic"
+                    />
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
 </androidx.cardview.widget.CardView>

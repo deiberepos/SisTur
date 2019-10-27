@@ -13,10 +13,10 @@
         <item name="android:layout_marginTop">5dp</item>
     </style>
     <style name="TexviewsubTitulo">
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/txvsubtitulo</item>
-        <item name="android:layout_gravity">left</item>
-        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
         <item name="android:layout_marginLeft">5dp</item>
     </style>
     <style name="ButtonImage">

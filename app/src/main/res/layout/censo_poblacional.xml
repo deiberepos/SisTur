@@ -35,38 +35,65 @@
                 android:textColor="@color/colorNegro"
                 android:textSize="25dp"
                 android:textStyle="bold" />
+            <TextView
+                style="@style/TexviewsubTitulo"
+                android:textColor="@color/colorNegro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Número de registro:" />
             <EditText
                 android:id="@+id/registroinfante"
                 style="@style/edit"
                 android:inputType="number"
                 android:layout_height="42dp"
-                android:layout_marginTop="30dp"
                 android:fontFamily="monospace"
-                android:hint="Registro del infante"
+                android:hint="Escriba aqui..."
                 android:textColor="@color/colorPrimarioOscuro"
-                android:textColorHint="@color/colorPrimarioSuave"
                 android:textSize="15dp" />
+            <TextView
+                style="@style/TexviewsubTitulo"
+                android:textColor="@color/colorNegro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Nombre del infante:" />
 
             <EditText
                 android:id="@+id/nombreinfante"
                 style="@style/edit"
                 android:layout_height="42dp"
-                android:background="@drawable/personalizar_edit"
                 android:fontFamily="monospace"
-                android:hint="Nombres del infante"
+                android:hint="Escriba aqui nombre"
                 android:textColor="@color/colorPrimarioOscuro"
-                android:textColorHint="@color/colorPrimarioSuave"
+
                 android:textSize="15dp" />
+            <TextView
+                style="@style/TexviewsubTitulo"
+                android:textColor="@color/colorNegro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Apellido del infante:" />
 
             <EditText
                 android:id="@+id/apellidoinfante"
                 style="@style/edit"
-                android:background="@drawable/personalizar_edit"
                 android:fontFamily="monospace"
-                android:hint="Apellidos del infante"
+                android:hint="Escriba aqui apellido"
                 android:textColor="@color/colorPrimarioOscuro"
-                android:textColorHint="@color/colorPrimarioSuave"
                 android:textSize="15dp" />
+            <TextView
+                style="@style/TexviewsubTitulo"
+                android:textColor="@color/colorNegro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Genero del infante:" />
 
             <RadioGroup
                 android:id="@+id/radiogenero"
@@ -76,6 +103,7 @@
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal">
                 <RadioButton
+                    style="@style/TexviewsubTitulo"
                     android:id="@+id/masculino"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -85,6 +113,7 @@
                     app:buttonTint="@color/colorRojo" />
 
                 <RadioButton
+                    style="@style/TexviewsubTitulo"
                     android:id="@+id/femenino"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -103,6 +132,14 @@
                 android:orientation="vertical">
 
 
+                <TextView
+                    style="@style/TexviewsubTitulo"
+                    android:textColor="@color/colorNegro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Fecha del nacimiento:" />
                 <EditText
                     android:id="@+id/fecha"
                     android:layout_width="217dp"
@@ -111,104 +148,157 @@
                     android:ems="20"
                     android:gravity="center"
                     android:hint="Agrega la fecha"
-                    android:onClick="mostrarCalendario"></EditText>
+                    android:onClick="mostrarCalendario"/>
+                <TextView
+                    style="@style/TexviewsubTitulo"
+                    android:textColor="@color/colorNegro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Observaciones:" />
 
                 <EditText
-
-
                     android:id="@+id/editobsrvaciones"
                     style="@style/edit"
                     android:layout_width="318dp"
                     android:layout_height="88dp"
                     android:fontFamily="monospace"
-                    android:hint="Observaciones"
+                    android:hint="Escriba aqui observaciones relacionadas con el infante."
                     android:lines="3"
                     android:textColor="@color/colorPrimarioOscuro"
-                    android:textColorHint="@color/colorPrimarioSuave"
                     android:textSize="15dp" />
             </LinearLayout>
 
             <TextView
-                android:text="sleccione el centro"
+                style="@style/TexviewsubTitulo"
+                android:textColor="@color/colorNegro"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Seleccione centro" />
             <Spinner
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:id="@+id/spiner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
+
+            <TextView
+                style="@style/TexviewsubTitulo"
+                android:textColor="@color/colorNegro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Nombre y apellido padre" />
             <EditText
                 android:id="@+id/nom_ape_padre"
                 style="@style/edit"
-                android:background="@drawable/personalizar_edit"
                 android:fontFamily="monospace"
-                android:hint="Nombres/apellidos Padre"
+                android:hint="Escriba aqui nombre del padre"
                 android:textColor="@color/colorPrimarioOscuro"
-                android:textColorHint="@color/colorPrimarioSuave"
                 android:textSize="15dp" />
+
+            <TextView
+                style="@style/TexviewsubTitulo"
+                android:textColor="@color/colorNegro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Telefono del padre:" />
 
             <EditText
                 android:id="@+id/telefonopadre"
                 style="@style/edit"
                 android:layout_height="36dp"
-                android:background="@drawable/personalizar_edit"
                 android:fontFamily="monospace"
-                android:hint="Teléfono del Padre"
+                android:hint="Escriba aqui telefono del padre"
                 android:inputType="number"
                 android:textColor="@color/colorPrimarioOscuro"
-                android:textColorHint="@color/colorPrimarioSuave"
                 android:textSize="15dp" />
+            <TextView
+                style="@style/TexviewsubTitulo"
+                android:textColor="@color/colorNegro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Direccion del padre" />
 
             <EditText
                 android:id="@+id/direccionpadre"
                 style="@style/edit"
-                android:background="@drawable/personalizar_edit"
                 android:fontFamily="monospace"
-                android:hint="Direccion del Padre"
+                android:hint="Escriba aqui direccion del padre"
                 android:textColor="@color/colorPrimarioOscuro"
-                android:textColorHint="@color/colorPrimarioSuave"
-                android:textSize="15dp" />
+                android:textSize="15sp" />
+            <TextView
+                style="@style/TexviewsubTitulo"
+                android:textColor="@color/colorNegro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Nombre de la madre:" />
 
             <EditText
                 android:id="@+id/nom_ape_madre"
                 style="@style/edit"
-                android:background="@drawable/personalizar_edit"
                 android:fontFamily="monospace"
-                android:hint="Nombres/apellisdos madre"
+                android:hint="Escriba aqui nombre de la madre"
                 android:textColor="@color/colorPrimarioOscuro"
-                android:textColorHint="@color/colorPrimarioSuave"
-                android:textSize="15dp" />
+                android:textSize="15sp" />
+            <TextView
+                style="@style/TexviewsubTitulo"
+                android:textColor="@color/colorNegro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Telefono de la madre:" />
 
             <EditText
                 android:id="@+id/telefonomadre"
                 style="@style/edit"
                 android:layout_height="47dp"
-                android:background="@drawable/personalizar_edit"
                 android:fontFamily="monospace"
-                android:hint="Teléfono de la Madre"
+                android:hint="Escriba aqui telefono de la madre"
                 android:inputType="number"
                 android:textColor="@color/colorPrimarioOscuro"
-                android:textColorHint="@color/colorPrimarioSuave"
-                android:textSize="15dp" />
+                android:textSize="15sp" />
 
-
+            <TextView
+                style="@style/TexviewsubTitulo"
+                android:textColor="@color/colorNegro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Direccion de la madre:" />
             <EditText
                 android:id="@+id/direccionmadre"
                 style="@style/edit"
-                android:background="@drawable/personalizar_edit"
                 android:fontFamily="monospace"
-                android:hint="Dirección de la Madre"
+                android:hint="Escriba aqui la direccion"
                 android:textColor="@color/colorPrimarioOscuro"
-                android:textColorHint="@color/colorPrimarioSuave"
-                android:textSize="15dp" />
+                android:textSize="15sp" />
+
 
             <CheckBox
+                android:textSize="20sp"
                 android:id="@+id/chekactivo"
                 android:layout_gravity="center"
-                android:text="activo"
+                android:text="Activo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+
             <Button
+                android:layout_marginTop="12dp"
                 android:id="@+id/btnguardarcenso"
                 android:layout_width="200dp"
                 android:layout_height="40dp"
