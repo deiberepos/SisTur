@@ -3,9 +3,6 @@ package com.dgaviria.sistur.clases;
 
 public class AlimentoEntrega {
     private String nombresemana;
-    private String nombreCDI;
-    private String fechacompra;
-    private String fechaentrega;
     private String codigo;
     private String ingrediente;
     private String medida;
@@ -13,18 +10,13 @@ public class AlimentoEntrega {
     private Boolean estadoBueno;
     private Boolean estadoRegular;
     private Boolean estadoMalo;
-    private String entregadopor;
-    private String recibidopor;
-    private String quiencompra;
+
 
     public AlimentoEntrega() {
     }
 
-    public AlimentoEntrega(String nombresemana, String nombreCDI, String fechacompra, String fechaentrega, String codigo, String ingrediente, String medida, String cantidadentregada, Boolean estadoBueno, Boolean estadoRegular, Boolean estadoMalo, String entregadopor, String recibidopor, String quiencompra) {
+    public AlimentoEntrega(String nombresemana, String codigo, String ingrediente, String medida, String cantidadentregada, Boolean estadoBueno, Boolean estadoRegular, Boolean estadoMalo) {
         this.nombresemana = nombresemana;
-        this.nombreCDI = nombreCDI;
-        this.fechacompra = fechacompra;
-        this.fechaentrega = fechaentrega;
         this.codigo = codigo;
         this.ingrediente = ingrediente;
         this.medida = medida;
@@ -32,9 +24,6 @@ public class AlimentoEntrega {
         this.estadoBueno = estadoBueno;
         this.estadoRegular = estadoRegular;
         this.estadoMalo = estadoMalo;
-        this.entregadopor = entregadopor;
-        this.recibidopor = recibidopor;
-        this.quiencompra = quiencompra;
     }
 
     public String getNombresemana() {
@@ -43,30 +32,6 @@ public class AlimentoEntrega {
 
     public void setNombresemana(String nombresemana) {
         this.nombresemana = nombresemana;
-    }
-
-    public String getNombreCDI() {
-        return nombreCDI;
-    }
-
-    public void setNombreCDI(String nombreCDI) {
-        this.nombreCDI = nombreCDI;
-    }
-
-    public String getFechacompra() {
-        return fechacompra;
-    }
-
-    public void setFechacompra(String fechacompra) {
-        this.fechacompra = fechacompra;
-    }
-
-    public String getFechaentrega() {
-        return fechaentrega;
-    }
-
-    public void setFechaentrega(String fechaentrega) {
-        this.fechaentrega = fechaentrega;
     }
 
     public String getCodigo() {
@@ -123,29 +88,5 @@ public class AlimentoEntrega {
 
     public void setEstadoMalo(Boolean estadoMalo) {
         this.estadoMalo = estadoMalo;
-    }
-
-    public String getEntregadopor() {
-        return entregadopor;
-    }
-
-    public void setEntregadopor(String entregadopor) {
-        this.entregadopor = entregadopor;
-    }
-
-    public String getRecibidopor() {
-        return recibidopor;
-    }
-
-    public void setRecibidopor(String recibidopor) {
-        this.recibidopor = recibidopor;
-    }
-
-    public String getQuiencompra() {
-        return quiencompra;
-    }
-
-    public void setQuiencompra(String quiencompra) {
-        this.quiencompra = quiencompra;
     }
 }
