@@ -15,11 +15,12 @@ public class AlimentoEntrega {
     private Boolean estadoMalo;
     private String entregadopor;
     private String recibidopor;
+    private String quiencompra;
 
     public AlimentoEntrega() {
     }
 
-    public AlimentoEntrega(String nombresemana, String nombreCDI, String fechacompra, String fechaentrega, String codigo, String ingrediente, String medida, String cantidadentregada, Boolean estadoBueno, Boolean estadoRegular, Boolean estadoMalo, String entregadopor, String recibidopor) {
+    public AlimentoEntrega(String nombresemana, String nombreCDI, String fechacompra, String fechaentrega, String codigo, String ingrediente, String medida, String cantidadentregada, Boolean estadoBueno, Boolean estadoRegular, Boolean estadoMalo, String entregadopor, String recibidopor, String quiencompra) {
         this.nombresemana = nombresemana;
         this.nombreCDI = nombreCDI;
         this.fechacompra = fechacompra;
@@ -33,6 +34,7 @@ public class AlimentoEntrega {
         this.estadoMalo = estadoMalo;
         this.entregadopor = entregadopor;
         this.recibidopor = recibidopor;
+        this.quiencompra = quiencompra;
     }
 
     public String getNombresemana() {
@@ -137,5 +139,13 @@ public class AlimentoEntrega {
 
     public void setRecibidopor(String recibidopor) {
         this.recibidopor = recibidopor;
+    }
+
+    public String getQuiencompra() {
+        return quiencompra;
+    }
+
+    public void setQuiencompra(String quiencompra) {
+        this.quiencompra = quiencompra;
     }
 }

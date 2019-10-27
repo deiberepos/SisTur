@@ -312,8 +312,8 @@ public class CrearCalendario extends AppCompatActivity {
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    protected void onPause() {
+        super.onPause();
         finish();
     }
 }

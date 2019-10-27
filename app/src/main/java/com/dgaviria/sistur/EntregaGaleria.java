@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -19,13 +18,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dgaviria.sistur.adaptadores.AdaptadorListaCompra;
-import com.dgaviria.sistur.adaptadores.AdaptadorListaEntrega;
+import com.dgaviria.sistur.adaptadores.AdaptadorListaRecibe;
 import com.dgaviria.sistur.clases.AlimentoCompra;
 import com.dgaviria.sistur.clases.AlimentoEntrega;
-import com.dgaviria.sistur.clases.ComparadorAlimentoCompra;
 import com.dgaviria.sistur.clases.ComparadorAlimentoEntrega;
-import com.dgaviria.sistur.clases.Minutas;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -44,7 +40,7 @@ public class EntregaGaleria extends AppCompatActivity {
     int año, mes, dia;
     TextView totalInfantes,conteoIngredientes;
     EditText campoFechaE;
-    AdaptadorListaEntrega miAdaptadorEntrega;
+    AdaptadorListaRecibe miAdaptadorEntrega;
     Spinner selectorSemanasE,selectorCDIE;
     String nombreSemanaE,nombreCDI,fechaEntrega;
     DatabaseReference miReferenciaCDI,miReferenciaSemC,miReferenciaLista,miReferenciaSemE,miReferenciaPob;
@@ -59,7 +55,7 @@ public class EntregaGaleria extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lista_entrega);
+        setContentView(R.layout.lista_recibe);
         referenciar();
         mostrarFechaE();
         selectorCDIE.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -161,7 +157,7 @@ public class EntregaGaleria extends AppCompatActivity {
                                 }
                                 totalInfantes.setText(String.valueOf(numInfantes));
                                 numIngredientes=listaEntrega.size();
-                                miAdaptadorEntrega = new AdaptadorListaEntrega(EntregaGaleria.this, listaEntrega);
+                                miAdaptadorEntrega = new AdaptadorListaRecibe(EntregaGaleria.this, listaEntrega);
                                 miRecyclerListaEntrega.setAdapter(miAdaptadorEntrega);
                                 miRecyclerListaEntrega.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
                                 miAdaptadorEntrega.notifyDataSetChanged();
@@ -229,7 +225,7 @@ public class EntregaGaleria extends AppCompatActivity {
                                     numIngredientes=listaEntrega.size();
                                     conteoIngredientes.setText(String.valueOf(numIngredientes));
                                     totalInfantes.setText(String.valueOf(numInfantes));
-                                    miAdaptadorEntrega= new AdaptadorListaEntrega(EntregaGaleria.this, listaEntrega);
+                                    miAdaptadorEntrega= new AdaptadorListaRecibe(EntregaGaleria.this, listaEntrega);
                                     miRecyclerListaEntrega.setAdapter(miAdaptadorEntrega);
                                     miRecyclerListaEntrega.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
                                     miAdaptadorEntrega.notifyDataSetChanged();
@@ -326,5 +322,11 @@ public class EntregaGaleria extends AppCompatActivity {
             // This is important, otherwise the result will not be passed to the fragment
             super.onActivityResult(requestCode, resultCode, data);
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
     }
 }

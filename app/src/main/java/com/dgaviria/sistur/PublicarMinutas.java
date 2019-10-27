@@ -440,4 +440,10 @@ public class PublicarMinutas extends AppCompatActivity {
         miRecyclerDiarioV.setAdapter(adaptadorViernes);
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
+    }
+
 }

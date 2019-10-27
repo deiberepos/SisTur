@@ -43,7 +43,7 @@ public class CompraGaleria extends AppCompatActivity {
     ArrayList<String> listadoSemanas, listadoMinutas;
     ArrayList<AlimentoCompra> listaGaleria;
     public static String cantidadReal;
-    Bundle bundle;
+    Bundle recibeParametros;
     public static long resultadoCantidad, auxcantidad, totalInfantes;
     RecyclerView miRecyclerListaCompra;
     Button botonGuardar,botonCalcular;
@@ -51,6 +51,7 @@ public class CompraGaleria extends AppCompatActivity {
     Boolean existeLista=false;
     int numItem;
     TextView totalCompra,totalConteo,parcialConteo;
+    public static String recibeRol, recibeUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,8 +100,10 @@ public class CompraGaleria extends AppCompatActivity {
         totalConteo=findViewById(R.id.txtTotalIngredientes);
         parcialConteo=findViewById(R.id.txtSubconteoIngredientes);
         totalCompra=findViewById(R.id.txtValorCompra);
-        bundle = getIntent().getExtras();
-        totalInfantes =bundle.getLong("total");
+        recibeParametros = getIntent().getExtras();
+        totalInfantes = recibeParametros.getLong("total");
+        recibeRol= recibeParametros.getString("rol");
+        recibeUsuario = recibeParametros.getString("usuario");
         llenarListaSemanas();
     }
 
@@ -363,6 +366,7 @@ public class CompraGaleria extends AppCompatActivity {
                         miItemAlimento.setEntregado("0");
                         miItemAlimento.setPorentregar(listaGaleria.get(numItem).getCantidad());
                         miItemAlimento.setCodigo(listaGaleria.get(numItem).getCodigo());
+                        miItemAlimento.setQuiencompra(listaGaleria.get(numItem).getQuiencompra());
                         miReferenciaLista.child(codigoAlimento).setValue(miItemAlimento);
                     }
                 }

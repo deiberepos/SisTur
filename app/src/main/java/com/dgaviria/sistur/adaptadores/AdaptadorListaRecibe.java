@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,11 +12,11 @@ import com.dgaviria.sistur.R;
 import com.dgaviria.sistur.clases.AlimentoEntrega;
 import java.util.ArrayList;
 
-public class AdaptadorListaEntrega extends RecyclerView.Adapter<AdaptadorListaEntrega.AlimentoViewHolder> {
+public class AdaptadorListaRecibe extends RecyclerView.Adapter<AdaptadorListaRecibe.AlimentoViewHolder> {
     private LayoutInflater miInflater;
     public static ArrayList<AlimentoEntrega> estadoEntregaLista;
 
-    public AdaptadorListaEntrega(Context contexto, ArrayList<AlimentoEntrega> listaEntrega){
+    public AdaptadorListaRecibe(Context contexto, ArrayList<AlimentoEntrega> listaEntrega){
         miInflater = LayoutInflater.from(contexto);
         this.estadoEntregaLista = listaEntrega;
         notifyDataSetChanged();
@@ -25,14 +24,14 @@ public class AdaptadorListaEntrega extends RecyclerView.Adapter<AdaptadorListaEn
 
     @NonNull
     @Override
-    public AdaptadorListaEntrega.AlimentoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View vista = miInflater.inflate(R.layout.entrega_lista, parent, false);
-        AdaptadorListaEntrega.AlimentoViewHolder holder = new AdaptadorListaEntrega.AlimentoViewHolder(vista);
+    public AdaptadorListaRecibe.AlimentoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View vista = miInflater.inflate(R.layout.recibe_lista, parent, false);
+        AdaptadorListaRecibe.AlimentoViewHolder holder = new AdaptadorListaRecibe.AlimentoViewHolder(vista);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final AdaptadorListaEntrega.AlimentoViewHolder holder, final int posicion) {
+    public void onBindViewHolder(@NonNull final AdaptadorListaRecibe.AlimentoViewHolder holder, final int posicion) {
         final AlimentoEntrega alimentoLista= estadoEntregaLista.get(posicion);
         holder.producto.setText(alimentoLista.getIngrediente());
         holder.unidad.setText(alimentoLista.getMedida());

@@ -10,11 +10,12 @@ public class AlimentoCompra {
     private String entregado;
     private String porentregar;
     private String codigo;
+    private String quiencompra;
 
     public AlimentoCompra() {
     }
 
-    public AlimentoCompra(String fechacompra, String ingrediente, String medida, String cantidad, String valorcompra, String total, String entregado, String porentregar, String codigo) {
+    public AlimentoCompra(String fechacompra, String ingrediente, String medida, String cantidad, String valorcompra, String total, String entregado, String porentregar, String codigo, String quiencompra) {
         this.fechacompra = fechacompra;
         this.ingrediente = ingrediente;
         this.medida = medida;
@@ -24,6 +25,7 @@ public class AlimentoCompra {
         this.entregado = entregado;
         this.porentregar = porentregar;
         this.codigo = codigo;
+        this.quiencompra = quiencompra;
     }
 
     public String getFechacompra() {
@@ -96,5 +98,13 @@ public class AlimentoCompra {
 
     public void setCodigo(String codigo) {
         this.codigo = codigo;
+    }
+
+    public String getQuiencompra() {
+        return quiencompra;
+    }
+
+    public void setQuiencompra(String quiencompra) {
+        this.quiencompra = quiencompra;
     }
 }

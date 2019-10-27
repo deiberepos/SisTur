@@ -69,8 +69,8 @@ public class MenuPrincipal extends AppCompatActivity {
                         startActivity(miIntento6);
                         break;
                     case 7:
-                        //Antes de acceder al menu de galeria se saca el totaldeniños asociados a los Centros
-                        // y se envia para realizar el cálculo de el total de compras que se debe realizar
+                        //Antes de acceder al menu de galería se saca el total de niños asociados a los Centros
+                        // y se envia para realizar el cálculo del total de compras que se debe realizar
                         miReferencia= FirebaseDatabase.getInstance().getReference();
                         childpoblacion=miReferencia.child("poblacionCentros");
                         childpoblacion.addValueEventListener(new ValueEventListener() {
@@ -81,6 +81,8 @@ public class MenuPrincipal extends AppCompatActivity {
                                     total += datos.getChildrenCount()-1;
                                 }
                                 Intent miIntento7 = new Intent(MenuPrincipal.this, CompraGaleria.class);
+                                miIntento7.putExtra("usuario",recibeUsuario);
+                                miIntento7.putExtra("rol",recibeRol);
                                 miIntento7.putExtra("total",total);
                                 startActivity(miIntento7);
                             }
@@ -90,16 +92,17 @@ public class MenuPrincipal extends AppCompatActivity {
 
                             }
                         });
-                        //Intent miIntento7 = new Intent(MenuPrincipal.this, CompraGaleria.class);
-                        //startActivity(miIntento7);
+
                         break;
                     case 8:
                         if (recibeRol.equals("compras")){
-                            Intent miIntento8 = new Intent(MenuPrincipal.this, EntregaCompras.class);
+                            Intent miIntento8 = new Intent(MenuPrincipal.this, RecibeCompra.class);
                             startActivity(miIntento8);
                         }
                         else{
                             Intent miIntento8 = new Intent(MenuPrincipal.this, EntregaGaleria.class);
+                            miIntento8.putExtra("usuario",recibeUsuario);
+                            miIntento8.putExtra("rol",recibeRol);
                             startActivity(miIntento8);
                         }
                         break;
@@ -153,6 +156,8 @@ public class MenuPrincipal extends AppCompatActivity {
                                     total += datos.getChildrenCount()-1;
                                 }
                                 Intent miIntento7 = new Intent(MenuPrincipal.this, CompraGaleria.class);
+                                miIntento7.putExtra("usuario",recibeUsuario);
+                                miIntento7.putExtra("rol",recibeRol);
                                 miIntento7.putExtra("total",total);
                                 startActivity(miIntento7);
                             }
@@ -167,11 +172,13 @@ public class MenuPrincipal extends AppCompatActivity {
                         break;
                     case 8:
                         if (recibeRol.equals("compras")){
-                            Intent miIntento8 = new Intent(MenuPrincipal.this, EntregaCompras.class);
+                            Intent miIntento8 = new Intent(MenuPrincipal.this, RecibeCompra.class);
                             startActivity(miIntento8);
                         }
                         else{
                             Intent miIntento8 = new Intent(MenuPrincipal.this, EntregaGaleria.class);
+                            miIntento8.putExtra("usuario",recibeUsuario);
+                            miIntento8.putExtra("rol",recibeRol);
                             startActivity(miIntento8);
                         }
                         break;

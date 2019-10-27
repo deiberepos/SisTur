@@ -2,8 +2,6 @@ package com.dgaviria.sistur;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.DatePickerDialog;
 import android.graphics.Bitmap;
@@ -16,13 +14,8 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dgaviria.sistur.adaptadores.AdaptadorListaEntrega;
-import com.dgaviria.sistur.clases.AlimentoCompra;
-import com.dgaviria.sistur.clases.AlimentoEntrega;
-import com.dgaviria.sistur.clases.ComparadorAlimentoEntrega;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,23 +28,23 @@ import com.google.zxing.common.BitMatrix;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-public class EntregaCompras extends AppCompatActivity {
+public class RecibeCompra extends AppCompatActivity {
     ImageView codigoQR;
     Button botonGenerar;
     Bitmap imagenQR;
     int año, mes, dia;
     EditText campoFechaEI;
     Spinner selectorSemanasEI,selectorCDIEI;
-    String nombreSemanaEI,nombreCDIEI,fechaEntregaI;
+    String nombreSemanaEI,nombreCDIEI,fechaEntregaI,recibeRol,recibeUsuario;
     DatabaseReference miReferenciaCDIEI,miReferenciaSemEI,miReferenciaLista;
     ArrayAdapter<String> adaptadorSemanaEI,adaptadorCDIEI;
     ArrayList<String> listadoSemanasEI, listadoCDIEI;
     Calendar miCalendarioEI;
     Boolean aprobarQR;
+    Bundle recibeParametros;
 
     public final static int anchoCodigoQR = 350 ;
 
@@ -89,14 +82,15 @@ public class EntregaCompras extends AppCompatActivity {
             public void onClick(View view) {
                 if (aprobarQR && nombreSemanaEI!=null && !nombreSemanaEI.isEmpty() && nombreCDIEI!=null && !nombreCDIEI.isEmpty())
                     try {
-                        String textoQR=nombreSemanaEI+nombreCDIEI+"76309798";
+                        String textoQR=nombreSemanaEI+"|"+nombreCDIEI+"|"+recibeUsuario;
                         imagenQR = convierteTextoAQR(textoQR);
                         codigoQR.setImageBitmap(imagenQR);
                     } catch (WriterException e) {
                         e.printStackTrace();
                     }
+
                 else
-                    Toast.makeText(EntregaCompras.this, "Debe seleccionar una semana y un CDI", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RecibeCompra.this, "Debe seleccionar una semana y un CDI", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -112,6 +106,8 @@ public class EntregaCompras extends AppCompatActivity {
         dia = miCalendarioEI.get(Calendar.DAY_OF_MONTH);
         selectorSemanasEI=findViewById(R.id.selectorSemanaEI);
         selectorCDIEI=findViewById(R.id.selectorCDIEI);
+        recibeRol= recibeParametros.getString("rol");
+        recibeUsuario = recibeParametros.getString("usuario");
         aprobarQR=false;
         llenarListaCDIEI();
         llenarListaSemanasEI();
@@ -199,7 +195,7 @@ public class EntregaCompras extends AppCompatActivity {
                     for (DataSnapshot miCentro : dataSnapshot.getChildren()) {
                         listadoCDIEI.add(miCentro.getKey());
                     }
-                    adaptadorCDIEI = new ArrayAdapter<String>(EntregaCompras.this, android.R.layout.simple_spinner_item, listadoCDIEI);
+                    adaptadorCDIEI = new ArrayAdapter<String>(RecibeCompra.this, android.R.layout.simple_spinner_item, listadoCDIEI);
                     adaptadorCDIEI.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     selectorCDIEI.setAdapter(adaptadorCDIEI);
                     //selectorSemanas.setSelected(false);
@@ -227,7 +223,7 @@ public class EntregaCompras extends AppCompatActivity {
                     for (DataSnapshot miSemana : dataSnapshot.getChildren()) {
                         listadoSemanasEI.add(miSemana.getKey());
                     }
-                    adaptadorSemanaEI = new ArrayAdapter<String>(EntregaCompras.this, android.R.layout.simple_spinner_item, listadoSemanasEI);
+                    adaptadorSemanaEI = new ArrayAdapter<String>(RecibeCompra.this, android.R.layout.simple_spinner_item, listadoSemanasEI);
                     adaptadorSemanaEI.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     selectorSemanasEI.setAdapter(adaptadorSemanaEI);
                     //selectorSemanas.setSelected(false);
@@ -243,5 +239,11 @@ public class EntregaCompras extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
     }
 }

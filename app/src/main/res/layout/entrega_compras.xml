@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".EntregaCompras">
+    tools:context=".RecibeCompra">
     <ImageView
         android:layout_width="65dp"
         android:layout_height="70dp"
@@ -116,4 +116,8 @@
         android:layout_height="200dp"
         android:layout_marginTop="10dp"
         android:src="@android:drawable/ic_lock_lock" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorNegro" />
 </LinearLayout>
