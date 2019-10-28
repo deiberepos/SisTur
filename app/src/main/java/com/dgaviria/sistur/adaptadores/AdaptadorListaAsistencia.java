@@ -45,14 +45,13 @@ public class AdaptadorListaAsistencia extends RecyclerView.Adapter<AdaptadorList
     }
 
     class AsistenciaViewHolder extends RecyclerView.ViewHolder{
-        CheckBox asiste, noAsiste;
+        CheckBox asiste;
         TextView nombre;
 
         public AsistenciaViewHolder(View itemView) {
             super(itemView);
             nombre=itemView.findViewById(R.id.txvnombreAsistente);
             asiste =itemView.findViewById(R.id.idchkSi);
-            noAsiste=itemView.findViewById(R.id.idchkNo);
         }
     }
 }

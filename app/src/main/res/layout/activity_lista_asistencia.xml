@@ -41,13 +41,13 @@
             android:textStyle="italic|bold"
             />
         <EditText
-            android:id="@+id/editFechaCompra"
+            android:id="@+id/idedtFechaAsistencia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="seleccione fecha"
             android:layout_gravity="center"
             style="@style/IngresoDatos"
-
+            android:onClick="mostrarCalendarioE"
             android:layout_marginTop="0dp"
             android:layout_toEndOf="@+id/textoFecha"
             />
@@ -68,7 +68,7 @@
         android:layout_gravity="center"
         android:background="@color/colorClaro">
         <Spinner
-            android:id="@+id/selectorCDIE"
+            android:id="@+id/idspncentrosasistencia"
             android:layout_width="280dp"
             android:layout_height="30dp"
             style="@style/SelectorSemana"
@@ -90,7 +90,7 @@
         android:layout_gravity="center"
         android:background="@color/colorClaro">
         <Spinner
-            android:id="@+id/selectorSemanaE"
+            android:id="@+id/idspnsemanaasistencia"
             android:layout_width="280dp"
             android:layout_height="30dp"
             style="@style/SelectorSemana"
@@ -111,12 +111,12 @@
             android:layout_column="0"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="Infantes atendidos"
+            android:text="@string/totalinfantes"
             android:textColor="@color/colorAzulOscuro2"
             android:textSize="12sp"
             android:textStyle="italic|bold" />
         <TextView
-            android:id="@+id/txtTotalInfantesE"
+            android:id="@+id/idtxvTotalInfantesA"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:layout_column="0"
@@ -141,13 +141,13 @@
             android:layout_column="2"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="Ingredientes a entregar"
+            android:text="Infantes Asistentes"
             android:textColor="@color/colorAzulOscuro2"
             android:textSize="12sp"
             android:textStyle="italic|bold" />
 
         <TextView
-            android:id="@+id/txtTotalIngredientesE"
+            android:id="@+id/idtxvAsistentes"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:layout_column="2"
@@ -168,7 +168,7 @@
             android:layout_gravity="center" />
 
         <Button
-            android:id="@+id/botonApruebaE"
+            android:id="@+id/idbtnAprobarAsistencia"
             android:layout_width="110dp"
             android:layout_height="40dp"
             android:layout_row="0"
@@ -177,7 +177,7 @@
             android:layout_gravity="center"
             android:background="@drawable/personalizar_button"
             android:gravity="center"
-            android:text="Aprobar"
+            android:text="@string/txtAprobar"
             android:textAllCaps="false"
             android:textColor="@color/colorClaro" />
     </GridLayout>
@@ -208,25 +208,12 @@
                 android:id="@+id/titulo2E"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:text="Si"
+                android:text="Asistió"
                 android:gravity="center"
                 android:textColor="@color/colorNegro"
                 android:textStyle="bold"
                 android:layout_marginTop="8dp"
                 android:layout_toEndOf="@id/titulo1E"
-                />
-            <TextView
-                android:id="@+id/titulo3E"
-                android:layout_width="55dp"
-                android:layout_height="wrap_content"
-                android:text="No"
-                android:gravity="center"
-                android:textColor="@color/colorNegro"
-                android:textStyle="bold"
-                android:lines="2"
-                android:minLines="2"
-                android:textSize="12sp"
-                android:layout_toEndOf="@id/titulo2E"
                 />
 
             <View
@@ -238,7 +225,7 @@
                 />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerEntregas"
+                android:id="@+id/idrecyclerAsistencia"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingStart="5dp"
@@ -250,7 +237,7 @@
                 android:layout_height="1dp"
                 android:background="@color/colorNegro"
                 android:layout_marginTop="10dp"
-                android:layout_below="@id/recyclerEntregas"
+                android:layout_below="@id/idrecyclerAsistencia"
                 />
         </RelativeLayout>
     </HorizontalScrollView>
