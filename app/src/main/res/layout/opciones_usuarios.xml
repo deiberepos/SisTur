@@ -28,9 +28,9 @@
                 android:shadowDx="-2"
                 android:shadowDy="-2"
                 android:shadowRadius="1.5"
-                android:text="Acciones sobre usuarios"
+                android:text="@string/txtAcciones"
                 android:textColor="@color/colorNegro"
-                android:textSize="25dp"
+                android:textSize="25sp"
                 android:textStyle="bold" />
             <Button
                 android:id="@+id/botonCrea"
@@ -39,7 +39,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_height="40dp"
                 android:background="@drawable/personalizar_button"
-                android:text="Crear usuarios"
+                android:text="@string/txtCreacionUsuarios"
                 android:textAllCaps="false"
                 android:textColor="@color/colorClaro" />
             <Button
@@ -49,7 +49,7 @@
                 android:layout_margin="20dp"
                 android:layout_height="40dp"
                 android:background="@drawable/personalizar_button"
-                android:text="Modificar usuarios"
+                android:text="@string/txtModificarUsuario"
                 android:textAllCaps="false"
                 android:textColor="@color/colorClaro" />
         </LinearLayout>

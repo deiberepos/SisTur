@@ -15,7 +15,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:gravity="center">
 
@@ -32,7 +32,7 @@
 
 
                 <TextView
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -41,7 +41,7 @@
                     android:shadowDx="-2"
                     android:shadowDy="-2"
                     android:shadowRadius="1.5"
-                    android:text="Creación de usuarios"
+                    android:text="@string/txtCreacionUsuarios"
                     android:textColor="@color/colorNegro"
                     android:textSize="25sp"
                     android:textStyle="bold" />
@@ -54,19 +54,19 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="25dp"
                     android:gravity="center"
-                    android:text="Nombre Usuario:" />
+                    android:text="@string/txtNombreUsuario" />
 
                 <EditText
                     android:id="@+id/editTextUsuario"
                     style="@style/edit"
                     android:fontFamily="monospace"
-                    android:hint="Escriba nombre de usuario"
+                    android:hint="@string/txtHintNombreUsuario"
                     android:inputType="textPostalAddress"
                     android:maxLength="15"
                     android:paddingBottom="15dp"
                     android:textColor="@color/colorPrimarioOscuro"
                     android:textCursorDrawable="@color/colorRojo"
-                    android:textSize="15dp" />
+                    android:textSize="15sp" />
                 <TextView
                     style="@style/TexviewsubTitulo"
                     android:textColor="@color/colorNegro"
@@ -74,19 +74,19 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="Contraseña:" />
+                    android:text="@string/txtContraseña" />
 
                 <EditText
                     android:id="@+id/editTextPassword"
                     style="@style/edit"
                     android:fontFamily="monospace"
-                    android:hint="Escriba aqui contraseña"
+                    android:hint="@string/txtHintContraseña"
                     android:inputType="textPassword"
                     android:maxLength="15"
                     android:paddingBottom="15dp"
                     android:textColor="@color/colorPrimarioOscuro"
                     android:textCursorDrawable="@color/colorRojo"
-                    android:textSize="15dp" />
+                    android:textSize="15sp" />
                 <TextView
                     style="@style/TexviewsubTitulo"
                     android:textColor="@color/colorNegro"
@@ -94,19 +94,19 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text=" Verifica Contraseña:" />
+                    android:text="@string/txtVerificaContraseña" />
 
                 <EditText
                     android:id="@+id/editTextVerificaPassword"
                     style="@style/edit"
                     android:fontFamily="monospace"
-                    android:hint="verifica contraseña"
+                    android:hint="@string/txtHintContraseña"
                     android:inputType="textPassword"
                     android:maxLength="15"
                     android:paddingBottom="15dp"
                     android:textColor="@color/colorPrimarioOscuro"
                     android:textCursorDrawable="@color/colorRojo"
-                    android:textSize="15dp" />
+                    android:textSize="15sp" />
                 <TextView
                     style="@style/TexviewsubTitulo"
                     android:textColor="@color/colorNegro"
@@ -114,19 +114,19 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="Correo:" />
+                    android:text="@string/txtCorreo" />
 
                 <EditText
                     android:id="@+id/editTextCorreo"
                     style="@style/edit"
                     android:fontFamily="monospace"
-                    android:hint="Escriba aqui direccion correo"
+                    android:hint="@string/txtHintCorreo"
                     android:inputType="textEmailAddress"
                     android:maxLength="35"
                     android:paddingBottom="15dp"
                     android:textColor="@color/colorPrimarioOscuro"
                     android:textCursorDrawable="@color/colorRojo"
-                    android:textSize="15dp" />
+                    android:textSize="15sp" />
 
                 <TextView
                     style="@style/TexviewsubTitulo"
@@ -135,7 +135,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="Nombres y apelllidos:" />
+                    android:text="@string/txtNombreApellido" />
 
 
 
@@ -143,13 +143,13 @@
                     android:id="@+id/editTextNombre"
                     style="@style/edit"
                     android:fontFamily="monospace"
-                    android:hint="Escriba aqui nombre y apellido"
+                    android:hint="@string/txtHintNombreApellido"
                     android:inputType="textPersonName"
                     android:maxLength="35"
                     android:paddingBottom="15dp"
                     android:textColor="@color/colorPrimarioOscuro"
                     android:textCursorDrawable="@color/colorRojo"
-                    android:textSize="15dp" />
+                    android:textSize="15sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -175,9 +175,9 @@
                         android:shadowDx="-2"
                         android:shadowDy="-2"
                         android:shadowRadius="1.5"
-                        android:text="Rol"
+                        android:text="@string/txtRol"
                         android:textColor="@color/colorNegro"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
 
                     <RadioGroup
@@ -193,7 +193,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:checked="true"
-                            android:text="Gestor"
+                            android:text="@string/txtGestor"
                             android:textColor="@color/colorPrimarioOscuro"
                             android:typeface="monospace"
                             app:buttonTint="@color/colorRojo" />
@@ -203,7 +203,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:checked="true"
-                            android:text="Compras"
+                            android:text="@string/txtCompras"
                             android:textColor="@color/colorPrimarioOscuro"
                             android:typeface="monospace"
                             app:buttonTint="@color/colorRojo" />
@@ -213,7 +213,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:checked="true"
-                            android:text="Básico"
+                            android:text="@string/txtBasico"
                             android:textColor="@color/colorPrimarioOscuro"
                             android:typeface="monospace"
                             app:buttonTint="@color/colorRojo" />
@@ -236,7 +236,7 @@
                         android:layout_gravity="center"
                         android:layout_marginTop="20dp"
                         android:background="@drawable/personalizar_button"
-                        android:text="Registrar Usuario"
+                        android:text="@string/txtRegistrarUsuario"
                         android:textAllCaps="false"
                         android:textColor="@color/colorClaro" />
                     <Button
@@ -246,13 +246,11 @@
                         android:layout_gravity="center"
                         android:layout_marginTop="20dp"
                         android:background="@drawable/personalizar_button"
-                        android:text="Actualizar Usuario"
+                        android:text="@string/txtActualizaUsuario"
                         android:textAllCaps="false"
                         android:textColor="@color/colorClaro" />
                 </LinearLayout>
-
             </LinearLayout>
-
         </RelativeLayout>
     </ScrollView>
 </LinearLayout>

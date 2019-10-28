@@ -25,7 +25,7 @@
                 android:background="@color/colorAzulOscuro1"
                 android:gravity="center"
                 android:textStyle="bold"
-                android:text="HOLA"
+                android:text="@string/txtVacio"
                 />
             <TextView
                 android:id="@+id/txtPreparaDiario"
@@ -35,7 +35,7 @@
                 android:textColor="@color/colorNegro"
                 android:gravity="center"
                 android:maxLines="3"
-                android:text="HOLA"
+                android:text="@string/txtVacio"
                 android:layout_below="@id/txtNumPrepara"
                 />
 

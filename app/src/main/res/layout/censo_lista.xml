@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <androidx.cardview.widget.CardView
-            app:cardCornerRadius="10dp"
+            app:cardCornerRadius="12dp"
             android:layout_marginTop="5dp"
             android:paddingBottom="10dp"
             android:padding="10dp"
@@ -21,7 +21,7 @@
             android:background="@drawable/fondouser">
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center">
 
@@ -46,7 +46,7 @@
                         android:lineSpacingExtra="2dp"
                         android:maxLines="2"
                         android:singleLine="true"
-                        android:text="Nombre Infante"
+                        android:text="@string/txtNombreInfante"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                         android:textColor="@color/colorAzulOscuro3"
                         android:textSize="15sp"
@@ -62,7 +62,7 @@
                         android:layout_marginTop="2dp"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:text="Nombre CDIH"
+                        android:text="@string/txtNombreCDIH"
                         android:textStyle="bold"
                         android:textColor="@color/colorAzulOscuro3"
                         android:textSize="15sp"/>

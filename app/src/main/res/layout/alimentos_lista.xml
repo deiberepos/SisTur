@@ -15,8 +15,8 @@
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:layout_marginRight="2dp"
+        android:focusable="true"
+        android:layout_marginEnd="2dp"
         android:orientation="horizontal"
         android:paddingTop="10dp"
         android:paddingBottom="10dp">
@@ -45,9 +45,9 @@
                     android:layout_centerInParent="true"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:text="Código"
+                    android:text="@string/txtCodigo"
                     android:textColor="@color/colorAzulOscuro3"
-                    android:textSize="14dp"
+                    android:textSize="14sp"
                     />
             </RelativeLayout>
         </RelativeLayout>
@@ -66,8 +66,8 @@
                     android:maxLines="1"
                     android:singleLine="true"
                     android:fontFamily="monospace"
-                    android:textSize="14dp"
-                    android:text="Nombre Grupo"
+                    android:textSize="14sp"
+                    android:text="@string/txtNombreGrupo"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textStyle="normal"
                     android:textColor="@color/colorAzulOscuro3"
@@ -79,10 +79,10 @@
                     android:layout_marginTop="2dp"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:text="Nombre Alimento"
+                    android:text="@string/txtNombreAlimento"
                     android:textStyle="bold"
                     android:textColor="@color/colorAzulOscuro3"
-                    android:textSize="12dp"
+                    android:textSize="12sp"
                     />
                 <TextView
                     android:id="@+id/txtARegional"
@@ -91,9 +91,9 @@
                     android:layout_marginTop="2dp"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:text="Nombre Regional"
+                    android:text="@string/txtNombreRegional"
                     android:textColor="@color/colorRojo"
-                    android:textSize="12dp"
+                    android:textSize="12sp"
                     android:textStyle="italic"
                     />
             </LinearLayout>

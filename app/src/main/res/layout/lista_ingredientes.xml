@@ -16,7 +16,7 @@
         android:gravity="center_vertical"
         android:textSize="14sp"
         android:textStyle="bold"
-        android:text="VACIO"
+        android:text="@string/txtVacio"
         android:layout_marginTop="8dp"
         android:layout_marginStart="5dp"
         />
@@ -27,7 +27,7 @@
         android:gravity="center_vertical"
         android:textSize="14sp"
         android:textStyle="italic"
-        android:text="VACIO"
+        android:text="@string/txtVacio"
         android:layout_marginStart="5dp"
         />
     <View

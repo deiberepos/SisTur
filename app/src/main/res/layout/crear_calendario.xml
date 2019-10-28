@@ -37,7 +37,7 @@
                     android:shadowDx="-2"
                     android:shadowDy="-2"
                     android:shadowRadius="1.5"
-                    android:text="Creación de Calendarios"
+                    android:text="@string/txtCreacionCalendario"
                     android:textColor="@color/colorNegro"
                     android:textSize="25sp"
                     android:textStyle="bold" />
@@ -47,7 +47,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="30dp"
-                    android:text="SEMANA"
+                    android:text="@string/txtSemana"
                     android:textColor="@color/colorNegro"
                     android:textSize="20sp"
                     android:textStyle="italic|bold" />
@@ -79,7 +79,7 @@
                         android:layout_column="0"
                         android:layout_columnSpan="3"
                         android:layout_gravity="center"
-                        android:text="MINUTA"
+                        android:text="@string/txtMinuta"
                         android:textColor="@color/colorNegro"
                         android:textSize="20sp"
                         android:textStyle="italic|bold" />
@@ -93,7 +93,7 @@
                         android:gravity="center"
                         android:horizontalSpacing="2dp"
                         android:padding="2dp"
-                        android:text="Lunes"
+                        android:text="@string/txtLunes"
                         android:textSize="20sp"
                         android:verticalSpacing="2dp" />
 
@@ -107,7 +107,7 @@
                         android:gravity="center"
                         android:horizontalSpacing="2dp"
                         android:padding="2dp"
-                        android:text="Martes"
+                        android:text="@string/txtMartes"
                         android:textSize="20sp"
                         android:verticalSpacing="2dp" />
 
@@ -120,7 +120,7 @@
                         android:gravity="center"
                         android:horizontalSpacing="2dp"
                         android:padding="2dp"
-                        android:text="Miércoles"
+                        android:text="@string/txtMiercoles"
                         android:textSize="20sp"
                         android:verticalSpacing="2dp" />
 
@@ -134,7 +134,7 @@
                         android:gravity="center"
                         android:horizontalSpacing="2dp"
                         android:padding="2dp"
-                        android:text="Jueves"
+                        android:text="@string/txtJueves"
                         android:textSize="20sp"
                         android:verticalSpacing="2dp" />
 
@@ -147,7 +147,7 @@
                         android:gravity="center"
                         android:horizontalSpacing="2dp"
                         android:padding="2dp"
-                        android:text="Viernes"
+                        android:text="@string/txtViernes"
                         android:textSize="20sp"
                         android:verticalSpacing="2dp" />
 
@@ -231,10 +231,8 @@
         android:layout_width="83dp"
         android:layout_height="59dp"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
         android:backgroundTint="@color/colorPrimarioSuave"
         android:src="@drawable/aceptar" />

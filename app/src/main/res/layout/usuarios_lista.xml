@@ -49,7 +49,7 @@
                             android:lineSpacingExtra="2dp"
                             android:maxLines="2"
                             android:singleLine="true"
-                            android:text="Nombre Grupo"
+                            android:text="@string/txtNombreGrupo"
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                             android:textColor="@color/colorAzulOscuro3"
                             android:textSize="15sp"
@@ -65,7 +65,7 @@
                             android:layout_marginTop="2dp"
                             android:maxLines="1"
                             android:singleLine="true"
-                            android:text="Nombre Alimento"
+                            android:text="@string/txtNombreAlimento"
                             android:textStyle="bold"
                             android:textColor="@color/colorAzulOscuro3"
                             android:textSize="15sp"/>
@@ -81,7 +81,7 @@
                             android:layout_marginTop="2dp"
                             android:maxLines="1"
                             android:singleLine="true"
-                            android:text="Nombre Regional"
+                            android:text="@string/txtNombreRegional"
                             android:textColor="@color/colorRojo"
                             android:textSize="12sp"
                             android:textStyle="italic"/>

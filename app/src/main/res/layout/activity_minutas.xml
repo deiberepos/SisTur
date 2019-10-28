@@ -9,8 +9,7 @@
         android:layout_width="65dp"
         android:layout_height="70dp"
         android:background="@drawable/logoinicial"
-        android:layout_gravity="start"
-        />
+        android:layout_gravity="start"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,7 +18,7 @@
         android:shadowDx="-2"
         android:shadowDy="-2"
         android:shadowRadius="1.5"
-        android:text="Consulta de Minutas"
+        android:text="@string/txtConsultaMinutas"
         android:textColor="@color/colorNegro"
         android:layout_marginTop="-70dp"
         android:textSize="25sp"
@@ -29,11 +28,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
-        android:text="N° MINUTA"
+        android:text="@string/txtNumMinuta"
         android:textSize="20sp"
         android:textColor="@color/colorNegro"
-        android:textStyle="italic|bold"
-        />
+        android:textStyle="italic|bold"/>
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -6,7 +6,7 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".RecibeCompra">
-    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
         android:layout_width="match_parent"
         android:layout_height="55dp"
@@ -27,7 +27,7 @@
                 android:textSize="12sp"
                 android:fontFamily="sans-serif-condensed"
                 android:lines="1"
-                android:text="*"/>
+                android:text="@string/txtX"/>
             <TextView
                 android:id="@+id/listaProductoE"
                 android:layout_width="115dp"
@@ -36,7 +36,7 @@
                 android:textColor="@color/colorNegro"
                 android:gravity="center_vertical"
                 android:lines="3"
-                android:text="Producto"/>
+                android:text="@string/txtProducto"/>
 
             <TextView
                 android:id="@+id/listaUnidadE"
@@ -46,7 +46,7 @@
                 android:textColor="@color/colorAzulOscuro3"
                 android:gravity="center"
                 android:lines="2"
-                android:text="Und."/>
+                android:text="@string/txtUnd"/>
             <TextView
                 android:id="@+id/listaCantidadE"
                 android:layout_width="50dp"
@@ -55,7 +55,7 @@
                 android:textColor="@color/colorAzulOscuro3"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="Cant E"/>
+                android:text="@string/txtCantE"/>
            <RadioButton
                android:id="@+id/rbBueno"
                android:layout_width="40dp"

@@ -32,16 +32,15 @@
                     android:shadowDy="-2"
                     android:shadowRadius="1.5"
                     android:layout_marginStart="15dp"
-                    android:text="Creación de CDI y HCB"
+                    android:text="@string/txtCreacionCDI"
                     android:textColor="@color/colorNegro"
                     android:textSize="25sp"
                     android:textStyle="bold" />
 
             </LinearLayout>
 
-
-
                 <TextView
+                    android:layout_marginTop="5dp"
                     android:id="@+id/idtvtvnombreCentro"
                     style="@style/TexviewsubTitulo"
                     android:layout_width="match_parent"
@@ -52,7 +51,7 @@
                     android:id="@+id/idedtnombreregCentro"
                     style="@style/edit"
                     android:layout_width="match_parent"
-                    android:hint="Escribe aqui nombre" />
+                    android:hint="@string/txtHintNombreCDI" />
 
                 <TextView
                     style="@style/TexviewsubTitulo"
@@ -60,7 +59,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="Tipo de CDI:"
+                    android:text="@string/txtTipoCDI"
                     android:textColor="@color/colorNegro" />
 
                 <RadioGroup
@@ -77,7 +76,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="@color/colorRojo"
-                        android:text="Centro Desarrollo"
+                        android:text="@string/txtRbCentroDesarrollo"
                         android:typeface="monospace" />
 
                     <RadioButton
@@ -85,9 +84,8 @@
                         style="@style/TexviewsubTitulo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
                         android:buttonTint="@color/colorRojo"
-                        android:text="Hogar Comunitario"
+                        android:text="@string/txtRbHogarComunitario"
                         android:typeface="monospace" />
                 </RadioGroup>
 
@@ -97,7 +95,7 @@
                     android:layout_height="31dp"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="Ubicación:"
+                    android:text="@string/txtUbicacion"
                     android:textColor="@color/colorNegro" />
 
             <RelativeLayout
@@ -176,38 +174,38 @@
                     style="@style/TexviewsubTitulo"
                     android:id="@+id/idtvresponsable"
                     android:fontFamily="sans-serif-black"
-                    android:text="Datos de la persona encargada"
+                    android:text="@string/txtDatosPersona"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/TexviewsubTitulo"
-                    android:text="Nombre y apellido:"
+                    android:text="@string/txtNombreApellido"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <EditText
                     style="@style/edit"
-                    android:hint="Escribe aqui nombre y apellido"
+                    android:hint="@string/txtHintNombreApellido"
                     android:layout_width="match_parent"
                     android:id="@+id/idedtnombreencargado" />
                 <TextView
                     style="@style/TexviewsubTitulo"
-                    android:text="Dirección:"
+                    android:text="@string/txtDireccion"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <EditText
 
                     style="@style/edit"
-                    android:hint="Escribe aqui direccion"
+                    android:hint="@string/txtHintDireccion"
                     android:layout_width="match_parent"
                     android:id="@+id/idedtdirEncargado" />
                 <TextView
                     style="@style/TexviewsubTitulo"
-                    android:text="Telefono:"
+                    android:text="@string/txtTelefono"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <EditText
                     style="@style/edit"
-                    android:hint="Escribe aqui numero de telefono"
+                    android:hint="@string/txtHintTelefono"
                     android:layout_width="match_parent"
                     android:id="@+id/idedttelEncargado" />
             </LinearLayout>
@@ -225,44 +223,44 @@
                     style="@style/TexviewsubTitulo"
                     android:id="@+id/idtvContacto"
                     android:fontFamily="sans-serif-black"
-                    android:text="Datos del contacto"
+                    android:text="@string/txtDatosContacto"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/TexviewsubTitulo"
-                    android:text="Nombre y apellido:"
+                    android:text="@string/txtNombreApellido"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <EditText
                     style="@style/edit"
-                    android:hint="Escribe aqui nombre y apellido"
+                    android:hint="@string/txtHintNombreApellido"
                     android:layout_width="match_parent"
                     android:id="@+id/idedtnombreContacto" />
                 <TextView
                     style="@style/TexviewsubTitulo"
-                    android:text="Dirección:"
+                    android:text="@string/txtDireccion"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <EditText
                     style="@style/edit"
-                    android:hint="Escribe aqui direccion"
+                    android:hint="@string/txtHintDireccion"
                     android:layout_width="match_parent"
                     android:id="@+id/idedtdirContacto" />
                 <TextView
                     style="@style/TexviewsubTitulo"
-                    android:text="Telefono:"
+                    android:text="@string/txtTelefono"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <EditText
                     style="@style/edit"
-                    android:hint="Escribe aqui numero de telefono"
+                    android:hint="@string/txtHintTelefono"
                     android:layout_width="match_parent"
                     android:id="@+id/idedttelContacto" />
 
             </LinearLayout>
             <CheckBox
                 android:id="@+id/activocdi"
-                android:text="Activo"
+                android:text="@string/txtActivo"
                 android:textSize="20sp"
                 android:layout_marginTop="20dp"
                 android:layout_gravity="center"
@@ -281,7 +279,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/personalizar_button"
-                    android:text="REGISTRAR"
+                    android:text="@string/txtBtnRegistrar"
                     android:textAllCaps="false"
                     android:textColor="@color/colorClaro" />
 
@@ -292,7 +290,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/personalizar_button"
-                    android:text="ACTUALIZAR"
+                    android:text="@string/txtBtnActualizar"
                     android:textAllCaps="false"
                     android:textColor="@color/colorClaro" />
 

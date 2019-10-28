@@ -103,7 +103,7 @@ public class ListarCensoPoblacion extends AppCompatActivity {
     }
     private void llenarRecyclerCenso()
     {
-        miRecyclerCenso.setLayoutManager(new GridLayoutManager(this,2));
+        miRecyclerCenso.setLayoutManager(new LinearLayoutManager(this));
         miReferencia.child("censoinfante").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

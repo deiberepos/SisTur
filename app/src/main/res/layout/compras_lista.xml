@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".CompraGaleria">
 
-    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
         android:layout_width="match_parent"
         android:layout_height="55dp"
@@ -27,7 +27,7 @@
                 android:textSize="12sp"
                 android:fontFamily="sans-serif-condensed"
                 android:lines="1"
-                android:text="*"/>
+                android:text="@string/txtX"/>
             <TextView
                 android:id="@+id/listaProducto"
                 android:layout_width="115dp"
@@ -36,7 +36,7 @@
                 android:textColor="@color/colorNegro"
                 android:gravity="center_vertical"
                 android:lines="3"
-                android:text="Producto"/>
+                android:text="@string/txtProducto"/>
 
             <TextView
                 android:id="@+id/listaUnidad"
@@ -46,7 +46,7 @@
                 android:textColor="@color/colorAzulOscuro3"
                 android:gravity="center"
                 android:lines="2"
-                android:text="Und."/>
+                android:text="@string/txtUnd"/>
             <TextView
                 android:id="@+id/listaCantidad"
                 android:layout_width="40dp"
@@ -55,19 +55,19 @@
                 android:textColor="@color/colorAzulOscuro3"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="Cant."/>
+                android:text="@string/txtCant"/>
 
             <EditText
                 android:layout_width="62dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/editValor"
                 android:textColor="@color/colorRojo"
-                android:text="valor"
+                android:text="@string/txtvalor"
                 android:gravity="end"
                 android:inputType="number"
                 android:layout_gravity="center_vertical"
                 android:textStyle="bold|italic"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:maxLength="6"
                 android:textCursorDrawable="@null"
                 android:selectAllOnFocus="true"
@@ -77,10 +77,10 @@
                 android:layout_width="62dp"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorNegro"
-                android:text="0"
+                android:text="@string/txt0"
                 android:gravity="end"
                 android:layout_gravity="center"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:textStyle="bold|italic"
                 android:maxLength="6"/>
         </LinearLayout>

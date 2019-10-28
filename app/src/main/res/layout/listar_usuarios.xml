@@ -12,7 +12,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
             <LinearLayout
                 android:orientation="horizontal"
@@ -33,7 +33,7 @@
                     android:shadowDy="-2"
                     android:shadowRadius="1.5"
                     android:layout_marginStart="15dp"
-                    android:text="Listar Usuarios"
+                    android:text="@string/txtListarUsuarios"
                     android:textColor="@color/colorNegro"
                     android:textSize="25sp"
                     android:textStyle="bold" />
@@ -52,10 +52,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/guardar"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="15dp"
-        android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
         android:backgroundTint="@color/colorPrimarioSuave"
         android:src="@drawable/agregar"

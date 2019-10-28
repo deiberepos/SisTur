@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ListarCensoPoblacion">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
         <ImageView
             android:layout_width="65dp"
             android:layout_height="70dp"
@@ -28,7 +31,7 @@
             android:shadowDy="-2"
             android:shadowRadius="1.5"
             android:layout_marginStart="15dp"
-            android:text="Lista Censo Poblacion"
+            android:text="@string/txtListaCensoPoblacion"
             android:textColor="@color/colorNegro"
             android:textSize="25sp"
             android:textStyle="bold" />
@@ -41,18 +44,17 @@
             android:layout_height="match_parent" />
 
     </LinearLayout>
+    </ScrollView>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btncrear"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/btncrear"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginEnd="15dp"
         android:layout_marginBottom="10dp"
         android:backgroundTint="@color/colorPrimarioSuave"
-        android:src="@drawable/agregar" />
+        android:src="@drawable/agregar"/>
 
 
-</LinearLayout>
+</RelativeLayout>
