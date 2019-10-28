@@ -138,5 +138,6 @@
     <string name="txtMinutaM04">Minuta M04</string>
     <string name="txtMinutaM05">Minuta M05</string>
     <string name="txtCantE">Cant E</string>
+    <string name="txtNombreAtendido">Nombre Infante</string>
 
 </resources>

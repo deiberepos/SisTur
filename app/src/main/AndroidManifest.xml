@@ -14,12 +14,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EntregaCompra"
+        <activity android:name=".ListaAsistencia"></activity>
+        <activity
+            android:name=".EntregaCompra"
             android:configChanges="orientation|screenSize"
-            android:theme="@style/noaction"/>
-        <activity android:name=".RecibeCompra"
+            android:theme="@style/noaction" />
+        <activity
+            android:name=".RecibeCompra"
             android:configChanges="orientation|screenSize"
-            android:theme="@style/noaction"/>
+            android:theme="@style/noaction" />
         <activity
             android:name=".CompraGaleria"
             android:theme="@style/noaction" />
@@ -29,8 +32,9 @@
         <activity android:name=".ConsultaMinutas" />
         <activity android:name=".clases.CapturaQR" />
         <activity android:name=".MenuPrincipal" />
-        <activity android:name=".usuarios.CrearUsuarios"
-                  android:theme="@style/noaction"/>
+        <activity
+            android:name=".usuarios.CrearUsuarios"
+            android:theme="@style/noaction" />
         <activity
             android:name=".GestionarCDIHCB"
             android:theme="@style/noaction" />
@@ -51,8 +55,9 @@
             android:name=".alimentos.ListarPlanAlimenticio"
             android:theme="@style/noaction" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".CensoPoblacional"
-                  android:theme="@style/noaction"/>
+        <activity
+            android:name=".CensoPoblacional"
+            android:theme="@style/noaction" />
         <activity
             android:name=".RegistrarCDIHCB"
             android:configChanges="keyboardHidden|orientation|screenSize"

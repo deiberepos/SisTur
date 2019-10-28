@@ -112,6 +112,10 @@ public class MenuPrincipal extends AppCompatActivity {
                         Intent miIntento9 = new Intent(MenuPrincipal.this, PublicarMinutas.class);
                         startActivity(miIntento9);
                         break;
+                    case 10:
+                        Intent miIntento10 =  new Intent(MenuPrincipal.this, ListaAsistencia.class);
+                        startActivity(miIntento10);
+                        break;
                     default:
                         Toast.makeText(getApplicationContext(),"Opción "+misOpciones.getTitulo(),Toast.LENGTH_SHORT).show();
                         break;
