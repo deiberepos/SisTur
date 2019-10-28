@@ -60,13 +60,11 @@ public class ListarCensoPoblacion extends AppCompatActivity {
             @Override
             public void modificaClick(Censo miCenso, int posicion) {
                 int tipo=1;
-                if(miCenso.getGenero().equals("femenino"))
-                {
+                if(miCenso.getGenero().equals("femenino")){
                     tipo=2;
                 }
                 int tipoact=1;
-                if (miCenso.getActivo().equals("true"))
-                {
+                if (miCenso.getActivo().equals("true")){
                     tipoact=2;
                 }
                 Intent intent = new Intent(getApplicationContext(), CensoPoblacional.class);
@@ -91,7 +89,6 @@ public class ListarCensoPoblacion extends AppCompatActivity {
             @Override
             public void eliminaClick(Censo miCenso,int posicion ) {
             }
-
         });
         miRecyclerCenso.setAdapter(adaptadorCenso);
     }
@@ -101,8 +98,7 @@ public class ListarCensoPoblacion extends AppCompatActivity {
         listaDeCenso=new ArrayList<>();
         btncrearInfante=findViewById(R.id.btncrear);
     }
-    private void llenarRecyclerCenso()
-    {
+    private void llenarRecyclerCenso(){
         miRecyclerCenso.setLayoutManager(new LinearLayoutManager(this));
         miReferencia.child("censoinfante").addValueEventListener(new ValueEventListener() {
             @Override

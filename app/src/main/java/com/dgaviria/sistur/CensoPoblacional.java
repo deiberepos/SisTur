@@ -56,7 +56,7 @@ public class CensoPoblacional extends AppCompatActivity {
     Boolean activo;
     RadioGroup gen;
     RadioButton mas, fem;
-    Bundle bundle;
+    Bundle recibeParametros;
     CheckBox acti;
     private String opcion = "", reciberegistro,nombree, apellidoo, fechaa, observacionn, nombreMadrr, telMM, dirMM, nombrePadrr, telPP, dirPP;
     private static final int TIPO_DIALOGO = 0;
@@ -69,46 +69,43 @@ public class CensoPoblacional extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.censo_poblacional);
         referenciar();
-
-
-
         if (opcion.equals("crear")) {
             llernarspinner();
             btnactualizar.setVisibility(View.INVISIBLE);
         } else {
             int actgeneroo, activoo;
             btnguardar.setVisibility(View.INVISIBLE);
-            reciberegistro =bundle.getString("registro");
+            reciberegistro = recibeParametros.getString("registro");
             editRegistroInfante.setText(reciberegistro);
-            nombree = bundle.getString("nombre");
+            nombree = recibeParametros.getString("nombre");
             editnombreInfante.setText(nombree);
-            apellidoo = bundle.getString("apellido");
+            apellidoo = recibeParametros.getString("apellido");
             editapellidoInfante.setText(apellidoo);
-            recibecentro = bundle.getString("centroa");
-            actgeneroo = bundle.getInt("tipo");
+            recibecentro = recibeParametros.getString("centroa");
+            actgeneroo = recibeParametros.getInt("tipo");
             if (actgeneroo == 1) {
                 mas.setChecked(true);
             }
             if (actgeneroo == 2) {
                 fem.setChecked(true);
             }
-            fechaa = bundle.getString("fecha");
+            fechaa = recibeParametros.getString("fecha");
             campoFecha.setText(fechaa);
-            observacionn = bundle.getString("observaciones");
+            observacionn = recibeParametros.getString("observaciones");
             editobservaciones.setText(observacionn);
-            nombrePadrr = bundle.getString("nombrePadr");
+            nombrePadrr = recibeParametros.getString("nombrePadr");
             editnombrePadre.setText(nombrePadrr);
-            telPP = bundle.getString("telefonpadre");
+            telPP = recibeParametros.getString("telefonpadre");
             editTelePadre.setText(telPP);
-            dirPP = bundle.getString("dirpadre");
+            dirPP = recibeParametros.getString("dirpadre");
             editDirPadre.setText(dirPP);
-            nombreMadrr = bundle.getString("nombreMaadre");
+            nombreMadrr = recibeParametros.getString("nombreMaadre");
             editnombreMadre.setText(nombreMadrr);
-            telMM = bundle.getString("telefonoMadre");
+            telMM = recibeParametros.getString("telefonoMadre");
             editTeleMadre.setText(telMM);
-            dirMM = bundle.getString("dirMadre");
+            dirMM = recibeParametros.getString("dirMadre");
             editDirMadre.setText(dirMM);
-            activoo = bundle.getInt("activo");
+            activoo = recibeParametros.getInt("activo");
             if (activoo == 1) {
                 acti.setChecked(true);
             }
@@ -203,7 +200,7 @@ public class CensoPoblacional extends AppCompatActivity {
 
 
     private void mostrarFecha() {
-        campoFecha.setText(dia + " / " + mes + "/" + año);
+        campoFecha.setText(dia + "/" + mes + "/" + año);
     }
 
 
@@ -305,7 +302,7 @@ public class CensoPoblacional extends AppCompatActivity {
             editTeleMadre.setText(telM);
         }
         if (editDirMadre.getText().toString().trim().isEmpty()) {
-            editDirMadre.setError("Direccion Requerida");
+            editDirMadre.setError("Dirección requerida");
             editDirMadre.requestFocus();
             return;
         } else {
@@ -381,7 +378,7 @@ public class CensoPoblacional extends AppCompatActivity {
             editnombreMadre.setText(nombreMadr);
         }
         if (editTeleMadre.getText().toString().trim().isEmpty()) {
-            editTeleMadre.setError("Telefono Requerido");
+            editTeleMadre.setError("Teléfono requerido");
             editTeleMadre.requestFocus();
             return;
         } else {
@@ -389,7 +386,7 @@ public class CensoPoblacional extends AppCompatActivity {
             editTeleMadre.setText(telM);
         }
         if (editDirMadre.getText().toString().trim().isEmpty()) {
-            editDirMadre.setError("Direccion Requerida");
+            editDirMadre.setError("Dirección requerida");
             editDirMadre.requestFocus();
             return;
         } else {
@@ -423,7 +420,7 @@ public class CensoPoblacional extends AppCompatActivity {
             });
         }
 
-        Toast.makeText(getApplicationContext(), "DATOS GUARDADOS CORRECTAMENTE", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Datos guardados correctamente", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getApplicationContext(), ListarCensoPoblacion.class);
         startActivity(intent);
     }
@@ -515,7 +512,7 @@ public class CensoPoblacional extends AppCompatActivity {
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             long totalchild = dataSnapshot.getChildrenCount();
                             totalchild = totalchild-1;
-                            poblacionC.child(recibecentro         ).child("totalcenso").setValue(totalchild);
+                            poblacionC.child(recibecentro).child("totalcenso").setValue(totalchild);
                         }
 
                         @Override
@@ -558,8 +555,8 @@ public class CensoPoblacional extends AppCompatActivity {
         editDirPadre = findViewById(R.id.direccionpadre);
         gen = findViewById(R.id.radiogenero);
         acti = findViewById(R.id.chekactivo);
-        bundle = getIntent().getExtras();
-        opcion = bundle.getString("opcion");
+        recibeParametros = getIntent().getExtras();
+        opcion = recibeParametros.getString("opcion");
     }
 
     @Override

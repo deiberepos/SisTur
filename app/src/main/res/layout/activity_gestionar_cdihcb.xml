@@ -6,7 +6,7 @@
     tools:context=".GestionarCDIHCB">
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -15,7 +15,7 @@
             android:layout_height="70dp"
             android:background="@drawable/logoinicial" />
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
@@ -23,7 +23,6 @@
             android:shadowDx="-2"
             android:shadowDy="-2"
             android:shadowRadius="1.5"
-            android:layout_marginStart="15dp"
             android:text="@string/txtListaCDHI"
             android:textColor="@color/colorNegro"
             android:textSize="25sp"

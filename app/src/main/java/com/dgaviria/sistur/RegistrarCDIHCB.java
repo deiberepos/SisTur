@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,26 +13,19 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import com.dgaviria.sistur.clases.CdiHcb;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class RegistrarCDIHCB extends AppCompatActivity {
-    private AnimationDrawable animacion;
-    private ScrollView contenedorScroll;
     private EditText edtnombreCentro, edtnombreEncargado, edtnomContacto, edtdirEncargado, edtdirContacto, edttelEncargado, edttelContacto;
     private Button btnGuardar, btnActualizar;
-    ListView listaveredas;
     private int actTipo,activoo;
-    Bundle bundle;
+    Bundle recibeParametros;
     private Spinner spnVeredas;
     private String opcion ="",actNombre, actnombreen, actdiren, acttelen, actnombrecon, actdircon, acttelcon;
     DatabaseReference miReferencia,misDatos;
@@ -52,35 +44,33 @@ public class RegistrarCDIHCB extends AppCompatActivity {
 
         if(opcion.equals("crear")) {
             btnActualizar.setVisibility(View.INVISIBLE);
-        }else {
+        }
+        else {
             btnGuardar.setVisibility(View.INVISIBLE);
-            actNombre=bundle.getString("nombrecentro");
+            actNombre= recibeParametros.getString("nombrecentro");
             edtnombreCentro.setText(actNombre);
-            actTipo=bundle.getInt("tipo");
-            if(actTipo==1)
-            {
+            actTipo= recibeParametros.getInt("tipo");
+            if(actTipo==1){
                 rbCentro.setChecked(true);
             }
-            else
-                {
-                    rbHogar.setChecked(true);
-                }
-            actnombreen=bundle.getString("nombreen");
+            else{
+                rbHogar.setChecked(true);
+            }
+            actnombreen= recibeParametros.getString("nombreen");
             edtnombreEncargado.setText(actnombreen);
-            actdiren=bundle.getString("direccionen");
+            actdiren= recibeParametros.getString("direccionen");
             edtdirEncargado.setText(actdiren);
-            acttelen=bundle.getString("telefonoen");
+            acttelen= recibeParametros.getString("telefonoen");
             edttelEncargado.setText(acttelen);
-            actnombrecon=bundle.getString("nombrecon");
+            actnombrecon= recibeParametros.getString("nombrecon");
             edtnomContacto.setText(actnombrecon);
-            actdircon=bundle.getString("direccioncon");
+            actdircon= recibeParametros.getString("direccioncon");
             edtdirContacto.setText(actdircon);
-            acttelcon=bundle.getString("telefonocon");
+            acttelcon= recibeParametros.getString("telefonocon");
             edttelContacto.setText(acttelcon);
             spnVeredas.setSelection(2);
-            activoo=bundle.getInt("activo");
-            if(activoo==1)
-            {
+            activoo= recibeParametros.getInt("activo");
+            if(activoo==1){
                 acti.setChecked(true);
             }
         }
@@ -129,28 +119,24 @@ public class RegistrarCDIHCB extends AppCompatActivity {
         acti.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (acti.isChecked())
-                {
+                if (acti.isChecked()){
                     activo=true;
                 }
-                else
-                {
+                else{
                     activo=false;
                 }
             }
         });
-        if(acti.isChecked())
-        {
+        if(acti.isChecked()){
             activo=true;
         }
-        else
-        {
+        else{
             activo=false;
         }
     }
 
     private void cargarDatos(){
-            Boolean finalizar=false;
+        Boolean finalizar=false;
         if(edtnombreCentro.getText().toString().isEmpty()||edtdirEncargado.getText().toString().isEmpty()||
         edtnombreEncargado.getText().toString().isEmpty()||edttelEncargado.getText().toString().isEmpty()||
         edtnomContacto.getText().toString().isEmpty()||edtdirContacto.getText().toString().isEmpty()|| edttelContacto.getText().toString().isEmpty()){
@@ -278,24 +264,16 @@ public class RegistrarCDIHCB extends AppCompatActivity {
 
     private void guardarCentro(){
         //construye el objeto que se va a guardar en la base de datos
-
         miReferencia= FirebaseDatabase.getInstance().getReference();
         //guarda los datos del usuario
         misDatos=miReferencia.child("Centros");
         misDatos.child(nombrecentro).setValue(new CdiHcb(nombrecentro,nombreE,nombreC,vereda,direccionE,direccionC,telE,telC,tipo,activo));
         Toast.makeText(getApplicationContext(),"Datos guardados correctamente",Toast.LENGTH_SHORT).show();
-        /*Usar para actualizar
-        Map<String,Usuarios> usuariosMap=new HashMap<>();
-        usuariosMap.put(usuarioU,new Usuarios(
-                usuarioU,contrasenaU,nombresU,correoE,false,rolUsuario==1,rolUsuario==2,rolUsuario==3,rolUsuario==4));
-        misDatos.setValue(usuariosMap);*/
         Intent intent = new Intent(getApplicationContext(), GestionarCDIHCB.class);
         startActivity(intent);
-
     }
 
     private void actualizarCentros(){
-
         miReferencia=FirebaseDatabase.getInstance().getReference();
         AlertDialog.Builder builder = new AlertDialog.Builder(RegistrarCDIHCB.this);
         builder.setTitle("msj Actualizar");
@@ -353,16 +331,13 @@ public class RegistrarCDIHCB extends AppCompatActivity {
         rbCentro=findViewById(R.id.idrbCentro);
         rbHogar=findViewById(R.id.idrbHogar);
         spnVeredas=findViewById(R.id.idspnVeredas);
-        //rgbvereda=findViewById(R.id.idrgveredaCDI);
-       // listaveredas=findViewById(R.id.idlisVeredas);
         btnGuardar=findViewById(R.id.idbtnregCDI);
         btnActualizar=findViewById(R.id.idbtnactCDI);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.veredas,android.R.layout.simple_spinner_item);
         spnVeredas.setAdapter(adapter);
         acti=findViewById(R.id.activocdi);
-        //listaveredas.setAdapter(adapter);
-        bundle=getIntent().getExtras();
-        opcion=bundle.getString("opcion");
+        recibeParametros =getIntent().getExtras();
+        opcion= recibeParametros.getString("opcion");
 
     }
 

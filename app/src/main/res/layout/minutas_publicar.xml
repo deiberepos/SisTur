@@ -27,6 +27,7 @@
                 android:textStyle="bold"
                 android:text="@string/txtVacio"
                 />
+
             <TextView
                 android:id="@+id/txtPreparaDiario"
                 android:layout_width="match_parent"

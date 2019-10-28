@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
     tools:context=".CensoPoblacional">
 
     <RelativeLayout
@@ -109,6 +108,7 @@
                     android:text="@string/txtMasculino"
                     android:textColor="@color/colorPrimarioOscuro"
                     android:typeface="monospace"
+                    android:textSize="12sp"
                     app:buttonTint="@color/colorRojo" />
 
                 <RadioButton
@@ -119,6 +119,7 @@
                     android:text="@string/txtFemenino"
                     android:textColor="@color/colorPrimarioOscuro"
                     android:typeface="monospace"
+                    android:textSize="12sp"
                     app:buttonTint="@color/colorRojo" />
             </RadioGroup>
 

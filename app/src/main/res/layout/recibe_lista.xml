@@ -80,6 +80,7 @@
                 android:gravity="center"
                 app:buttonTint="@color/colorRojo"
                 />
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
     <View

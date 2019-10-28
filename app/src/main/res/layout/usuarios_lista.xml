@@ -69,8 +69,6 @@
                             android:textStyle="bold"
                             android:textColor="@color/colorAzulOscuro3"
                             android:textSize="15sp"/>
-
-
                         <TextView
                             android:id="@+id/txtRol"
                             android:layout_width="200dp"

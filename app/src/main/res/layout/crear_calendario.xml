@@ -26,6 +26,10 @@
                 android:id="@+id/layCalenda"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="0dp"
+                android:layout_marginBottom="0dp"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -226,6 +230,7 @@
             </LinearLayout>
         </RelativeLayout>
     </ScrollView>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/botonGuardaCal"
         android:layout_width="83dp"

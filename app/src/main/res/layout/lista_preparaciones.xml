@@ -7,6 +7,7 @@
     android:paddingStart="5dp"
     android:paddingEnd="5dp"
     android:paddingTop="8dp" >
+
     <TextView
         android:id="@+id/txtPreparacion"
         android:layout_width="match_parent"

@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">SisTur</string>
+
     <string name="menu_opciones_administrador">MENU ADMINISTRADOR</string>
     <string name="TituloRegCentro">REGISTRO DE INFORMACIÓN</string>
     <string name="nombre_asignado">Nombre asignado</string>
@@ -13,22 +14,22 @@
     <string name="txtConsultaMinutas">Consulta de Minutas</string>
     <string name="txtNumMinuta">N° MINUTA</string>
     <string name="txtCreacionCDI">Creación de CDI y HCB</string>
-    <string name="txtHintNombreCDI">Escribe aqui nombre CDI-HCB</string>
+    <string name="txtHintNombreCDI">Escribe aquí nombre CDI-HCB</string>
     <string name="txtTipoCDI">Tipo de CDI:</string>
     <string name="txtRbCentroDesarrollo">Centro Desarrollo</string>
     <string name="txtRbHogarComunitario">Hogar Comunitario</string>
     <string name="txtUbicacion">Ubicación:</string>
     <string name="txtDatosPersona">Datos de la persona encargada</string>
     <string name="txtNombreApellido">Nombre y apellido:</string>
-    <string name="txtHintNombreApellido">Escribe aqui nombre y apellido</string>
+    <string name="txtHintNombreApellido">Escribe aquí nombre y apellido</string>
     <string name="txtDireccion">Dirección:</string>
-    <string name="txtHintDireccion">Escribe aqui direccion</string>
-    <string name="txtTelefono">Telefono:</string>
-    <string name="txtHintTelefono">Escribe aqui numero de telefono</string>
+    <string name="txtHintDireccion">Escribe aquí dirección</string>
+    <string name="txtTelefono">Teléfono:</string>
+    <string name="txtHintTelefono">Escribe aquí número de teléfono</string>
     <string name="txtDatosContacto">Datos del contacto</string>
     <string name="txtActivo">Activo</string>
-    <string name="txtBtnRegistrar">REGISTRAR</string>
-    <string name="txtBtnActualizar">ACTUALIZAR</string>
+    <string name="txtBtnRegistrar">Registrar</string>
+    <string name="txtBtnActualizar">Actualizar</string>
     <string name="txtCodigo">Código</string>
     <string name="txtNombreGrupo">Nombre Grupo</string>
     <string name="txtNombreAlimento">Nombre Alimento</string>
@@ -37,32 +38,32 @@
     <string name="txtNombreCDIH">Nombre CDIH</string>
     <string name="txtCensoPoblacional">Censo Poblacional</string>
     <string name="txtNumeroRegistro">Número de registro:</string>
-    <string name="txtHintNumeroRegistro">Escriba aqui...</string>
+    <string name="txtHintNumeroRegistro">Escriba aquí...</string>
     <string name="txtNombreInfante2">Nombre del infante:</string>
-    <string name="txtHintNombre">Escriba aqui nombre</string>
+    <string name="txtHintNombre">Escriba el nombre</string>
     <string name="txtApellidoInfante">Apellido del infante:</string>
-    <string name="txtHintApellido">Escriba aqui apellido</string>
-    <string name="txtGenero">Genero del infante:</string>
+    <string name="txtHintApellido">Escriba el apellido</string>
+    <string name="txtGenero">Género del infante:</string>
     <string name="txtMasculino">Masculino</string>
     <string name="txtFemenino">Femenino</string>
     <string name="txtFechaNacimiento">Fecha del nacimiento:</string>
     <string name="txtHintFecha">Agrega la fecha</string>
     <string name="txtObservaciones">Observaciones:</string>
-    <string name="txtHintObservaciones">Escriba aqui observaciones relacionadas con el infante.</string>
+    <string name="txtHintObservaciones">Escriba aquí observaciones relacionadas con el infante.</string>
     <string name="txtCentro">Seleccione centro:</string>
     <string name="txtNombrePadre">Nombre y apellido padre</string>
-    <string name="txtHintNombrePadre">Escriba aqui nombre del padre</string>
-    <string name="txtTelefonoPadre">Telefono del padre:</string>
-    <string name="txtHintTelefonoPadre">Escriba aqui telefono del padre</string>
-    <string name="txtDireccionPadre">Direccion del padre:</string>
-    <string name="txtHintDireccionPadre">Escriba aqui direccion del padre</string>
+    <string name="txtHintNombrePadre">Escriba el nombre del padre</string>
+    <string name="txtTelefonoPadre">Teléfono del padre:</string>
+    <string name="txtHintTelefonoPadre">Escriba el teléfono del padre</string>
+    <string name="txtDireccionPadre">Dirección del padre:</string>
+    <string name="txtHintDireccionPadre">Escriba la dirección del padre</string>
     <string name="txtNombreMadre">Nombre y apellido madre</string>
-    <string name="txtHintNombreMadre">Escriba aqui nombre del madre</string>
-    <string name="txtTelefonoMadre">Telefono del madre:</string>
-    <string name="txtHintTelefonoMadre">Escriba aqui telefono del madre</string>
-    <string name="txtDireccionMadre">Direccion del madre:</string>
-    <string name="txtHintDireccionMadre">Escriba aqui direccion del madre</string>
-    <string name="txtBtnGuardar">GUARDAR</string>
+    <string name="txtHintNombreMadre">Escriba el nombre del madre</string>
+    <string name="txtTelefonoMadre">Teléfono del madre:</string>
+    <string name="txtHintTelefonoMadre">Escriba el teléfono del madre</string>
+    <string name="txtDireccionMadre">Dirección de la madre:</string>
+    <string name="txtHintDireccionMadre">Escriba la dirección de la madre</string>
+    <string name="txtBtnGuardar">Guardar</string>
     <string name="txtX">*</string>
     <string name="txtProducto">Producto</string>
     <string name="txtUnd">Und.</string>
@@ -81,10 +82,10 @@
     <string name="txtNombreUsuario">Nombre Usuario:</string>
     <string name="txtHintNombreUsuario">Escriba nombre de usuario</string>
     <string name="txtContraseña">Contraseña:</string>
-    <string name="txtHintContraseña">Escriba aqui contraseña</string>
+    <string name="txtHintContraseña">Escriba la contraseña</string>
     <string name="txtVerificaContraseña">Verifica Contraseña:</string>
     <string name="txtCorreo">Correo:</string>
-    <string name="txtHintCorreo">Escriba aqui direccion correo</string>
+    <string name="txtHintCorreo">Escriba el correo</string>
     <string name="txtRol">Rol</string>
     <string name="txtGestor">Gestor</string>
     <string name="txtCompras">Compras</string>
@@ -115,7 +116,7 @@
     <string name="txtBueno">Bueno</string>
     <string name="txtRegular">Regular</string>
     <string name="txtMalo">Malo</string>
-    <string name="txtListaCensoPoblacion">Lista Censo Poblacion</string>
+    <string name="txtListaCensoPoblacion">Censo de población</string>
     <string name="txtPlan">Plan Alimenticio</string>
     <string name="txtListarUsuarios">Listar Usuarios</string>
     <string name="txtIngresoUsuarios">Ingreso de Usuarios</string>
@@ -137,7 +138,5 @@
     <string name="txtMinutaM04">Minuta M04</string>
     <string name="txtMinutaM05">Minuta M05</string>
     <string name="txtCantE">Cant E</string>
-
-
 
 </resources>

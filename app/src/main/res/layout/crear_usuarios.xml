@@ -20,8 +20,8 @@
             android:gravity="center">
 
             <ImageView
-                android:layout_width="72dp"
-                android:layout_height="62dp"
+                android:layout_width="65dp"
+                android:layout_height="70dp"
                 android:background="@drawable/logoinicial" />
 
             <LinearLayout
@@ -30,13 +30,10 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-
-                <TextView
-                    android:layout_marginStart="30dp"
+               <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:gravity="center"
                     android:shadowColor="@color/colorPrimarioOscuro"
                     android:shadowDx="-2"
                     android:shadowDy="-2"

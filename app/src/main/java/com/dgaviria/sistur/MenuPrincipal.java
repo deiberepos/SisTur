@@ -27,7 +27,7 @@ public class MenuPrincipal extends AppCompatActivity {
     List<MenuOpciones> listadoOpciones;
     AdaptadorMenuPpal adaptadorMenu;
     DatabaseReference miReferencia, childpoblacion;
-    private Bundle bundle;
+    private Bundle recibeParametros;
     public static String recibeRol, recibeUsuario;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -201,9 +201,9 @@ public class MenuPrincipal extends AppCompatActivity {
     }
     private void referenciar() {
         miRecycler=findViewById(R.id.recyclerOpciones);
-        bundle = getIntent().getExtras();
-        recibeRol = bundle.getString("rol");
-        recibeUsuario= bundle.getString("usuario");
+        recibeParametros = getIntent().getExtras();
+        recibeRol = recibeParametros.getString("rol");
+        recibeUsuario= recibeParametros.getString("usuario");
     }
 
     private void llenarRecyclerOpciones() {

@@ -281,7 +281,6 @@
                 android:layout_height="match_parent"
                 android:paddingEnd="5dp"
                 android:layout_marginTop="40dp" />
-
             <View
                 android:id="@+id/lineaFinal"
                 android:layout_width="match_parent"
