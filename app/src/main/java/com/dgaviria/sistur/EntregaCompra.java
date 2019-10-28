@@ -89,8 +89,12 @@ public class EntregaCompra extends AppCompatActivity {
                         e.printStackTrace();
                     }
 
-                else
-                    Toast.makeText(EntregaCompra.this, "Debe seleccionar una semana y un CDI", Toast.LENGTH_SHORT).show();
+                else{
+                    if (!aprobarQR)
+                        Toast.makeText(EntregaCompra.this, "Ya se ha realizado una entrega, no se puede volver a realizar", Toast.LENGTH_SHORT).show();
+                    else
+                        Toast.makeText(EntregaCompra.this, "Debe seleccionar todos los datos antes de continuar", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -179,7 +183,7 @@ public class EntregaCompra extends AppCompatActivity {
                 Toast.makeText(this, "Ya se ha realizado una entrega, no se puede volver a realizar", Toast.LENGTH_SHORT).show();
         }
         else
-            Toast.makeText(this, "Debes seleccionar todos los datos para continuar", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Debe seleccionar todos los datos antes de continuar", Toast.LENGTH_SHORT).show();
     }
 
     private void llenarListaCDIEI() {

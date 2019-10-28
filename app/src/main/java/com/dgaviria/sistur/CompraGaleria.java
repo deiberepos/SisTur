@@ -141,6 +141,7 @@ public class CompraGaleria extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){ //Si existe
+                    existeLista=true;
                     listaGaleria=new ArrayList<AlimentoCompra>();
                     for(DataSnapshot miIngrediente:dataSnapshot.getChildren()) {
                         if (!miIngrediente.getKey().equals("itemscomprados") && !miIngrediente.getKey().equals("totalcompra") && !miIngrediente.getKey().equals("quiencompra")) {
@@ -157,6 +158,7 @@ public class CompraGaleria extends AppCompatActivity {
                 }
                 else{ //si no existe realiza la lectura de las minutas asociadas en la semana seleccionada
                     //Lectura de las minutas que hacen parte de la semana, cuando no existe una lista de compras previa
+                    existeLista=false;
                     listadoMinutas = new ArrayList<String>();
                     miReferenciaSem = FirebaseDatabase.getInstance().getReference("semanas").child(nombreSemana);
                     miReferenciaSem.addValueEventListener(new ValueEventListener() {
@@ -334,48 +336,41 @@ public class CompraGaleria extends AppCompatActivity {
             actualizaNivel1.put("totalcompra",sumaTotal);
             actualizaNivel1.put("itemscomprados",conteoTotal);
             miReferenciaLista.updateChildren(actualizaNivel1);
+            miReferenciaLista=FirebaseDatabase.getInstance().getReference("galeria").child(nombreSemana);
+            Map<String,Object> actualizaNivel2=new HashMap<String,Object>();
             for (int numItem = 0; numItem < listaGaleria.size(); numItem++) {
                 String codigoAlimento = listaGaleria.get(numItem).getCodigo();
-                miReferenciaLista=FirebaseDatabase.getInstance().getReference("galeria").child(nombreSemana).child(codigoAlimento);
-                Map<String,Object> actualizaNivel2=new HashMap<String,Object>();
-                actualizaNivel2.put("fechacompra",String.valueOf(campoFecha.getText()));
-                actualizaNivel2.put("total",listaGaleria.get(numItem).getTotal());
-                actualizaNivel2.put("porentregar",listaGaleria.get(numItem).getTotal());
-                actualizaNivel2.put("valorcompra",listaGaleria.get(numItem).getValorcompra());
-                miReferenciaLista.updateChildren((actualizaNivel2));
+                actualizaNivel2.put("/"+codigoAlimento+"/fechacompra",String.valueOf(campoFecha.getText()));
+                actualizaNivel2.put("/"+codigoAlimento+"/total",listaGaleria.get(numItem).getTotal());
+                actualizaNivel2.put("/"+codigoAlimento+"/porentregar",listaGaleria.get(numItem).getTotal());
+                actualizaNivel2.put("/"+codigoAlimento+"/valorcompra",listaGaleria.get(numItem).getValorcompra());
             }
+            miReferenciaLista.updateChildren((actualizaNivel2));
             Toast.makeText(this, "Lista de compras actualizada", Toast.LENGTH_SHORT).show();
         }
         else{
             //crear la llave con sus hijos con los datos nuevos
             miReferenciaLista = FirebaseDatabase.getInstance().getReference("galeria").child(nombreSemana);
-            miReferenciaLista.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    miReferenciaLista.child("totalcompra").setValue(sumaTotal);
-                    miReferenciaLista.child("itemscomprados").setValue(conteoTotal);
-                    miReferenciaLista.child("quiencompra").setValue(recibeUsuario);
-                    for (int numItem = 0; numItem < listaGaleria.size(); numItem++) {
-                        String codigoAlimento = listaGaleria.get(numItem).getCodigo();
-                        AlimentoCompra miItemAlimento = new AlimentoCompra();
-                        miItemAlimento.setIngrediente(listaGaleria.get(numItem).getIngrediente());
-                        miItemAlimento.setFechacompra(String.valueOf(campoFecha.getText()));
-                        miItemAlimento.setMedida(listaGaleria.get(numItem).getMedida());
-                        miItemAlimento.setValorcompra(listaGaleria.get(numItem).getValorcompra());
-                        miItemAlimento.setTotal(listaGaleria.get(numItem).getTotal());
-                        miItemAlimento.setCantidad(listaGaleria.get(numItem).getCantidad());
-                        miItemAlimento.setEntregado("0");
-                        miItemAlimento.setPorentregar(listaGaleria.get(numItem).getCantidad());
-                        miItemAlimento.setCodigo(listaGaleria.get(numItem).getCodigo());
-                        miReferenciaLista.child(codigoAlimento).setValue(miItemAlimento);
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
-            });
+            Map<String,Object> valoresNivel1=new HashMap<String,Object>();
+            valoresNivel1.put("totalcompra",sumaTotal);
+            valoresNivel1.put("itemscomprados",conteoTotal);
+            valoresNivel1.put("quiencompra",recibeUsuario);
+            miReferenciaLista.updateChildren(valoresNivel1);
+            miReferenciaLista = FirebaseDatabase.getInstance().getReference("galeria").child(nombreSemana);
+            Map<String,Object> valoresNivel2=new HashMap<String,Object>();
+            for (int numItem = 0; numItem < listaGaleria.size(); numItem++) {
+                String codigoAlimento = listaGaleria.get(numItem).getCodigo();
+                valoresNivel1.put("/"+codigoAlimento+"/codigo",listaGaleria.get(numItem).getIngrediente());
+                valoresNivel1.put("/"+codigoAlimento+"/fechacompra",String.valueOf(campoFecha.getText()));
+                valoresNivel1.put("/"+codigoAlimento+"/medida",listaGaleria.get(numItem).getMedida());
+                valoresNivel1.put("/"+codigoAlimento+"/valorcompra",listaGaleria.get(numItem).getValorcompra());
+                valoresNivel1.put("/"+codigoAlimento+"/total",listaGaleria.get(numItem).getTotal());
+                valoresNivel1.put("/"+codigoAlimento+"/cantidad",listaGaleria.get(numItem).getCantidad());
+                valoresNivel1.put("/"+codigoAlimento+"/entregado","0");
+                valoresNivel1.put("/"+codigoAlimento+"/cantidad",listaGaleria.get(numItem).getCantidad());
+                valoresNivel1.put("/"+codigoAlimento+"/porentregar",listaGaleria.get(numItem).getCantidad());
+            }
+            miReferenciaLista.updateChildren(valoresNivel2);
             Toast.makeText(this, "Lista de compras guardada", Toast.LENGTH_SHORT).show();
         }
     }
