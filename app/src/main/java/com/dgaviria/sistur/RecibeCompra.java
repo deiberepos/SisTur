@@ -51,7 +51,7 @@ public class RecibeCompra extends AppCompatActivity {
     AdaptadorListaRecibe miAdaptadorEntrega;
     Spinner selectorSemanasE,selectorCDIE;
     String nombreSemanaE,nombreSemanaV,nombreCDIE,nombreCDIV,fechaEntrega,recibeRol,recibeUsuario;
-    DatabaseReference miReferenciaCDIE,miReferenciaSemC,miReferenciaListaE,miReferenciaSemE,miReferenciaPob;
+    DatabaseReference miReferenciaCDIE,miReferenciaG,miReferenciaListaE,miReferenciaSemE,miReferenciaPob;
     ArrayAdapter<String> adaptadorSemanaE,adaptadorCDIE;
     ArrayList<String> listadoSemanasE, listadoCDIE;
     ArrayList<AlimentoEntrega> listaEntrega;
@@ -61,7 +61,7 @@ public class RecibeCompra extends AppCompatActivity {
     int numInfantes,numIngredientes;
     Bundle recibeParametros;
     private static final int CODIGO_PETICION_CAMARA = 100;
-    public Boolean entregaExiste=false;
+    public Boolean entregaExiste;
     OtrosEntrega datosEntrega;
 
     @Override
@@ -95,23 +95,10 @@ public class RecibeCompra extends AppCompatActivity {
         botonAprobar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (verificaChequeo())
-                    escanearQR(view);
+                escanearQR(view);
             }
         });
 
-    }
-
-    private boolean verificaChequeo() {
-        //verifica si chequeo cada alimento recibido
-        for (int indiceIngrediente=0;indiceIngrediente<listaEntrega.size();indiceIngrediente++){
-            if (!listaEntrega.get(indiceIngrediente).getEstadoBueno() && !listaEntrega.get(indiceIngrediente).getEstadoRegular()
-                    && !listaEntrega.get(indiceIngrediente).getEstadoMalo()){
-                Toast.makeText(this, "Debe marcar el estado de cada uno de los alimentos que va a recibir", Toast.LENGTH_SHORT).show();
-                return false;
-            }
-        }
-        return true;
     }
 
     private void escanearQR(View vista) {
@@ -177,9 +164,17 @@ public class RecibeCompra extends AppCompatActivity {
         }, miCalendario.get(Calendar.YEAR), miCalendario.get(Calendar.MONTH), miCalendario.get(Calendar.DAY_OF_MONTH)).show();
     }
 
-    private void lecturaListaCompras(){
-        listaEntrega =new ArrayList<AlimentoEntrega>();
-        listaEntrega.clear();
+    private void lecturaListaCompras() {
+        listaEntrega = new ArrayList<AlimentoEntrega>();
+        listaEntrega = lecturaEntrega();
+        miAdaptadorEntrega = new AdaptadorListaRecibe(RecibeCompra.this, listaEntrega);
+        miRecyclerListaEntrega.setAdapter(miAdaptadorEntrega);
+        miRecyclerListaEntrega.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
+        miAdaptadorEntrega.notifyDataSetChanged();
+    }
+
+    private ArrayList<AlimentoEntrega> lecturaEntrega(){
+        final ArrayList<AlimentoEntrega> lista=new ArrayList<>();
         entregaExiste=false;
         fechaEntrega=campoFechaE.getText().toString();
         numIngredientes=0;
@@ -207,40 +202,90 @@ public class RecibeCompra extends AppCompatActivity {
                 }
             });
             totalInfantes.setText(String.valueOf(numInfantes));
-
             //Verifica la existencia de la lista de entregas para el CDI en la semana seleccionada
-            miReferenciaListaE= FirebaseDatabase.getInstance().getReference("entregas").child(nombreCDIE);
+            miReferenciaListaE = FirebaseDatabase.getInstance().getReference("entregas").child(nombreCDIE).child(nombreSemanaE);
             miReferenciaListaE.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.exists()){ //Si existen entregas para el CDI
-                        for (DataSnapshot miSemana:dataSnapshot.getChildren()){
-                            if (miSemana.getKey().equals(nombreSemanaE)){ //verifica si la semana de entrega es la que seleccionó
-                                datosEntrega=new OtrosEntrega();
-                                datosEntrega.setEntregadopor(miSemana.child("entregadopor").getValue(String.class));
-                                datosEntrega.setRecibidopor(miSemana.child("recibidopor").getValue(String.class));
-                                datosEntrega.setQuiencompra(miSemana.child("quiencompra").getValue(String.class));
-                                datosEntrega.setFechacompra(miSemana.child("fechacompra").getValue(String.class));
-                                datosEntrega.setFechaentrega(miSemana.child("fechaentrega").getValue(String.class));
-                                datosEntrega.setNombreCDI(miSemana.child("nombreCDI").getValue(String.class));
-                                for (DataSnapshot miIngrediente : miSemana.getChildren()){
-                                    if (!miIngrediente.getKey().equals("entregadopor") && !miIngrediente.getKey().equals("recibidopor")
-                                            && !miIngrediente.getKey().equals("quiencompra") && !miIngrediente.getKey().equals("fechacompra")
-                                            && !miIngrediente.getKey().equals("fechaentrega") && !miIngrediente.getKey().equals("nombreCDI")){
-                                        AlimentoEntrega ingrediente = miIngrediente.getValue(AlimentoEntrega.class);
-                                        listaEntrega.add(ingrediente);
-                                        Collections.sort(listaEntrega, new ComparadorAlimentoEntrega()); //ordena la lista por el nombre del ingrediente
-                                    }
+                    if (dataSnapshot.exists()) { //Si existen entregas para el CDI
+                        if (dataSnapshot.getKey().equals(nombreSemanaE)) { //verifica si la semana de entrega es la que seleccionó
+                            datosEntrega = new OtrosEntrega();
+                            datosEntrega.setEntregadopor(dataSnapshot.child("entregadopor").getValue(String.class));
+                            datosEntrega.setRecibidopor(dataSnapshot.child("recibidopor").getValue(String.class));
+                            datosEntrega.setQuiencompra(dataSnapshot.child("quiencompra").getValue(String.class));
+                            datosEntrega.setFechacompra(dataSnapshot.child("fechacompra").getValue(String.class));
+                            datosEntrega.setFechaentrega(dataSnapshot.child("fechaentrega").getValue(String.class));
+                            datosEntrega.setNombreCDI(dataSnapshot.child("nombreCDI").getValue(String.class));
+                            for (DataSnapshot miIngrediente : dataSnapshot.getChildren()) {
+                                if (!miIngrediente.getKey().equals("entregadopor") && !miIngrediente.getKey().equals("recibidopor")
+                                        && !miIngrediente.getKey().equals("quiencompra") && !miIngrediente.getKey().equals("fechacompra")
+                                        && !miIngrediente.getKey().equals("fechaentrega") && !miIngrediente.getKey().equals("nombreCDI")) {
+                                    AlimentoEntrega ingrediente = miIngrediente.getValue(AlimentoEntrega.class);
+                                    lista.add(ingrediente);
+                                    Collections.sort(lista, new ComparadorAlimentoEntrega()); //ordena la lista por el nombre del ingrediente
                                 }
-                                numIngredientes=listaEntrega.size();
-                                miAdaptadorEntrega = new AdaptadorListaRecibe(RecibeCompra.this, listaEntrega);
-                                miRecyclerListaEntrega.setAdapter(miAdaptadorEntrega);
-                                miRecyclerListaEntrega.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
-                                miAdaptadorEntrega.notifyDataSetChanged();
-                                conteoIngredientes.setText(String.valueOf(numIngredientes));
-                                entregaExiste=true; //la entrega SI existe en la BD
                             }
+                            numIngredientes = lista.size();
+                            conteoIngredientes.setText(String.valueOf(numIngredientes));
+                            entregaExiste = true;
                         }
+                        miAdaptadorEntrega.notifyDataSetChanged();
+                    }
+                    else{ //no existe lista de entrega para esa semana y CDI
+                        numIngredientes=0;
+                        //Lectura de las compras que hacen parte de la semana, cuando no existe una lista de compras previa
+                        listadoCDIE = new ArrayList<String>();
+                        miReferenciaG= FirebaseDatabase.getInstance().getReference("galeria").child(nombreSemanaE);
+                        miReferenciaG.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                if (dataSnapshot != null && dataSnapshot.getChildren() != null) {
+                                    datosEntrega=new OtrosEntrega();
+                                    datosEntrega.setNombreCDI(nombreCDIE);
+                                    datosEntrega.setFechaentrega(fechaEntrega);
+                                    datosEntrega.setRecibidopor(recibeUsuario);
+                                    for(DataSnapshot miIngrediente:dataSnapshot.getChildren()) {
+                                        if (!miIngrediente.getKey().equals("itemscomprados") && !miIngrediente.getKey().equals("totalcompra")&& !miIngrediente.getKey().equals("quiencompra")) {
+                                            AlimentoCompra ingredienteC = miIngrediente.getValue(AlimentoCompra.class);
+                                            AlimentoEntrega ingredienteE=new AlimentoEntrega();
+
+                                            datosEntrega.setFechacompra(ingredienteC.getFechacompra());
+                                            datosEntrega.setQuiencompra(ingredienteC.getQuiencompra());
+
+                                            ingredienteE.setNombresemana(nombreSemanaE);
+                                            ingredienteE.setCodigo(ingredienteC.getCodigo());
+                                            ingredienteE.setIngrediente(ingredienteC.getIngrediente());
+                                            ingredienteE.setMedida(ingredienteC.getMedida());
+                                            int cantidadEntregada,miCantidad;
+                                            miCantidad=Integer.valueOf(ingredienteC.getCantidad());
+                                            //if (numInfantes>12)
+                                            cantidadEntregada=Math.round((float) ((numInfantes/12.0)*miCantidad));
+                                            //else
+                                            //cantidadEntregada=miCantidad;
+                                            ingredienteE.setCantidadentregada(String.valueOf(cantidadEntregada));
+                                            ingredienteE.setEstadoBueno(true); //asume que todos los ingredientes se entregan en buen estado
+                                            ingredienteE.setEstadoRegular(false);
+                                            ingredienteE.setEstadoMalo(false);
+                                            lista.add(ingredienteE);
+                                            Collections.sort(lista, new ComparadorAlimentoEntrega()); //ordena la lista por el nombre del ingrediente
+                                        }
+                                    }
+                                    numIngredientes=lista.size();
+                                    conteoIngredientes.setText(String.valueOf(numIngredientes));
+                                    totalInfantes.setText(String.valueOf(numInfantes));
+                                    entregaExiste=false; //la entrega NO existe en la BD
+
+                                    miAdaptadorEntrega.notifyDataSetChanged();
+                                } else {
+                                    Toast.makeText(getApplicationContext(), "Error de lectura de las compras, contacte al administrador", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
                     }
                 }
 
@@ -249,70 +294,10 @@ public class RecibeCompra extends AppCompatActivity {
 
                 }
             });
-            if (listaEntrega.size()>0 && !listaEntrega.isEmpty())
-                entregaExiste=true;
-            if (!entregaExiste){
-                listaEntrega=new ArrayList<AlimentoEntrega>();
-                numIngredientes=0;
-                //Lectura de las compras que hacen parte de la semana, cuando no existe una lista de compras previa
-                listadoCDIE = new ArrayList<String>();
-                miReferenciaSemC = FirebaseDatabase.getInstance().getReference("galeria").child(nombreSemanaE);
-                miReferenciaSemC.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if (dataSnapshot != null && dataSnapshot.getChildren() != null) {
-                            datosEntrega=new OtrosEntrega();
-                            datosEntrega.setNombreCDI(nombreCDIE);
-                            datosEntrega.setFechaentrega(fechaEntrega);
-                            datosEntrega.setRecibidopor(recibeUsuario);
-                            for(DataSnapshot miIngrediente:dataSnapshot.getChildren()) {
-                                if (!miIngrediente.getKey().equals("itemscomprados") && !miIngrediente.getKey().equals("totalcompra")&& !miIngrediente.getKey().equals("quiencompra")) {
-                                    AlimentoCompra ingredienteC = miIngrediente.getValue(AlimentoCompra.class);
-                                    AlimentoEntrega ingredienteE=new AlimentoEntrega();
-
-                                    datosEntrega.setFechacompra(ingredienteC.getFechacompra());
-                                    datosEntrega.setQuiencompra(ingredienteC.getQuiencompra());
-
-                                    ingredienteE.setNombresemana(nombreSemanaE);
-                                    ingredienteE.setCodigo(ingredienteC.getCodigo());
-                                    ingredienteE.setIngrediente(ingredienteC.getIngrediente());
-                                    ingredienteE.setMedida(ingredienteC.getMedida());
-                                    int cantidadEntregada,miCantidad;
-                                    miCantidad=Integer.valueOf(ingredienteC.getCantidad());
-                                    //if (numInfantes>12)
-                                    cantidadEntregada=Math.round((float) ((numInfantes/12.0)*miCantidad));
-                                    //else
-                                    //cantidadEntregada=miCantidad;
-                                    ingredienteE.setCantidadentregada(String.valueOf(cantidadEntregada));
-                                    ingredienteE.setEstadoBueno(true); //asume que todos los ingredientes se entregan en buen estado
-                                    ingredienteE.setEstadoRegular(false);
-                                    ingredienteE.setEstadoMalo(false);
-                                    listaEntrega.add(ingredienteE);
-                                    Collections.sort(listaEntrega, new ComparadorAlimentoEntrega()); //ordena la lista por el nombre del ingrediente
-                                }
-                            }
-                            numIngredientes=listaEntrega.size();
-                            conteoIngredientes.setText(String.valueOf(numIngredientes));
-                            totalInfantes.setText(String.valueOf(numInfantes));
-                            miAdaptadorEntrega= new AdaptadorListaRecibe(RecibeCompra.this, listaEntrega);
-                            miRecyclerListaEntrega.setAdapter(miAdaptadorEntrega);
-                            miRecyclerListaEntrega.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
-                            miAdaptadorEntrega.notifyDataSetChanged();
-                            entregaExiste=false; //la entrega NO existe en la BD
-                        } else {
-                            Toast.makeText(getApplicationContext(), "Error de lectura de las compras, contacte al administrador", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-            }
         }
         else
             Toast.makeText(this, "Debes seleccionar todos los datos para continuar", Toast.LENGTH_SHORT).show();
+        return lista;
     }
 
     private void llenarListaCDIE() {
@@ -328,7 +313,7 @@ public class RecibeCompra extends AppCompatActivity {
                     adaptadorCDIE = new ArrayAdapter<String>(RecibeCompra.this, android.R.layout.simple_spinner_item, listadoCDIE);
                     adaptadorCDIE.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     selectorCDIE.setAdapter(adaptadorCDIE);
-                    //selectorSemanas.setSelected(false);
+                    //selectorCDIE.setSelected(false);
                     selectorCDIE.setSelection(0, true); //selecciona el primer elemento del spinner
                     adaptadorCDIE.notifyDataSetChanged();
                 } else {
@@ -356,7 +341,7 @@ public class RecibeCompra extends AppCompatActivity {
                     adaptadorSemanaE = new ArrayAdapter<String>(RecibeCompra.this, android.R.layout.simple_spinner_item, listadoSemanasE);
                     adaptadorSemanaE.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     selectorSemanasE.setAdapter(adaptadorSemanaE);
-                    //selectorSemanas.setSelected(false);
+                    //selectorSemanasE.setSelected(false);
                     selectorSemanasE.setSelection(0, true); //selecciona el primer elemento del spinner
                     adaptadorSemanaE.notifyDataSetChanged();
                 } else {
@@ -375,7 +360,7 @@ public class RecibeCompra extends AppCompatActivity {
         IntentResult codigoLeido = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if(codigoLeido != null) {
             if(codigoLeido.getContents() == null) {
-                Toast.makeText(this, "Error en la lectura del código", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Error en la lectura del código, entrega no aprobada", Toast.LENGTH_LONG).show();
 
             } else {
                 //Toast.makeText(this, "Código leído: " +"\n" +codigoLeido.getContents(), Toast.LENGTH_LONG).show();
