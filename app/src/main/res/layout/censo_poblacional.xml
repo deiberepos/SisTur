@@ -1,39 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".CensoPoblacional">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
-
+    <LinearLayout
+        android:layout_width="55dp"
+        android:layout_height="80dp"
+        android:orientation="vertical">
         <ImageView
-            android:id="@+id/logoSistur"
-            android:layout_width="65dp"
-            android:layout_height="70dp"
-            android:background="@drawable/logoinicial" />
-
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/logoinicial"
+            android:rotation="270"
+            android:scaleType="fitCenter"
+            android:scaleX="1.3"
+            android:scaleY=".5"/>
+    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:shadowColor="@color/colorClaro"
+        android:shadowDx="-2"
+        android:shadowDy="-2"
+        android:shadowRadius="1.5"
+        android:text="@string/txtCensoPoblacional"
+        android:layout_marginTop="-60dp"
+        android:textColor="@color/colorNegro"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="25dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:shadowColor="@color/colorClaro"
-                android:shadowDx="-2"
-                android:shadowDy="-2"
-                android:shadowRadius="1.5"
-                android:text="@string/txtCensoPoblacional"
-                android:textColor="@color/colorNegro"
-                android:textSize="25sp"
-                android:textStyle="bold" />
             <TextView
                 style="@style/TexviewsubTitulo"
                 android:textColor="@color/colorNegro"
@@ -46,11 +52,11 @@
                 android:id="@+id/registroinfante"
                 style="@style/edit"
                 android:inputType="number"
-                android:layout_height="42dp"
+                android:layout_height="35dp"
                 android:fontFamily="monospace"
                 android:hint="@string/txtHintNumeroRegistro"
                 android:textColor="@color/colorPrimarioOscuro"
-                android:textSize="15sp" />
+                android:textSize="14sp" />
             <TextView
                 style="@style/TexviewsubTitulo"
                 android:textColor="@color/colorNegro"
@@ -63,11 +69,11 @@
             <EditText
                 android:id="@+id/nombreinfante"
                 style="@style/edit"
-                android:layout_height="42dp"
+                android:layout_height="35dp"
                 android:fontFamily="monospace"
                 android:hint="@string/txtHintNombre"
                 android:textColor="@color/colorPrimarioOscuro"
-                android:textSize="15sp" />
+                android:textSize="14sp" />
             <TextView
                 style="@style/TexviewsubTitulo"
                 android:textColor="@color/colorNegro"
@@ -81,9 +87,10 @@
                 android:id="@+id/apellidoinfante"
                 style="@style/edit"
                 android:fontFamily="monospace"
+                android:layout_height="35dp"
                 android:hint="@string/txtHintApellido"
                 android:textColor="@color/colorPrimarioOscuro"
-                android:textSize="15sp" />
+                android:textSize="14sp" />
             <TextView
                 style="@style/TexviewsubTitulo"
                 android:textColor="@color/colorNegro"
@@ -96,7 +103,7 @@
             <RadioGroup
                 android:id="@+id/radiogenero"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal">
@@ -106,7 +113,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/txtMasculino"
-                    android:textColor="@color/colorPrimarioOscuro"
+                    android:textColor="@color/colorNegro"
                     android:typeface="monospace"
                     android:textSize="12sp"
                     app:buttonTint="@color/colorRojo" />
@@ -117,59 +124,48 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/txtFemenino"
-                    android:textColor="@color/colorPrimarioOscuro"
+                    android:textColor="@color/colorNegro"
                     android:typeface="monospace"
                     android:textSize="12sp"
                     app:buttonTint="@color/colorRojo" />
             </RadioGroup>
-
-            <LinearLayout
-
-                android:layout_width="match_parent"
-                android:layout_height="170dp"
+            <TextView
+                style="@style/TexviewsubTitulo"
+                android:textColor="@color/colorNegro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="2"
-                android:orientation="vertical">
+                android:gravity="center"
+                android:text="@string/txtFechaNacimiento" />
+            <EditText
+                android:id="@+id/fecha"
+                android:layout_width="217dp"
+                android:layout_gravity="center"
+                android:ems="20"
+                android:gravity="center"
+                android:hint="@string/txtHintFecha"
+                android:layout_height="38dp"
+                android:textSize="14sp"
+                android:onClick="mostrarCalendario"/>
+            <TextView
+                style="@style/TexviewsubTitulo"
+                android:textColor="@color/colorNegro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/txtObservaciones" />
 
-
-                <TextView
-                    style="@style/TexviewsubTitulo"
-                    android:textColor="@color/colorNegro"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:text="@string/txtFechaNacimiento" />
-                <EditText
-                    android:id="@+id/fecha"
-                    android:layout_width="217dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:ems="20"
-                    android:gravity="center"
-                    android:hint="@string/txtHintFecha"
-                    android:onClick="mostrarCalendario"/>
-                <TextView
-                    style="@style/TexviewsubTitulo"
-                    android:textColor="@color/colorNegro"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:text="@string/txtObservaciones" />
-
-                <EditText
-                    android:id="@+id/editobsrvaciones"
-                    style="@style/edit"
-                    android:layout_width="388dp"
-                    android:layout_height="75dp"
-                    android:fontFamily="monospace"
-                    android:hint="@string/txtHintObservaciones"
-                    android:lines="3"
-                    android:textColor="@color/colorPrimarioOscuro"
-                    android:textSize="15sp" />
-            </LinearLayout>
-
+            <EditText
+                android:id="@+id/editobsrvaciones"
+                style="@style/edit"
+                android:layout_width="388dp"
+                android:layout_height="75dp"
+                android:fontFamily="monospace"
+                android:hint="@string/txtHintObservaciones"
+                android:lines="3"
+                android:textColor="@color/colorPrimarioOscuro"
+                android:textSize="14sp" />
             <TextView
                 style="@style/TexviewsubTitulo"
                 android:textColor="@color/colorNegro"
@@ -184,13 +180,13 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@color/colorClaro">
-            <Spinner
-                android:textAlignment="center"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:id="@+id/spiner"
-                android:layout_width="280dp"
-                android:layout_height="30dp"/>
+                <Spinner
+                    android:textAlignment="center"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:id="@+id/spiner"
+                    android:layout_width="280dp"
+                    android:layout_height="30dp"/>
             </RelativeLayout>
 
             <View
@@ -209,10 +205,10 @@
                 android:id="@+id/nom_ape_padre"
                 style="@style/edit"
                 android:fontFamily="monospace"
+                android:layout_height="35dp"
                 android:hint="@string/txtHintNombrePadre"
                 android:textColor="@color/colorPrimarioOscuro"
-                android:textSize="15sp" />
-
+                android:textSize="14sp" />
             <TextView
                 style="@style/TexviewsubTitulo"
                 android:textColor="@color/colorNegro"
@@ -221,16 +217,15 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="@string/txtTelefonoPadre" />
-
             <EditText
                 android:id="@+id/telefonopadre"
                 style="@style/edit"
-                android:layout_height="36dp"
+                android:layout_height="35dp"
                 android:fontFamily="monospace"
                 android:hint="@string/txtHintTelefonoPadre"
                 android:inputType="number"
                 android:textColor="@color/colorPrimarioOscuro"
-                android:textSize="15sp" />
+                android:textSize="14sp" />
             <TextView
                 style="@style/TexviewsubTitulo"
                 android:textColor="@color/colorNegro"
@@ -239,14 +234,14 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="@string/txtDireccionPadre" />
-
             <EditText
                 android:id="@+id/direccionpadre"
                 style="@style/edit"
                 android:fontFamily="monospace"
+                android:layout_height="35dp"
                 android:hint="@string/txtHintDireccionPadre"
                 android:textColor="@color/colorPrimarioOscuro"
-                android:textSize="15sp" />
+                android:textSize="14sp" />
             <TextView
                 style="@style/TexviewsubTitulo"
                 android:textColor="@color/colorNegro"
@@ -260,9 +255,10 @@
                 android:id="@+id/nom_ape_madre"
                 style="@style/edit"
                 android:fontFamily="monospace"
+                android:layout_height="35dp"
                 android:hint="@string/txtHintNombreMadre"
                 android:textColor="@color/colorPrimarioOscuro"
-                android:textSize="15sp" />
+                android:textSize="14sp" />
             <TextView
                 style="@style/TexviewsubTitulo"
                 android:textColor="@color/colorNegro"
@@ -275,12 +271,12 @@
             <EditText
                 android:id="@+id/telefonomadre"
                 style="@style/edit"
-                android:layout_height="47dp"
+                android:layout_height="35dp"
                 android:fontFamily="monospace"
                 android:hint="@string/txtHintTelefonoMadre"
                 android:inputType="number"
                 android:textColor="@color/colorPrimarioOscuro"
-                android:textSize="15sp" />
+                android:textSize="14sp" />
 
             <TextView
                 style="@style/TexviewsubTitulo"
@@ -294,10 +290,10 @@
                 android:id="@+id/direccionmadre"
                 style="@style/edit"
                 android:fontFamily="monospace"
+                android:layout_height="35dp"
                 android:hint="@string/txtHintDireccionMadre"
                 android:textColor="@color/colorPrimarioOscuro"
-                android:textSize="15sp" />
-
+                android:textSize="14sp" />
 
             <CheckBox
                 android:textSize="20sp"
@@ -306,7 +302,6 @@
                 android:text="@string/txtActivo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
-
             <Button
                 android:layout_marginTop="12dp"
                 android:id="@+id/btnguardarcenso"
@@ -319,13 +314,13 @@
                 android:textColor="@color/colorClaro" />
             <Button
                 android:id="@+id/btnactualizar"
+                android:layout_marginTop="12dp"
                 android:layout_width="200dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:background="@drawable/personalizar_button"
                 android:text="@string/txtBtnActualizar"
                 android:textColor="@color/colorClaro" />
-
         </LinearLayout>
-    </RelativeLayout>
-</ScrollView>
+    </ScrollView>
+</LinearLayout>

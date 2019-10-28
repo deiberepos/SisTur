@@ -1,4 +1,4 @@
-package com.dgaviria.sistur.alimentos;
+package com.dgaviria.sistur;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;

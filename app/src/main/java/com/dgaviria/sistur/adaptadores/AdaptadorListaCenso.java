@@ -25,28 +25,25 @@ public class AdaptadorListaCenso extends RecyclerView.Adapter<AdaptadorListaCens
     public interface OnItemClick{
         void itemClick(Censo miCenso, int posicion);
         void modificaClick(Censo miCenso,int posicion);
-        void eliminaClick(Censo miCenso,int posicion);
     }
     private OnItemClick listener;
 
-    public static  class CensoViewHolder extends RecyclerView.ViewHolder
-    {
+    public static  class CensoViewHolder extends RecyclerView.ViewHolder{
         ImageView modifica;
-        TextView nombre,apellido;
-
-        DatabaseReference mir= FirebaseDatabase.getInstance().getReference();
+        TextView registro,nombres,centro;
 
         public CensoViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            nombre=itemView.findViewById(R.id.txtNombreInfante);
-            apellido=itemView.findViewById(R.id.txtApellido);
+            registro=itemView.findViewById(R.id.txtRegistro);
+            nombres=itemView.findViewById(R.id.txtNombreInfante);
+            centro=itemView.findViewById(R.id.txtCentro);
             modifica=itemView.findViewById(R.id.imgModificaCenso);
         }
 
         public void bind(final Censo miCenso,final int posicion,final OnItemClick onItemClick)
         {
-            nombre.setOnClickListener(new View.OnClickListener() {
+            nombres.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
@@ -62,30 +59,32 @@ public class AdaptadorListaCenso extends RecyclerView.Adapter<AdaptadorListaCens
         }
     }
 
-    public AdaptadorListaCenso(Context context,List<Censo>listado,OnItemClick listener)
-    {
+    public AdaptadorListaCenso(Context context,List<Censo>listado,OnItemClick listener){
       this.contexto=context;
       this.listadoCenso=listado;
       this.listener=listener;
-
     }
-
 
     @NonNull
     @Override
     public CensoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View vistados= LayoutInflater.from(parent.getContext()).inflate(R.layout.censo_lista,parent,false);
-        CensoViewHolder fiauno=new CensoViewHolder(vistados);
-        return fiauno;
+        View vistaDos= LayoutInflater.from(parent.getContext()).inflate(R.layout.censo_lista,parent,false);
+        CensoViewHolder filauno=new CensoViewHolder(vistaDos);
+        return filauno;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CensoViewHolder holder, final int position)
-    {
-    Censo micensoo=listadoCenso.get(position);
-        holder.nombre.setText(micensoo.getNombre());
-        holder.apellido.setText(micensoo.getApellidos());
-        holder.modifica.setImageResource(R.mipmap.usuarios);
+    public void onBindViewHolder(@NonNull CensoViewHolder holder, final int position){
+        String nombreCompuesto;
+        Censo miCenso=listadoCenso.get(position);
+        nombreCompuesto=miCenso.getNombre()+" "+miCenso.getApellidos();
+        holder.registro.setText(miCenso.getRegistro());
+        holder.nombres.setText(nombreCompuesto);
+        holder.centro.setText(miCenso.getCentroasociado());
+        if (miCenso.getGenero().equals("F"))
+            holder.modifica.setImageResource(R.mipmap.femenino);
+        else
+            holder.modifica.setImageResource(R.mipmap.masculino);
         holder.bind(listadoCenso.get(position),position,listener);
     }
 

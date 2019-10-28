@@ -50,19 +50,19 @@ public class CensoPoblacional extends AppCompatActivity {
 
     private int año, mes, dia;
     Button btnguardar, btnactualizar;
-    EditText editRegistroInfante,editnombreInfante, editapellidoInfante, campoFecha, editobservaciones, editnombrePadre, editnombreMadre, editTeleMadre, editTelePadre, editDirPadre, editDirMadre;
+    EditText editRegistroInfante, editNombreInfante, editApellidoInfante, campoFecha, editObservaciones, editNombrePadre, editNombreMadre, editTeleMadre, editTelePadre, editDirPadre, editDirMadre;
     DatabaseReference miReferencia, misDatos, miReferenciaCentro, poblacionC;
-    String registro, nombre, apellido, fecha, observacion, nombreMadr, nombrePadr, telM, telP, dirM, dirP, genero, centroasociado, recibecentro;
-    Boolean activo;
-    RadioGroup gen;
-    RadioButton mas, fem;
+    String registro, nombre, apellido, fecha, observacion, nombreDeMadre, nombreDePadre, telMadre, telPadre, dirMadre, dirPadre, genero, centroAsociado, recibeCentro;
+    Boolean activoCenso;
+    RadioGroup generoInfante;
+    RadioButton masculino, femenino;
     Bundle recibeParametros;
-    CheckBox acti;
-    private String opcion = "", reciberegistro,nombree, apellidoo, fechaa, observacionn, nombreMadrr, telMM, dirMM, nombrePadrr, telPP, dirPP;
+    CheckBox estaActivo;
+    private String opcion = "", recibeRegistro, nombresAux, apellidoAux, fechaAux, observacionAux, nombreMadreAux, telefonoMadreAux, direccionMadreAux;
+    private String nombrePadreAux, telefonoPadreAux, direccionPadreAux,generoCenso;
     private static final int TIPO_DIALOGO = 0;
     private static DatePickerDialog.OnDateSetListener selectorFecha;
     private Spinner spin;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,44 +72,46 @@ public class CensoPoblacional extends AppCompatActivity {
         if (opcion.equals("crear")) {
             llernarspinner();
             btnactualizar.setVisibility(View.INVISIBLE);
-        } else {
-            int actgeneroo, activoo;
+        }
+        else {
+            int estaActivo;
             btnguardar.setVisibility(View.INVISIBLE);
-            reciberegistro = recibeParametros.getString("registro");
-            editRegistroInfante.setText(reciberegistro);
-            nombree = recibeParametros.getString("nombre");
-            editnombreInfante.setText(nombree);
-            apellidoo = recibeParametros.getString("apellido");
-            editapellidoInfante.setText(apellidoo);
-            recibecentro = recibeParametros.getString("centroa");
-            actgeneroo = recibeParametros.getInt("tipo");
-            if (actgeneroo == 1) {
-                mas.setChecked(true);
+            recibeRegistro = recibeParametros.getString("registro");
+            editRegistroInfante.setText(recibeRegistro);
+            nombresAux = recibeParametros.getString("nombre");
+            editNombreInfante.setText(nombresAux);
+            apellidoAux = recibeParametros.getString("apellido");
+            editApellidoInfante.setText(apellidoAux);
+            recibeCentro = recibeParametros.getString("centroa");
+            generoCenso = recibeParametros.getString("genero");
+            if (generoCenso.equals("M")) {
+                masculino.setChecked(true);
+                femenino.setChecked(false);
             }
-            if (actgeneroo == 2) {
-                fem.setChecked(true);
+            if (generoCenso.equals("F")) {
+                femenino.setChecked(true);
+                masculino.setChecked(false);
             }
-            fechaa = recibeParametros.getString("fecha");
-            campoFecha.setText(fechaa);
-            observacionn = recibeParametros.getString("observaciones");
-            editobservaciones.setText(observacionn);
-            nombrePadrr = recibeParametros.getString("nombrePadr");
-            editnombrePadre.setText(nombrePadrr);
-            telPP = recibeParametros.getString("telefonpadre");
-            editTelePadre.setText(telPP);
-            dirPP = recibeParametros.getString("dirpadre");
-            editDirPadre.setText(dirPP);
-            nombreMadrr = recibeParametros.getString("nombreMaadre");
-            editnombreMadre.setText(nombreMadrr);
-            telMM = recibeParametros.getString("telefonoMadre");
-            editTeleMadre.setText(telMM);
-            dirMM = recibeParametros.getString("dirMadre");
-            editDirMadre.setText(dirMM);
-            activoo = recibeParametros.getInt("activo");
-            if (activoo == 1) {
-                acti.setChecked(true);
+            fechaAux = recibeParametros.getString("fecha");
+            campoFecha.setText(fechaAux);
+            observacionAux = recibeParametros.getString("observaciones");
+            editObservaciones.setText(observacionAux);
+            nombrePadreAux = recibeParametros.getString("nombrepadre");
+            editNombrePadre.setText(nombrePadreAux);
+            telefonoPadreAux = recibeParametros.getString("telefonopadre");
+            editTelePadre.setText(telefonoPadreAux);
+            direccionPadreAux = recibeParametros.getString("dirpadre");
+            editDirPadre.setText(direccionPadreAux);
+            nombreMadreAux = recibeParametros.getString("nombremadre");
+            editNombreMadre.setText(nombreMadreAux);
+            telefonoMadreAux = recibeParametros.getString("telefonomadre");
+            editTeleMadre.setText(telefonoMadreAux);
+            direccionMadreAux = recibeParametros.getString("dirmadre");
+            editDirMadre.setText(direccionMadreAux);
+            estaActivo = recibeParametros.getInt("activo");
+            if (estaActivo == 1) {
+                this.estaActivo.setChecked(true);
             }
-
             llernarspinner();
         }
         btnguardar.setOnClickListener(new View.OnClickListener() {
@@ -129,7 +131,7 @@ public class CensoPoblacional extends AppCompatActivity {
         spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                centroasociado = adapterView.getItemAtPosition(i).toString();
+                centroAsociado = adapterView.getItemAtPosition(i).toString();
             }
 
             @Override
@@ -137,34 +139,34 @@ public class CensoPoblacional extends AppCompatActivity {
 
             }
         });
-        acti.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        estaActivo.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (acti.isChecked()) {
-                    activo = true;
+                if (estaActivo.isChecked()) {
+                    activoCenso = true;
                 } else {
-                    activo = false;
+                    activoCenso = false;
                 }
             }
         });
-        gen.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        generoInfante.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 switch (i) {
                     case R.id.masculino:
-                        genero = "masculino";
+                        genero = "M";
                         break;
                     case R.id.femenino:
-                        genero = "femenino";
+                        genero = "F";
                         break;
 
                 }
             }
         });
-        if (acti.isChecked()) {
-            activo = true;
+        if (estaActivo.isChecked()) {
+            activoCenso = true;
         } else {
-            activo = false;
+            activoCenso = false;
         }
 
         Calendar calendar = Calendar.getInstance();
@@ -207,7 +209,6 @@ public class CensoPoblacional extends AppCompatActivity {
     private void llernarspinner() {
         miReferenciaCentro = FirebaseDatabase.getInstance().getReference();
         miReferenciaCentro.child("Centros").addValueEventListener(new ValueEventListener() {
-            final CdiHcb centro = new CdiHcb();
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -236,21 +237,21 @@ public class CensoPoblacional extends AppCompatActivity {
             registro = editRegistroInfante.getText().toString().trim().toLowerCase();
             editRegistroInfante.setText(registro);
         }
-        if (editnombreInfante.getText().toString().trim().isEmpty()) {
-            editnombreInfante.setError("Nombre requerido");
-            editnombreInfante.requestFocus();
+        if (editNombreInfante.getText().toString().trim().isEmpty()) {
+            editNombreInfante.setError("Nombre requerido");
+            editNombreInfante.requestFocus();
             return;
         } else {
-            nombre = editnombreInfante.getText().toString().trim().toLowerCase();
-            editnombreInfante.setText(nombre);
+            nombre = editNombreInfante.getText().toString().trim().toLowerCase();
+            editNombreInfante.setText(nombre);
         }
-        if (editapellidoInfante.getText().toString().trim().isEmpty()) {
-            editapellidoInfante.setError("Apellido requerido");
-            editapellidoInfante.requestFocus();
+        if (editApellidoInfante.getText().toString().trim().isEmpty()) {
+            editApellidoInfante.setError("Apellido requerido");
+            editApellidoInfante.requestFocus();
             return;
         } else {
-            apellido = editapellidoInfante.getText().toString().trim();
-            editapellidoInfante.setText(apellido);
+            apellido = editApellidoInfante.getText().toString().trim();
+            editApellidoInfante.setText(apellido);
         }
         if (campoFecha.getText().toString().trim().isEmpty()) {
             campoFecha.setError("Campo Requerido");
@@ -261,53 +262,53 @@ public class CensoPoblacional extends AppCompatActivity {
             campoFecha.setText(fecha);
 
         }
-        if (editnombrePadre.getText().toString().trim().isEmpty()) {
-            editnombrePadre.setError("Los nombres y apellidos son requeridos");
-            editnombrePadre.requestFocus();
+        if (editNombrePadre.getText().toString().trim().isEmpty()) {
+            editNombrePadre.setError("Los nombres y apellidos son requeridos");
+            editNombrePadre.requestFocus();
             return;
         } else {
-            nombrePadr = editnombrePadre.getText().toString().trim();
-            editnombrePadre.setText(nombrePadr);
+            nombreDePadre = editNombrePadre.getText().toString().trim();
+            editNombrePadre.setText(nombreDePadre);
         }
         if (editTelePadre.getText().toString().trim().isEmpty()) {
-            editTelePadre.setError("Telefono Requerido");
+            editTelePadre.setError("Teléfono requerido");
             editTelePadre.requestFocus();
             return;
         } else {
-            telP = editTelePadre.getText().toString().trim();
-            editTelePadre.setText(telP);
+            telPadre = editTelePadre.getText().toString().trim();
+            editTelePadre.setText(telPadre);
         }
         if (editDirPadre.getText().toString().trim().isEmpty()) {
-            editDirPadre.setError("Direccion Requerido");
+            editDirPadre.setError("Direccién requerido");
             editDirPadre.requestFocus();
             return;
         } else {
-            dirP = editDirPadre.getText().toString().trim();
-            editDirPadre.setText(dirP);
+            dirPadre = editDirPadre.getText().toString().trim();
+            editDirPadre.setText(dirPadre);
         }
-        if (editnombreMadre.getText().toString().trim().isEmpty()) {
-            editnombreMadre.setError("Los nombres y apellidos son requeridos");
-            editnombreMadre.requestFocus();
+        if (editNombreMadre.getText().toString().trim().isEmpty()) {
+            editNombreMadre.setError("Los nombres y apellidos son requeridos");
+            editNombreMadre.requestFocus();
             return;
         } else {
-            nombreMadr = editnombreMadre.getText().toString().trim();
-            editnombreMadre.setText(nombreMadr);
+            nombreDeMadre = editNombreMadre.getText().toString().trim();
+            editNombreMadre.setText(nombreDeMadre);
         }
         if (editTeleMadre.getText().toString().trim().isEmpty()) {
-            editTeleMadre.setError("Telefono Requerido");
+            editTeleMadre.setError("Teléfono requerido");
             editTeleMadre.requestFocus();
             return;
         } else {
-            telM = editTeleMadre.getText().toString().trim();
-            editTeleMadre.setText(telM);
+            telMadre = editTeleMadre.getText().toString().trim();
+            editTeleMadre.setText(telMadre);
         }
         if (editDirMadre.getText().toString().trim().isEmpty()) {
             editDirMadre.setError("Dirección requerida");
             editDirMadre.requestFocus();
             return;
         } else {
-            dirM = editDirMadre.getText().toString().trim();
-            editDirMadre.setText(dirM);
+            dirMadre = editDirMadre.getText().toString().trim();
+            editDirMadre.setText(dirMadre);
         }
         guardarCenso();
     }
@@ -320,21 +321,21 @@ public class CensoPoblacional extends AppCompatActivity {
             registro = editRegistroInfante.getText().toString().trim().toLowerCase();
             editRegistroInfante.setText(registro);
         }
-        if (editnombreInfante.getText().toString().trim().isEmpty()) {
-            editnombreInfante.setError("Nombre requerido");
-            editnombreInfante.requestFocus();
+        if (editNombreInfante.getText().toString().trim().isEmpty()) {
+            editNombreInfante.setError("Nombres requeridos");
+            editNombreInfante.requestFocus();
             return;
         } else {
-            nombre = editnombreInfante.getText().toString().trim().toLowerCase();
-            editnombreInfante.setText(nombre);
+            nombre = editNombreInfante.getText().toString().trim().toLowerCase();
+            editNombreInfante.setText(nombre);
         }
-        if (editapellidoInfante.getText().toString().trim().isEmpty()) {
-            editapellidoInfante.setError("Apellido requerido");
-            editapellidoInfante.requestFocus();
+        if (editApellidoInfante.getText().toString().trim().isEmpty()) {
+            editApellidoInfante.setError("Apellidos requeridos");
+            editApellidoInfante.requestFocus();
             return;
         } else {
-            apellido = editapellidoInfante.getText().toString().trim();
-            editapellidoInfante.setText(apellido);
+            apellido = editApellidoInfante.getText().toString().trim();
+            editApellidoInfante.setText(apellido);
         }
         if (campoFecha.getText().toString().trim().isEmpty()) {
             campoFecha.setError("Campo Requerido");
@@ -345,53 +346,53 @@ public class CensoPoblacional extends AppCompatActivity {
             campoFecha.setText(fecha);
 
         }
-        if (editnombrePadre.getText().toString().trim().isEmpty()) {
-            editnombrePadre.setError("Los nombres y apellidos son requeridos");
-            editnombrePadre.requestFocus();
+        if (editNombrePadre.getText().toString().trim().isEmpty()) {
+            editNombrePadre.setError("Los nombres y apellidos son requeridos");
+            editNombrePadre.requestFocus();
             return;
         } else {
-            nombrePadr = editnombrePadre.getText().toString().trim();
-            editnombrePadre.setText(nombrePadr);
+            nombreDePadre = editNombrePadre.getText().toString().trim();
+            editNombrePadre.setText(nombreDePadre);
         }
         if (editTelePadre.getText().toString().trim().isEmpty()) {
-            editTelePadre.setError("Telefono Requerido");
+            editTelePadre.setError("Teléfono requerido");
             editTelePadre.requestFocus();
             return;
         } else {
-            telP = editTelePadre.getText().toString().trim();
-            editTelePadre.setText(telP);
+            telPadre = editTelePadre.getText().toString().trim();
+            editTelePadre.setText(telPadre);
         }
         if (editDirPadre.getText().toString().trim().isEmpty()) {
-            editDirPadre.setError("Direccion Requerido");
+            editDirPadre.setError("Dirección requerida");
             editDirPadre.requestFocus();
             return;
         } else {
-            dirP = editDirPadre.getText().toString().trim();
-            editDirPadre.setText(dirP);
+            dirPadre = editDirPadre.getText().toString().trim();
+            editDirPadre.setText(dirPadre);
         }
-        if (editnombreMadre.getText().toString().trim().isEmpty()) {
-            editnombreMadre.setError("Los nombres y apellidos son requeridos");
-            editnombreMadre.requestFocus();
+        if (editNombreMadre.getText().toString().trim().isEmpty()) {
+            editNombreMadre.setError("Los nombres y apellidos son requeridos");
+            editNombreMadre.requestFocus();
             return;
         } else {
-            nombreMadr = editnombreMadre.getText().toString().trim();
-            editnombreMadre.setText(nombreMadr);
+            nombreDeMadre = editNombreMadre.getText().toString().trim();
+            editNombreMadre.setText(nombreDeMadre);
         }
         if (editTeleMadre.getText().toString().trim().isEmpty()) {
             editTeleMadre.setError("Teléfono requerido");
             editTeleMadre.requestFocus();
             return;
         } else {
-            telM = editTeleMadre.getText().toString().trim();
-            editTeleMadre.setText(telM);
+            telMadre = editTeleMadre.getText().toString().trim();
+            editTeleMadre.setText(telMadre);
         }
         if (editDirMadre.getText().toString().trim().isEmpty()) {
             editDirMadre.setError("Dirección requerida");
             editDirMadre.requestFocus();
             return;
         } else {
-            dirM = editDirMadre.getText().toString().trim();
-            editDirMadre.setText(dirM);
+            dirMadre = editDirMadre.getText().toString().trim();
+            editDirMadre.setText(dirMadre);
         }
         actualizarCenso();
     }
@@ -401,16 +402,16 @@ public class CensoPoblacional extends AppCompatActivity {
         miReferencia = FirebaseDatabase.getInstance().getReference();
         misDatos = miReferencia.child("censoinfante");
         poblacionC = miReferencia.child("poblacionCentros");
-        misDatos.child(registro).setValue(new Censo(registro,nombre, apellido, genero, fecha, observacion, centroasociado, nombrePadr, telP, dirP, nombreMadr, telM, dirM, activo));
+        misDatos.child(registro).setValue(new Censo(registro,nombre, apellido, genero, fecha, observacion, centroAsociado, nombreDePadre, telPadre, dirPadre, nombreDeMadre, telMadre, dirMadre, activoCenso));
 
-        if(activo){
-            poblacionC.child(centroasociado).child(registro).setValue(new Censo(registro,nombre, apellido, genero, fecha, observacion, centroasociado, nombrePadr, telP, dirP, nombreMadr, telM, dirM, activo));
-            poblacionC.child(centroasociado).addValueEventListener(new ValueEventListener() {
+        if(activoCenso){
+            poblacionC.child(centroAsociado).child(registro).setValue(new Censo(registro,nombre, apellido, genero, fecha, observacion, centroAsociado, nombreDePadre, telPadre, dirPadre, nombreDeMadre, telMadre, dirMadre, activoCenso));
+            poblacionC.child(centroAsociado).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     long totalchild = dataSnapshot.getChildrenCount();
                     totalchild = totalchild-1;
-                    poblacionC.child(centroasociado).child("totalcenso").setValue(totalchild);
+                    poblacionC.child(centroAsociado).child("totalcenso").setValue(totalchild);
                 }
 
                 @Override
@@ -428,26 +429,26 @@ public class CensoPoblacional extends AppCompatActivity {
     private void actualizarCenso() {
         AlertDialog.Builder builder = new AlertDialog.Builder(CensoPoblacional.this);
         builder.setTitle("Desea actualizar: " + registro);
-        builder.setMessage("Está seguro que desea actualizar este Infante?");
+        builder.setMessage("¿Está seguro que desea actualizar este Infante?");
         builder.setPositiveButton("ACTUALIZAR", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 miReferencia = FirebaseDatabase.getInstance().getReference();
                 poblacionC = miReferencia.child("poblacionCentros");
                 final Censo censo = new Censo();
-                if (reciberegistro.equals(registro)&& recibecentro.equals(centroasociado)) {
-                    miReferencia.child("censoinfante").child(registro).setValue(new Censo(registro,nombre, apellido, genero, fecha, observacion, centroasociado, nombrePadr, telP, dirP, nombreMadr, telM, dirM, activo));
-                    if(activo){
-                        poblacionC.child(centroasociado).child(registro).setValue(new Censo(registro,nombre, apellido, genero, fecha, observacion, centroasociado, nombrePadr, telP, dirP, nombreMadr, telM, dirM, activo));
+                if (recibeRegistro.equals(registro)&& recibeCentro.equals(centroAsociado)) {
+                    miReferencia.child("censoinfante").child(registro).setValue(new Censo(registro,nombre, apellido, genero, fecha, observacion, centroAsociado, nombreDePadre, telPadre, dirPadre, nombreDeMadre, telMadre, dirMadre, activoCenso));
+                    if(activoCenso){
+                        poblacionC.child(centroAsociado).child(registro).setValue(new Censo(registro,nombre, apellido, genero, fecha, observacion, centroAsociado, nombreDePadre, telPadre, dirPadre, nombreDeMadre, telMadre, dirMadre, activoCenso));
                     }else {
-                        poblacionC.child(centroasociado).child(registro).removeValue();
+                        poblacionC.child(centroAsociado).child(registro).removeValue();
                     }
-                    poblacionC.child(centroasociado).addValueEventListener(new ValueEventListener() {
+                    poblacionC.child(centroAsociado).addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             long totalchild = dataSnapshot.getChildrenCount();
                             totalchild = totalchild-1;
-                            poblacionC.child(centroasociado).child("totalcenso").setValue(totalchild);
+                            poblacionC.child(centroAsociado).child("totalcenso").setValue(totalchild);
                         }
 
                         @Override
@@ -455,18 +456,18 @@ public class CensoPoblacional extends AppCompatActivity {
 
                         }
                     });
-                } else if(reciberegistro.equals(registro)&& !(recibecentro.equals(centroasociado))){
-                    miReferencia.child("censoinfante").child(registro).setValue(new Censo(registro,nombre, apellido, genero, fecha, observacion, centroasociado, nombrePadr, telP, dirP, nombreMadr, telM, dirM, activo));
-                    poblacionC.child(recibecentro).child(reciberegistro).removeValue();
-                    if(activo){
-                        poblacionC.child(centroasociado).child(registro).setValue(new Censo(registro,nombre, apellido, genero, fecha, observacion, centroasociado, nombrePadr, telP, dirP, nombreMadr, telM, dirM, activo));
+                } else if(recibeRegistro.equals(registro)&& !(recibeCentro.equals(centroAsociado))){
+                    miReferencia.child("censoinfante").child(registro).setValue(new Censo(registro,nombre, apellido, genero, fecha, observacion, centroAsociado, nombreDePadre, telPadre, dirPadre, nombreDeMadre, telMadre, dirMadre, activoCenso));
+                    poblacionC.child(recibeCentro).child(recibeRegistro).removeValue();
+                    if(activoCenso){
+                        poblacionC.child(centroAsociado).child(registro).setValue(new Censo(registro,nombre, apellido, genero, fecha, observacion, centroAsociado, nombreDePadre, telPadre, dirPadre, nombreDeMadre, telMadre, dirMadre, activoCenso));
                     }
-                    poblacionC.child(recibecentro).addValueEventListener(new ValueEventListener() {
+                    poblacionC.child(recibeCentro).addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             long totalchild = dataSnapshot.getChildrenCount();
                             totalchild = totalchild-1;
-                            poblacionC.child(recibecentro).child("totalcenso").setValue(totalchild);
+                            poblacionC.child(recibeCentro).child("totalcenso").setValue(totalchild);
                         }
 
                         @Override
@@ -474,12 +475,12 @@ public class CensoPoblacional extends AppCompatActivity {
 
                         }
                     });
-                    poblacionC.child(centroasociado).addValueEventListener(new ValueEventListener() {
+                    poblacionC.child(centroAsociado).addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             long totalchild = dataSnapshot.getChildrenCount();
                             totalchild = totalchild-1;
-                            poblacionC.child(centroasociado).child("totalcenso").setValue(totalchild);
+                            poblacionC.child(centroAsociado).child("totalcenso").setValue(totalchild);
                         }
 
                         @Override
@@ -487,19 +488,19 @@ public class CensoPoblacional extends AppCompatActivity {
 
                         }
                     });
-                }else if(!(reciberegistro.equals(registro))){
-                    miReferencia.child("censoinfante").child(reciberegistro).removeValue();
-                    poblacionC.child(recibecentro).child(reciberegistro).removeValue();
-                    miReferencia.child("censoinfante").child(registro).setValue(new Censo(registro,nombre, apellido, genero, fecha, observacion, centroasociado, nombrePadr, telP, dirP, nombreMadr, telM, dirM, activo));
-                    if(activo){
-                        poblacionC.child(centroasociado).child(registro).setValue(new Censo(registro,nombre, apellido, genero, fecha, observacion, centroasociado, nombrePadr, telP, dirP, nombreMadr, telM, dirM, activo));
+                }else if(!(recibeRegistro.equals(registro))){
+                    miReferencia.child("censoinfante").child(recibeRegistro).removeValue();
+                    poblacionC.child(recibeCentro).child(recibeRegistro).removeValue();
+                    miReferencia.child("censoinfante").child(registro).setValue(new Censo(registro,nombre, apellido, genero, fecha, observacion, centroAsociado, nombreDePadre, telPadre, dirPadre, nombreDeMadre, telMadre, dirMadre, activoCenso));
+                    if(activoCenso){
+                        poblacionC.child(centroAsociado).child(registro).setValue(new Censo(registro,nombre, apellido, genero, fecha, observacion, centroAsociado, nombreDePadre, telPadre, dirPadre, nombreDeMadre, telMadre, dirMadre, activoCenso));
                     }
-                    poblacionC.child(centroasociado).addValueEventListener(new ValueEventListener() {
+                    poblacionC.child(centroAsociado).addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             long totalchild = dataSnapshot.getChildrenCount();
                             totalchild = totalchild-1;
-                            poblacionC.child(centroasociado).child("totalcenso").setValue(totalchild);
+                            poblacionC.child(centroAsociado).child("totalcenso").setValue(totalchild);
                         }
 
                         @Override
@@ -507,12 +508,12 @@ public class CensoPoblacional extends AppCompatActivity {
 
                         }
                     });
-                    poblacionC.child(recibecentro).addValueEventListener(new ValueEventListener() {
+                    poblacionC.child(recibeCentro).addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             long totalchild = dataSnapshot.getChildrenCount();
                             totalchild = totalchild-1;
-                            poblacionC.child(recibecentro).child("totalcenso").setValue(totalchild);
+                            poblacionC.child(recibeCentro).child("totalcenso").setValue(totalchild);
                         }
 
                         @Override
@@ -540,21 +541,21 @@ public class CensoPoblacional extends AppCompatActivity {
         btnguardar = findViewById(R.id.btnguardarcenso);
         btnactualizar = findViewById(R.id.btnactualizar);
         editRegistroInfante=findViewById(R.id.registroinfante);
-        editnombreInfante = findViewById(R.id.nombreinfante);
-        editapellidoInfante = findViewById(R.id.apellidoinfante);
-        fem = findViewById(R.id.femenino);
-        mas = findViewById(R.id.masculino);
+        editNombreInfante = findViewById(R.id.nombreinfante);
+        editApellidoInfante = findViewById(R.id.apellidoinfante);
+        femenino = findViewById(R.id.femenino);
+        masculino = findViewById(R.id.masculino);
         campoFecha = findViewById(R.id.fecha);
-        editobservaciones = findViewById(R.id.editobsrvaciones);
+        editObservaciones = findViewById(R.id.editobsrvaciones);
         spin = findViewById(R.id.spiner);
-        editnombrePadre = findViewById(R.id.nom_ape_padre);
-        editnombreMadre = findViewById(R.id.nom_ape_madre);
+        editNombrePadre = findViewById(R.id.nom_ape_padre);
+        editNombreMadre = findViewById(R.id.nom_ape_madre);
         editTeleMadre = findViewById(R.id.telefonomadre);
         editTelePadre = findViewById(R.id.telefonopadre);
         editDirMadre = findViewById(R.id.direccionmadre);
         editDirPadre = findViewById(R.id.direccionpadre);
-        gen = findViewById(R.id.radiogenero);
-        acti = findViewById(R.id.chekactivo);
+        generoInfante = findViewById(R.id.radiogenero);
+        estaActivo = findViewById(R.id.chekactivo);
         recibeParametros = getIntent().getExtras();
         opcion = recibeParametros.getString("opcion");
     }

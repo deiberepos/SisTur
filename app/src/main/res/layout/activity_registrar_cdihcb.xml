@@ -1,102 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:id="@+id/idcontenerRegCDI"
     android:layout_height="match_parent"
     tools:context=".RegistrarCDIHCB">
+    <LinearLayout
+        android:layout_width="55dp"
+        android:layout_height="80dp"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/logoinicial"
+            android:rotation="270"
+            android:scaleType="fitCenter"
+            android:scaleX="1.3"
+            android:scaleY=".5"/>
+    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:shadowColor="@color/colorClaro"
+        android:shadowDx="-2"
+        android:shadowDy="-2"
+        android:shadowRadius="1.5"
+        android:text="@string/txtCreacionCDI"
+        android:textColor="@color/colorNegro"
+        android:layout_marginTop="-60dp"
+        android:textSize="25sp"
+        android:textStyle="bold" />
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="25dp">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
-            <LinearLayout
-                android:orientation="vertical"
+            <TextView
+                android:layout_marginTop="5dp"
+                android:id="@+id/idtvtvnombreCentro"
+                style="@style/TexviewsubTitulo"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:text="@string/nombre_asignado" />
 
-                <ImageView
-                    android:layout_width="65dp"
-                    android:layout_height="70dp"
-                    android:background="@drawable/logoinicial" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:shadowColor="@color/colorClaro"
-                    android:shadowDx="-2"
-                    android:shadowDy="-2"
-                    android:shadowRadius="1.5"
-                    android:text="@string/txtCreacionCDI"
-                    android:textColor="@color/colorNegro"
-                    android:layout_marginTop="-70dp"
-                    android:textSize="25sp"
-                    android:textStyle="bold" />
+            <EditText
+                android:id="@+id/idedtnombreregCentro"
+                style="@style/edit"
+                android:layout_width="match_parent"
+                android:hint="@string/txtHintNombreCDI" />
 
-            </LinearLayout>
+            <TextView
+                style="@style/TexviewsubTitulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/txtTipoCDI"
+                android:textColor="@color/colorNegro" />
 
-                <TextView
-                    android:layout_marginTop="5dp"
-                    android:id="@+id/idtvtvnombreCentro"
+            <RadioGroup
+                android:id="@+id/idrgUbicaRegCDI"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/colorRojo"
+                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal"
+                android:typeface="monospace">
+
+                <RadioButton
+                    android:id="@+id/idrbCentro"
                     style="@style/TexviewsubTitulo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/nombre_asignado" />
-
-                <EditText
-                    android:id="@+id/idedtnombreregCentro"
-                    style="@style/edit"
-                    android:layout_width="match_parent"
-                    android:hint="@string/txtHintNombreCDI" />
-
-                <TextView
-                    style="@style/TexviewsubTitulo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:text="@string/txtTipoCDI"
-                    android:textColor="@color/colorNegro" />
-
-                <RadioGroup
-                    android:id="@+id/idrgUbicaRegCDI"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:buttonTint="@color/colorRojo"
-                    android:orientation="horizontal"
-                    android:typeface="monospace">
+                    android:textSize="12sp"
+                    android:text="@string/txtRbCentroDesarrollo"
+                    android:typeface="monospace" />
 
-                    <RadioButton
-                        android:id="@+id/idrbCentro"
-                        style="@style/TexviewsubTitulo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:buttonTint="@color/colorRojo"
-                        android:text="@string/txtRbCentroDesarrollo"
-                        android:typeface="monospace" />
-
-                    <RadioButton
-                        android:id="@+id/idrbHogar"
-                        style="@style/TexviewsubTitulo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:buttonTint="@color/colorRojo"
-                        android:text="@string/txtRbHogarComunitario"
-                        android:typeface="monospace" />
-                </RadioGroup>
-
-                <TextView
+                <RadioButton
+                    android:id="@+id/idrbHogar"
                     style="@style/TexviewsubTitulo"
                     android:layout_width="wrap_content"
-                    android:layout_height="31dp"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:text="@string/txtUbicacion"
-                    android:textColor="@color/colorNegro" />
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/colorRojo"
+                    android:textSize="12sp"
+                    android:layout_marginLeft="15dp"
+                    android:text="@string/txtRbHogarComunitario"
+                    android:typeface="monospace" />
+            </RadioGroup>
+
+            <TextView
+                style="@style/TexviewsubTitulo"
+                android:layout_width="wrap_content"
+                android:layout_height="31dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/txtUbicacion"
+                android:textColor="@color/colorNegro" />
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -165,99 +170,83 @@
                              android:layout_height="match_parent"/>
 
                      </LinearLayout>-->
-            <LinearLayout
-
+            <TextView
+                style="@style/TexviewsubTitulo"
+                android:id="@+id/idtvresponsable"
+                android:fontFamily="sans-serif-black"
+                android:text="@string/txtDatosPersona"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-                <TextView
-                    style="@style/TexviewsubTitulo"
-                    android:id="@+id/idtvresponsable"
-                    android:fontFamily="sans-serif-black"
-                    android:text="@string/txtDatosPersona"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    style="@style/TexviewsubTitulo"
-                    android:text="@string/txtNombreApellido"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <EditText
-                    style="@style/edit"
-                    android:hint="@string/txtHintNombreApellido"
-                    android:layout_width="match_parent"
-                    android:id="@+id/idedtnombreencargado" />
-                <TextView
-                    style="@style/TexviewsubTitulo"
-                    android:text="@string/txtDireccion"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <EditText
-
-                    style="@style/edit"
-                    android:hint="@string/txtHintDireccion"
-                    android:layout_width="match_parent"
-                    android:id="@+id/idedtdirEncargado" />
-                <TextView
-                    style="@style/TexviewsubTitulo"
-                    android:text="@string/txtTelefono"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <EditText
-                    style="@style/edit"
-                    android:hint="@string/txtHintTelefono"
-                    android:layout_width="match_parent"
-                    android:id="@+id/idedttelEncargado" />
-            </LinearLayout>
-
+                android:layout_height="wrap_content"/>
+            <TextView
+                style="@style/TexviewsubTitulo"
+                android:text="@string/txtNombreApellido"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <EditText
+                style="@style/edit"
+                android:hint="@string/txtHintNombreApellido"
+                android:layout_width="match_parent"
+                android:id="@+id/idedtnombreencargado" />
+            <TextView
+                style="@style/TexviewsubTitulo"
+                android:text="@string/txtDireccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <EditText
+                style="@style/edit"
+                android:hint="@string/txtHintDireccion"
+                android:layout_width="match_parent"
+                android:id="@+id/idedtdirEncargado" />
+            <TextView
+                style="@style/TexviewsubTitulo"
+                android:text="@string/txtTelefono"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <EditText
+                style="@style/edit"
+                android:hint="@string/txtHintTelefono"
+                android:layout_width="match_parent"
+                android:id="@+id/idedttelEncargado" />
             <View
                 android:layout_width="match_parent"
                 android:layout_height="5dp"/>
-
-            <LinearLayout
-
-                android:orientation="vertical"
+            <TextView
+                style="@style/TexviewsubTitulo"
+                android:id="@+id/idtvContacto"
+                android:fontFamily="sans-serif-black"
+                android:text="@string/txtDatosContacto"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <TextView
-                    style="@style/TexviewsubTitulo"
-                    android:id="@+id/idtvContacto"
-                    android:fontFamily="sans-serif-black"
-                    android:text="@string/txtDatosContacto"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    style="@style/TexviewsubTitulo"
-                    android:text="@string/txtNombreApellido"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <EditText
-                    style="@style/edit"
-                    android:hint="@string/txtHintNombreApellido"
-                    android:layout_width="match_parent"
-                    android:id="@+id/idedtnombreContacto" />
-                <TextView
-                    style="@style/TexviewsubTitulo"
-                    android:text="@string/txtDireccion"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <EditText
-                    style="@style/edit"
-                    android:hint="@string/txtHintDireccion"
-                    android:layout_width="match_parent"
-                    android:id="@+id/idedtdirContacto" />
-                <TextView
-                    style="@style/TexviewsubTitulo"
-                    android:text="@string/txtTelefono"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <EditText
-                    style="@style/edit"
-                    android:hint="@string/txtHintTelefono"
-                    android:layout_width="match_parent"
-                    android:id="@+id/idedttelContacto" />
-
-            </LinearLayout>
+                android:layout_height="wrap_content"/>
+            <TextView
+                style="@style/TexviewsubTitulo"
+                android:text="@string/txtNombreApellido"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <EditText
+                style="@style/edit"
+                android:hint="@string/txtHintNombreApellido"
+                android:layout_width="match_parent"
+                android:id="@+id/idedtnombreContacto" />
+            <TextView
+                style="@style/TexviewsubTitulo"
+                android:text="@string/txtDireccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <EditText
+                style="@style/edit"
+                android:hint="@string/txtHintDireccion"
+                android:layout_width="match_parent"
+                android:id="@+id/idedtdirContacto" />
+            <TextView
+                style="@style/TexviewsubTitulo"
+                android:text="@string/txtTelefono"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <EditText
+                style="@style/edit"
+                android:hint="@string/txtHintTelefono"
+                android:layout_width="match_parent"
+                android:id="@+id/idedttelContacto" />
             <CheckBox
                 android:id="@+id/activocdi"
                 android:text="@string/txtActivo"
@@ -266,35 +255,26 @@
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="137dp"
-                android:orientation="vertical">
-
-                <Button
-                    android:id="@+id/idbtnregCDI"
-                    android:layout_width="200dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/personalizar_button"
-                    android:text="@string/txtBtnRegistrar"
-                    android:textAllCaps="false"
-                    android:textColor="@color/colorClaro" />
-
-                <Button
-                    android:id="@+id/idbtnactCDI"
-                    android:layout_width="200dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/personalizar_button"
-                    android:text="@string/txtBtnActualizar"
-                    android:textAllCaps="false"
-                    android:textColor="@color/colorClaro" />
-
-            </LinearLayout>
+            <Button
+                android:id="@+id/idbtnregCDI"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/personalizar_button"
+                android:text="@string/txtBtnRegistrar"
+                android:textAllCaps="false"
+                android:textColor="@color/colorClaro" />
+            <Button
+                android:id="@+id/idbtnactCDI"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/personalizar_button"
+                android:text="@string/txtBtnActualizar"
+                android:textAllCaps="false"
+                android:textColor="@color/colorClaro" />
         </LinearLayout>
     </ScrollView>
-</RelativeLayout>
+</LinearLayout>

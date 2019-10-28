@@ -165,7 +165,7 @@ public class EntregaCompra extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()){ //Si existen entregas para el CDI
-                        //Encontró que ya ha existe una entrega
+                        //Encontró que ya existe una entrega
                         aprobarQR=false;
                     }
                 }

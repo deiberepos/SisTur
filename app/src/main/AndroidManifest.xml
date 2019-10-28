@@ -52,7 +52,7 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/noaction" />
         <activity
-            android:name=".alimentos.ListarPlanAlimenticio"
+            android:name=".ListarPlanAlimenticio"
             android:theme="@style/noaction" />
         <activity android:name=".MainActivity" />
         <activity

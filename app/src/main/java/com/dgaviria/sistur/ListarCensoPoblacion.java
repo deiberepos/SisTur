@@ -29,7 +29,6 @@ import java.util.List;
 public class ListarCensoPoblacion extends AppCompatActivity {
 
     RecyclerView miRecyclerCenso;
-    Spinner spin;
     List<Censo> listaDeCenso;
     AdaptadorListaCenso adaptadorCenso;
     DatabaseReference miReferencia;
@@ -59,10 +58,6 @@ public class ListarCensoPoblacion extends AppCompatActivity {
 
             @Override
             public void modificaClick(Censo miCenso, int posicion) {
-                int tipo=1;
-                if(miCenso.getGenero().equals("femenino")){
-                    tipo=2;
-                }
                 int tipoact=1;
                 if (miCenso.getActivo().equals("true")){
                     tipoact=2;
@@ -72,22 +67,18 @@ public class ListarCensoPoblacion extends AppCompatActivity {
                 intent.putExtra("registro",miCenso.getRegistro());
                 intent.putExtra("nombre",miCenso.getNombre());
                 intent.putExtra("apellido",miCenso.getApellidos());
-                intent.putExtra("tipo",tipo);
+                intent.putExtra("genero",miCenso.getGenero());
                 intent.putExtra("fecha",miCenso.getfecha());
                 intent.putExtra("observaciones",miCenso.getObservaciones());
-                intent.putExtra("nombrePadr",miCenso.getNombrepadre());
+                intent.putExtra("nombrepadre",miCenso.getNombrepadre());
                 intent.putExtra("centroa",miCenso.getCentroasociado());
-                intent.putExtra("telefonpadre",miCenso.getTelfonopadre());
+                intent.putExtra("telefonopadre",miCenso.getTelfonopadre());
                 intent.putExtra("dirpadre",miCenso.getDirpadre());
-                intent.putExtra("nombreMaadre",miCenso.getNombremadre());
+                intent.putExtra("nombremadre",miCenso.getNombremadre());
                 intent.putExtra("telefonoMadre",miCenso.getTelfonomadre());
-                intent.putExtra("dirMadre",miCenso.getDirmadre());
+                intent.putExtra("dirmadre",miCenso.getDirmadre());
                 intent.putExtra("activo",tipoact);
                 startActivity(intent);
-            }
-
-            @Override
-            public void eliminaClick(Censo miCenso,int posicion ) {
             }
         });
         miRecyclerCenso.setAdapter(adaptadorCenso);
@@ -115,7 +106,7 @@ public class ListarCensoPoblacion extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(ListarCensoPoblacion.this, "ERROR EN LA LECTURA DE DATOS", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ListarCensoPoblacion.this, "Error en la lectura de los datos", Toast.LENGTH_SHORT).show();
 
             }
         });

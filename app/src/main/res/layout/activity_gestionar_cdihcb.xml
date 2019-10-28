@@ -1,54 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".GestionarCDIHCB">
-
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+        android:layout_width="55dp"
+        android:layout_height="80dp"
+        android:orientation="vertical">
         <ImageView
-            android:layout_width="65dp"
-            android:layout_height="70dp"
-            android:background="@drawable/logoinicial" />
-        <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:shadowColor="@color/colorClaro"
-            android:shadowDx="-2"
-            android:shadowDy="-2"
-            android:shadowRadius="1.5"
-            android:text="@string/txtListaCDHI"
-            android:textColor="@color/colorNegro"
-            android:textSize="25sp"
-            android:textStyle="bold" />
-
+            android:background="@drawable/logoinicial"
+            android:rotation="270"
+            android:scaleType="fitCenter"
+            android:scaleX="1.3"
+            android:scaleY=".5"/>
     </LinearLayout>
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/idbtnCrearCDI"
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/agregar"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="5dp"
-        android:backgroundTint="@color/colorPrimarioSuave"
-        />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/idrecyclerGestCDI"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:shadowColor="@color/colorClaro"
+        android:shadowDx="-2"
+        android:shadowDy="-2"
+        android:shadowRadius="1.5"
+        android:text="@string/txtListaCDHI"
+        android:layout_marginTop="-60dp"
+        android:textColor="@color/colorNegro"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="100dp">
-
-    </androidx.recyclerview.widget.RecyclerView>
-
-</RelativeLayout>
+        android:layout_height="match_parent"
+        android:layout_marginTop="25dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/idrecyclerGestCDI"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true">
+            </androidx.recyclerview.widget.RecyclerView>
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/idbtnCrearCDI"
+                android:layout_below="@id/idrecyclerGestCDI"
+                android:layout_alignEnd="@id/idrecyclerGestCDI"
+                android:layout_width="83dp"
+                android:layout_height="59dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/colorPrimarioSuave"
+                android:src="@drawable/agregar"
+                />
+        </RelativeLayout>
+    </ScrollView>
+</LinearLayout>

@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.dgaviria.sistur.adaptadores.AdaptadorMenuPpal;
-import com.dgaviria.sistur.alimentos.ListarPlanAlimenticio;
 import com.dgaviria.sistur.clases.MenuOpciones;
 import com.dgaviria.sistur.usuarios.ListarUsuarios;
 import com.google.firebase.database.DataSnapshot;
