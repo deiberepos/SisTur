@@ -29,7 +29,8 @@
         <activity android:name=".ConsultaMinutas" />
         <activity android:name=".clases.CapturaQR" />
         <activity android:name=".MenuPrincipal" />
-        <activity android:name=".usuarios.CrearUsuarios" />
+        <activity android:name=".usuarios.CrearUsuarios"
+                  android:theme="@style/noaction"/>
         <activity
             android:name=".GestionarCDIHCB"
             android:theme="@style/noaction" />
@@ -50,7 +51,8 @@
             android:name=".alimentos.ListarPlanAlimenticio"
             android:theme="@style/noaction" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".CensoPoblacional" />
+        <activity android:name=".CensoPoblacional"
+                  android:theme="@style/noaction"/>
         <activity
             android:name=".RegistrarCDIHCB"
             android:configChanges="keyboardHidden|orientation|screenSize"
