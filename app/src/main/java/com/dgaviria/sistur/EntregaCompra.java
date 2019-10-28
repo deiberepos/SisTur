@@ -160,17 +160,13 @@ public class EntregaCompra extends AppCompatActivity {
         if (nombreCDIEI!=null && !nombreCDIEI.isEmpty() && nombreSemanaEI!=null && !nombreSemanaEI.isEmpty() && fechaEntregaI!=null && !fechaEntregaI.isEmpty()){
             //Verifica la existencia de la lista de entregas para el CDI en la semana seleccionada
             aprobarQR=true;
-            miReferenciaLista= FirebaseDatabase.getInstance().getReference("entregas").child(nombreCDIEI);
+            miReferenciaLista= FirebaseDatabase.getInstance().getReference("entregas").child(nombreCDIEI).child(nombreSemanaEI);
             miReferenciaLista.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()){ //Si existen entregas para el CDI
-                        for (DataSnapshot miSemana:dataSnapshot.getChildren()){
-                            if (miSemana.getValue(String.class).equals(nombreSemanaEI)){ //verifica si la semana de entrega es la que seleccionó
-                                //Encontró que ya ha existe una entrega
-                                aprobarQR=false;
-                            }
-                        }
+                        //Encontró que ya ha existe una entrega
+                        aprobarQR=false;
                     }
                 }
 
