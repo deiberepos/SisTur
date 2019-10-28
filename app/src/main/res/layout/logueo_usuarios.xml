@@ -32,34 +32,26 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/logoinicial" />
-    <TextView
-        android:id="@+id/tvlogin"
+
+    <RelativeLayout
+        android:id="@+id/layDatos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="90dp"
-        android:layout_below="@id/logo"
-        android:shadowColor="@color/colorClaro"
-        android:textColor="@color/colorNegro"
-        android:text="Ingreso de Usuarios"
-        android:textSize="25sp"
-        android:textStyle="bold" />
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:gravity="center"
-        android:layout_below="@id/tvlogin">
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        >
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cv"
-            android:layout_width="270dp"
+            android:layout_width="240dp"
             android:layout_height="130dp"
             app:cardCornerRadius="30dp"
+            android:background="@color/colorGrisClaro"
             app:cardElevation="3dp">
 
             <RelativeLayout
-                android:layout_width="270dp"
+                android:layout_width="240dp"
                 android:layout_height="140dp"
                 android:padding="10dp">
 
@@ -70,7 +62,7 @@
                     android:layout_margin="5dp"
                     android:background="@color/colorBlanco"
                     android:drawableStart="@drawable/user"
-                    android:drawablePadding="30dp"
+                    android:drawablePadding="20dp"
                     android:hint="usuario"
                     android:inputType="textPostalAddress"
                     android:padding="10dp" />
@@ -84,39 +76,47 @@
 
                 <EditText
                     android:id="@+id/editTextPassword"
-                    android:layout_width="315dp"
+                    android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_below="@id/view1"
                     android:layout_margin="5dp"
                     android:background="@color/colorBlanco"
                     android:drawableStart="@drawable/pass"
-                    android:drawablePadding="30dp"
+                    android:drawablePadding="20dp"
                     android:hint="contraseña"
                     android:inputType="textPassword"
                     android:padding="10dp" />
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
-
         <RelativeLayout
             android:layout_width="60dp"
-            android:layout_height="171dp"
-            android:layout_alignTop="@id/cv"
-            android:layout_alignRight="@id/cv"
-            android:layout_alignBottom="@id/cv"
-            android:layout_marginTop="-4dp"
-            android:layout_marginRight="-41dp"
-            android:layout_marginBottom="1dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-15dp"
+            android:layout_marginTop="36dp"
+            android:layout_toRightOf="@id/cv"
             android:elevation="10dp">
 
             <ImageButton
                 android:id="@+id/botonIngreso"
                 android:layout_width="460dp"
                 android:layout_height="60dp"
-                android:layout_centerVertical="true"
                 android:background="@drawable/btninicio"
                 android:src="@drawable/arrow" />
         </RelativeLayout>
     </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvlogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:shadowColor="@color/colorClaro"
+        android:textColor="@color/colorNegro"
+        android:layout_above="@id/layDatos"
+        android:text="Ingreso de Usuarios"
+        android:textSize="25sp"
+        android:textStyle="bold" />
     <ProgressBar
         android:id="@+id/barraProgreso"
         android:layout_width="wrap_content"
