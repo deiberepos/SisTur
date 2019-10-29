@@ -230,6 +230,7 @@ public class RecibeCompra extends AppCompatActivity {
                             }
                             numIngredientes = lista.size();
                             conteoIngredientes.setText(String.valueOf(numIngredientes));
+                            totalInfantes.setText(String.valueOf(numInfantes));
                             entregaExiste = true;
                         }
                         miAdaptadorEntrega.notifyDataSetChanged();
@@ -431,31 +432,40 @@ public class RecibeCompra extends AppCompatActivity {
             }
             else{
                 //crear la llave con sus hijos con los datos nuevos
-                miReferenciaListaE = FirebaseDatabase.getInstance().getReference("entregas").child(nombreCDIE).child(nombreSemanaE).push();
-                Map<String,Object> valoresNivel1=new HashMap<>();
-                valoresNivel1.put("nombreCDI",datosEntrega.getNombreCDI());
-                valoresNivel1.put("fechacompra",datosEntrega.getFechacompra());
-                valoresNivel1.put("fechaentrega",datosEntrega.getFechaentrega());
-                valoresNivel1.put("entregadopor",datosEntrega.getEntregadopor());
-                valoresNivel1.put("recibidopor",datosEntrega.getRecibidopor());
-                valoresNivel1.put("quiencompra",datosEntrega.getQuiencompra());
-                miReferenciaListaE.updateChildren(valoresNivel1);
-                miReferenciaListaE = FirebaseDatabase.getInstance().getReference("entregas").child(nombreCDIE).child(nombreSemanaE).push();
-                Map<String, Object> valoresNivel2 = new HashMap<String, Object>();
-                for (int numItem = 0; numItem < listaEntrega.size(); numItem++) {
-                    String codigoAlimento = listaEntrega.get(numItem).getCodigo();
-                    valoresNivel2.put("/" + codigoAlimento + "/codigo", listaEntrega.get(numItem).getCodigo());
-                    valoresNivel2.put("/" + codigoAlimento + "/nombresemana", listaEntrega.get(numItem).getNombresemana());
-                    valoresNivel2.put("/" + codigoAlimento + "/ingrediente", listaEntrega.get(numItem).getIngrediente());
-                    valoresNivel2.put("/" + codigoAlimento + "/medida", listaEntrega.get(numItem).getMedida());
-                    valoresNivel2.put("/" + codigoAlimento + "/cantidadentregada", listaEntrega.get(numItem).getCantidadentregada());
-                    valoresNivel2.put("/" + codigoAlimento + "/estadoBueno", listaEntrega.get(numItem).getEstadoBueno());
-                    valoresNivel2.put("/" + codigoAlimento + "/estadoRegular", listaEntrega.get(numItem).getEstadoRegular());
-                    valoresNivel2.put("/" + codigoAlimento + "/estadoMalo", listaEntrega.get(numItem).getEstadoMalo());
-                }
-                miReferenciaListaE.updateChildren(valoresNivel2);
-                Toast.makeText(getApplicationContext(), "Se ha aprobado exitosamente la entrega de la lista de compras", Toast.LENGTH_SHORT).show();
-                finish();
+                miReferenciaListaE = FirebaseDatabase.getInstance().getReference("entregas").child(nombreCDIE).child(nombreSemanaE);
+                miReferenciaListaE.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (!dataSnapshot.exists()){
+                            miReferenciaListaE.child("nombreCDI").setValue(datosEntrega.getNombreCDI());
+                            miReferenciaListaE.child("fechacompra").setValue(datosEntrega.getFechacompra());
+                            miReferenciaListaE.child("fechaentrega").setValue(datosEntrega.getFechaentrega());
+                            miReferenciaListaE.child("entregadopor").setValue(datosEntrega.getEntregadopor());
+                            miReferenciaListaE.child("recibidopor").setValue(datosEntrega.getRecibidopor());
+                            miReferenciaListaE.child("quiencompra").setValue(datosEntrega.getQuiencompra());
+                            for (int numItem = 0; numItem < listaEntrega.size(); numItem++) {
+                                String codigoAlimento = listaEntrega.get(numItem).getCodigo();
+                                AlimentoEntrega miAlimento=new AlimentoEntrega();
+                                miAlimento.setCodigo(codigoAlimento);
+                                miAlimento.setNombresemana(listaEntrega.get(numItem).getNombresemana());
+                                miAlimento.setIngrediente(listaEntrega.get(numItem).getIngrediente());
+                                miAlimento.setMedida(listaEntrega.get(numItem).getMedida());
+                                miAlimento.setCantidadentregada(listaEntrega.get(numItem).getCantidadentregada());
+                                miAlimento.setEstadoBueno(listaEntrega.get(numItem).getEstadoBueno());
+                                miAlimento.setEstadoRegular(listaEntrega.get(numItem).getEstadoRegular());
+                                miAlimento.setEstadoMalo(listaEntrega.get(numItem).getEstadoMalo());
+                                miReferenciaListaE.child(codigoAlimento).setValue(miAlimento);
+                            }
+                            Toast.makeText(getApplicationContext(), "Se ha aprobado exitosamente la entrega de la lista de compras", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
             }
         }
     }
