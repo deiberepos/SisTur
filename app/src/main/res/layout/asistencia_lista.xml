@@ -16,18 +16,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:layout_marginLeft="10dp"
             android:orientation="horizontal">
-            <TextView
-                android:id="@+id/itemListaE"
-                android:layout_width="8dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:textColor="@color/colorAzulOscuro2"
-                android:gravity="center_vertical"
-                android:textSize="12sp"
-                android:fontFamily="sans-serif-condensed"
-                android:lines="1"
-                android:text="@string/txtX"/>
             <TextView
                 android:id="@+id/txvnombreAsistente"
                 android:layout_width="250dp"

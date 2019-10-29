@@ -41,11 +41,12 @@ public class ListaAsistencia extends AppCompatActivity {
     AdaptadorListaAsistencia adaptadorAsistencia;
     DatabaseReference bdReferencia, referenciaCentros, refPoblCentros, refSemanas, refRegistAsistencia;
     Button btnAprobar;
+    Calendar miCalendario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lista_asistencia);
+        setContentView(R.layout.lista_asistencia);
 
         referenciar();
         mostrarFechaE();
@@ -86,6 +87,7 @@ public class ListaAsistencia extends AppCompatActivity {
                     infanteAsiste.setAsistencia(true);
                     refRegistAsistencia.child(infanteAsiste.getNombreInfante()).setValue(infanteAsiste);
                 }
+                Toast.makeText(ListaAsistencia.this, "Lista de asistencia guardada", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -112,9 +114,9 @@ public class ListaAsistencia extends AppCompatActivity {
 
                     }else {
                         Censo infante = datos.getValue(Censo.class);
-                        lista.add(infante.getNombre());
+                        String nombreCompleto=infante.getNombre()+" "+infante.getApellidos();
+                        lista.add(nombreCompleto);
                     }
-
                 }
                 adaptadorAsistencia.notifyDataSetChanged();
             }
@@ -200,6 +202,10 @@ public class ListaAsistencia extends AppCompatActivity {
 
     private void referenciar() {
         campoFechaE = findViewById(R.id.idedtFechaAsistencia);
+        miCalendario = Calendar.getInstance();
+        año = miCalendario.get(Calendar.YEAR);
+        mes = miCalendario.get(Calendar.MONTH)+1;
+        dia = miCalendario.get(Calendar.DAY_OF_MONTH);
         spnCentros = findViewById(R.id.idspncentrosasistencia);
         spnSemanas = findViewById(R.id.idspnsemanaasistencia);
         recyclerAsistencia = findViewById(R.id.idrecyclerAsistencia);

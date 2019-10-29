@@ -35,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="5dp">
         <TextView
             android:id="@+id/textoFecha"
             android:layout_width="wrap_content"
@@ -63,7 +63,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"
         android:text="CDI/HCB"
         android:textSize="18sp"
         android:textColor="@color/colorNegro"
@@ -184,7 +183,7 @@
             android:layout_gravity="center"
             android:background="@drawable/personalizar_button"
             android:gravity="center"
-            android:text="@string/txtAprobar"
+            android:text="@string/txtBtnGuardar"
             android:textAllCaps="false"
             android:textColor="@color/colorClaro" />
     </GridLayout>
@@ -194,50 +193,53 @@
         android:layout_height="1dp"
         android:background="@color/colorNegro"
         />
-    <HorizontalScrollView
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/titulo1E"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:text="Nombre"
-                android:gravity="start"
-                android:textColor="@color/colorNegro"
-                android:textStyle="bold"
-                android:layout_marginTop="8dp"
-                android:paddingRight="10dp"
-                />
-            <TextView
-                android:id="@+id/titulo2E"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:text="Asistió"
-                android:gravity="center"
-                android:textColor="@color/colorNegro"
-                android:textStyle="bold"
-                android:layout_marginTop="8dp"
-                android:layout_toEndOf="@id/titulo1E"
-                />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/colorNegro"
-                android:layout_marginTop="10dp"
-                android:layout_below="@+id/titulo1E"
-                />
-
+        <TextView
+            android:id="@+id/titulo1E"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:text="@string/txtNombreInfante"
+            android:gravity="start"
+            android:textColor="@color/colorNegro"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="10dp"
+            android:paddingEnd="10dp"
+            />
+        <TextView
+            android:id="@+id/titulo2E"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="Asistió"
+            android:gravity="center"
+            android:textColor="@color/colorNegro"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:layout_toEndOf="@id/titulo1E"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorNegro"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/titulo1E"
+            />
+    </RelativeLayout>
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/idrecyclerAsistencia"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingStart="5dp"
-                android:layout_marginTop="40dp" />
-
+                android:paddingStart="5dp" />
             <View
                 android:id="@+id/lineaFinal"
                 android:layout_width="match_parent"
@@ -246,7 +248,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_below="@id/idrecyclerAsistencia"
                 />
-        </RelativeLayout>
+        </LinearLayout>
     </HorizontalScrollView>
 
 </LinearLayout>
