@@ -6,18 +6,20 @@
     android:orientation="vertical"
     tools:context=".CompraGaleria">
     <LinearLayout
-        android:layout_width="55dp"
-        android:layout_height="80dp"
+        android:layout_width="60dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="10dp"
         android:orientation="vertical">
         <ImageView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
             android:background="@drawable/logoinicial"
-            android:rotation="270"
+            android:rotation="0"
             android:scaleType="fitCenter"
-            android:scaleX="1.3"
-            android:scaleY=".5"/>
+            android:scaleX="1"
+            android:scaleY="1"/>
     </LinearLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,7 +30,7 @@
         android:shadowRadius="1.5"
         android:text="@string/txtCompraGaleria"
         android:textColor="@color/colorNegro"
-        android:layout_marginTop="-60dp"
+        android:layout_marginTop="-35dp"
         android:textSize="25sp"
         android:textStyle="bold" />
     <TextView

@@ -46,7 +46,6 @@
             android:name=".usuarios.LogueoUsuarios"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/AppTheme.FullScreen" />
-        <activity android:name=".usuarios.OpcionesUsuarios" />
         <activity
             android:name=".usuarios.ListarUsuarios"
             android:configChanges="keyboardHidden|orientation|screenSize"
