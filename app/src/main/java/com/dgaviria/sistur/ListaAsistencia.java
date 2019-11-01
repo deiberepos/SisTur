@@ -6,14 +6,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dgaviria.sistur.adaptadores.AdaptadorListaAsistencia;
@@ -32,16 +33,18 @@ import java.util.GregorianCalendar;
 
 public class ListaAsistencia extends AppCompatActivity {
     int año, mes, dia;
-    EditText campoFechaE;
-    private String nombreCentro, nombreSemana;
+    TextView campoFechaAs;
+    private String nombreCentro, nombreSemana, recibeRol, recibeUsuario, fechaReporte;
     Spinner spnCentros, spnSemanas;
     private ArrayAdapter adaptadorCentros, adaptadorSemanas;
     RecyclerView recyclerAsistencia;
-    ArrayList<String> nombresInfantes, nombresCentros, listaSemanas;
+    ArrayList<InfanteAsiste> nombresInfantes;
+    private ArrayList<String> nombresCentros, listaSemanas;
     AdaptadorListaAsistencia adaptadorAsistencia;
     DatabaseReference bdReferencia, referenciaCentros, refPoblCentros, refSemanas, refRegistAsistencia;
     Button btnAprobar;
     Calendar miCalendario;
+    private Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,14 +83,18 @@ public class ListaAsistencia extends AppCompatActivity {
         btnAprobar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                refRegistAsistencia=bdReferencia.child("registroasistencia").child(nombreCentro).child(nombreSemana);
+                fechaReporte = campoFechaAs.getText().toString();
+                refRegistAsistencia=bdReferencia.child("registroasistencia").child(nombreCentro).child(fechaReporte);
                 for(int i = 0; i<nombresInfantes.size();i++){
-                    InfanteAsiste infanteAsiste = new InfanteAsiste();
-                    infanteAsiste.setNombreInfante(nombresInfantes.get(i));
-                    infanteAsiste.setAsistencia(true);
-                    refRegistAsistencia.child(infanteAsiste.getNombreInfante()).setValue(infanteAsiste);
+                    InfanteAsiste infanteAsiste;
+                    infanteAsiste = nombresInfantes.get(i);
+                    refRegistAsistencia.child(infanteAsiste.getRegistroCivil()).setValue(infanteAsiste);
                 }
                 Toast.makeText(ListaAsistencia.this, "Lista de asistencia guardada", Toast.LENGTH_SHORT).show();
+                Intent intent= new Intent(getApplicationContext(),MenuPrincipal.class);
+                intent.putExtra("rol",recibeRol);
+                intent.putExtra("usuario",recibeUsuario);
+                startActivity(intent);
             }
         });
 
@@ -101,8 +108,8 @@ public class ListaAsistencia extends AppCompatActivity {
         adaptadorAsistencia.notifyDataSetChanged();
     }
 
-    private ArrayList<String> listaNombresInfantes(String nomCentro) {
-        final ArrayList<String> lista=new ArrayList<>();
+    private ArrayList<InfanteAsiste> listaNombresInfantes(String nomCentro) {
+        final ArrayList<InfanteAsiste> lista=new ArrayList<>();
         refPoblCentros = bdReferencia.child("poblacionCentros").child(nomCentro);
         refPoblCentros.addValueEventListener(new ValueEventListener() {
             @Override
@@ -114,8 +121,12 @@ public class ListaAsistencia extends AppCompatActivity {
 
                     }else {
                         Censo infante = datos.getValue(Censo.class);
-                        String nombreCompleto=infante.getNombre()+" "+infante.getApellidos();
-                        lista.add(nombreCompleto);
+                        InfanteAsiste infanteAsiste = new InfanteAsiste();
+                        infanteAsiste.setAsistencia(false);
+                        infanteAsiste.setNombreInfante(infante.getNombre()+" "+infante.getApellidos());
+                        infanteAsiste.setRegistroCivil(infante.getRegistro());
+                        //String nombreCompleto=infante.getNombre()+" "+infante.getApellidos();
+                        lista.add(infanteAsiste);
                     }
                 }
                 adaptadorAsistencia.notifyDataSetChanged();
@@ -184,9 +195,9 @@ public class ListaAsistencia extends AppCompatActivity {
     }
 
     private void mostrarFechaE() {
-        campoFechaE.setText(dia + "/" + mes + "/" + año);
+        campoFechaAs.setText(dia + "-" + mes + "-" + año);
     }
-    public void mostrarCalendarioE(View view) {
+    public void mostrarCalendarioAs(View view) {
         Calendar miCalendario = new GregorianCalendar();//Calendar.getInstance();
         miCalendario.setTime(new Date());
         new DatePickerDialog(this, R.style.TemaCalendario, new DatePickerDialog.OnDateSetListener() {
@@ -201,7 +212,7 @@ public class ListaAsistencia extends AppCompatActivity {
     }
 
     private void referenciar() {
-        campoFechaE = findViewById(R.id.idedtFechaAsistencia);
+        campoFechaAs = findViewById(R.id.idedtFechaAsistencia);
         miCalendario = Calendar.getInstance();
         año = miCalendario.get(Calendar.YEAR);
         mes = miCalendario.get(Calendar.MONTH)+1;
@@ -214,5 +225,14 @@ public class ListaAsistencia extends AppCompatActivity {
         listaSemanas = new ArrayList<>();
         bdReferencia = FirebaseDatabase.getInstance().getReference();
         btnAprobar = findViewById(R.id.idbtnAprobarAsistencia);
+        bundle = getIntent().getExtras();
+        recibeRol = bundle.getString("rol");
+        recibeUsuario =bundle.getString("usuario");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
     }
 }

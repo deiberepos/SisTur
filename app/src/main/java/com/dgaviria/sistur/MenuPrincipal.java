@@ -113,6 +113,8 @@ public class MenuPrincipal extends AppCompatActivity {
                         break;
                     case 10:
                         Intent miIntento10 =  new Intent(MenuPrincipal.this, ListaAsistencia.class);
+                        miIntento10.putExtra("rol",recibeRol);
+                        miIntento10.putExtra("usuario",recibeUsuario);
                         startActivity(miIntento10);
                         break;
                     default:
@@ -195,6 +197,8 @@ public class MenuPrincipal extends AppCompatActivity {
                         break;
                     case 10:
                         Intent miIntento10 =  new Intent(MenuPrincipal.this, ListaAsistencia.class);
+                        miIntento10.putExtra("rol",recibeRol);
+                        miIntento10.putExtra("usuario",recibeUsuario);
                         startActivity(miIntento10);
                         break;
                     default:

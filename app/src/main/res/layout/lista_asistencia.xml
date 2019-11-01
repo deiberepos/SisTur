@@ -49,6 +49,18 @@
             android:textColor="@color/colorNegro"
             android:textStyle="italic|bold"
             />
+        <TextView
+            android:id="@+id/idedtFechaAsistencia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="14sp"
+            android:textColor="@color/colorNegro"
+            android:textStyle="italic|bold"
+            android:layout_marginTop="8dp"
+            android:layout_toEndOf="@+id/textoFecha"
+            />
+        <!--
         <EditText
             android:id="@+id/idedtFechaAsistencia"
             android:layout_width="wrap_content"
@@ -56,10 +68,10 @@
             android:hint="seleccione fecha"
             android:layout_gravity="center"
             style="@style/IngresoDatos"
-            android:onClick="mostrarCalendarioE"
+            android:onClick="mostrarCalendarioAs"
             android:layout_marginTop="0dp"
             android:layout_toEndOf="@+id/textoFecha"
-            />
+            />-->
     </RelativeLayout>
     <TextView
         android:layout_width="wrap_content"

@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,9 +18,9 @@ import java.util.ArrayList;
 
 public class AdaptadorListaAsistencia extends RecyclerView.Adapter<AdaptadorListaAsistencia.AsistenciaViewHolder> {
     private LayoutInflater miInflater;
-    public static ArrayList<String> nombresInfantes;
+    public static ArrayList<InfanteAsiste> nombresInfantes;
 
-    public AdaptadorListaAsistencia(Context contexto, ArrayList<String> listaInfantes){
+    public AdaptadorListaAsistencia(Context contexto, ArrayList<InfanteAsiste> listaInfantes){
         miInflater = LayoutInflater.from(contexto);
         this.nombresInfantes = listaInfantes;
         notifyDataSetChanged();
@@ -34,9 +35,18 @@ public class AdaptadorListaAsistencia extends RecyclerView.Adapter<AdaptadorList
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AsistenciaViewHolder holder, int position) {
-        String nombre = nombresInfantes.get(position);
+    public void onBindViewHolder(@NonNull final AsistenciaViewHolder holder, final int position) {
+        final InfanteAsiste infante = nombresInfantes.get(position);
+        String nombre = infante.getNombreInfante();
         holder.nombre.setText(nombre);
+        holder.asiste.setChecked(infante.getAsistencia());
+        holder.asiste.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(holder.asiste.isChecked()){nombresInfantes.get(position).setAsistencia(true);}
+                else {nombresInfantes.get(position).setAsistencia(false);}
+            }
+        });
     }
 
     @Override
