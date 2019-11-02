@@ -7,10 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import com.dgaviria.sistur.clases.Calendario;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
@@ -18,7 +16,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
 
 public class CrearCalendario extends AppCompatActivity {
@@ -118,23 +115,23 @@ public class CrearCalendario extends AppCompatActivity {
     }
 
     private void actualizaSemana(){
-        if (minutaLunes!=null && minutaLunes!="" && !minutaLunes.equals("X") && !minutaLunes.equals("V")){
+        if (minutaLunes!=null && minutaLunes.equals("") && !minutaLunes.equals("X") && !minutaLunes.equals("V")){
             miReferenciaCal= FirebaseDatabase.getInstance().getReference("semanas").child(semanaSeleccionada).child("minuta1");
             miReferenciaCal.setValue(minutaLunes);
         }
-        if (minutaMartes!=null && minutaMartes!="" && !minutaMartes.equals("X") && !minutaMartes.equals("V")) {
+        if (minutaMartes!=null && minutaMartes.equals("") && !minutaMartes.equals("X") && !minutaMartes.equals("V")) {
             miReferenciaCal = FirebaseDatabase.getInstance().getReference("semanas").child(semanaSeleccionada).child("minuta2");
             miReferenciaCal.setValue(minutaMartes);
         }
-        if (minutaMiercoles!=null && minutaMiercoles!="" && !minutaMiercoles.equals("X") && !minutaMiercoles.equals("V")) {
+        if (minutaMiercoles!=null && minutaMiercoles.equals("") && !minutaMiercoles.equals("X") && !minutaMiercoles.equals("V")) {
             miReferenciaCal = FirebaseDatabase.getInstance().getReference("semanas").child(semanaSeleccionada).child("minuta3");
             miReferenciaCal.setValue(minutaMiercoles);
         }
-        if (minutaJueves!=null && minutaJueves!=""&& !minutaJueves.equals("X") && !minutaJueves.equals("V")) {
+        if (minutaJueves!=null && minutaJueves.equals("")&& !minutaJueves.equals("X") && !minutaJueves.equals("V")) {
             miReferenciaCal = FirebaseDatabase.getInstance().getReference("semanas").child(semanaSeleccionada).child("minuta4");
             miReferenciaCal.setValue(minutaJueves);
         }
-        if (minutaViernes!=null && minutaViernes!="" && !minutaViernes.equals("X") && !minutaViernes.equals("V")) {
+        if (minutaViernes!=null && minutaViernes.equals("")&& !minutaViernes.equals("X") && !minutaViernes.equals("V")) {
             miReferenciaCal = FirebaseDatabase.getInstance().getReference("semanas").child(semanaSeleccionada).child("minuta5");
             miReferenciaCal.setValue(minutaViernes);
         }
@@ -151,7 +148,7 @@ public class CrearCalendario extends AppCompatActivity {
         miReferenciaCal.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot!=null && dataSnapshot.getChildren()!=null){
+                if (dataSnapshot.getChildren()!=null){
                     if (dataSnapshot.exists()){
                         Calendario miSemana=dataSnapshot.getValue(Calendario.class);
                         minutaLunes=miSemana.getMinuta1();
@@ -178,11 +175,11 @@ public class CrearCalendario extends AppCompatActivity {
         miReferenciaCal.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot!=null && dataSnapshot.getChildren()!=null){
+                if (dataSnapshot.getChildren()!=null){
                     for (DataSnapshot miSemana:dataSnapshot.getChildren()){
                         listaSemanas.add(miSemana.getKey());
                     }
-                    adaptadorSemana=new ArrayAdapter<String>(CrearCalendario.this,android.R.layout.simple_spinner_item,listaSemanas);
+                    adaptadorSemana=new ArrayAdapter<>(CrearCalendario.this,android.R.layout.simple_spinner_item,listaSemanas);
 
                     adaptadorSemana.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -213,7 +210,7 @@ public class CrearCalendario extends AppCompatActivity {
                 listaMinutaMiercoles.clear();
                 listaMinutaJueves.clear();
                 listaMinutaViernes.clear();
-                if (dataSnapshot!=null && dataSnapshot.getChildren()!=null) {
+                if (dataSnapshot.getChildren()!=null) {
                     for (DataSnapshot miDia : dataSnapshot.getChildren()) {
                         String nombreMinuta=miDia.getKey();
                         if (!minutaLunes.equals("X")) listaMinutaLunes.add(nombreMinuta);
@@ -222,11 +219,11 @@ public class CrearCalendario extends AppCompatActivity {
                         if (!minutaJueves.equals("X")) listaMinutaJueves.add(nombreMinuta);
                         if (!minutaViernes.equals("X")) listaMinutaViernes.add(nombreMinuta);
                     }
-                    adaptadorLunes = new ArrayAdapter<String>(CrearCalendario.this, android.R.layout.simple_spinner_item, listaMinutaLunes);
-                    adaptadorMartes = new ArrayAdapter<String>(CrearCalendario.this, android.R.layout.simple_spinner_item, listaMinutaMartes);
-                    adaptadorMiercoles = new ArrayAdapter<String>(CrearCalendario.this, android.R.layout.simple_spinner_item, listaMinutaMiercoles);
-                    adaptadorJueves = new ArrayAdapter<String>(CrearCalendario.this, android.R.layout.simple_spinner_item, listaMinutaJueves);
-                    adaptadorViernes = new ArrayAdapter<String>(CrearCalendario.this, android.R.layout.simple_spinner_item, listaMinutaViernes);
+                    adaptadorLunes = new ArrayAdapter<>(CrearCalendario.this, android.R.layout.simple_spinner_item, listaMinutaLunes);
+                    adaptadorMartes = new ArrayAdapter<>(CrearCalendario.this, android.R.layout.simple_spinner_item, listaMinutaMartes);
+                    adaptadorMiercoles = new ArrayAdapter<>(CrearCalendario.this, android.R.layout.simple_spinner_item, listaMinutaMiercoles);
+                    adaptadorJueves = new ArrayAdapter<>(CrearCalendario.this, android.R.layout.simple_spinner_item, listaMinutaJueves);
+                    adaptadorViernes = new ArrayAdapter<>(CrearCalendario.this, android.R.layout.simple_spinner_item, listaMinutaViernes);
 
                     adaptadorLunes.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     adaptadorMartes.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -303,12 +300,12 @@ public class CrearCalendario extends AppCompatActivity {
         spnViernes =findViewById(R.id.spinVie);
         btnGuardarCal =findViewById(R.id.botonGuardaCal);
 
-        listaSemanas=new ArrayList<String>();
-        listaMinutaLunes=new ArrayList<String>();
-        listaMinutaMartes=new ArrayList<String>();
-        listaMinutaMiercoles=new ArrayList<String>();
-        listaMinutaJueves=new ArrayList<String>();
-        listaMinutaViernes=new ArrayList<String>();
+        listaSemanas=new ArrayList<>();
+        listaMinutaLunes=new ArrayList<>();
+        listaMinutaMartes=new ArrayList<>();
+        listaMinutaMiercoles=new ArrayList<>();
+        listaMinutaJueves=new ArrayList<>();
+        listaMinutaViernes=new ArrayList<>();
     }
 
     @Override

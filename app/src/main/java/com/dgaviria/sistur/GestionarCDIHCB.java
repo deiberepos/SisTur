@@ -5,14 +5,11 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
-
 import com.dgaviria.sistur.adaptadores.AdptadorCDI;
 import com.dgaviria.sistur.clases.CdiHcb;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -21,7 +18,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,10 +50,8 @@ public class GestionarCDIHCB extends AppCompatActivity {
                     tipo=1;
                 }
                 int tipoact=1;
-                if (centros.getActivo().equals("true"))
-                {
+                if (centros.getActivo())
                     tipoact=2;
-                }
                 Intent intent = new Intent(getApplicationContext(), RegistrarCDIHCB.class);
                 intent.putExtra("opcion","actualizar");
                 intent.putExtra("nombrecentro",centros.getNombreCDI());
@@ -141,8 +135,8 @@ public class GestionarCDIHCB extends AppCompatActivity {
                 for (DataSnapshot datosbd : dataSnapshot.getChildren()) {
 
                     CdiHcb cdiHcb=datosbd.getValue(CdiHcb.class);
-                    if (cdiHcb.getActivo()==true)
-                    listaDeCDI.add(cdiHcb);
+                    if (cdiHcb.getActivo())
+                        listaDeCDI.add(cdiHcb);
                 }
                 adaptadorCentros.notifyDataSetChanged();
             }

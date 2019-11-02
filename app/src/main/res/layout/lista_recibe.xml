@@ -1,209 +1,190 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".RecibeCompra">
-    <LinearLayout
-        android:layout_width="60dp"
-        android:layout_height="34dp"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:background="@drawable/logoinicial"
-            android:rotation="0"
-            android:scaleType="fitCenter"
-            android:scaleX="1"
-            android:scaleY="1"/>
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:shadowColor="@color/colorPrimarioOscuro"
-        android:shadowDx="-2"
-        android:shadowDy="-2"
-        android:shadowRadius="1.5"
-        android:text="@string/txtEntregaInsumos"
-        android:textColor="@color/colorNegro"
-        android:layout_marginTop="-35dp"
-        android:textSize="25sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"
-        android:text="@string/txtCDIHCB"
-        android:textSize="18sp"
-        android:textColor="@color/colorNegro"
-        android:textStyle="italic|bold"
-        />
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@color/colorClaro">
-        <Spinner
-            android:id="@+id/selectorCDIE"
-            android:layout_width="280dp"
-            android:layout_height="30dp"
-            style="@style/SelectorSemana"
-            />
-    </RelativeLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"
-        android:text="@string/txtSemana"
-        android:textSize="18sp"
-        android:textColor="@color/colorNegro"
-        android:textStyle="italic|bold"
-        />
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@color/colorClaro">
-        <Spinner
-            android:id="@+id/selectorSemanaE"
-            android:layout_width="280dp"
-            android:layout_height="30dp"
-            style="@style/SelectorSemana"
-            />
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center">
-        <TextView
-            android:id="@+id/textoFecha"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginTop="8dp"
-            android:text="@string/txtFechaEntrega"
-            android:textSize="14sp"
-            android:textColor="@color/colorNegro"
-            android:textStyle="italic|bold"
-            />
-        <EditText
-            android:id="@+id/editFechaEntrega"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="@string/txtHintSeleccionFecha"
-            android:layout_gravity="center"
-            style="@style/IngresoDatos"
-            android:onClick="mostrarCalendarioE"
-            android:layout_marginTop="0dp"
-            android:layout_toEndOf="@+id/textoFecha"
-            />
-    </RelativeLayout>
-
-    <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:columnCount="5"
-        android:rowCount="2">
-
-        <TextView
-            android:layout_width="100dp"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/lay_encabezadoEntrega"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="@string/txtInfantesAtendidos"
-            android:textColor="@color/colorAzulOscuro2"
-            android:textSize="12sp"
-            android:textStyle="italic|bold" />
-        <TextView
-            android:id="@+id/txtTotalInfantesE"
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:layout_column="0"
-            android:layout_row="1"
-            android:layout_gravity="center"
-            android:maxLines="1"
-            android:text="@string/txt0"
-            android:textColor="@color/colorRojo"
-            android:textSize="15sp"
-            android:textStyle="italic|bold" />
-        <View
-            android:layout_width="6dp"
-            android:layout_height="20dp"
-            android:layout_row="0"
-            android:layout_rowSpan="2"
-            android:layout_column="1"
-            android:layout_gravity="center" />
-        <TextView
-            android:layout_width="130dp"
-            android:layout_height="wrap_content"
-            android:layout_row="0"
-            android:layout_column="2"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="@string/txtIngredientesEntregar"
-            android:textColor="@color/colorAzulOscuro2"
-            android:textSize="12sp"
-            android:textStyle="italic|bold" />
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="60dp"
+                android:layout_height="34dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:background="@drawable/logoinicial"
+                    android:rotation="0"
+                    android:scaleType="fitCenter"
+                    android:scaleX="1"
+                    android:scaleY="1"/>
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/txtTotalIngredientesE"
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:layout_column="2"
-            android:layout_row="1"
-            android:layout_gravity="center"
-            android:maxLines="1"
-            android:text="@string/txt0"
-            android:textColor="@color/colorRojo"
-            android:textSize="15sp"
-            android:textStyle="italic|bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:shadowColor="@color/colorPrimarioOscuro"
+                android:shadowDx="-2"
+                android:shadowDy="-2"
+                android:shadowRadius="1.5"
+                android:text="@string/txtEntregaInsumos"
+                android:textColor="@color/colorNegro"
+                android:layout_marginTop="-35dp"
+                android:textSize="25sp"
+                android:textStyle="bold" />
 
-        <View
-            android:layout_width="6dp"
-            android:layout_height="20dp"
-            android:layout_row="0"
-            android:layout_rowSpan="2"
-            android:layout_column="3"
-            android:layout_gravity="center" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:text="@string/txtCDIHCB"
+                android:textSize="18sp"
+                android:textColor="@color/colorNegro"
+                android:textStyle="italic|bold"
+                />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/colorClaro">
+                <Spinner
+                    android:id="@+id/selectorCDIE"
+                    android:layout_width="280dp"
+                    android:layout_height="30dp"
+                    style="@style/SelectorSemana"
+                    />
+            </RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:text="@string/txtSemana"
+                android:textSize="18sp"
+                android:textColor="@color/colorNegro"
+                android:textStyle="italic|bold"
+                />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/colorClaro">
+                <Spinner
+                    android:id="@+id/selectorSemanaE"
+                    android:layout_width="280dp"
+                    android:layout_height="30dp"
+                    style="@style/SelectorSemana"
+                    />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+                <TextView
+                    android:id="@+id/textoFecha"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/txtFechaEntrega"
+                    android:textSize="14sp"
+                    android:textColor="@color/colorNegro"
+                    android:textStyle="italic|bold"
+                    />
+                <EditText
+                    android:id="@+id/editFechaEntrega"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/txtHintSeleccionFecha"
+                    android:inputType="date"
+                    android:layout_gravity="center"
+                    style="@style/IngresoDatos"
+                    android:onClick="mostrarCalendarioE"
+                    android:layout_marginTop="0dp"
+                    android:layout_toEndOf="@+id/textoFecha"
+                    />
+            </RelativeLayout>
 
-        <Button
-            android:id="@+id/botonApruebaE"
-            android:layout_width="110dp"
-            android:layout_height="40dp"
-            android:layout_row="0"
-            android:layout_rowSpan="2"
-            android:layout_column="4"
-            android:layout_gravity="center"
-            android:background="@drawable/personalizar_button"
-            android:gravity="center"
-            android:text="@string/txtAprobar"
-            android:textAllCaps="false"
-            android:textColor="@color/colorClaro" />
-    </GridLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/colorNegro"
-        />
-    <HorizontalScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        >
+                <TextView
+                    android:id="@+id/textoTitulo1A"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="@string/txtInfantesAtendidos"
+                    android:textColor="@color/colorAzulOscuro2"
+                    android:textSize="12sp"
+                    android:textStyle="italic|bold" />
+                <TextView
+                    android:id="@+id/txtTotalInfantesE"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="@string/txt0"
+                    android:layout_below="@id/textoTitulo1A"
+                    android:layout_alignStart="@id/textoTitulo1A"
+                    android:layout_alignEnd="@id/textoTitulo1A"
+                    android:textColor="@color/colorRojo"
+                    android:textSize="15sp"
+                    android:textStyle="italic|bold" />
+                <TextView
+                    android:id="@+id/textoTitulo2A"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_toRightOf="@id/textoTitulo1A"
+                    android:layout_marginStart="20dp"
+                    android:gravity="center"
+                    android:text="@string/txtIngredientesEntregar"
+                    android:textColor="@color/colorAzulOscuro2"
+                    android:textSize="12sp"
+                    android:textStyle="italic|bold" />
+
+                <TextView
+                    android:id="@+id/txtTotalIngredientesE"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_below="@id/textoTitulo2A"
+                    android:layout_alignStart="@+id/textoTitulo2A"
+                    android:layout_alignEnd="@+id/textoTitulo2A"
+                    android:maxLines="1"
+                    android:text="@string/txt0"
+                    android:textColor="@color/colorRojo"
+                    android:textSize="15sp"
+                    android:textStyle="italic|bold" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorNegro"
+                />
+        </LinearLayout>
         <RelativeLayout
+            android:layout_below="@id/lay_encabezadoEntrega"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
             <TextView
                 android:id="@+id/titulo1E"
                 android:layout_width="125dp"
@@ -282,24 +263,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/colorNegro"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_below="@+id/titulo1E"
                 />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerEntregas"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:paddingEnd="5dp"
                 android:layout_marginTop="40dp" />
             <View
                 android:id="@+id/lineaFinal"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/colorNegro"
+                android:background="@color/colorRojo"
                 android:layout_marginTop="10dp"
-                android:layout_below="@id/recyclerEntregas"
-                />
+                android:layout_below="@id/recyclerEntregas"/>
         </RelativeLayout>
-    </HorizontalScrollView>
-</LinearLayout>
+    </RelativeLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/botonApruebaE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="bottom|end"
+        android:backgroundTint="@color/colorPrimarioSuave"
+        android:src="@mipmap/ic_saver" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

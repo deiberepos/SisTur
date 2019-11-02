@@ -1,259 +1,234 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ListaAsistencia">
-    <LinearLayout
-        android:layout_width="60dp"
-        android:layout_height="34dp"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:background="@drawable/logoinicial"
-            android:rotation="0"
-            android:scaleType="fitCenter"
-            android:scaleX="1"
-            android:scaleY="1"/>
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:shadowColor="@color/colorPrimarioOscuro"
-        android:shadowDx="-2"
-        android:shadowDy="-2"
-        android:shadowRadius="1.5"
-        android:text="Registro de asistencia"
-        android:layout_marginTop="-35dp"
-        android:textColor="@color/colorNegro"
-        android:textSize="25sp"
-        android:textStyle="bold" />
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="5dp">
-        <TextView
-            android:id="@+id/textoFecha"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginTop="8dp"
-            android:text="Fecha del reporte: "
-            android:textSize="14sp"
-            android:textColor="@color/colorNegro"
-            android:textStyle="italic|bold"
-            />
-        <TextView
-            android:id="@+id/idedtFechaAsistencia"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="14sp"
-            android:textColor="@color/colorNegro"
-            android:textStyle="italic|bold"
-            android:layout_marginTop="8dp"
-            android:layout_toEndOf="@+id/textoFecha"
-            />
-        <!--
-        <EditText
-            android:id="@+id/idedtFechaAsistencia"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="seleccione fecha"
-            android:layout_gravity="center"
-            style="@style/IngresoDatos"
-            android:onClick="mostrarCalendarioAs"
-            android:layout_marginTop="0dp"
-            android:layout_toEndOf="@+id/textoFecha"
-            />-->
-    </RelativeLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="CDI/HCB"
-        android:textSize="18sp"
-        android:textColor="@color/colorNegro"
-        android:textStyle="italic|bold"
-        />
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@color/colorClaro">
-        <Spinner
-            android:id="@+id/idspncentrosasistencia"
-            android:layout_width="280dp"
-            android:layout_height="30dp"
-            style="@style/SelectorSemana"
-            />
-    </RelativeLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"
-        android:text="SEMANA"
-        android:textSize="18sp"
-        android:textColor="@color/colorNegro"
-        android:textStyle="italic|bold"
-        />
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@color/colorClaro">
-        <Spinner
-            android:id="@+id/idspnsemanaasistencia"
-            android:layout_width="280dp"
-            android:layout_height="30dp"
-            style="@style/SelectorSemana"
-            />
-    </RelativeLayout>
-
-    <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:columnCount="5"
-        android:rowCount="2">
-
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="@string/totalinfantes"
-            android:textColor="@color/colorAzulOscuro2"
-            android:textSize="12sp"
-            android:textStyle="italic|bold" />
-        <TextView
-            android:id="@+id/idtxvTotalInfantesA"
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:layout_column="0"
-            android:layout_row="1"
-            android:layout_gravity="center"
-            android:maxLines="1"
-            android:text="0"
-            android:textColor="@color/colorRojo"
-            android:textSize="15sp"
-            android:textStyle="italic|bold" />
-        <View
-            android:layout_width="6dp"
-            android:layout_height="20dp"
-            android:layout_row="0"
-            android:layout_rowSpan="2"
-            android:layout_column="1"
-            android:layout_gravity="center" />
-        <TextView
-            android:layout_width="130dp"
-            android:layout_height="wrap_content"
-            android:layout_row="0"
-            android:layout_column="2"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="Infantes Asistentes"
-            android:textColor="@color/colorAzulOscuro2"
-            android:textSize="12sp"
-            android:textStyle="italic|bold" />
-
-        <TextView
-            android:id="@+id/idtxvAsistentes"
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:layout_column="2"
-            android:layout_row="1"
-            android:layout_gravity="center"
-            android:maxLines="1"
-            android:text="0"
-            android:textColor="@color/colorRojo"
-            android:textSize="15sp"
-            android:textStyle="italic|bold" />
-
-        <View
-            android:layout_width="6dp"
-            android:layout_height="20dp"
-            android:layout_row="0"
-            android:layout_rowSpan="2"
-            android:layout_column="3"
-            android:layout_gravity="center" />
-
-        <Button
-            android:id="@+id/idbtnAprobarAsistencia"
-            android:layout_width="110dp"
-            android:layout_height="40dp"
-            android:layout_row="0"
-            android:layout_rowSpan="2"
-            android:layout_column="4"
-            android:layout_gravity="center"
-            android:background="@drawable/personalizar_button"
-            android:gravity="center"
-            android:text="@string/txtBtnGuardar"
-            android:textAllCaps="false"
-            android:textColor="@color/colorClaro" />
-    </GridLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/colorNegro"
-        />
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/titulo1E"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:text="@string/txtNombreInfante"
-            android:gravity="start"
-            android:textColor="@color/colorNegro"
-            android:textStyle="bold"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="10dp"
-            android:paddingEnd="10dp"
-            />
-        <TextView
-            android:id="@+id/titulo2E"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:text="Asistió"
-            android:gravity="center"
-            android:textColor="@color/colorNegro"
-            android:textStyle="bold"
-            android:layout_marginTop="8dp"
-            android:layout_toEndOf="@id/titulo1E"
-            />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/colorNegro"
-            android:layout_marginTop="10dp"
-            android:layout_below="@+id/titulo1E"
-            />
-    </RelativeLayout>
-    <HorizontalScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center">
+        android:layout_height="match_parent">
         <LinearLayout
+            android:id="@+id/lay_encabezaAsistencia"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="60dp"
+                android:layout_height="34dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:background="@drawable/logoinicial"
+                    android:rotation="0"
+                    android:scaleType="fitCenter"
+                    android:scaleX="1"
+                    android:scaleY="1"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:shadowColor="@color/colorPrimarioOscuro"
+                android:shadowDx="-2"
+                android:shadowDy="-2"
+                android:shadowRadius="1.5"
+                android:text="Registro de asistencia"
+                android:layout_marginTop="-35dp"
+                android:textColor="@color/colorNegro"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp">
+                <TextView
+                    android:id="@+id/textoFecha"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="8dp"
+                    android:text="Fecha del reporte: "
+                    android:textSize="14sp"
+                    android:textColor="@color/colorNegro"
+                    android:textStyle="italic|bold"
+                    />
+                <TextView
+                    android:id="@+id/idedtFechaAsistencia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="14sp"
+                    android:textColor="@color/colorNegro"
+                    android:textStyle="italic|bold"
+                    android:layout_marginTop="8dp"
+                    android:layout_toEndOf="@+id/textoFecha"
+                    />
+                <!--
+                <EditText
+                    android:id="@+id/idedtFechaAsistencia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="seleccione fecha"
+                    android:layout_gravity="center"
+                    style="@style/IngresoDatos"
+                    android:onClick="mostrarCalendarioAs"
+                    android:layout_marginTop="0dp"
+                    android:layout_toEndOf="@+id/textoFecha"
+                    />-->
+            </RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="CDI/HCB"
+                android:textSize="18sp"
+                android:textColor="@color/colorNegro"
+                android:textStyle="italic|bold"
+                />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/colorClaro">
+                <Spinner
+                    android:id="@+id/idspncentrosasistencia"
+                    android:layout_width="280dp"
+                    android:layout_height="30dp"
+                    style="@style/SelectorSemana"
+                    />
+            </RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:text="SEMANA"
+                android:textSize="18sp"
+                android:textColor="@color/colorNegro"
+                android:textStyle="italic|bold"
+                />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/colorClaro">
+                <Spinner
+                    android:id="@+id/idspnsemanaasistencia"
+                    android:layout_width="280dp"
+                    android:layout_height="30dp"
+                    style="@style/SelectorSemana"
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal">
+                <TextView
+                    android:id="@+id/textoTitulo1"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Infantes Asistentes"
+                    android:textColor="@color/colorAzulOscuro2"
+                    android:textSize="12sp"
+                    android:textStyle="italic|bold" />
+
+                <TextView
+                    android:id="@+id/idtxvAsistentes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_below="@id/textoTitulo1"
+                    android:layout_alignEnd="@id/textoTitulo1"
+                    android:layout_alignStart="@id/textoTitulo1"
+                    android:maxLines="1"
+                    android:text="0"
+                    android:textColor="@color/colorRojo"
+                    android:textSize="15sp"
+                    android:textStyle="italic|bold" />
+                <TextView
+                    android:id="@+id/textoTitulo2"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="@string/totalinfantes"
+                    android:textColor="@color/colorAzulOscuro2"
+                    android:layout_toRightOf="@id/textoTitulo1"
+                    android:textSize="12sp"
+                    android:textStyle="italic|bold" />
+                <TextView
+                    android:id="@+id/idtxvTotalInfantesA"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:layout_alignEnd="@id/textoTitulo2"
+                    android:layout_alignStart="@id/textoTitulo2"
+                    android:text="0"
+                    android:layout_below="@id/textoTitulo2"
+                    android:textColor="@color/colorRojo"
+                    android:textSize="15sp"
+                    android:textStyle="italic|bold" />
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorNegro"
+                />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_below="@id/lay_encabezaAsistencia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+            <TextView
+                android:id="@+id/titulo1E"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:text="@string/txtNombreInfante"
+                android:gravity="start"
+                android:textColor="@color/colorNegro"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="10dp"
+                android:paddingEnd="10dp"
+                />
+            <TextView
+                android:id="@+id/titulo2E"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:text="Asistió"
+                android:gravity="center"
+                android:textColor="@color/colorNegro"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp"
+                android:layout_toEndOf="@id/titulo1E"
+                />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorNegro"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/titulo1E"
+                />
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/idrecyclerAsistencia"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingStart="5dp" />
+                android:layout_height="wrap_content"
+                android:paddingStart="5dp"
+                android:layout_marginTop="40dp"/>
             <View
                 android:id="@+id/lineaFinal"
                 android:layout_width="match_parent"
@@ -262,7 +237,15 @@
                 android:layout_marginTop="10dp"
                 android:layout_below="@id/idrecyclerAsistencia"
                 />
-        </LinearLayout>
-    </HorizontalScrollView>
-
-</LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/asistenciaGuardar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="bottom|end"
+        android:backgroundTint="@color/colorPrimarioSuave"
+        android:src="@mipmap/ic_saver" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

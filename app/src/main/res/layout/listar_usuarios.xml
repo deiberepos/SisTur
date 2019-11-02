@@ -1,61 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".usuarios.ListarUsuarios">
     <LinearLayout
-        android:layout_width="60dp"
-        android:layout_height="34dp"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:background="@drawable/logoinicial"
-            android:rotation="0"
-            android:scaleType="fitCenter"
-            android:scaleX="1"
-            android:scaleY="1"/>
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:shadowColor="@color/colorClaro"
-        android:shadowDx="-2"
-        android:shadowDy="-2"
-        android:shadowRadius="1.5"
-        android:layout_marginTop="-35dp"
-        android:text="@string/txtListarUsuarios"
-        android:textColor="@color/colorNegro"
-        android:textSize="25sp"
-        android:textStyle="bold" />
-    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerListaU"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/guardar"
-                android:layout_below="@id/recyclerListaU"
-                android:layout_alignEnd="@id/recyclerListaU"
-                android:layout_width="83dp"
-                android:layout_height="59dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                android:backgroundTint="@color/colorPrimarioSuave"
-                android:src="@drawable/agregar"
-                />
-        </RelativeLayout>
-    </ScrollView>
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="60dp"
+            android:layout_height="34dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:background="@drawable/logoinicial"
+                android:rotation="0"
+                android:scaleType="fitCenter"
+                android:scaleX="1"
+                android:scaleY="1"/>
+        </LinearLayout>
 
-</LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:shadowColor="@color/colorClaro"
+            android:shadowDx="-2"
+            android:shadowDy="-2"
+            android:shadowRadius="1.5"
+            android:layout_marginTop="-35dp"
+            android:text="@string/txtListarUsuarios"
+            android:textColor="@color/colorNegro"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerListaU"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </RelativeLayout>
+        </ScrollView>
+    </LinearLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/guardar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="bottom|end"
+        android:backgroundTint="@color/colorPrimarioSuave"
+        android:src="@drawable/agregar"/>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

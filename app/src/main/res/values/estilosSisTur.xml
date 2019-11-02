@@ -1,29 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Editex">
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:hint">@string/escribe_aqu</item>
-        <item name="android:textSize">25sp</item>>
-    </style>
-    <style name="TexviewTitulo">
-        <item name="android:textSize">30sp</item>
-        <item name="android:textColor">@color/txvtitulo</item>
-        <item name="android:layout_gravity">center</item>
-        <item name="android:layout_marginTop">5dp</item>
-    </style>
+
     <style name="TexviewsubTitulo">
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/txvsubtitulo</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:gravity">center</item>
         <item name="android:layout_marginLeft">5dp</item>
-    </style>
-    <style name="ButtonImage">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">100dp</item>
-        <item name="android:colorBackground">@color/colorPrimarioSuave</item>
-        <item name="android:layout_marginTop">8dp</item>
     </style>
 
     <style name="edit">
@@ -35,31 +18,19 @@
         <item name="android:layout_marginTop">10dp</item>
     </style>
 
-    <style name="TemaDialogo" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="android:background">@color/colorGrisClaro</item>
-    </style>
-
     <style name="IngresoDatos">
         <item name="android:layout_width">200dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:textAlignment">center</item>
-        <item name="android:textSize">14dp</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/colorNegro</item>
         <item name="android:textColorHint">@color/colorAzulOscuro1</item>
         <item name="android:backgroundTint">@color/colorRojo</item>
     </style>
-    <style name="IngresoBuscar" parent="IngresoDatos">
-        <item name="android:layout_width">180dp</item>
-        <item name="android:layout_height">45dp</item>
-        <item name="android:fontFamily">sans-serif</item>
-        <item name="android:textSize">14dp</item>
-        <item name="android:textAlignment">textStart</item>
-        <item name="android:textStyle">italic</item>
-        <item name="android:paddingBottom">0dp</item>
-    </style>
+
     <style name="Selectores">
-        <item name="android:textSize">20dp</item>
+        <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/colorNegro</item>
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:layout_gravity">center</item>
@@ -70,7 +41,7 @@
         <item name="android:backgroundTint">@color/colorGrisClaro</item>
     </style>
     <style name="SelectorSemana" parent="Selectores">
-        <item name="android:textSize">15dp</item>
+        <item name="android:textSize">15sp</item>
         <item name="android:verticalSpacing">0dp</item>
         <item name="android:horizontalSpacing">0dp</item>
         <item name="android:textAlignment">center</item>

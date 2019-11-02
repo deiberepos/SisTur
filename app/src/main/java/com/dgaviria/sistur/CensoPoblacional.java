@@ -4,51 +4,37 @@ package com.dgaviria.sistur;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
-
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-
 import android.content.DialogInterface;
 import android.content.Intent;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
-
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-
 import android.widget.Toast;
-
-
 import com.dgaviria.sistur.clases.CdiHcb;
 import com.dgaviria.sistur.clases.Censo;
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
 import com.google.firebase.database.ValueEventListener;
-
-
 import java.util.ArrayList;
 import java.util.Calendar;
-
 import java.util.List;
 
 public class CensoPoblacional extends AppCompatActivity {
 
-    private int año, mes, dia;
+    private int ano, mes, dia;
     Button btnguardar, btnactualizar;
     EditText editRegistroInfante, editNombreInfante, editApellidoInfante, campoFecha, editObservaciones, editNombrePadre, editNombreMadre, editTeleMadre, editTelePadre, editDirPadre, editDirMadre;
     DatabaseReference miReferencia, misDatos, miReferenciaCentro, poblacionC;
@@ -142,11 +128,10 @@ public class CensoPoblacional extends AppCompatActivity {
         estaActivo.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (estaActivo.isChecked()) {
+                if (estaActivo.isChecked())
                     activoCenso = true;
-                } else {
+                else
                     activoCenso = false;
-                }
             }
         });
         generoInfante.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -163,14 +148,12 @@ public class CensoPoblacional extends AppCompatActivity {
                 }
             }
         });
-        if (estaActivo.isChecked()) {
+        if (estaActivo.isChecked())
             activoCenso = true;
-        } else {
+        else
             activoCenso = false;
-        }
-
         Calendar calendar = Calendar.getInstance();
-        año = calendar.get(Calendar.YEAR);
+        ano = calendar.get(Calendar.YEAR);
         mes = calendar.get(Calendar.MONTH);
         dia = calendar.get(Calendar.DAY_OF_MONTH);
 
@@ -179,7 +162,7 @@ public class CensoPoblacional extends AppCompatActivity {
         selectorFecha = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-                año = i;
+                ano = i;
                 mes = i1 + 1;
                 dia = i2;
                 mostrarFecha();
@@ -188,11 +171,8 @@ public class CensoPoblacional extends AppCompatActivity {
     }
     @Override
     protected Dialog onCreateDialog(int id) {
-        switch (id) {
-            case 0:
-
-                return new DatePickerDialog(this, selectorFecha, año, mes + 1, dia);
-        }
+        if (id==0)
+            return new DatePickerDialog(this, selectorFecha, ano, mes + 1, dia);
         return null;
     }
 
@@ -202,7 +182,8 @@ public class CensoPoblacional extends AppCompatActivity {
 
 
     private void mostrarFecha() {
-        campoFecha.setText(dia + "/" + mes + "/" + año);
+        String fechaAux=dia + "/" + mes + "/" + ano;
+        campoFecha.setText(fechaAux);
     }
 
 
@@ -212,12 +193,12 @@ public class CensoPoblacional extends AppCompatActivity {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                List<String> titleList = new ArrayList<String>();
+                List<String> titleList = new ArrayList<>();
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     CdiHcb nombre = dataSnapshot1.getValue(CdiHcb.class);
                     titleList.add(nombre.getNombreCDI());
                 }
-                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(CensoPoblacional.this, android.R.layout.simple_spinner_item, titleList);
+                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(CensoPoblacional.this, android.R.layout.simple_spinner_item, titleList);
                 arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spin.setAdapter(arrayAdapter);
             }

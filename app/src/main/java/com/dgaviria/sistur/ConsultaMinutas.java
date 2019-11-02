@@ -1,8 +1,6 @@
 package com.dgaviria.sistur;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.SparseArray;
@@ -12,9 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ExpandableListView;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import com.dgaviria.sistur.adaptadores.AdaptadorListaMinutas;
-import com.dgaviria.sistur.clases.Calendario;
 import com.dgaviria.sistur.clases.GrupoAlimento;
 import com.dgaviria.sistur.clases.GrupoMinuta;
 import com.dgaviria.sistur.clases.Minutas;
@@ -23,9 +19,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
-import java.util.stream.Stream;
 
 public class ConsultaMinutas extends Activity {
     SparseArray<GrupoMinuta> preparaciones;
@@ -65,11 +59,11 @@ public class ConsultaMinutas extends Activity {
         miReferenciaMin.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot!=null && dataSnapshot.getChildren()!=null){
+                if (dataSnapshot.getChildren()!=null){
                     for (DataSnapshot miMinuta:dataSnapshot.getChildren()){
                         listaMinutas.add(miMinuta.getKey());
                     }
-                    adaptadorMinuta=new ArrayAdapter<String>(ConsultaMinutas.this,android.R.layout.simple_spinner_item,listaMinutas);
+                    adaptadorMinuta=new ArrayAdapter<>(ConsultaMinutas.this,android.R.layout.simple_spinner_item,listaMinutas);
                     adaptadorMinuta.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spnMinutas.setAdapter(adaptadorMinuta);
                     //spnMinutas.setSelected(false);
@@ -92,10 +86,10 @@ public class ConsultaMinutas extends Activity {
 
     private void referenciar() {
         spnMinutas=findViewById(R.id.spinMinuta);
-        listaMinutas=new ArrayList<String>();
-        listaAlimentos=new ArrayList<String>();
+        listaMinutas=new ArrayList<>();
+        listaAlimentos=new ArrayList<>();
         vistaLista = findViewById(R.id.listaPreparacion);
-        preparaciones = new SparseArray<GrupoMinuta>();
+        preparaciones = new SparseArray<>();
     }
 
     public void llenarListaPreparaciones() {
@@ -104,7 +98,7 @@ public class ConsultaMinutas extends Activity {
         miReferenciaMin.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot != null && dataSnapshot.getChildren() != null) {
+                if (dataSnapshot.getChildren() != null) {
                     for (DataSnapshot miPrepara:dataSnapshot.getChildren()){
                         String codPrepara=miPrepara.getKey();
                         String nombrePreparacion=miPrepara.child("preparacion").getValue(String.class);

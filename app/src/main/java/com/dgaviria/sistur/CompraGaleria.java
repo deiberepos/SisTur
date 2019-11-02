@@ -1,29 +1,33 @@
 package com.dgaviria.sistur;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.dgaviria.sistur.adaptadores.AdaptadorListaCompra;
 import com.dgaviria.sistur.clases.AlimentoCompra;
 import com.dgaviria.sistur.clases.ComparadorAlimentoCompra;
 import com.dgaviria.sistur.clases.Minutas;
+import com.github.clans.fab.FloatingActionMenu;
+import com.github.clans.fab.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -33,7 +37,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CompraGaleria extends AppCompatActivity {
-    int año, mes, dia,sumaTotal,conteoTotal,conteoParcial;
+    int ano, mes, dia,sumaTotal,conteoTotal,conteoParcial;
     EditText campoFecha;
     AdaptadorListaCompra miAdaptadorCompra;
     Spinner selectorSemanas;
@@ -46,12 +50,13 @@ public class CompraGaleria extends AppCompatActivity {
     Bundle recibeParametros;
     public static long resultadoCantidad, auxcantidad, totalInfantes;
     RecyclerView miRecyclerListaCompra;
-    Button botonGuardar,botonCalcular;
     Calendar miCalendario;
     Boolean existeLista=false;
     int numItem;
     TextView totalCompra,totalConteo,parcialConteo;
     public static String recibeRol, recibeUsuario;
+    FloatingActionMenu menuAcciones;
+    FloatingActionButton opcionCalcula, opcionGuarda;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,13 +66,13 @@ public class CompraGaleria extends AppCompatActivity {
         referenciar();
         mostrarFecha();
         Toast.makeText(getApplicationContext(),"El total de niños es: " + totalInfantes,Toast.LENGTH_LONG).show();
-        botonCalcular.setOnClickListener(new View.OnClickListener() {
+        opcionCalcula.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 actualizaConteos();
             }
         });
-        botonGuardar.setOnClickListener(new View.OnClickListener() {
+        opcionGuarda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 actualizaConteos();
@@ -90,13 +95,11 @@ public class CompraGaleria extends AppCompatActivity {
     private void referenciar() {
         campoFecha=findViewById(R.id.editFechaCompra);
         miCalendario = Calendar.getInstance();
-        año = miCalendario.get(Calendar.YEAR);
+        ano = miCalendario.get(Calendar.YEAR);
         mes = miCalendario.get(Calendar.MONTH)+1;
         dia = miCalendario.get(Calendar.DAY_OF_MONTH);
         selectorSemanas=findViewById(R.id.selectorSemana);
         miRecyclerListaCompra=findViewById(R.id.recyclerCompras);
-        botonGuardar=findViewById(R.id.botonGuardaGal);
-        botonCalcular=findViewById(R.id.botonCalcular);
         totalConteo=findViewById(R.id.txtTotalIngredientes);
         parcialConteo=findViewById(R.id.txtSubconteoIngredientes);
         totalCompra=findViewById(R.id.txtValorCompra);
@@ -104,11 +107,15 @@ public class CompraGaleria extends AppCompatActivity {
         totalInfantes = recibeParametros.getLong("total");
         recibeRol= recibeParametros.getString("rol");
         recibeUsuario = recibeParametros.getString("usuario");
+        menuAcciones=findViewById(R.id.menuCompras);
+        opcionCalcula=findViewById(R.id.menuOpcion1);
+        opcionGuarda=findViewById(R.id.menuOpcion2);
         llenarListaSemanas();
     }
 
     private void mostrarFecha() {
-        campoFecha.setText(dia + "/" + mes + "/" + año);
+        String fechaAux=dia + "/" + mes + "/" + ano;
+        campoFecha.setText(fechaAux);
     }
     public void mostrarCalendario(View view) {
         Calendar miCalendario = new GregorianCalendar();//Calendar.getInstance();
@@ -116,7 +123,7 @@ public class CompraGaleria extends AppCompatActivity {
         new DatePickerDialog(this, R.style.TemaCalendario, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                año = year;
+                ano = year;
                 mes = monthOfYear + 1;
                 dia = dayOfMonth;
                 mostrarFecha();
@@ -142,7 +149,7 @@ public class CompraGaleria extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){ //Si existe
                     existeLista=true;
-                    listaGaleria=new ArrayList<AlimentoCompra>();
+                    listaGaleria=new ArrayList<>();
                     for(DataSnapshot miIngrediente:dataSnapshot.getChildren()) {
                         if (!miIngrediente.getKey().equals("itemscomprados") && !miIngrediente.getKey().equals("totalcompra") && !miIngrediente.getKey().equals("quiencompra")) {
                             AlimentoCompra ingrediente = miIngrediente.getValue(AlimentoCompra.class);
@@ -159,13 +166,13 @@ public class CompraGaleria extends AppCompatActivity {
                 else{ //si no existe realiza la lectura de las minutas asociadas en la semana seleccionada
                     //Lectura de las minutas que hacen parte de la semana, cuando no existe una lista de compras previa
                     existeLista=false;
-                    listadoMinutas = new ArrayList<String>();
+                    listadoMinutas = new ArrayList<>();
                     miReferenciaSem = FirebaseDatabase.getInstance().getReference("semanas").child(nombreSemana);
                     miReferenciaSem.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            if (dataSnapshot != null && dataSnapshot.getChildren() != null) {
-                                Boolean hayMinutas=false;
+                            if (dataSnapshot.getChildren() != null) {
+                                boolean hayMinutas=false;
                                 String minuta1 = dataSnapshot.child("minuta1").getValue(String.class);
                                 String minuta2 = dataSnapshot.child("minuta2").getValue(String.class);
                                 String minuta3 = dataSnapshot.child("minuta3").getValue(String.class);
@@ -216,16 +223,16 @@ public class CompraGaleria extends AppCompatActivity {
     }
 
     private void llenarListaSemanas() {
-        listadoSemanas=new ArrayList<String>();
+        listadoSemanas=new ArrayList<>();
         miReferenciaSem = FirebaseDatabase.getInstance().getReference("semanas");
         miReferenciaSem.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot != null && dataSnapshot.getChildren() != null) {
+                if (dataSnapshot.getChildren() != null) {
                     for (DataSnapshot miSemana : dataSnapshot.getChildren()) {
                         listadoSemanas.add(miSemana.getKey());
                     }
-                    adaptadorSemana = new ArrayAdapter<String>(CompraGaleria.this, android.R.layout.simple_spinner_item, listadoSemanas);
+                    adaptadorSemana = new ArrayAdapter<>(CompraGaleria.this, android.R.layout.simple_spinner_item, listadoSemanas);
                     adaptadorSemana.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     selectorSemanas.setAdapter(adaptadorSemana);
                     //selectorSemanas.setSelected(false);
@@ -244,7 +251,7 @@ public class CompraGaleria extends AppCompatActivity {
     }
 
     private void listarIngredientes() {
-        listaGaleria=new ArrayList<AlimentoCompra>();
+        listaGaleria=new ArrayList<>();
         listaGaleria=lecturaIngredientes();
         miAdaptadorCompra=new AdaptadorListaCompra(this,listaGaleria);
         miRecyclerListaCompra.setAdapter(miAdaptadorCompra);
@@ -259,14 +266,14 @@ public class CompraGaleria extends AppCompatActivity {
         miReferenciaMin.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot != null && dataSnapshot.getChildren() != null) {
+                if (dataSnapshot.getChildren() != null) {
                     for(DataSnapshot miMinuta:dataSnapshot.getChildren()){
                         for (int item = 0; item< listadoMinutas.size(); item++){
                             if (miMinuta.getKey().equals(listadoMinutas.get(item))){
                                 for(DataSnapshot miPrepara:miMinuta.getChildren()){
                                     for(DataSnapshot miAlimento:miPrepara.getChildren()){
                                         if (!miAlimento.getKey().equals("preparacion") && !miAlimento.getKey().equals("procedimiento")) {
-                                            Boolean guarda=true;
+                                            boolean guarda=true;
                                             Minutas alimento=miAlimento.getValue(Minutas.class);
                                             AlimentoCompra ingrediente=new AlimentoCompra();
                                             if (lista.size()>0) {
@@ -332,12 +339,12 @@ public class CompraGaleria extends AppCompatActivity {
         if (existeLista) {
             //si la lista de compras existe la actualiza
             miReferenciaLista=FirebaseDatabase.getInstance().getReference("galeria").child(nombreSemana);
-            Map<String,Object> actualizaNivel1=new HashMap<String,Object>();
+            Map<String,Object> actualizaNivel1=new HashMap<>();
             actualizaNivel1.put("totalcompra",sumaTotal);
             actualizaNivel1.put("itemscomprados",conteoTotal);
             miReferenciaLista.updateChildren(actualizaNivel1);
             miReferenciaLista=FirebaseDatabase.getInstance().getReference("galeria").child(nombreSemana);
-            Map<String,Object> actualizaNivel2=new HashMap<String,Object>();
+            Map<String,Object> actualizaNivel2=new HashMap<>();
             for (int numItem = 0; numItem < listaGaleria.size(); numItem++) {
                 String codigoAlimento = listaGaleria.get(numItem).getCodigo();
                 actualizaNivel2.put("/"+codigoAlimento+"/fechacompra",String.valueOf(campoFecha.getText()));

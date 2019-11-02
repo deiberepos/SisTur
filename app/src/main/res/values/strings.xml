@@ -1,15 +1,7 @@
 <resources>
     <string name="app_name">SISALTUR</string>
 
-    <string name="menu_opciones_administrador">MENÚ ADMINISTRADOR</string>
-    <string name="TituloRegCentro">REGISTRO DE INFORMACIÓN</string>
     <string name="nombre_asignado">Nombre asignado</string>
-    <string name="escribe_aqu">Escribe aquí</string>
-    <string name="centro_de_desarrollo">Centro de desarrollo</string>
-    <string name="hogarcomunitario">Hogar comunitario</string>
-    <string name="censo">Censo Poblacional</string>
-    <string name="nombreinfante">Nombre Del Infante</string>
-    <string name="apellidoinfante">Apellido Del Infante</string>
     <string name="txtListaCDHI">Registro de CDIH/HCB</string>
     <string name="txtConsultaMinutas">Consulta de Minutas</string>
     <string name="txtNumMinuta">N° MINUTA</string>
@@ -103,8 +95,6 @@
     <string name="txtIngredientesComprar">Ingredientes a comprar</string>
     <string name="txtIngredientesComprados">Ingredientes comprados</string>
     <string name="txtTotalComprado">Total comprado ($)</string>
-    <string name="txtBtnCalcular">Calcular</string>
-    <string name="txtBtnGuardar2">Guardar</string>
     <string name="txtValorUnidad">Valor Unidad</string>
     <string name="txtCostoTotal">Costo Total</string>
     <string name="txtVacio">VACIO</string>
@@ -123,9 +113,6 @@
     <string name="txtIngresoUsuarios">Ingreso de Usuarios</string>
     <string name="txtHintUsuarios">usuario</string>
     <string name="txtHintContraseñas">contraseña</string>
-    <string name="txtAcciones">Acciones sobre usuarios</string>
-    <string name="txtCrearUsuarios">Crear usuarios</string>
-    <string name="txtModificarUsuario">Modificar usuarios</string>
     <string name="txtPublicacionMinutas">Publicación de Minutas</string>
     <string name="txt00002019">00/00/2019</string>
     <string name="txtLunes1">LUNES</string>

@@ -2,7 +2,6 @@ package com.dgaviria.sistur;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.DatePickerDialog;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -15,7 +14,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,7 +23,6 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -35,7 +32,7 @@ public class EntregaCompra extends AppCompatActivity {
     ImageView codigoQR;
     Button botonGenerar;
     Bitmap imagenQR;
-    int año, mes, dia;
+    int ano, mes, dia;
     EditText campoFechaEI;
     Spinner selectorSemanasEI,selectorCDIEI;
     String nombreSemanaEI,nombreCDIEI,fechaEntregaI,recibeRol,recibeUsuario;
@@ -105,7 +102,7 @@ public class EntregaCompra extends AppCompatActivity {
         botonGenerar = findViewById(R.id.botonQR);
         campoFechaEI=findViewById(R.id.editFechaEntregaEI);
         miCalendarioEI = Calendar.getInstance();
-        año = miCalendarioEI.get(Calendar.YEAR);
+        ano = miCalendarioEI.get(Calendar.YEAR);
         mes = miCalendarioEI.get(Calendar.MONTH)+1;
         dia = miCalendarioEI.get(Calendar.DAY_OF_MONTH);
         selectorSemanasEI=findViewById(R.id.selectorSemanaEI);
@@ -144,7 +141,8 @@ public class EntregaCompra extends AppCompatActivity {
     }
 
     private void mostrarFechaEI() {
-        campoFechaEI.setText(dia + "/" + mes + "/" + año);
+        String fechaAux=dia + "/" + mes + "/" + ano;
+        campoFechaEI.setText(fechaAux);
     }
     public void mostrarCalendarioEI(View view) {
         Calendar miCalendario = new GregorianCalendar();//Calendar.getInstance();
@@ -152,7 +150,7 @@ public class EntregaCompra extends AppCompatActivity {
         new DatePickerDialog(this, R.style.TemaCalendario, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                año = year;
+                ano = year;
                 mes = monthOfYear + 1;
                 dia = dayOfMonth;
                 mostrarFechaEI();
@@ -161,7 +159,7 @@ public class EntregaCompra extends AppCompatActivity {
     }
     private void lecturaCDIEI(){
         fechaEntregaI=campoFechaEI.getText().toString();
-        if (nombreCDIEI!=null && !nombreCDIEI.isEmpty() && nombreSemanaEI!=null && !nombreSemanaEI.isEmpty() && fechaEntregaI!=null && !fechaEntregaI.isEmpty()){
+        if (nombreCDIEI!=null && !nombreCDIEI.isEmpty() && nombreSemanaEI!=null && !nombreSemanaEI.isEmpty() && !fechaEntregaI.isEmpty()){
             //Verifica la existencia de la lista de entregas para el CDI en la semana seleccionada
             aprobarQR=true;
             miReferenciaLista= FirebaseDatabase.getInstance().getReference("entregas").child(nombreCDIEI).child(nombreSemanaEI);
@@ -187,16 +185,16 @@ public class EntregaCompra extends AppCompatActivity {
     }
 
     private void llenarListaCDIEI() {
-        listadoCDIEI=new ArrayList<String>();
+        listadoCDIEI=new ArrayList<>();
         miReferenciaCDIEI = FirebaseDatabase.getInstance().getReference("Centros");
         miReferenciaCDIEI.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot != null && dataSnapshot.getChildren() != null) {
+                if (dataSnapshot.getChildren() != null) {
                     for (DataSnapshot miCentro : dataSnapshot.getChildren()) {
                         listadoCDIEI.add(miCentro.getKey());
                     }
-                    adaptadorCDIEI = new ArrayAdapter<String>(EntregaCompra.this, android.R.layout.simple_spinner_item, listadoCDIEI);
+                    adaptadorCDIEI = new ArrayAdapter<>(EntregaCompra.this, android.R.layout.simple_spinner_item, listadoCDIEI);
                     adaptadorCDIEI.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     selectorCDIEI.setAdapter(adaptadorCDIEI);
                     //selectorSemanas.setSelected(false);
@@ -215,16 +213,16 @@ public class EntregaCompra extends AppCompatActivity {
     }
 
     private void llenarListaSemanasEI() {
-        listadoSemanasEI=new ArrayList<String>();
+        listadoSemanasEI=new ArrayList<>();
         miReferenciaSemEI = FirebaseDatabase.getInstance().getReference("semanas");
         miReferenciaSemEI.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot != null && dataSnapshot.getChildren() != null) {
+                if (dataSnapshot.getChildren() != null) {
                     for (DataSnapshot miSemana : dataSnapshot.getChildren()) {
                         listadoSemanasEI.add(miSemana.getKey());
                     }
-                    adaptadorSemanaEI = new ArrayAdapter<String>(EntregaCompra.this, android.R.layout.simple_spinner_item, listadoSemanasEI);
+                    adaptadorSemanaEI = new ArrayAdapter<>(EntregaCompra.this, android.R.layout.simple_spinner_item, listadoSemanasEI);
                     adaptadorSemanaEI.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     selectorSemanasEI.setAdapter(adaptadorSemanaEI);
                     //selectorSemanas.setSelected(false);

@@ -15,7 +15,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -28,9 +27,7 @@ import com.dgaviria.sistur.clases.AlimentoEntrega;
 import com.dgaviria.sistur.clases.CapturaQR;
 import com.dgaviria.sistur.clases.ComparadorAlimentoEntrega;
 import com.dgaviria.sistur.clases.OtrosEntrega;
-import com.google.android.gms.tasks.OnCanceledListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -44,11 +41,9 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.HashMap;
-import java.util.Map;
 
 public class RecibeCompra extends AppCompatActivity {
-    int año, mes, dia;
+    int ano, mes, dia;
     TextView totalInfantes,conteoIngredientes;
     EditText campoFechaE;
     AdaptadorListaRecibe miAdaptadorEntrega;
@@ -60,7 +55,7 @@ public class RecibeCompra extends AppCompatActivity {
     ArrayList<AlimentoEntrega> listaEntrega;
     RecyclerView miRecyclerListaEntrega;
     Calendar miCalendarioE;
-    Button botonAprobar;
+    FloatingActionButton botonAprobar;
     int numInfantes,numIngredientes;
     Bundle recibeParametros;
     private static final int CODIGO_PETICION_CAMARA = 100;
@@ -134,7 +129,7 @@ public class RecibeCompra extends AppCompatActivity {
     private void referenciar() {
         campoFechaE=findViewById(R.id.editFechaEntrega);
         miCalendarioE = Calendar.getInstance();
-        año = miCalendarioE.get(Calendar.YEAR);
+        ano = miCalendarioE.get(Calendar.YEAR);
         mes = miCalendarioE.get(Calendar.MONTH)+1;
         dia = miCalendarioE.get(Calendar.DAY_OF_MONTH);
         selectorSemanasE=findViewById(R.id.selectorSemanaE);
@@ -151,7 +146,8 @@ public class RecibeCompra extends AppCompatActivity {
     }
 
     private void mostrarFechaE() {
-        campoFechaE.setText(dia + "/" + mes + "/" + año);
+        String fechaAux=dia + "/" + mes + "/" + ano;
+        campoFechaE.setText(fechaAux);
     }
     public void mostrarCalendarioE(View view) {
         Calendar miCalendario = new GregorianCalendar();//Calendar.getInstance();
@@ -159,7 +155,7 @@ public class RecibeCompra extends AppCompatActivity {
         new DatePickerDialog(this, R.style.TemaCalendario, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                año = year;
+                ano = year;
                 mes = monthOfYear + 1;
                 dia = dayOfMonth;
                 mostrarFechaE();
@@ -168,7 +164,7 @@ public class RecibeCompra extends AppCompatActivity {
     }
 
     private void lecturaListaCompras() {
-        listaEntrega = new ArrayList<AlimentoEntrega>();
+        listaEntrega = new ArrayList<>();
         listaEntrega = lecturaEntrega();
         miAdaptadorEntrega = new AdaptadorListaRecibe(RecibeCompra.this, listaEntrega);
         miRecyclerListaEntrega.setAdapter(miAdaptadorEntrega);
@@ -182,14 +178,14 @@ public class RecibeCompra extends AppCompatActivity {
         fechaEntrega=campoFechaE.getText().toString();
         numIngredientes=0;
         numInfantes=0;
-        if (nombreCDIE!=null && !nombreCDIE.isEmpty() && nombreSemanaE!=null && !nombreSemanaE.isEmpty() && fechaEntrega!=null && !fechaEntrega.isEmpty()){
+        if (nombreCDIE!=null && !nombreCDIE.isEmpty() && nombreSemanaE!=null && !nombreSemanaE.isEmpty() && !fechaEntrega.isEmpty()){
             //Conteo de infantes asociados al CDI seleccionado
             numInfantes=0;
             miReferenciaPob = FirebaseDatabase.getInstance().getReference("poblacionCentros").child(nombreCDIE);
             miReferenciaPob.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot != null && dataSnapshot.getChildren() != null) {
+                    if (dataSnapshot.getChildren() != null) {
                         if (dataSnapshot.child("totalcenso").getValue(Integer.class)!=null)
                             numInfantes=dataSnapshot.child("totalcenso").getValue(Integer.class);
                         else {
@@ -238,12 +234,12 @@ public class RecibeCompra extends AppCompatActivity {
                     else{ //no existe lista de entrega para esa semana y CDI
                         numIngredientes=0;
                         //Lectura de las compras que hacen parte de la semana, cuando no existe una lista de compras previa
-                        listadoCDIE = new ArrayList<String>();
+                        listadoCDIE = new ArrayList<>();
                         miReferenciaG= FirebaseDatabase.getInstance().getReference("galeria").child(nombreSemanaE);
                         miReferenciaG.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                if (dataSnapshot != null && dataSnapshot.getChildren() != null) {
+                                if (dataSnapshot.getChildren() != null) {
                                     datosEntrega=new OtrosEntrega();
                                     datosEntrega.setNombreCDI(nombreCDIE);
                                     datosEntrega.setFechaentrega(fechaEntrega);
@@ -305,16 +301,16 @@ public class RecibeCompra extends AppCompatActivity {
     }
 
     private void llenarListaCDIE() {
-        listadoCDIE=new ArrayList<String>();
+        listadoCDIE=new ArrayList<>();
         miReferenciaCDIE= FirebaseDatabase.getInstance().getReference("Centros");
         miReferenciaCDIE.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot != null && dataSnapshot.getChildren() != null) {
+                if (dataSnapshot.getChildren() != null) {
                     for (DataSnapshot miCentro : dataSnapshot.getChildren()) {
                         listadoCDIE.add(miCentro.getKey());
                     }
-                    adaptadorCDIE = new ArrayAdapter<String>(RecibeCompra.this, android.R.layout.simple_spinner_item, listadoCDIE);
+                    adaptadorCDIE = new ArrayAdapter<>(RecibeCompra.this, android.R.layout.simple_spinner_item, listadoCDIE);
                     adaptadorCDIE.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     selectorCDIE.setAdapter(adaptadorCDIE);
                     //selectorCDIE.setSelected(false);
@@ -333,16 +329,16 @@ public class RecibeCompra extends AppCompatActivity {
     }
 
     private void llenarListaSemanasE() {
-        listadoSemanasE=new ArrayList<String>();
+        listadoSemanasE=new ArrayList<>();
         miReferenciaSemE = FirebaseDatabase.getInstance().getReference("semanas");
         miReferenciaSemE.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot != null && dataSnapshot.getChildren() != null) {
+                if (dataSnapshot.getChildren() != null) {
                     for (DataSnapshot miSemana : dataSnapshot.getChildren()) {
                         listadoSemanasE.add(miSemana.getKey());
                     }
-                    adaptadorSemanaE = new ArrayAdapter<String>(RecibeCompra.this, android.R.layout.simple_spinner_item, listadoSemanasE);
+                    adaptadorSemanaE = new ArrayAdapter<>(RecibeCompra.this, android.R.layout.simple_spinner_item, listadoSemanasE);
                     adaptadorSemanaE.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     selectorSemanasE.setAdapter(adaptadorSemanaE);
                     //selectorSemanasE.setSelected(false);
@@ -379,7 +375,6 @@ public class RecibeCompra extends AppCompatActivity {
     protected void guardarAprobacion(String datosLeidos) {
         //descompone los tres items del QR: nombre de la semana, nombre del CDI, nombre del usuario que recibe
         int indice=0,cuenta=0,pos1=0,pos2=0,pos=0;
-        pos=0;
         while (indice != -1){
             indice=datosLeidos.indexOf("|",pos);
             cuenta++;

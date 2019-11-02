@@ -2,27 +2,20 @@ package com.dgaviria.sistur;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Spinner;
 import android.widget.Toast;
-
 import com.dgaviria.sistur.adaptadores.AdaptadorListaCenso;
 import com.dgaviria.sistur.clases.Censo;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,9 +52,8 @@ public class ListarCensoPoblacion extends AppCompatActivity {
             @Override
             public void modificaClick(Censo miCenso, int posicion) {
                 int tipoact=1;
-                if (miCenso.getActivo().equals("true")){
+                if (miCenso.getActivo())
                     tipoact=2;
-                }
                 Intent intent = new Intent(getApplicationContext(), CensoPoblacional.class);
                 intent.putExtra("opcion","actualizar");
                 intent.putExtra("registro",miCenso.getRegistro());
@@ -98,7 +90,7 @@ public class ListarCensoPoblacion extends AppCompatActivity {
                 for(DataSnapshot censoExistente : dataSnapshot.getChildren())
                 {
                     Censo micenso=censoExistente.getValue(Censo.class);
-                    if (micenso.getActivo()==true)
+                    if (micenso.getActivo())
                         listaDeCenso.add(micenso);
                 }
                 adaptadorCenso.notifyDataSetChanged();

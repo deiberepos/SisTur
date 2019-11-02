@@ -4,35 +4,32 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.dgaviria.sistur.adaptadores.AdaptadorListaAsistencia;
 import com.dgaviria.sistur.clases.Censo;
 import com.dgaviria.sistur.clases.InfanteAsiste;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class ListaAsistencia extends AppCompatActivity {
-    int año, mes, dia;
+    int ano, mes, dia;
     TextView campoFechaAs;
     private String nombreCentro, nombreSemana, recibeRol, recibeUsuario, fechaReporte;
     Spinner spnCentros, spnSemanas;
@@ -42,9 +39,9 @@ public class ListaAsistencia extends AppCompatActivity {
     private ArrayList<String> nombresCentros, listaSemanas;
     AdaptadorListaAsistencia adaptadorAsistencia;
     DatabaseReference bdReferencia, referenciaCentros, refPoblCentros, refSemanas, refRegistAsistencia;
-    Button btnAprobar;
     Calendar miCalendario;
     private Bundle bundle;
+    FloatingActionButton btnAprobar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,9 +114,7 @@ public class ListaAsistencia extends AppCompatActivity {
                 Censo censo =  new Censo();
                 for (DataSnapshot datos:dataSnapshot.getChildren()) {
 
-                    if(datos.getKey().equals("totalcenso")){
-
-                    }else {
+                    if(!datos.getKey().equals("totalcenso")){
                         Censo infante = datos.getValue(Censo.class);
                         InfanteAsiste infanteAsiste = new InfanteAsiste();
                         infanteAsiste.setAsistencia(false);
@@ -145,11 +140,11 @@ public class ListaAsistencia extends AppCompatActivity {
         refSemanas.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot != null && dataSnapshot.getChildren() != null) {
+                if (dataSnapshot.getChildren() != null) {
                     for (DataSnapshot miSemana : dataSnapshot.getChildren()) {
                         listaSemanas.add(miSemana.getKey());
                     }
-                    adaptadorSemanas = new ArrayAdapter<String>(ListaAsistencia.this, android.R.layout.simple_spinner_item, listaSemanas);
+                    adaptadorSemanas = new ArrayAdapter<>(ListaAsistencia.this, android.R.layout.simple_spinner_item, listaSemanas);
                     adaptadorSemanas.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spnSemanas.setAdapter(adaptadorSemanas);
                     //selectorSemanasE.setSelected(false);
@@ -172,11 +167,11 @@ public class ListaAsistencia extends AppCompatActivity {
         referenciaCentros.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot != null && dataSnapshot.getChildren() != null) {
+                if (dataSnapshot.getChildren() != null) {
                     for (DataSnapshot miCentro : dataSnapshot.getChildren()) {
                         nombresCentros.add(miCentro.getKey());
                     }
-                    adaptadorCentros = new ArrayAdapter<String>(ListaAsistencia.this, android.R.layout.simple_spinner_item, nombresCentros);
+                    adaptadorCentros = new ArrayAdapter<>(ListaAsistencia.this, android.R.layout.simple_spinner_item, nombresCentros);
                     adaptadorCentros.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spnCentros.setAdapter(adaptadorCentros);
                     //selectorCDIE.setSelected(false);
@@ -195,7 +190,8 @@ public class ListaAsistencia extends AppCompatActivity {
     }
 
     private void mostrarFechaE() {
-        campoFechaAs.setText(dia + "-" + mes + "-" + año);
+        String fechaAux=dia + "-" + mes + "-" + ano;
+        campoFechaAs.setText(fechaAux);
     }
     public void mostrarCalendarioAs(View view) {
         Calendar miCalendario = new GregorianCalendar();//Calendar.getInstance();
@@ -203,7 +199,7 @@ public class ListaAsistencia extends AppCompatActivity {
         new DatePickerDialog(this, R.style.TemaCalendario, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                año = year;
+                ano = year;
                 mes = monthOfYear + 1;
                 dia = dayOfMonth;
                 mostrarFechaE();
@@ -214,17 +210,17 @@ public class ListaAsistencia extends AppCompatActivity {
     private void referenciar() {
         campoFechaAs = findViewById(R.id.idedtFechaAsistencia);
         miCalendario = Calendar.getInstance();
-        año = miCalendario.get(Calendar.YEAR);
+        ano = miCalendario.get(Calendar.YEAR);
         mes = miCalendario.get(Calendar.MONTH)+1;
         dia = miCalendario.get(Calendar.DAY_OF_MONTH);
         spnCentros = findViewById(R.id.idspncentrosasistencia);
         spnSemanas = findViewById(R.id.idspnsemanaasistencia);
         recyclerAsistencia = findViewById(R.id.idrecyclerAsistencia);
+        btnAprobar=findViewById(R.id.asistenciaGuardar);
         nombresInfantes = new ArrayList<>();
         nombresCentros = new ArrayList<>();
         listaSemanas = new ArrayList<>();
         bdReferencia = FirebaseDatabase.getInstance().getReference();
-        btnAprobar = findViewById(R.id.idbtnAprobarAsistencia);
         bundle = getIntent().getExtras();
         recibeRol = bundle.getString("rol");
         recibeUsuario =bundle.getString("usuario");

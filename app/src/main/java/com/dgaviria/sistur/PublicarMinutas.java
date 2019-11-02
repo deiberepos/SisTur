@@ -28,7 +28,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 public class PublicarMinutas extends AppCompatActivity {
     Spinner spnSemanas;
@@ -88,11 +87,11 @@ public class PublicarMinutas extends AppCompatActivity {
         miReferenciaPub.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot!=null && dataSnapshot.getChildren()!=null){
+                if (dataSnapshot.getChildren()!=null){
                     for (DataSnapshot miSemana:dataSnapshot.getChildren()){
                         listaSemanas.add(miSemana.getKey());
                     }
-                    adaptadorSemana=new ArrayAdapter<String>(PublicarMinutas.this,android.R.layout.simple_spinner_item,listaSemanas);
+                    adaptadorSemana=new ArrayAdapter<>(PublicarMinutas.this,android.R.layout.simple_spinner_item,listaSemanas);
                     adaptadorSemana.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spnSemanas.setAdapter(adaptadorSemana);
                     adaptadorSemana.notifyDataSetChanged();
@@ -120,7 +119,7 @@ public class PublicarMinutas extends AppCompatActivity {
         miReferenciaPub.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot!=null && dataSnapshot.getChildren()!=null){
+                if (dataSnapshot.getChildren()!=null){
                     if (dataSnapshot.exists()){
                         Calendario miSemana=dataSnapshot.getValue(Calendario.class);
                         menuDias[0] =miSemana.getMinuta1();
@@ -290,7 +289,7 @@ public class PublicarMinutas extends AppCompatActivity {
             miReferenciaPub.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot != null && dataSnapshot.getChildren() != null) {
+                    if (dataSnapshot.getChildren() != null) {
                         preparacionesLunes.clear();
                         for (DataSnapshot miPrepara : dataSnapshot.getChildren()) {
                             String numeroPreparacion=miPrepara.getKey();
@@ -322,7 +321,7 @@ public class PublicarMinutas extends AppCompatActivity {
             miReferenciaPub.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot != null && dataSnapshot.getChildren() != null) {
+                    if (dataSnapshot.getChildren() != null) {
                         preparacionesMartes.clear();
                         for (DataSnapshot miPrepara : dataSnapshot.getChildren()) {
                             String numeroPreparacion=miPrepara.getKey();
@@ -353,7 +352,7 @@ public class PublicarMinutas extends AppCompatActivity {
             miReferenciaPub.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot != null && dataSnapshot.getChildren() != null) {
+                    if (dataSnapshot.getChildren() != null) {
                         preparacionesMiercoles.clear();
                         for (DataSnapshot miPrepara : dataSnapshot.getChildren()) {
                             String numeroPreparacion=miPrepara.getKey();
@@ -385,7 +384,7 @@ public class PublicarMinutas extends AppCompatActivity {
             miReferenciaPub.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot != null && dataSnapshot.getChildren() != null) {
+                    if (dataSnapshot.getChildren() != null) {
                         preparacionesJueves.clear();
                         for (DataSnapshot miPrepara : dataSnapshot.getChildren()) {
                             String numeroPreparacion=miPrepara.getKey();
@@ -416,7 +415,7 @@ public class PublicarMinutas extends AppCompatActivity {
             miReferenciaPub.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot != null && dataSnapshot.getChildren() != null) {
+                    if (dataSnapshot.getChildren() != null) {
                         preparacionesViernes.clear();
                         for (DataSnapshot miPrepara : dataSnapshot.getChildren()) {
                             String numeroPreparacion=miPrepara.getKey();
