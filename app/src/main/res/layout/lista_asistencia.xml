@@ -129,6 +129,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal">
+                <!--
                 <TextView
                     android:id="@+id/textoTitulo1"
                     android:layout_width="130dp"
@@ -155,15 +156,17 @@
                     android:textColor="@color/colorRojo"
                     android:textSize="15sp"
                     android:textStyle="italic|bold" />
+                    android:layout_toRightOf="@id/textoTitulo1"
+                    -->
                 <TextView
                     android:id="@+id/textoTitulo2"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+
                     android:gravity="center"
                     android:text="@string/totalinfantes"
                     android:textColor="@color/colorAzulOscuro2"
-                    android:layout_toRightOf="@id/textoTitulo1"
                     android:textSize="12sp"
                     android:textStyle="italic|bold" />
                 <TextView

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -29,8 +30,8 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class ListaAsistencia extends AppCompatActivity {
-    int ano, mes, dia;
-    TextView campoFechaAs;
+    int ano, mes, dia, cantidadI;
+    TextView campoFechaAs, cantidadTotalI, cantidadparcial;
     private String nombreCentro, nombreSemana, recibeRol, recibeUsuario, fechaReporte;
     Spinner spnCentros, spnSemanas;
     private ArrayAdapter adaptadorCentros, adaptadorSemanas;
@@ -41,6 +42,7 @@ public class ListaAsistencia extends AppCompatActivity {
     DatabaseReference bdReferencia, referenciaCentros, refPoblCentros, refSemanas, refRegistAsistencia;
     Calendar miCalendario;
     private Bundle bundle;
+    private CheckBox chkasiste;
     FloatingActionButton btnAprobar;
 
     @Override
@@ -112,6 +114,7 @@ public class ListaAsistencia extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Censo censo =  new Censo();
+
                 for (DataSnapshot datos:dataSnapshot.getChildren()) {
 
                     if(!datos.getKey().equals("totalcenso")){
@@ -125,6 +128,8 @@ public class ListaAsistencia extends AppCompatActivity {
                     }
                 }
                 adaptadorAsistencia.notifyDataSetChanged();
+                cantidadI = lista.size();
+                cantidadTotalI.setText(String.valueOf(cantidadI));
             }
 
             @Override
@@ -161,6 +166,8 @@ public class ListaAsistencia extends AppCompatActivity {
             }
         });
     }
+
+
 
     private void llenarListaCentros() {
         referenciaCentros = bdReferencia.child("Centros");
@@ -224,6 +231,9 @@ public class ListaAsistencia extends AppCompatActivity {
         bundle = getIntent().getExtras();
         recibeRol = bundle.getString("rol");
         recibeUsuario =bundle.getString("usuario");
+        cantidadTotalI = findViewById(R.id.idtxvTotalInfantesA);
+        chkasiste =findViewById(R.id.idchkSi);
+        //cantidadparcial=findViewById(R.id.idtxvAsistentes);
     }
 
     @Override
