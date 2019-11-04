@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".ListarCensoPoblacion">
     <LinearLayout
@@ -38,7 +39,47 @@
             android:textColor="@color/colorNegro"
             android:textSize="25sp"
             android:textStyle="bold" />
-        <ScrollView
+        <androidx.appcompat.widget.Toolbar
+            android:orientation="vertical"
+            android:id="@+id/tb_opciones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimarioSuave"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:navigationIcon="@mipmap/ic_lista"
+            app:navigationContentDescription="Listar censo por..."
+            app:title="Listar censo por..."
+            app:titleTextColor="@color/colorBlanco"
+            app:menu="@menu/itemslistarpor"/>
+        <LinearLayout
+            android:id="@+id/lay_buscarPor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="CDI/HCB"
+                android:textSize="18sp"
+                android:textColor="@color/colorNegro"
+                android:textStyle="italic|bold"
+                />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/colorClaro">
+                <Spinner
+                    android:id="@+id/listaCentroBuscar"
+                    android:layout_width="280dp"
+                    android:layout_height="30dp"
+                    style="@style/SelectorSemana"
+                    />
+            </RelativeLayout>
+        </LinearLayout>
+       <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp">
