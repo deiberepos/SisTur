@@ -36,7 +36,7 @@
                 android:shadowDx="-2"
                 android:shadowDy="-2"
                 android:shadowRadius="1.5"
-                android:text="Registro de asisteLunes"
+                android:text="@string/registro_asistencia_semanal"
                 android:layout_marginTop="-35dp"
                 android:textColor="@color/colorNegro"
                 android:textSize="25sp"

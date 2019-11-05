@@ -128,5 +128,6 @@
     <string name="txtCantE">Cant E</string>
     <string name="txtNombreAtendido">Nombre Infante</string>
     <string name="totalinfantes">Total Infantes</string>
+    <string name="registro_asistencia_semanal">Registro asistencia semanal</string>
 
 </resources>
