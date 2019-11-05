@@ -65,7 +65,7 @@ public class CompraGaleria extends AppCompatActivity {
 
         referenciar();
         mostrarFecha();
-        Toast.makeText(getApplicationContext(),"El total de niños es: " + totalInfantes,Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(),"El total de niños es: " + totalInfantes,Toast.LENGTH_LONG).show();
         opcionCalcula.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

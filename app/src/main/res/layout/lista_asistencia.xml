@@ -36,7 +36,7 @@
                 android:shadowDx="-2"
                 android:shadowDy="-2"
                 android:shadowRadius="1.5"
-                android:text="Registro de asistencia"
+                android:text="Registro de asisteLunes"
                 android:layout_marginTop="-35dp"
                 android:textColor="@color/colorNegro"
                 android:textSize="25sp"
@@ -198,7 +198,7 @@
             android:layout_gravity="center_horizontal">
             <TextView
                 android:id="@+id/titulo1E"
-                android:layout_width="250dp"
+                android:layout_width="160dp"
                 android:layout_height="wrap_content"
                 android:text="@string/txtNombreInfante"
                 android:gravity="start"
@@ -210,9 +210,9 @@
                 />
             <TextView
                 android:id="@+id/titulo2E"
-                android:layout_width="50dp"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:text="Asistió"
+                android:text="L         Ma        M       J         V"
                 android:gravity="center"
                 android:textColor="@color/colorNegro"
                 android:textStyle="bold"

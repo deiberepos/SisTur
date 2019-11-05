@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -39,12 +38,44 @@ public class AdaptadorListaAsistencia extends RecyclerView.Adapter<AdaptadorList
         final InfanteAsiste infante = nombresInfantes.get(position);
         String nombre = infante.getNombreInfante();
         holder.nombre.setText(nombre);
-        holder.asiste.setChecked(infante.getAsistencia());
-        holder.asiste.setOnClickListener(new View.OnClickListener() {
+        holder.chkLunes.setChecked(infante.getAsisteLunes());
+        holder.chkMartes.setChecked(infante.getAsisteMartes());
+        holder.chkMiercoles.setChecked(infante.getAsisteMiercoles());
+        holder.chkJueves.setChecked(infante.getAsisteJueves());
+        holder.chkViernes.setChecked(infante.getAsisteViernes());
+        holder.chkLunes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(holder.asiste.isChecked()){nombresInfantes.get(position).setAsistencia(true);}
-                else {nombresInfantes.get(position).setAsistencia(false);}
+                if(holder.chkLunes.isChecked()){nombresInfantes.get(position).setAsisteLunes(true);}
+                else {nombresInfantes.get(position).setAsisteLunes(false);}
+            }
+        });
+        holder.chkMartes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(holder.chkMartes.isChecked()){nombresInfantes.get(position).setAsisteMartes(true);}
+                else {nombresInfantes.get(position).setAsisteMartes(false);}
+            }
+        });
+        holder.chkMiercoles.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(holder.chkMiercoles.isChecked()){nombresInfantes.get(position).setAsisteMiercoles(true);}
+                else {nombresInfantes.get(position).setAsisteMiercoles(false);}
+            }
+        });
+        holder.chkJueves.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(holder.chkJueves.isChecked()){nombresInfantes.get(position).setAsisteJueves(true);}
+                else {nombresInfantes.get(position).setAsisteJueves(false);}
+            }
+        });
+        holder.chkViernes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(holder.chkViernes.isChecked()){nombresInfantes.get(position).setAsisteViernes(true);}
+                else {nombresInfantes.get(position).setAsisteViernes(false);}
             }
         });
     }
@@ -55,13 +86,21 @@ public class AdaptadorListaAsistencia extends RecyclerView.Adapter<AdaptadorList
     }
 
     class AsistenciaViewHolder extends RecyclerView.ViewHolder{
-        CheckBox asiste;
+        CheckBox chkLunes;
+        CheckBox chkMartes;
+        CheckBox chkMiercoles;
+        CheckBox chkJueves;
+        CheckBox chkViernes;
         TextView nombre;
 
         public AsistenciaViewHolder(View itemView) {
             super(itemView);
             nombre=itemView.findViewById(R.id.txvnombreAsistente);
-            asiste =itemView.findViewById(R.id.idchkSi);
+            chkLunes =itemView.findViewById(R.id.idchkLunes);
+            chkMartes = itemView.findViewById(R.id.idchkMartes);
+            chkMiercoles=itemView.findViewById(R.id.idchkMiercoles);
+            chkJueves=itemView.findViewById(R.id.idchkJueves);
+            chkViernes=itemView.findViewById(R.id.idchkViernes);
         }
     }
 }

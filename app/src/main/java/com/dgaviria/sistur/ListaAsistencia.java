@@ -39,7 +39,7 @@ public class ListaAsistencia extends AppCompatActivity {
     ArrayList<InfanteAsiste> nombresInfantes;
     private ArrayList<String> nombresCentros, listaSemanas;
     AdaptadorListaAsistencia adaptadorAsistencia;
-    DatabaseReference bdReferencia, referenciaCentros, refPoblCentros, refSemanas, refRegistAsistencia;
+    DatabaseReference bdReferencia, refSemanaListada, referenciaCentros, refPoblCentros, refSemanas, refRegistAsistencia;
     Calendar miCalendario;
     private Bundle bundle;
     private CheckBox chkasiste;
@@ -54,23 +54,11 @@ public class ListaAsistencia extends AppCompatActivity {
         mostrarFechaE();
         llenarListaCentros();
         llenarListaSemanas();
-        spnCentros.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                nombreCentro = adapterView.getItemAtPosition(i).toString();
-                lecturaNombresInfantes(nombreCentro);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-
         spnSemanas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 nombreSemana=adapterView.getItemAtPosition(i).toString();
+                lecturaNombresInfantes(nombreCentro,nombreSemana);
             }
 
             @Override
@@ -78,12 +66,26 @@ public class ListaAsistencia extends AppCompatActivity {
 
             }
         });
+        spnCentros.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                nombreCentro = adapterView.getItemAtPosition(i).toString();
+                lecturaNombresInfantes(nombreCentro,"S01: enero 02 a enero 05");
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
 
         btnAprobar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 fechaReporte = campoFechaAs.getText().toString();
-                refRegistAsistencia=bdReferencia.child("registroasistencia").child(nombreCentro).child(fechaReporte);
+                refRegistAsistencia=bdReferencia.child("registroasistencia").child(nombreCentro).child(nombreSemana);
                 for(int i = 0; i<nombresInfantes.size();i++){
                     InfanteAsiste infanteAsiste;
                     infanteAsiste = nombresInfantes.get(i);
@@ -99,37 +101,63 @@ public class ListaAsistencia extends AppCompatActivity {
 
     }
 
-    private void lecturaNombresInfantes(String centro) {
-        nombresInfantes = listaNombresInfantes(centro);
+    private void lecturaNombresInfantes(String centro, String semana) {
+        nombresInfantes = listaNombresInfantes(centro, semana);
         adaptadorAsistencia =new AdaptadorListaAsistencia(ListaAsistencia.this,nombresInfantes);
         recyclerAsistencia.setAdapter(adaptadorAsistencia);
         recyclerAsistencia.setLayoutManager(new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,false));
         adaptadorAsistencia.notifyDataSetChanged();
     }
 
-    private ArrayList<InfanteAsiste> listaNombresInfantes(String nomCentro) {
+    private ArrayList<InfanteAsiste> listaNombresInfantes(String nomCentro,String nomsemana) {
         final ArrayList<InfanteAsiste> lista=new ArrayList<>();
         refPoblCentros = bdReferencia.child("poblacionCentros").child(nomCentro);
-        refPoblCentros.addValueEventListener(new ValueEventListener() {
+        refSemanaListada=bdReferencia.child("registroasistencia").child(nomCentro).child(nomsemana);
+        refSemanaListada.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Censo censo =  new Censo();
-
-                for (DataSnapshot datos:dataSnapshot.getChildren()) {
-
-                    if(!datos.getKey().equals("totalcenso")){
-                        Censo infante = datos.getValue(Censo.class);
-                        InfanteAsiste infanteAsiste = new InfanteAsiste();
-                        infanteAsiste.setAsistencia(false);
-                        infanteAsiste.setNombreInfante(infante.getNombre()+" "+infante.getApellidos());
-                        infanteAsiste.setRegistroCivil(infante.getRegistro());
-                        //String nombreCompleto=infante.getNombre()+" "+infante.getApellidos();
+                if(dataSnapshot.exists()){
+                    for (DataSnapshot semanas:dataSnapshot.getChildren()) {
+                        InfanteAsiste infanteAsiste = semanas.getValue(InfanteAsiste.class);
                         lista.add(infanteAsiste);
                     }
+                    adaptadorAsistencia.notifyDataSetChanged();
+                    cantidadI = lista.size();
+                    cantidadTotalI.setText(String.valueOf(cantidadI));
                 }
-                adaptadorAsistencia.notifyDataSetChanged();
-                cantidadI = lista.size();
-                cantidadTotalI.setText(String.valueOf(cantidadI));
+                else {
+                    refPoblCentros.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            Censo censo =  new Censo();
+
+                            for (DataSnapshot datos:dataSnapshot.getChildren()) {
+
+                                if(!datos.getKey().equals("totalcenso")){
+                                    Censo infante = datos.getValue(Censo.class);
+                                    InfanteAsiste infanteAsiste = new InfanteAsiste();
+                                    infanteAsiste.setAsisteLunes(false);
+                                    infanteAsiste.setAsisteMartes(false);
+                                    infanteAsiste.setAsisteMiercoles(false);
+                                    infanteAsiste.setAsisteJueves(false);
+                                    infanteAsiste.setAsisteViernes(false);
+                                    infanteAsiste.setNombreInfante(infante.getNombre()+" "+infante.getApellidos());
+                                    infanteAsiste.setRegistroCivil(infante.getRegistro());
+                                    //String nombreCompleto=infante.getNombre()+" "+infante.getApellidos();
+                                    lista.add(infanteAsiste);
+                                }
+                            }
+                            adaptadorAsistencia.notifyDataSetChanged();
+                            cantidadI = lista.size();
+                            cantidadTotalI.setText(String.valueOf(cantidadI));
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                }
             }
 
             @Override
@@ -137,6 +165,7 @@ public class ListaAsistencia extends AppCompatActivity {
 
             }
         });
+
         return lista;
     }
 
@@ -232,7 +261,7 @@ public class ListaAsistencia extends AppCompatActivity {
         recibeRol = bundle.getString("rol");
         recibeUsuario =bundle.getString("usuario");
         cantidadTotalI = findViewById(R.id.idtxvTotalInfantesA);
-        chkasiste =findViewById(R.id.idchkSi);
+        chkasiste =findViewById(R.id.idchkLunes);
         //cantidadparcial=findViewById(R.id.idtxvAsistentes);
     }
 
