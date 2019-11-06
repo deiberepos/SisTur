@@ -31,7 +31,7 @@ import java.util.GregorianCalendar;
 
 public class ListaAsistencia extends AppCompatActivity {
     int ano, mes, dia, cantidadI;
-    TextView campoFechaAs, cantidadTotalI, cantidadparcial;
+    TextView campoFechaAs, cantidadTotalI;
     private String nombreCentro, nombreSemana, recibeRol, recibeUsuario, fechaReporte;
     Spinner spnCentros, spnSemanas;
     private ArrayAdapter adaptadorCentros, adaptadorSemanas;
@@ -261,8 +261,6 @@ public class ListaAsistencia extends AppCompatActivity {
         recibeRol = bundle.getString("rol");
         recibeUsuario =bundle.getString("usuario");
         cantidadTotalI = findViewById(R.id.idtxvTotalInfantesA);
-        chkasiste =findViewById(R.id.idchkLunes);
-        //cantidadparcial=findViewById(R.id.idtxvAsistentes);
     }
 
     @Override

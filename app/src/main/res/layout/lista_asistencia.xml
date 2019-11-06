@@ -4,10 +4,13 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
     tools:context=".ListaAsistencia">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        >
         <LinearLayout
             android:id="@+id/lay_encabezaAsistencia"
             android:layout_width="match_parent"
@@ -41,45 +44,28 @@
                 android:textColor="@color/colorNegro"
                 android:textSize="25sp"
                 android:textStyle="bold" />
+            <TextView
+                android:id="@+id/textoFecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Fecha del reporte: "
+                android:textSize="16sp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/colorNegro"
+                android:textStyle="italic|bold"
+                />
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="5dp">
-                <TextView
-                    android:id="@+id/textoFecha"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:layout_marginTop="8dp"
-                    android:text="Fecha del reporte: "
-                    android:textSize="14sp"
-                    android:textColor="@color/colorNegro"
-                    android:textStyle="italic|bold"
-                    />
+                android:background="@color/colorClaro">
                 <TextView
                     android:id="@+id/idedtFechaAsistencia"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:textSize="14sp"
-                    android:textColor="@color/colorNegro"
-                    android:textStyle="italic|bold"
-                    android:layout_marginTop="8dp"
-                    android:layout_toEndOf="@+id/textoFecha"
+                    style="@style/SelectorSemana"
                     />
-                <!--
-                <EditText
-                    android:id="@+id/idedtFechaAsistencia"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="seleccione fecha"
-                    android:layout_gravity="center"
-                    style="@style/IngresoDatos"
-                    android:onClick="mostrarCalendarioAs"
-                    android:layout_marginTop="0dp"
-                    android:layout_toEndOf="@+id/textoFecha"
-                    />-->
             </RelativeLayout>
             <TextView
                 android:layout_width="wrap_content"
@@ -129,35 +115,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal">
-                <!--
-                <TextView
-                    android:id="@+id/textoTitulo1"
-                    android:layout_width="130dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:text="Infantes Asistentes"
-                    android:textColor="@color/colorAzulOscuro2"
-                    android:textSize="12sp"
-                    android:textStyle="italic|bold" />
 
-                <TextView
-                    android:id="@+id/idtxvAsistentes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:layout_below="@id/textoTitulo1"
-                    android:layout_alignEnd="@id/textoTitulo1"
-                    android:layout_alignStart="@id/textoTitulo1"
-                    android:maxLines="1"
-                    android:text="0"
-                    android:textColor="@color/colorRojo"
-                    android:textSize="15sp"
-                    android:textStyle="italic|bold" />
-                    android:layout_toRightOf="@id/textoTitulo1"
-                    -->
                 <TextView
                     android:id="@+id/textoTitulo2"
                     android:layout_width="100dp"
@@ -195,7 +153,9 @@
             android:layout_below="@id/lay_encabezaAsistencia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal">
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:layout_gravity="center">
             <TextView
                 android:id="@+id/titulo1E"
                 android:layout_width="160dp"
@@ -204,20 +164,63 @@
                 android:gravity="start"
                 android:textColor="@color/colorNegro"
                 android:textStyle="bold"
-                android:layout_marginTop="8dp"
                 android:layout_marginLeft="10dp"
                 android:paddingEnd="10dp"
                 />
             <TextView
                 android:id="@+id/titulo2E"
-                android:layout_width="300dp"
+                android:layout_width="10sp"
                 android:layout_height="wrap_content"
-                android:text="L         Ma        M       J         V"
+                android:text="L"
                 android:gravity="center"
                 android:textColor="@color/colorNegro"
                 android:textStyle="bold"
-                android:layout_marginTop="8dp"
-                android:layout_toEndOf="@id/titulo1E"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/titulo1E"
+                />
+            <TextView
+                android:id="@+id/titulo3E"
+                android:layout_width="10sp"
+                android:layout_height="wrap_content"
+                android:text="M"
+                android:gravity="center"
+                android:textColor="@color/colorNegro"
+                android:layout_marginLeft="35dp"
+                android:textStyle="bold"
+                android:layout_toRightOf="@+id/titulo2E"
+                />
+            <TextView
+                android:id="@+id/titulo4E"
+                android:layout_width="10sp"
+                android:layout_height="wrap_content"
+                android:text="M"
+                android:gravity="center"
+                android:textColor="@color/colorNegro"
+                android:layout_marginLeft="30dp"
+                android:textStyle="bold"
+                android:layout_toRightOf="@+id/titulo3E"
+                />
+            <TextView
+                android:id="@+id/titulo5E"
+                android:layout_width="10sp"
+                android:layout_height="wrap_content"
+                android:text="J"
+                android:gravity="center"
+                android:textColor="@color/colorNegro"
+                android:layout_marginLeft="32dp"
+                android:textStyle="bold"
+                android:layout_toRightOf="@+id/titulo4E"
+                />
+            <TextView
+                android:id="@+id/titulo6E"
+                android:layout_width="10sp"
+                android:layout_height="wrap_content"
+                android:text="V"
+                android:gravity="center"
+                android:textColor="@color/colorNegro"
+                android:layout_marginLeft="32dp"
+                android:textStyle="bold"
+                android:layout_toRightOf="@+id/titulo5E"
                 />
             <View
                 android:layout_width="match_parent"

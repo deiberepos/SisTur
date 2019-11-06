@@ -13,13 +13,13 @@
         android:layout_gravity="center"
         card_view:cardCornerRadius="4dp"
         >
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_marginLeft="10dp"
-            android:orientation="horizontal">
+            android:layout_marginLeft="5dp"
+            >
             <TextView
-                android:id="@+id/txvnombreAsistente"
+                android:id="@+id/txvNombreAsistente"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -29,47 +29,57 @@
                 android:text="@string/txtNombreAtendido"/>
 
             <CheckBox
-                android:id="@+id/idchkLunes"
-                android:layout_width="40dp"
+                android:id="@+id/idChkLunes"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
+                android:layout_marginLeft="0dp"
+                android:layout_toEndOf="@id/txvNombreAsistente"
                 app:buttonTint="@color/colorAzulOscuro3"
                 />
             <CheckBox
-                android:id="@+id/idchkMartes"
-                android:layout_width="40dp"
+                android:id="@+id/idChkMartes"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
+                android:layout_marginLeft="8dp"
+                android:layout_toEndOf="@+id/idChkLunes"
                 app:buttonTint="@color/colorAzulOscuro3"
                 />
             <CheckBox
-                android:id="@+id/idchkMiercoles"
-                android:layout_width="40dp"
+                android:id="@+id/idChkMiercoles"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
+                android:layout_marginLeft="8dp"
+                android:layout_toEndOf="@+id/idChkMartes"
                 app:buttonTint="@color/colorAzulOscuro3"
                 />
             <CheckBox
-                android:id="@+id/idchkJueves"
-                android:layout_width="40dp"
+                android:id="@+id/idChkJueves"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
+                android:layout_marginLeft="8dp"
+                android:layout_toEndOf="@+id/idChkMiercoles"
                 app:buttonTint="@color/colorAzulOscuro3"
                 />
             <CheckBox
-                android:id="@+id/idchkViernes"
-                android:layout_width="40dp"
+                android:id="@+id/idChkViernes"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
+                android:layout_marginLeft="8dp"
+                android:layout_toEndOf="@+id/idChkJueves"
                 android:gravity="center"
                 app:buttonTint="@color/colorAzulOscuro3"
                 />
 
-        </LinearLayout>
+        </RelativeLayout>
     </androidx.cardview.widget.CardView>
     <View
         android:layout_width="match_parent"

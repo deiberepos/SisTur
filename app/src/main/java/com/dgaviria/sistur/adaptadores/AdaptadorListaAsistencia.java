@@ -95,12 +95,12 @@ public class AdaptadorListaAsistencia extends RecyclerView.Adapter<AdaptadorList
 
         public AsistenciaViewHolder(View itemView) {
             super(itemView);
-            nombre=itemView.findViewById(R.id.txvnombreAsistente);
-            chkLunes =itemView.findViewById(R.id.idchkLunes);
-            chkMartes = itemView.findViewById(R.id.idchkMartes);
-            chkMiercoles=itemView.findViewById(R.id.idchkMiercoles);
-            chkJueves=itemView.findViewById(R.id.idchkJueves);
-            chkViernes=itemView.findViewById(R.id.idchkViernes);
+            nombre=itemView.findViewById(R.id.txvNombreAsistente);
+            chkLunes =itemView.findViewById(R.id.idChkLunes);
+            chkMartes = itemView.findViewById(R.id.idChkMartes);
+            chkMiercoles=itemView.findViewById(R.id.idChkMiercoles);
+            chkJueves=itemView.findViewById(R.id.idChkJueves);
+            chkViernes=itemView.findViewById(R.id.idChkViernes);
         }
     }
 }
