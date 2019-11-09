@@ -66,7 +66,7 @@ public class MenuPrincipal extends AppCompatActivity {
                         break;
                     case 7:
                         //Antes de acceder al menu de galería se saca el total de niños asociados a los Centros
-                        // y se envia para realizar el cálculo del total de compras que se debe realizar
+                        // y se envia para poder hacer el cálculo del total de compras que se debe realizar
                         miReferencia= FirebaseDatabase.getInstance().getReference();
                         childpoblacion=miReferencia.child("poblacionCentros");
                         childpoblacion.addValueEventListener(new ValueEventListener() {
@@ -228,20 +228,26 @@ public class MenuPrincipal extends AppCompatActivity {
                     //if (misOpciones.getActivo()==true)
                       //  listadoOpciones.add(misOpciones);
                     if(recibeRol.equals("compras")&& misOpciones.getActivo()){
-                        //if(misOpciones.getOrden().equals(5) ||misOpciones.getOrden().equals(7) ||misOpciones.getOrden().equals(8)){
-                        if(misOpciones.getMinimorol().equals("compras")||misOpciones.getMinimorol().equals("basico"))  {
+                        if(misOpciones.getOrden().equals(5) ||misOpciones.getOrden().equals(7) ||misOpciones.getOrden().equals(8)||misOpciones.getOrden().equals(9)){
+                        //if(misOpciones.getMinimorol().equals("compras")||misOpciones.getMinimorol().equals("basico"))  {
                         listadoOpciones.add(misOpciones);
                         }
                     }else
                         if(recibeRol.equals("basico")&& misOpciones.getActivo()){
-                            //if(misOpciones.getOrden().equals(5) ||misOpciones.getOrden().equals(8)){
-                            if(misOpciones.getMinimorol().equals("basico"))  {
+                            if(misOpciones.getOrden().equals(5) ||misOpciones.getOrden().equals(8)||misOpciones.getOrden().equals(9)||misOpciones.getOrden().equals(10)){
+                            //if(misOpciones.getMinimorol().equals("basico"))  {
                                 listadoOpciones.add(misOpciones);
                         }
                     }else
-                        if (recibeRol.equals("gestor") && misOpciones.getActivo()){
-                        listadoOpciones.add(misOpciones);
-                    }
+                        if(recibeRol.equals("gestor")&& misOpciones.getActivo()){
+                            if(misOpciones.getOrden().equals(2) ||misOpciones.getOrden().equals(3)||misOpciones.getOrden().equals(4)||misOpciones.getOrden().equals(5)||misOpciones.getOrden().equals(6)){
+                                //if(misOpciones.getMinimorol().equals("basico"))  {
+                                listadoOpciones.add(misOpciones);
+                            }
+                    }else
+                        if (recibeRol.equals("administrador") && misOpciones.getActivo()){
+                            listadoOpciones.add(misOpciones);
+                        }
                 }
                 adaptadorMenu.notifyDataSetChanged();
             }
