@@ -194,7 +194,7 @@ public class CrearUsuarios extends AppCompatActivity {
             }
         });
 
-        barraProgreso.setVisibility(View.GONE);
+//        barraProgreso.setVisibility(View.GONE);
         if (rolUsuario!=0) {
             //verifica que no se repita el nombre del usuario
             miReferencia.child(usuarioU).addListenerForSingleValueEvent(new ValueEventListener() {
