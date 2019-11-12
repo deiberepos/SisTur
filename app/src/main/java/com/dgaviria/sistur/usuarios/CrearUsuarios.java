@@ -100,7 +100,7 @@ public class CrearUsuarios extends AppCompatActivity {
     }
 
     private void verificarDatosUsuario(){
-        barraProgreso.setVisibility(View.VISIBLE);
+//        barraProgreso.setVisibility(View.VISIBLE);
         miReferencia= FirebaseDatabase.getInstance().getReference("usuarios");
         //Verifica que escriba los valores en todos los campos requeridos
         if (editTextUsuario.getText().toString().trim().toLowerCase().isEmpty()){
