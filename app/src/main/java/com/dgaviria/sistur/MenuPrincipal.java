@@ -23,7 +23,7 @@ public class MenuPrincipal extends AppCompatActivity {
     List<MenuOpciones> listadoOpciones;
     AdaptadorMenuPpal adaptadorMenu;
     DatabaseReference miReferencia, childpoblacion;
-    private Bundle recibeParametros;
+    Bundle recibeParametros;
     public static String recibeRol, recibeUsuario;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

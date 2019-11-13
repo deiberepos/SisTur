@@ -150,18 +150,14 @@
                 android:textCursorDrawable="@color/colorRojo"
                 android:textSize="15sp" />
 
-            <GridLayout
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:columnCount="3"
-                android:rowCount="4">
-
+                android:layout_gravity="center">
                 <TextView
-                    android:layout_width="180sp"
+                    android:id="@+id/txtTituloRol"
+                    android:layout_width="140sp"
                     android:layout_height="wrap_content"
-                    android:layout_row="0"
-                    android:layout_column="0"
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:shadowColor="@color/colorClaro"
@@ -172,113 +168,71 @@
                     android:textColor="@color/colorNegro"
                     android:textSize="20sp"
                     android:textStyle="bold" />
-
                 <RadioGroup
-                    android:id="@+id/rgRoles"
-                    android:layout_width="match_parent"
+                    android:id="@+id/grupoRoles"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_row="1"
-                    android:layout_rowSpan="3"
-                    android:layout_column="0"
-                    android:layout_gravity="center"
-                    android:orientation="vertical"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:paddingBottom="10dp"
-                    android:paddingTop="10dp"
-                    android:background="@drawable/personalizar_edit"
-                    android:paddingEnd="15dp">
-
+                    android:layout_below="@+id/txtTituloRol"
+                    android:gravity="center"
+                    >
                     <RadioButton
                         android:id="@+id/rolgest"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:checked="true"
+                        android:checked="false"
                         android:text="@string/txtGestor"
                         android:textColor="@color/colorNegro"
                         android:typeface="monospace"
-                        app:buttonTint="@color/colorRojo" />
-
+                        app:buttonTint="@color/colorRojo"
+                        android:layout_gravity="start"
+                        />
                     <RadioButton
                         android:id="@+id/rolcomp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:checked="true"
+                        android:checked="false"
                         android:text="@string/txtCompras"
                         android:textColor="@color/colorNegro"
                         android:typeface="monospace"
-                        app:buttonTint="@color/colorRojo" />
-
+                        app:buttonTint="@color/colorRojo"
+                        android:layout_gravity="start"
+                        />
                     <RadioButton
                         android:id="@+id/rolbasi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:checked="true"
+                        android:checked="false"
                         android:text="@string/txtBasico"
                         android:textColor="@color/colorNegro"
                         android:typeface="monospace"
-                        app:buttonTint="@color/colorRojo" />
+                        app:buttonTint="@color/colorRojo"
+                        android:layout_gravity="start"
+                        />
                 </RadioGroup>
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="1dp"
-                    android:layout_row="0"
-                    android:layout_column="1" />
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="1dp"
-                    android:layout_row="0"
-                    android:layout_column="2" />
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="1dp"
-                    android:layout_row="1"
-                    android:layout_column="1" />
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="10dp"
-                    android:layout_row="2"
-                    android:layout_column="1" />
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="1dp"
-                    android:layout_row="3"
-                    android:layout_column="1" />
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="1dp"
-                    android:layout_row="3"
-                    android:layout_column="2" />
-
                 <Button
                     android:id="@+id/botonRegistrar"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_row="1"
-                    android:layout_column="2"
-                    android:layout_gravity="center_vertical"
                     android:background="@drawable/personalizar_button"
                     android:text="@string/txtRegistrarUsuario"
                     android:textAllCaps="false"
-                    android:textColor="@color/colorClaro" />
-
+                    android:textColor="@color/colorClaro"
+                    android:layout_toEndOf="@+id/grupoRoles"
+                    android:layout_centerInParent="true"
+                    android:layout_marginStart="60dp"/>
                 <Button
                     android:id="@+id/botonActualizar"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_row="3"
-                    android:layout_column="2"
                     android:background="@drawable/personalizar_button"
+                    android:gravity="center"
                     android:text="@string/txtActualizaUsuario"
                     android:textAllCaps="false"
-                    android:textColor="@color/colorClaro" />
-            </GridLayout>
+                    android:textColor="@color/colorClaro"
+                    android:layout_toEndOf="@+id/grupoRoles"
+                    android:layout_centerInParent="true"
+                    android:layout_marginStart="60dp"/>
+            </RelativeLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

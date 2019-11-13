@@ -15,6 +15,30 @@
       },
       "oauth_client": [
         {
+          "client_id": "518528650096-mcqlk7bj7e8d4cplv5fvdr8hs4kjm2ej.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dgaviria.sistur",
+            "certificate_hash": "2f576cc5513ce0a2ccc6a8526af43d35a88d52c0"
+          }
+        },
+        {
+          "client_id": "518528650096-7fbh95khmdh71vpnv5qpsqju06vieafb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dgaviria.sistur",
+            "certificate_hash": "0e8c48215c87b04849792cc07a9341a58835045c"
+          }
+        },
+        {
+          "client_id": "518528650096-9lds49nk7jp640r9crtajhucg6vtk57c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dgaviria.sistur",
+            "certificate_hash": "b5b4ac75b73a60c4bf09de298b0e350f04ba94c2"
+          }
+        },
+        {
           "client_id": "518528650096-q48noil1m8557064e66uekhi4qlip7gh.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

@@ -26,15 +26,13 @@ import com.google.firebase.database.ValueEventListener;
 public class CrearUsuarios extends AppCompatActivity {
     DatabaseReference miReferencia,misDatos;
     EditText editTextUsuario, editTextContrasena,editTextVerificaContrasena,editTextCorreo,editTextNombres ;
-    ProgressBar barraProgreso;
     String usuarioU,contrasenaU,contrasenaV,correoE,nombresU,nombreRol;
     LinearLayout miContenedor;
     Button botonRegistra,botonactualizar;
-    RadioGroup rolSeleccionado;
-    Integer rolUsuario=0;
+    RadioGroup grupoRoles;
     RadioButton rolgest,rolcomp,rolbasic;
-    private String opciones ="",usuario,nombre,contraseña,correo;
-    Bundle bundle;
+    String opciones ="",usuario,nombre, contrasena,contrasenav,correo;
+    Bundle recibeParametros;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,17 +44,17 @@ public class CrearUsuarios extends AppCompatActivity {
             botonactualizar.setVisibility(View.INVISIBLE);
         }else {
             botonRegistra.setVisibility(View.INVISIBLE);
-            usuario= bundle.getString("usuario");
+            usuario= recibeParametros.getString("usuario");
             editTextUsuario.setText(usuario);
-            nombre = bundle.getString("nombre");
+            nombre = recibeParametros.getString("nombre");
             editTextNombres.setText(nombre);
-            contraseña = bundle.getString("contrasena");
-            editTextContrasena.setText(contraseña);
-            contraseña = bundle.getString("contrasena");
-            editTextVerificaContrasena.setText(contraseña);
-            correo = bundle.getString("correo");
+            contrasena = recibeParametros.getString("contrasena");
+            editTextContrasena.setText(contrasena);
+            contrasenav = contrasena;
+            editTextVerificaContrasena.setText(contrasenav);
+            correo = recibeParametros.getString("correo");
             editTextCorreo.setText(correo);
-            switch (bundle.getString("tipo")){
+            switch (recibeParametros.getString("tipo")){
                 case "gestor":
                     rolgest.setChecked(true);
                     break;
@@ -80,6 +78,18 @@ public class CrearUsuarios extends AppCompatActivity {
                 verificarDatosUsuario();
             }
         });
+        switch(grupoRoles.getCheckedRadioButtonId()){
+            case R.id.rolbasi:
+                nombreRol="basico";
+                break;
+            case R.id.rolcomp:
+                nombreRol="compras";
+                break;
+            case R.id.rolgest:
+                nombreRol="gestor";
+                break;
+        }
+
     }
     private void referenciar(){
         miContenedor=findViewById(R.id.contenedor);
@@ -88,25 +98,22 @@ public class CrearUsuarios extends AppCompatActivity {
         editTextVerificaContrasena= findViewById(R.id.editTextVerificaPassword);
         editTextCorreo=findViewById(R.id.editTextCorreo);
         editTextNombres=findViewById(R.id.editTextNombre);
-        barraProgreso = findViewById(R.id.barraProgreso);
         botonRegistra=findViewById(R.id.botonRegistrar);
-        rolSeleccionado=findViewById(R.id.rgRoles);
         botonactualizar=findViewById(R.id.botonActualizar);
+        grupoRoles=findViewById(R.id.grupoRoles);
         rolgest=findViewById(R.id.rolgest);
         rolcomp=findViewById(R.id.rolcomp);
         rolbasic=findViewById(R.id.rolbasi);
-        bundle=getIntent().getExtras();
-        opciones=bundle.getString("opcion");
+        recibeParametros =getIntent().getExtras();
+        opciones= recibeParametros.getString("opcion");
     }
 
     private void verificarDatosUsuario(){
-//        barraProgreso.setVisibility(View.VISIBLE);
         miReferencia= FirebaseDatabase.getInstance().getReference("usuarios");
         //Verifica que escriba los valores en todos los campos requeridos
         if (editTextUsuario.getText().toString().trim().toLowerCase().isEmpty()){
             editTextUsuario.setError("Nombre de usuario requerido");
             editTextUsuario.requestFocus();
-            barraProgreso.setVisibility(View.GONE);
             return;
         }
         else{
@@ -116,7 +123,6 @@ public class CrearUsuarios extends AppCompatActivity {
         if (editTextContrasena.getText().toString().trim().isEmpty()){
             editTextContrasena.setError("Contraseña requerida");
             editTextContrasena.requestFocus();
-            barraProgreso.setVisibility(View.GONE);
             return;
         }
         else{
@@ -126,7 +132,6 @@ public class CrearUsuarios extends AppCompatActivity {
         if (editTextVerificaContrasena.getText().toString().trim().isEmpty()){
             editTextVerificaContrasena.setError("Validación requerida");
             editTextVerificaContrasena.requestFocus();
-            barraProgreso.setVisibility(View.GONE);
             return;
         }
         else{
@@ -136,7 +141,6 @@ public class CrearUsuarios extends AppCompatActivity {
             if (!contrasenaU.equals(contrasenaV)){
                 editTextVerificaContrasena.setError("Las contraseñas no coinciden");
                 editTextVerificaContrasena.requestFocus();
-                barraProgreso.setVisibility(View.GONE);
                 return;
             }
             else{
@@ -147,7 +151,6 @@ public class CrearUsuarios extends AppCompatActivity {
         if (editTextCorreo.getText().toString().trim().toLowerCase().isEmpty()){
             editTextCorreo.setError("El correo es requerido");
             editTextCorreo.requestFocus();
-            barraProgreso.setVisibility(View.GONE);
             return;
         }
         else{
@@ -159,14 +162,12 @@ public class CrearUsuarios extends AppCompatActivity {
             else{
                 editTextCorreo.setError("El correo no es válido");
                 editTextCorreo.requestFocus();
-                barraProgreso.setVisibility(View.GONE);
                 return;
             }
         }
         if (editTextNombres.getText().toString().trim().isEmpty()){
             editTextNombres.setError("Los nombres y apellidos son requeridos");
             editTextNombres.requestFocus();
-            barraProgreso.setVisibility(View.GONE);
             return;
         }
         else{
@@ -174,28 +175,15 @@ public class CrearUsuarios extends AppCompatActivity {
             editTextNombres.setText(nombresU);
         }
         //verifica el rol seleccionado
-        rolSeleccionado.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int cualRol) {
-                switch (cualRol) {
-                    case R.id.rolgest:
-                        nombreRol="gestor";
-                        break;
-                    case R.id.rolcomp:
-                        nombreRol="compras";
-                        break;
-                    case R.id.rolbasi:
-                        nombreRol="basico";
-                        break;
-                    default:
-                        nombreRol="";
-                        break;
-                }
-            }
-        });
+        if (rolgest.isChecked())
+            nombreRol="gestor";
+        else if (rolcomp.isChecked())
+            nombreRol="compras";
+        else if (rolbasic.isChecked())
+            nombreRol="basico";
+        else nombreRol="";
 
-//        barraProgreso.setVisibility(View.GONE);
-        if (rolUsuario!=0) {
+        if (!nombreRol.isEmpty()) {
             //verifica que no se repita el nombre del usuario
             miReferencia.child(usuarioU).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -262,8 +250,8 @@ public class CrearUsuarios extends AppCompatActivity {
         //construye el objeto que se va a guardar en la base de datos
         miReferencia= FirebaseDatabase.getInstance().getReference();
         //guarda los datos del usuario
-        misDatos=miReferencia.child("usuarios");
-        misDatos.child(usuarioU).setValue(new Usuarios(usuarioU,contrasenaU,nombresU,correoE,nombreRol));
+        misDatos=miReferencia.child("usuarios").child(usuarioU);
+        misDatos.setValue(new Usuarios(usuarioU,contrasenaU,nombresU,correoE,nombreRol));
         Toast.makeText(this,"Usuario creado exitosamente",Toast.LENGTH_LONG).show();
         finish();
     }

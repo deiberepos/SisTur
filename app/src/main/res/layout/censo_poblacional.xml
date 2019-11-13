@@ -310,27 +310,35 @@
                 android:layout_gravity="center"
                 android:text="@string/txtActivo"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <Button
-                android:layout_marginTop="12dp"
-                android:id="@+id/btnguardarcenso"
-                android:layout_width="200dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:background="@drawable/personalizar_button"
-                android:text="@string/txtBtnGuardar"
-                android:textAllCaps="false"
-                android:textColor="@color/colorClaro" />
-            <Button
-                android:id="@+id/btnactualizar"
-                android:layout_marginTop="12dp"
-                android:layout_width="200dp"
-                android:layout_height="40dp"
-                android:background="@drawable/personalizar_button"
-                android:text="@string/txtBtnActualizar"
-                android:textAllCaps="false"
-                android:layout_gravity="center"
-                android:textColor="@color/colorClaro" />
+                android:layout_height="wrap_content"
+                android:shadowColor="@color/colorClaro"
+                android:shadowDx="-2"
+                android:shadowDy="-2"
+                android:shadowRadius="1.5"/>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+                <Button
+                    android:layout_marginTop="12dp"
+                    android:id="@+id/btnguardarcenso"
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/personalizar_button"
+                    android:text="@string/txtBtnGuardar"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorClaro" />
+                <Button
+                    android:id="@+id/btnactualizar"
+                    android:layout_marginTop="12dp"
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/personalizar_button"
+                    android:text="@string/txtBtnActualizar"
+                    android:textAllCaps="false"
+                    android:layout_gravity="center"
+                    android:textColor="@color/colorClaro" />
+            </RelativeLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
