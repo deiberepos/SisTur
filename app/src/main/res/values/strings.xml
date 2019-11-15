@@ -1,6 +1,8 @@
 <resources>
-    <string name="app_name">SISALTUR</string>
-
+    <string name="app_name">AlimentApp</string>
+    <string name="txtIngresar">Ingresar</string>
+    <string name="txtLoginUsuario">Usuario</string>
+    <string name="txtLoginClave">Contraseña</string>
     <string name="nombre_asignado">Nombre asignado</string>
     <string name="txtListaCDHI">Registro de CDIH/HCB</string>
     <string name="txtConsultaMinutas">Consulta de Minutas</string>

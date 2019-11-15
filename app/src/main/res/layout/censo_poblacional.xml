@@ -7,14 +7,15 @@
     android:orientation="vertical"
     tools:context=".CensoPoblacional">
     <LinearLayout
-        android:layout_width="60dp"
-        android:layout_height="34dp"
+        android:layout_width="53dp"
+        android:layout_height="60dp"
         android:layout_marginTop="10dp"
+        android:layout_marginStart="2dp"
         android:orientation="vertical">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:background="@drawable/logoinicial"
+            android:background="@drawable/iconosuperior"
             android:rotation="0"
             android:scaleType="fitCenter"
             android:scaleX="1"
@@ -29,7 +30,7 @@
         android:shadowDy="-2"
         android:shadowRadius="1.5"
         android:text="@string/txtCensoPoblacional"
-        android:layout_marginTop="-35dp"
+        android:layout_marginTop="-45dp"
         android:textColor="@color/colorNegro"
         android:textSize="25sp"
         android:textStyle="bold" />

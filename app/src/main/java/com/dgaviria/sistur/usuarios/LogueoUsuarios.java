@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.dgaviria.sistur.clases.Usuarios;
@@ -23,7 +23,7 @@ public class LogueoUsuarios extends AppCompatActivity{
     DatabaseReference miReferencia;
     EditText editTextUsuario, editTextContrasena;
     String nombreU,contrasenaU;
-    ImageButton botonIngresar;
+    Button botonIngresar;
     public static String enviarol;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

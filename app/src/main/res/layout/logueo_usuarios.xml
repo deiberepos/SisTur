@@ -1,129 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/contenedor"
     tools:context=".usuarios.LogueoUsuarios">
-
-    <ImageView
-        android:id="@+id/bgHeader"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="253dp"
-        android:contentDescription="header"
-        android:scaleType="fitXY"
-        android:src="@drawable/trazado1" />
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="253dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="-13dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/trazado2" />
-
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="170dp"
-        android:layout_height="97dp"
-        android:layout_below="@+id/bgHeader"
-        android:layout_alignTop="@id/bgHeader"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/logoinicial" />
-    <TextView
-        android:id="@+id/tvlogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="90dp"
-        android:layout_below="@id/logo"
-        android:shadowColor="@color/colorClaro"
-        android:textColor="@color/colorNegro"
-        android:text="@string/txtIngresoUsuarios"
-        android:textSize="25sp"
-        android:textStyle="bold" />
+        android:layout_height="180dp"
+        android:orientation="vertical"
+        android:background="@drawable/fondologueo">
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/iconologin" />
+    </LinearLayout>
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:layout_width="270dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:gravity="center"
-        android:layout_below="@id/tvlogin">
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cv"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp">
+        <TextView
+            android:id="@+id/txtLogUsuario"
             android:layout_width="270dp"
-            android:layout_height="130dp"
-            app:cardCornerRadius="30dp"
-            app:cardElevation="3dp">
-
-            <RelativeLayout
-                android:layout_width="270dp"
-                android:layout_height="140dp"
-                android:padding="10dp">
-
-                <EditText
-                    android:id="@+id/editTextUsuario"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:background="@color/colorBlanco"
-                    android:drawableStart="@drawable/user"
-                    android:drawablePadding="30dp"
-                    android:hint="@string/txtHintUsuarios"
-                    android:inputType="textPostalAddress"
-                    android:padding="10dp" />
-
-                <View
-                    android:id="@+id/view1"
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:layout_below="@+id/editTextUsuario"
-                    android:background="@color/colorAzulOscuro3" />
-
-                <EditText
-                    android:id="@+id/editTextPassword"
-                    android:layout_width="315dp"
-                    android:layout_height="50dp"
-                    android:layout_below="@id/view1"
-                    android:layout_margin="5dp"
-                    android:background="@color/colorBlanco"
-                    android:drawableStart="@drawable/pass"
-                    android:drawablePadding="30dp"
-                    android:hint="@string/txtHintContraseñas"
-                    android:inputType="textPassword"
-                    android:padding="10dp" />
-            </RelativeLayout>
-        </androidx.cardview.widget.CardView>
-
-        <RelativeLayout
-            android:layout_width="60dp"
-            android:layout_height="171dp"
-            android:layout_alignTop="@id/cv"
-            android:layout_alignEnd="@id/cv"
-            android:layout_alignBottom="@id/cv"
-            android:layout_marginTop="-4dp"
-            android:layout_marginEnd="-41dp"
-            android:layout_marginBottom="1dp"
-            android:elevation="10dp">
-
-            <ImageButton
-                android:id="@+id/botonIngreso"
-                android:layout_width="460dp"
-                android:layout_height="60dp"
-                android:layout_centerVertical="true"
-                android:background="@drawable/btninicio"
-                android:src="@drawable/arrow" />
-        </RelativeLayout>
+            android:layout_height="wrap_content"
+            android:text="@string/txtLoginUsuario"
+            android:textColor="@color/colorPrimarioOscuro"
+            android:textStyle="bold" />
+        <EditText
+            android:id="@+id/editTextUsuario"
+            android:layout_width="270dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtLogUsuario"
+            android:layout_marginTop="5dp"
+            android:drawableEnd="@drawable/ic_user"
+            android:drawablePadding="20dp"
+            android:hint="@string/txtHintUsuarios"
+            android:inputType="textPostalAddress"
+            android:padding="10dp"
+            android:textColor="@color/colorNegro"
+            android:textColorHint="@color/colorGrisClaro"
+            />
+        <TextView
+            android:id="@+id/txtLogClave"
+            android:layout_width="270dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editTextUsuario"
+            android:layout_marginTop="30dp"
+            android:text="@string/txtLoginClave"
+            android:textColor="@color/colorPrimarioOscuro"
+            android:textStyle="bold" />
+        <EditText
+            android:id="@+id/editTextPassword"
+            android:layout_width="270dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/txtLogClave"
+            android:layout_marginTop="5dp"
+            android:drawableEnd="@drawable/ic_pass"
+            android:drawablePadding="20dp"
+            android:hint="@string/txtHintContraseñas"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:textColor="@color/colorNegro"
+            android:textColorHint="@color/colorGrisClaro" />
     </RelativeLayout>
-    <ProgressBar
-        android:id="@+id/barraProgreso"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:visibility="gone"
-        />
-</RelativeLayout>
+    <Button
+        android:id="@+id/botonIngreso"
+        android:layout_width="220dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/personalizar_button"
+        android:text="@string/txtIngresar"
+        android:textAllCaps="false"
+        android:layout_gravity="center"
+        android:textColor="@color/colorBlanco" />
+
+</LinearLayout>

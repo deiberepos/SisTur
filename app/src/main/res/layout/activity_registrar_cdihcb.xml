@@ -7,14 +7,15 @@
     android:layout_height="match_parent"
     tools:context=".RegistrarCDIHCB">
     <LinearLayout
-        android:layout_width="60dp"
-        android:layout_height="34dp"
+        android:layout_width="53dp"
+        android:layout_height="60dp"
         android:layout_marginTop="10dp"
+        android:layout_marginStart="2dp"
         android:orientation="vertical">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:background="@drawable/logoinicial"
+            android:background="@drawable/iconosuperior"
             android:rotation="0"
             android:scaleType="fitCenter"
             android:scaleX="1"
@@ -30,7 +31,7 @@
         android:shadowRadius="1.5"
         android:text="@string/txtCreacionCDI"
         android:textColor="@color/colorNegro"
-        android:layout_marginTop="-35dp"
+        android:layout_marginTop="-45dp"
         android:textSize="25sp"
         android:textStyle="bold" />
     <ScrollView
@@ -119,58 +120,6 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="3dp"/>
-            <!--
-                    <RadioGroup
-                        android:orientation="vertical"
-                        android:id="@+id/idrgveredaCDI"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <RadioButton
-                            android:id="@+id/idrbPlaya"
-                            style="@style/TexviewsubTitulo"
-                            android:text="Vereda La Playa"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                        <RadioButton
-                            android:id="@+id/idrbAlpes"
-                            style="@style/TexviewsubTitulo"
-                            android:text="Vereda Alpes"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                        <RadioButton
-                            android:id="@+id/idrbVenecia"
-                            style="@style/TexviewsubTitulo"
-                            android:text="Vereda Venecia"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                        <RadioButton
-                            android:id="@+id/idrbSarzal"
-                            style="@style/TexviewsubTitulo"
-                            android:text="Vereda Sarzal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                        <RadioButton
-                            android:id="@+id/idrbTrujillo"
-                            style="@style/TexviewsubTitulo"
-                            android:text="Vereda Trujillo"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                    </RadioGroup>
-
-                     <LinearLayout
-                         android:orientation="vertical"
-                         android:scrollY="@dimen/cardview_compat_inset_shadow"
-                         android:layout_width="match_parent"
-                         android:background="?attr/selectableItemBackground"
-                         android:layout_height="250dp">
-                         <ListView
-                             android:scrollbarAlwaysDrawVerticalTrack="true"
-                             android:id="@+id/idlisVeredas"
-                             android:layout_width="match_parent"
-                             android:layout_height="match_parent"/>
-
-                     </LinearLayout>-->
             <TextView
                 style="@style/TexviewsubTitulo"
                 android:id="@+id/idtvresponsable"
