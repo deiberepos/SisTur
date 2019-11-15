@@ -115,23 +115,23 @@ public class CrearCalendario extends AppCompatActivity {
     }
 
     private void actualizaSemana(){
-        if (minutaLunes!=null && minutaLunes.equals("") && !minutaLunes.equals("X") && !minutaLunes.equals("V")){
+        if (minutaLunes!=null && !minutaLunes.equals("") && !minutaLunes.equals("X") && !minutaLunes.equals("V")){
             miReferenciaCal= FirebaseDatabase.getInstance().getReference("semanas").child(semanaSeleccionada).child("minuta1");
             miReferenciaCal.setValue(minutaLunes);
         }
-        if (minutaMartes!=null && minutaMartes.equals("") && !minutaMartes.equals("X") && !minutaMartes.equals("V")) {
+        if (minutaMartes!=null && !minutaMartes.equals("") && !minutaMartes.equals("X") && !minutaMartes.equals("V")) {
             miReferenciaCal = FirebaseDatabase.getInstance().getReference("semanas").child(semanaSeleccionada).child("minuta2");
             miReferenciaCal.setValue(minutaMartes);
         }
-        if (minutaMiercoles!=null && minutaMiercoles.equals("") && !minutaMiercoles.equals("X") && !minutaMiercoles.equals("V")) {
+        if (minutaMiercoles!=null && !minutaMiercoles.equals("") && !minutaMiercoles.equals("X") && !minutaMiercoles.equals("V")) {
             miReferenciaCal = FirebaseDatabase.getInstance().getReference("semanas").child(semanaSeleccionada).child("minuta3");
             miReferenciaCal.setValue(minutaMiercoles);
         }
-        if (minutaJueves!=null && minutaJueves.equals("")&& !minutaJueves.equals("X") && !minutaJueves.equals("V")) {
+        if (minutaJueves!=null && !minutaJueves.equals("")&& !minutaJueves.equals("X") && !minutaJueves.equals("V")) {
             miReferenciaCal = FirebaseDatabase.getInstance().getReference("semanas").child(semanaSeleccionada).child("minuta4");
             miReferenciaCal.setValue(minutaJueves);
         }
-        if (minutaViernes!=null && minutaViernes.equals("")&& !minutaViernes.equals("X") && !minutaViernes.equals("V")) {
+        if (minutaViernes!=null && !minutaViernes.equals("")&& !minutaViernes.equals("X") && !minutaViernes.equals("V")) {
             miReferenciaCal = FirebaseDatabase.getInstance().getReference("semanas").child(semanaSeleccionada).child("minuta5");
             miReferenciaCal.setValue(minutaViernes);
         }

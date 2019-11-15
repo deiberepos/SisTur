@@ -286,7 +286,8 @@ public class CompraGaleria extends AppCompatActivity {
                                                         float cantAntes=Float.parseFloat(textoAntes);
                                                         float cantMas=Float.parseFloat(textoMas);
                                                         //cantMas = cantMas + cantAntes;
-                                                        float resultado = (cantMas/12)*totalInfantes;
+                                                        //float resultado = (cantMas/12)*totalInfantes;
+                                                        float resultado = Math.round((cantMas/12)*totalInfantes);
                                                         cantMas = resultado + cantAntes;
                                                         int valorSuma=Math.round(cantMas);
                                                         lista.get(numItem).setCantidad(String.valueOf(valorSuma));
@@ -304,7 +305,9 @@ public class CompraGaleria extends AppCompatActivity {
                                                 ingrediente.setMedida(alimento.getUnidad());
                                                 //ingrediente.setCantidad(alimento.getTotal());
                                                 auxcantidad = Long.parseLong(alimento.getTotal());
-                                                resultadoCantidad = (auxcantidad/12)*totalInfantes;
+
+                                                //resultadoCantidad = (auxcantidad/12)*totalInfantes;
+                                                resultadoCantidad = Math.round((auxcantidad/12)*totalInfantes);
                                                 cantidadReal = Long.toString(resultadoCantidad);
                                                 ingrediente.setCantidad(cantidadReal);
                                                 ingrediente.setValorcompra("0");
