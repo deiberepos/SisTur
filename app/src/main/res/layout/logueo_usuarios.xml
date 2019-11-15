@@ -30,6 +30,7 @@
             android:layout_height="wrap_content"
             android:text="@string/txtLoginUsuario"
             android:textColor="@color/colorPrimarioOscuro"
+            android:textSize="14sp"
             android:textStyle="bold" />
         <EditText
             android:id="@+id/editTextUsuario"
@@ -53,6 +54,7 @@
             android:layout_marginTop="30dp"
             android:text="@string/txtLoginClave"
             android:textColor="@color/colorPrimarioOscuro"
+            android:textSize="14sp"
             android:textStyle="bold" />
         <EditText
             android:id="@+id/editTextPassword"
