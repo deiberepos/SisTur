@@ -7,7 +7,7 @@
     tools:context=".EntregaCompra">
     <LinearLayout
         android:layout_width="53dp"
-        android:layout_height="60dp"
+        android:layout_height="51dp"
         android:layout_marginTop="10dp"
         android:layout_marginStart="2dp"
         android:orientation="vertical">
@@ -35,14 +35,9 @@
         android:textStyle="bold" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
         android:layout_marginTop="15dp"
         android:text="@string/txtCDIHCB"
-        android:textSize="18sp"
-        android:textColor="@color/colorNegro"
-        android:textStyle="italic|bold"
+        style="@style/Subtitulo"
         />
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -57,14 +52,9 @@
             />
     </RelativeLayout>
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
         android:layout_marginTop="5dp"
         android:text="@string/txtSemana"
-        android:textSize="18sp"
-        android:textColor="@color/colorNegro"
-        android:textStyle="italic|bold"
+        style="@style/Subtitulo"
         />
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -84,24 +74,18 @@
         android:layout_gravity="center">
         <TextView
             android:id="@+id/textoFecha"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
             android:layout_marginTop="8dp"
             android:text="@string/txtFechaEntrega"
-            android:textSize="14sp"
-            android:textColor="@color/colorNegro"
-            android:textStyle="italic|bold"
+            style="@style/Subtitulo"
             />
         <EditText
             android:id="@+id/editFechaEntregaEI"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:hint="@string/txtHintSeleccionFecha"
             android:layout_gravity="center"
+            android:gravity="center"
             style="@style/IngresoDatos"
             android:onClick="mostrarCalendarioEI"
-            android:layout_marginTop="0dp"
             android:layout_toEndOf="@+id/textoFecha"
             />
     </RelativeLayout>

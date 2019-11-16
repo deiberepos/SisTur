@@ -8,7 +8,7 @@
     tools:context=".RegistrarCDIHCB">
     <LinearLayout
         android:layout_width="53dp"
-        android:layout_height="60dp"
+        android:layout_height="51dp"
         android:layout_marginTop="10dp"
         android:layout_marginStart="2dp"
         android:orientation="vertical">
@@ -35,36 +35,28 @@
         android:textSize="25sp"
         android:textStyle="bold" />
     <ScrollView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
+            android:layout_marginTop="5dp"
             android:layout_height="wrap_content">
             <TextView
-                android:layout_marginTop="5dp"
                 android:id="@+id/idtvtvnombreCentro"
-                style="@style/TexviewsubTitulo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/nombre_asignado" />
-
+                style="@style/Encabezado"
+                android:text="@string/txtNombreAsignado" />
             <EditText
                 android:id="@+id/idedtnombreregCentro"
-                style="@style/edit"
-                android:layout_width="match_parent"
-                android:hint="@string/txtHintNombreCDI" />
-
+                style="@style/IngresoDatos"
+                android:hint="@string/txtHintNombreCDI"
+                android:inputType="textPersonName"/>
             <TextView
-                style="@style/TexviewsubTitulo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/Encabezado"
                 android:layout_gravity="center"
-                android:gravity="center"
-                android:text="@string/txtTipoCDI"
-                android:textColor="@color/colorNegro" />
-
+                android:text="@string/txtTipoCDI" />
             <RadioGroup
                 android:id="@+id/idrgUbicaRegCDI"
                 android:layout_width="wrap_content"
@@ -73,38 +65,25 @@
                 android:orientation="horizontal"
                 android:layout_gravity="center_horizontal"
                 android:typeface="monospace">
-
-                <RadioButton
-                    android:id="@+id/idrbCentro"
-                    style="@style/TexviewsubTitulo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:buttonTint="@color/colorRojo"
-                    android:textSize="12sp"
-                    android:text="@string/txtRbCentroDesarrollo"
-                    android:typeface="monospace" />
-
                 <RadioButton
                     android:id="@+id/idrbHogar"
-                    style="@style/TexviewsubTitulo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/Encabezado"
+                    android:layout_width="160dp"
                     android:buttonTint="@color/colorRojo"
                     android:textSize="12sp"
-                    android:layout_marginLeft="15dp"
-                    android:text="@string/txtRbHogarComunitario"
-                    android:typeface="monospace" />
+                    android:text="@string/txtRbHogarComunitario"/>
+                <RadioButton
+                    android:id="@+id/idrbCentro"
+                    style="@style/Encabezado"
+                    android:layout_width="160dp"
+                    android:buttonTint="@color/colorRojo"
+                    android:textSize="12sp"
+                    android:text="@string/txtRbCentroDesarrollo"/>
             </RadioGroup>
-
             <TextView
-                style="@style/TexviewsubTitulo"
-                android:layout_width="wrap_content"
-                android:layout_height="31dp"
+                style="@style/Encabezado"
                 android:layout_gravity="center"
-                android:gravity="center"
-                android:text="@string/txtUbicacion"
-                android:textColor="@color/colorNegro" />
-
+                android:text="@string/txtUbicacion"/>
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -117,94 +96,79 @@
                     style="@style/SelectorSemana"
                     android:id="@+id/idspnVeredas"/>
             </RelativeLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="3dp"/>
             <TextView
-                style="@style/TexviewsubTitulo"
+                style="@style/Subtitulo"
                 android:id="@+id/idtvresponsable"
-                android:fontFamily="sans-serif-black"
-                android:text="@string/txtDatosPersona"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:text="@string/txtDatosPersona"/>
             <TextView
-                style="@style/TexviewsubTitulo"
-                android:text="@string/txtNombreApellido"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                style="@style/Encabezado"
+                android:text="@string/txtNombreApellido"/>
             <EditText
-                style="@style/edit"
+                style="@style/IngresoDatos"
                 android:hint="@string/txtHintNombreApellido"
-                android:layout_width="match_parent"
-                android:id="@+id/idedtnombreencargado" />
+                android:id="@+id/idedtnombreencargado"
+                android:inputType="textPersonName"/>
             <TextView
-                style="@style/TexviewsubTitulo"
-                android:text="@string/txtDireccion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                style="@style/Encabezado"
+                android:text="@string/txtDireccion"/>
             <EditText
-                style="@style/edit"
+                style="@style/IngresoDatos"
                 android:hint="@string/txtHintDireccion"
-                android:layout_width="match_parent"
-                android:id="@+id/idedtdirEncargado" />
+                android:id="@+id/idedtdirEncargado"
+                android:inputType="textPostalAddress"/>
             <TextView
-                style="@style/TexviewsubTitulo"
-                android:text="@string/txtTelefono"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                style="@style/Encabezado"
+                android:text="@string/txtTelefono"/>
             <EditText
-                style="@style/edit"
+                style="@style/IngresoDatos"
                 android:hint="@string/txtHintTelefono"
-                android:layout_width="match_parent"
-                android:id="@+id/idedttelEncargado" />
+                android:id="@+id/idedttelEncargado"
+                android:inputType="phone"
+                android:maxLength="15"/>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="5dp"/>
             <TextView
-                style="@style/TexviewsubTitulo"
+                style="@style/Subtitulo"
                 android:id="@+id/idtvContacto"
-                android:fontFamily="sans-serif-black"
-                android:text="@string/txtDatosContacto"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:text="@string/txtDatosContacto"/>
             <TextView
-                style="@style/TexviewsubTitulo"
-                android:text="@string/txtNombreApellido"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                style="@style/Encabezado"
+                android:text="@string/txtNombreApellido"/>
             <EditText
-                style="@style/edit"
+                style="@style/IngresoDatos"
                 android:hint="@string/txtHintNombreApellido"
-                android:layout_width="match_parent"
-                android:id="@+id/idedtnombreContacto" />
+                android:id="@+id/idedtnombreContacto"
+                android:inputType="textPersonName"/>
             <TextView
-                style="@style/TexviewsubTitulo"
-                android:text="@string/txtDireccion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                style="@style/Encabezado"
+                android:text="@string/txtDireccion"/>
             <EditText
-                style="@style/edit"
+                style="@style/IngresoDatos"
                 android:hint="@string/txtHintDireccion"
-                android:layout_width="match_parent"
-                android:id="@+id/idedtdirContacto" />
+                android:id="@+id/idedtdirContacto"
+                android:inputType="textPostalAddress"/>
             <TextView
-                style="@style/TexviewsubTitulo"
-                android:text="@string/txtTelefono"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                style="@style/Encabezado"
+                android:text="@string/txtTelefono"/>
             <EditText
-                style="@style/edit"
+                style="@style/IngresoDatos"
                 android:hint="@string/txtHintTelefono"
-                android:layout_width="match_parent"
-                android:id="@+id/idedttelContacto" />
+                android:id="@+id/idedttelContacto"
+                android:inputType="phone"
+                android:maxLength="15"/>
             <CheckBox
                 android:id="@+id/activocdi"
                 android:text="@string/txtActivo"
-                android:textSize="20sp"
-                android:layout_marginTop="20dp"
+                android:textSize="18sp"
+                android:layout_marginTop="10dp"
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:shadowColor="@color/colorClaro"
+                android:shadowDx="-2"
+                android:shadowDy="-2"
+                android:shadowRadius="1.5"/>
             <Button
                 android:id="@+id/idbtnregCDI"
                 android:layout_width="200dp"

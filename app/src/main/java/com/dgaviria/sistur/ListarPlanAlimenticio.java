@@ -52,6 +52,10 @@ public class ListarPlanAlimenticio extends AppCompatActivity {
                     listaDeAlimentos.add(miAlimento);
                 }
                 adaptadorAlimentos.notifyDataSetChanged();
+                if (listaDeAlimentos.size()==0)
+                    Toast.makeText(ListarPlanAlimenticio.this, "No hay alimentos en el plan nutricional", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(ListarPlanAlimenticio.this, "Hay "+String.valueOf(listaDeAlimentos.size())+" alimentos en el plan nutricional", Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {

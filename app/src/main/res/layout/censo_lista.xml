@@ -39,44 +39,42 @@
                     android:orientation="vertical">
                     <TextView
                         android:id="@+id/txtRegistro"
-                        android:layout_width="235dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="monospace"
-                        android:lines="2"
+                        android:fontFamily="sans-serif-condensed-medium"
+                        android:typeface="sans"
+                        android:textSize="15sp"
+                        android:textColor="@color/colorPrimarioOscuro"
                         android:lineSpacingExtra="2dp"
-                        android:maxLines="2"
                         android:singleLine="true"
-                        android:text="@string/txtRegistroCivil"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="@color/colorAzulOscuro3"
-                        android:textSize="14sp"
-                        android:textStyle="italic" />
+                        android:text="@string/txtRegistroCivil" />
                     <TextView
                         android:id="@+id/txtNombreInfante"
-                        android:layout_width="235dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
-                        android:fontFamily="monospace"
+                        android:fontFamily="sans-serif-condensed-medium"
+                        android:typeface="sans"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorNegro"
+                        android:textSize="16sp"
                         android:lines="2"
-                        android:maxLines="2"
                         android:singleLine="true"
                         android:text="@string/txtNombreInfante"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="@color/colorAzulOscuro3"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
+                    />
                     <TextView
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                         android:id="@+id/txtCentro"
-                        android:layout_width="200dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="monospace"
+                        android:fontFamily="sans-serif-condensed-medium"
+                        android:typeface="sans"
+                        android:textColor="@color/colorRojo"
+                        android:textSize="14sp"
+                        android:textStyle="italic"
                         android:singleLine="true"
                         android:text="@string/txtNombreCDIH"
-                        android:textStyle="normal"
-                        android:textColor="@color/colorRojo"
-                        android:textSize="14sp"/>
+                        />
                 </LinearLayout>
             </RelativeLayout>
         </androidx.cardview.widget.CardView>

@@ -12,7 +12,7 @@
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="53dp"
-            android:layout_height="60dp"
+            android:layout_height="51dp"
             android:layout_marginTop="10dp"
             android:layout_marginStart="2dp"
             android:orientation="vertical">
@@ -40,33 +40,30 @@
             android:textColor="@color/colorNegro"
             android:textSize="25sp"
             android:textStyle="bold" />
+
         <androidx.appcompat.widget.Toolbar
-            android:layout_marginTop="10dp"
-            android:orientation="vertical"
             android:id="@+id/tb_opciones"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:background="@color/colorPrimarioSuave"
             android:minHeight="?attr/actionBarSize"
+            android:orientation="vertical"
             android:theme="?attr/actionBarTheme"
-            app:navigationIcon="@mipmap/ic_lista"
+            app:menu="@menu/itemslistarpor"
             app:navigationContentDescription="Listar censo por..."
+            app:navigationIcon="@mipmap/ic_lista"
             app:title="Listar censo por..."
-            app:titleTextColor="@color/colorBlanco"
-            app:menu="@menu/itemslistarpor"/>
+            app:titleTextColor="@color/colorBlanco" />
+
         <LinearLayout
             android:id="@+id/lay_buscarPor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="CDI/HCB"
-                android:textSize="18sp"
-                android:textColor="@color/colorNegro"
-                android:textStyle="italic|bold"
+                style="@style/Subtitulo"
+                android:text="@string/txtCDIHCB"
                 />
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -75,7 +72,7 @@
                 android:background="@color/colorClaro">
                 <Spinner
                     android:id="@+id/listaCentroBuscar"
-                    android:layout_width="280dp"
+                    android:layout_width="250dp"
                     android:layout_height="30dp"
                     style="@style/SelectorSemana"
                     />

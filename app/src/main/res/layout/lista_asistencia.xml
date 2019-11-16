@@ -18,7 +18,7 @@
             android:orientation="vertical">
             <LinearLayout
                 android:layout_width="53dp"
-                android:layout_height="60dp"
+                android:layout_height="51dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="2dp"
                 android:orientation="vertical">
@@ -40,42 +40,31 @@
                 android:shadowDx="-2"
                 android:shadowDy="-2"
                 android:shadowRadius="1.5"
-                android:text="@string/registro_asistencia_semanal"
+                android:text="@string/txtRegistroAsistencia"
                 android:layout_marginTop="-45dp"
                 android:textColor="@color/colorNegro"
                 android:textSize="25sp"
                 android:textStyle="bold" />
             <TextView
                 android:id="@+id/textoFecha"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Fecha del reporte: "
-                android:textSize="16sp"
+                android:text="@string/txtFechaReporte"
                 android:layout_marginTop="10dp"
-                android:textColor="@color/colorNegro"
-                android:textStyle="italic|bold"
+                style="@style/Subtitulo"
                 />
             <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="280dp"
+                android:layout_height="30dp"
                 android:layout_gravity="center"
+                android:gravity="center"
                 android:background="@color/colorClaro">
                 <TextView
                     android:id="@+id/idedtFechaAsistencia"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/SelectorSemana"
-                    />
+                    android:gravity="center"
+                    style="@style/Subtitulo"/>
             </RelativeLayout>
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="CDI/HCB"
-                android:textSize="18sp"
-                android:textColor="@color/colorNegro"
-                android:textStyle="italic|bold"
+                android:text="txtCDIHCB"
+                style="@style/Subtitulo"
                 />
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -90,14 +79,9 @@
                     />
             </RelativeLayout>
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                style="@style/Subtitulo"
                 android:layout_marginTop="5dp"
-                android:text="SEMANA"
-                android:textSize="18sp"
-                android:textColor="@color/colorNegro"
-                android:textStyle="italic|bold"
+                android:text="@string/txtSemana"
                 />
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -119,19 +103,12 @@
 
                 <TextView
                     android:id="@+id/textoTitulo2"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-
-                    android:gravity="center"
-                    android:text="@string/totalinfantes"
-                    android:textColor="@color/colorAzulOscuro2"
-                    android:textSize="12sp"
-                    android:textStyle="italic|bold" />
+                    style="@style/Subtitulo"
+                    android:text="@string/txtTotalInfantes" />
                 <TextView
                     android:id="@+id/idtxvTotalInfantesA"
                     android:layout_width="wrap_content"
-                    android:layout_height="20dp"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:maxLines="1"
@@ -140,7 +117,7 @@
                     android:text="0"
                     android:layout_below="@id/textoTitulo2"
                     android:textColor="@color/colorRojo"
-                    android:textSize="15sp"
+                    android:textSize="18sp"
                     android:textStyle="italic|bold" />
             </RelativeLayout>
             <View

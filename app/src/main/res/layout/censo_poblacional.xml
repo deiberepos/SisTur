@@ -8,7 +8,7 @@
     tools:context=".CensoPoblacional">
     <LinearLayout
         android:layout_width="53dp"
-        android:layout_height="60dp"
+        android:layout_height="51dp"
         android:layout_marginTop="10dp"
         android:layout_marginStart="2dp"
         android:orientation="vertical">
@@ -35,75 +35,52 @@
         android:textSize="25sp"
         android:textStyle="bold" />
     <ScrollView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp">
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:orientation="vertical">
             <TextView
-                style="@style/TexviewsubTitulo"
-                android:textColor="@color/colorNegro"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
+                style="@style/Encabezado"
                 android:text="@string/txtNumeroRegistro" />
             <EditText
                 android:id="@+id/registroinfante"
-                style="@style/edit"
+                style="@style/IngresoDatos"
                 android:inputType="number"
-                android:layout_height="35dp"
-                android:fontFamily="monospace"
-                android:hint="@string/txtHintNumeroRegistro"
-                android:textColor="@color/colorPrimarioOscuro"
-                android:textSize="14sp" />
+                android:hint="@string/txtHintNumeroRegistro" />
             <TextView
-                style="@style/TexviewsubTitulo"
+                style="@style/Encabezado"
                 android:textColor="@color/colorNegro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
                 android:text="@string/txtNombreInfante2" />
-
             <EditText
                 android:id="@+id/nombreinfante"
-                style="@style/edit"
-                android:layout_height="35dp"
-                android:fontFamily="monospace"
+                style="@style/IngresoDatos"
                 android:hint="@string/txtHintNombre"
-                android:textColor="@color/colorPrimarioOscuro"
-                android:inputType="textPersonName"
-                android:textSize="14sp" />
+                android:inputType="textPersonName"/>
             <TextView
-                style="@style/TexviewsubTitulo"
+                style="@style/Encabezado"
                 android:textColor="@color/colorNegro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
                 android:text="@string/txtApellidoInfante" />
-
             <EditText
                 android:id="@+id/apellidoinfante"
-                style="@style/edit"
-                android:fontFamily="monospace"
-                android:layout_height="35dp"
+                style="@style/IngresoDatos"
                 android:hint="@string/txtHintApellido"
-                android:inputType="textPersonName"
-                android:textColor="@color/colorPrimarioOscuro"
-                android:textSize="14sp" />
+                android:inputType="textPersonName"/>
             <TextView
-                style="@style/TexviewsubTitulo"
+                style="@style/Encabezado"
                 android:textColor="@color/colorNegro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
+                android:layout_gravity="center_horizontal"
                 android:text="@string/txtGenero" />
-
             <RadioGroup
                 android:id="@+id/radiogenero"
                 android:layout_width="wrap_content"
@@ -112,74 +89,45 @@
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal">
                 <RadioButton
-                    style="@style/TexviewsubTitulo"
+                    style="@style/Encabezado"
                     android:id="@+id/masculino"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:text="@string/txtMasculino"
-                    android:textColor="@color/colorNegro"
-                    android:typeface="monospace"
                     android:textSize="12sp"
                     app:buttonTint="@color/colorRojo" />
-
                 <RadioButton
-                    style="@style/TexviewsubTitulo"
+                    style="@style/Encabezado"
                     android:id="@+id/femenino"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:text="@string/txtFemenino"
-                    android:textColor="@color/colorNegro"
-                    android:typeface="monospace"
                     android:textSize="12sp"
                     app:buttonTint="@color/colorRojo" />
             </RadioGroup>
             <TextView
-                style="@style/TexviewsubTitulo"
-                android:textColor="@color/colorNegro"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/Encabezado"
                 android:layout_gravity="center"
-                android:gravity="center"
                 android:text="@string/txtFechaNacimiento" />
             <EditText
+                style="@style/IngresoDatos"
                 android:id="@+id/fecha"
-                android:layout_width="217dp"
-                android:layout_gravity="center"
-                android:ems="20"
-                android:gravity="center"
-                android:hint="@string/txtHintFecha"
+                android:layout_width="wrap_content"
+                android:hint="@string/txtHintSeleccionFecha"
                 android:inputType="date"
-                android:layout_height="38dp"
-                android:textSize="14sp"
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:onClick="mostrarCalendario"/>
             <TextView
-                style="@style/TexviewsubTitulo"
-                android:textColor="@color/colorNegro"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
+                style="@style/Encabezado"
                 android:text="@string/txtObservaciones" />
-
             <EditText
                 android:id="@+id/editobsrvaciones"
-                style="@style/edit"
-                android:layout_width="388dp"
+                style="@style/IngresoDatos"
+                android:layout_width="match_parent"
                 android:layout_height="75dp"
-                android:fontFamily="monospace"
                 android:inputType="textCapSentences"
                 android:hint="@string/txtHintObservaciones"
-                android:lines="3"
-                android:textColor="@color/colorPrimarioOscuro"
-                android:textSize="14sp" />
+                android:lines="3"/>
             <TextView
-                style="@style/TexviewsubTitulo"
-                android:textColor="@color/colorNegro"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/Encabezado"
                 android:layout_gravity="center"
-                android:layout_marginTop="8dp"
-                android:gravity="center"
                 android:text="@string/txtCentro" />
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -194,119 +142,58 @@
                     android:layout_width="280dp"
                     android:layout_height="30dp"/>
             </RelativeLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="3dp"/>
-
             <TextView
-                style="@style/TexviewsubTitulo"
-                android:textColor="@color/colorNegro"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
+                style="@style/Encabezado"
                 android:text="@string/txtNombrePadre" />
             <EditText
                 android:id="@+id/nom_ape_padre"
-                style="@style/edit"
-                android:fontFamily="monospace"
-                android:layout_height="35dp"
+                style="@style/IngresoDatos"
                 android:hint="@string/txtHintNombrePadre"
-                android:textColor="@color/colorPrimarioOscuro"
-                android:inputType="textPersonName"
-                android:textSize="14sp" />
+                android:inputType="textPersonName" />
             <TextView
-                style="@style/TexviewsubTitulo"
-                android:textColor="@color/colorNegro"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
+                style="@style/Encabezado"
                 android:text="@string/txtTelefonoPadre" />
             <EditText
                 android:id="@+id/telefonopadre"
-                style="@style/edit"
-                android:layout_height="35dp"
-                android:fontFamily="monospace"
+                style="@style/IngresoDatos"
                 android:hint="@string/txtHintTelefonoPadre"
-                android:inputType="number"
-                android:textColor="@color/colorPrimarioOscuro"
-                android:textSize="14sp" />
+                android:inputType="phone"
+                android:maxLength="15"/>
             <TextView
-                style="@style/TexviewsubTitulo"
-                android:textColor="@color/colorNegro"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
+                style="@style/Encabezado"
                 android:text="@string/txtDireccionPadre" />
             <EditText
                 android:id="@+id/direccionpadre"
-                style="@style/edit"
-                android:fontFamily="monospace"
-                android:layout_height="35dp"
+                style="@style/IngresoDatos"
                 android:hint="@string/txtHintDireccionPadre"
-                android:textColor="@color/colorPrimarioOscuro"
-                android:inputType="textCapSentences"
-                android:textSize="14sp" />
+                android:inputType="textPostalAddress"/>
             <TextView
-                style="@style/TexviewsubTitulo"
-                android:textColor="@color/colorNegro"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
+                style="@style/Encabezado"
                 android:text="@string/txtNombreMadre" />
-
             <EditText
                 android:id="@+id/nom_ape_madre"
-                style="@style/edit"
-                android:fontFamily="monospace"
-                android:layout_height="35dp"
+                style="@style/IngresoDatos"
                 android:hint="@string/txtHintNombreMadre"
-                android:inputType="textPersonName"
-                android:textColor="@color/colorPrimarioOscuro"
-                android:textSize="14sp" />
+                android:inputType="textPersonName"/>
             <TextView
-                style="@style/TexviewsubTitulo"
-                android:textColor="@color/colorNegro"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
+                style="@style/Encabezado"
                 android:text="@string/txtTelefonoMadre" />
-
             <EditText
                 android:id="@+id/telefonomadre"
-                style="@style/edit"
-                android:layout_height="35dp"
-                android:fontFamily="monospace"
+                style="@style/IngresoDatos"
                 android:hint="@string/txtHintTelefonoMadre"
-                android:inputType="number"
-                android:textColor="@color/colorPrimarioOscuro"
-                android:textSize="14sp" />
-
+                android:inputType="phone"
+                android:maxLength="15"/>
             <TextView
-                style="@style/TexviewsubTitulo"
-                android:textColor="@color/colorNegro"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
+                style="@style/Encabezado"
                 android:text="@string/txtDireccionMadre" />
             <EditText
                 android:id="@+id/direccionmadre"
-                style="@style/edit"
-                android:fontFamily="monospace"
-                android:layout_height="35dp"
+                style="@style/IngresoDatos"
                 android:hint="@string/txtHintDireccionMadre"
-                android:textColor="@color/colorPrimarioOscuro"
-                android:inputType="textCapSentences"
-                android:textSize="14sp" />
-
+                android:inputType="textPostalAddress"/>
             <CheckBox
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:id="@+id/chekactivo"
                 android:layout_gravity="center"
                 android:text="@string/txtActivo"

@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="TexviewsubTitulo">
-        <item name="android:textSize">18sp</item>
-        <item name="android:textColor">@color/txvsubtitulo</item>
+    <style name="Subtitulo">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:layout_gravity">center</item>
-        <item name="android:gravity">center</item>
-        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:textStyle">bold|italic</item>
+        <item name="android:textColor">@color/colorNegro</item>
+        <item name="android:fontFamily">sans-serif-condensed-medium</item>
+        <item name="android:typeface">sans</item>
     </style>
-
+    <style name="Encabezado" parent="Subtitulo">
+        <item name="android:layout_gravity">start</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:layout_marginTop">2dp</item>
+    </style>
     <style name="edit">
         <item name="android:height">42dp</item>
         <item name="android:layout_gravity">center</item>
@@ -19,14 +26,26 @@
     </style>
 
     <style name="IngresoDatos">
-        <item name="android:layout_width">200dp</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_gravity">center</item>
-        <item name="android:textAlignment">center</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/colorNegro</item>
-        <item name="android:textColorHint">@color/colorAzulOscuro1</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_gravity">start</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:fontFamily">sans-serif-condensed-light</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:textColor">@color/colorPrimarioOscuro</item>
+        <item name="android:textColorHint">@color/colorAzulOscuro2</item>
         <item name="android:backgroundTint">@color/colorRojo</item>
+        <item name="android:textCursorDrawable">@color/colorNegro</item>
+    </style>
+
+    <style name="IngresoLogin" parent="IngresoDatos">
+        <item name="android:layout_width">230dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:drawablePadding">20dp</item>
+        <item name="android:padding">10dp</item>
     </style>
 
     <style name="Selectores">

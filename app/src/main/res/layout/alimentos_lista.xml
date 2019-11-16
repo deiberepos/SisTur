@@ -64,14 +64,13 @@
                     android:id="@+id/txtGrupoA"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:typeface="sans"
+                    android:textSize="15sp"
+                    android:textColor="@color/colorPrimarioOscuro"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:fontFamily="monospace"
-                    android:textSize="14sp"
                     android:text="@string/txtNombreGrupo"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textStyle="normal"
-                    android:textColor="@color/colorAzulOscuro3"
                     />
                 <TextView
                     android:id="@+id/txtNombreA"
@@ -81,9 +80,11 @@
                     android:maxLines="1"
                     android:singleLine="true"
                     android:text="@string/txtNombreAlimento"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:typeface="sans"
                     android:textStyle="bold"
-                    android:textColor="@color/colorAzulOscuro3"
-                    android:textSize="12sp"
+                    android:textColor="@color/colorNegro"
+                    android:textSize="16sp"
                     />
                 <TextView
                     android:id="@+id/txtARegional"
@@ -93,8 +94,10 @@
                     android:maxLines="1"
                     android:singleLine="true"
                     android:text="@string/txtNombreRegional"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:typeface="sans"
                     android:textColor="@color/colorRojo"
-                    android:textSize="12sp"
+                    android:textSize="14sp"
                     android:textStyle="italic"
                     />
             </LinearLayout>

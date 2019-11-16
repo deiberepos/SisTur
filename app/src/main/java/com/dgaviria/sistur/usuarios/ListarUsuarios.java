@@ -84,13 +84,15 @@ public class ListarUsuarios extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 listaDeUsuarios.clear();
-                for (DataSnapshot usuariosExisten : dataSnapshot.getChildren())
-                {
+                for (DataSnapshot usuariosExisten : dataSnapshot.getChildren())                {
                     Usuarios miUsuario=usuariosExisten.getValue(Usuarios.class);
-                    //if (miUsuario.getActivar()==true)
                     listaDeUsuarios.add(miUsuario);
                 }
                 adaptadorUsuarios.notifyDataSetChanged();
+                if (listaDeUsuarios.size()==0)
+                    Toast.makeText(ListarUsuarios.this, "No hay usuarios creados", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(ListarUsuarios.this, "Hay "+String.valueOf(listaDeUsuarios.size())+" usuarios creados", Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {

@@ -54,6 +54,7 @@ public class ListarCensoPoblacion extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.listar_censo_poblacion);
         referenciar();
+        llenarRecyclerCenso("2");
         btnCrearInfante.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -105,6 +106,7 @@ public class ListarCensoPoblacion extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        miRecyclerCenso.setAdapter(adaptadorCenso);
     }
     private void referenciar(){
         miRecyclerCenso=findViewById(R.id.listacenso);
@@ -119,12 +121,12 @@ public class ListarCensoPoblacion extends AppCompatActivity {
     }
 
     private void llenarListaCentrosBuscar() {
+        nombresCentros.clear();
         miReferenciaBuscar = FirebaseDatabase.getInstance().getReference("Centros");
         miReferenciaBuscar.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.getChildren() != null) {
-                    nombresCentros.clear();
                     for (DataSnapshot miCentro : dataSnapshot.getChildren()) {
                         nombresCentros.add(miCentro.getKey());
                     }
@@ -148,6 +150,7 @@ public class ListarCensoPoblacion extends AppCompatActivity {
 
     private void llenarRecyclerCenso(String tipo){
         miRecyclerCenso.setLayoutManager(new LinearLayoutManager(this));
+        listaDeCenso.clear();
         switch (tipo){
             case "1":
                 if (nombreCentroBuscar !=null) {
@@ -156,7 +159,6 @@ public class ListarCensoPoblacion extends AppCompatActivity {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             if (dataSnapshot.exists()) {
-                                listaDeCenso.clear();
                                 for (DataSnapshot censoExistente : dataSnapshot.getChildren()) {
                                     if (!censoExistente.getKey().equals("totalcenso")) {
                                         Censo micenso = censoExistente.getValue(Censo.class);
@@ -166,6 +168,10 @@ public class ListarCensoPoblacion extends AppCompatActivity {
                                 }
                             }
                             adaptadorCenso.notifyDataSetChanged();
+                            if (listaDeCenso.size()==0)
+                                Toast.makeText(ListarCensoPoblacion.this, "No hay infantes asociados", Toast.LENGTH_SHORT).show();
+                            else
+                                Toast.makeText(ListarCensoPoblacion.this, "Hay "+String.valueOf(listaDeCenso.size())+" infantes asociados", Toast.LENGTH_SHORT).show();
                         }
 
                         @Override
@@ -181,14 +187,16 @@ public class ListarCensoPoblacion extends AppCompatActivity {
                 miReferenciaBuscar.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        listaDeCenso.clear();
-                        for(DataSnapshot censoExistente : dataSnapshot.getChildren())
-                        {
+                        for(DataSnapshot censoExistente : dataSnapshot.getChildren())                        {
                             Censo micenso=censoExistente.getValue(Censo.class);
                             if (micenso.getActivo())
                                 listaDeCenso.add(micenso);
                         }
                         adaptadorCenso.notifyDataSetChanged();
+                        if (listaDeCenso.size()==0)
+                            Toast.makeText(ListarCensoPoblacion.this, "No hay infantes asociados", Toast.LENGTH_SHORT).show();
+                        else
+                            Toast.makeText(ListarCensoPoblacion.this, "Hay "+String.valueOf(listaDeCenso.size())+" infantes asociados", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -201,7 +209,6 @@ public class ListarCensoPoblacion extends AppCompatActivity {
             default:
                 break;
         }
-        miRecyclerCenso.setAdapter(adaptadorCenso);
     }
 
     @Override

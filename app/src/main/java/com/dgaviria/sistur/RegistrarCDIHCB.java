@@ -39,7 +39,7 @@ public class RegistrarCDIHCB extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registrar_cdihcb);
+        setContentView(R.layout.registrar_cdihcb);
         referenciar();
 
         if(opcion.equals("crear")) {
@@ -78,7 +78,6 @@ public class RegistrarCDIHCB extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 cargarDatos();
-                //guardarCentro();
             }
         });
 
@@ -86,7 +85,6 @@ public class RegistrarCDIHCB extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 cargarDatosDos();
-                //actualizarCentros();
             }
         });
 
@@ -149,7 +147,6 @@ public class RegistrarCDIHCB extends AppCompatActivity {
             direccionC = edtdirContacto.getText().toString();
             telE = edttelEncargado.getText().toString();
             telC = edttelContacto.getText().toString();
-
             guardarCentro();
         }
 
@@ -338,7 +335,6 @@ public class RegistrarCDIHCB extends AppCompatActivity {
         acti=findViewById(R.id.activocdi);
         recibeParametros =getIntent().getExtras();
         opcion= recibeParametros.getString("opcion");
-
     }
 
     @Override

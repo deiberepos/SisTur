@@ -14,20 +14,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:textSize="14sp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:typeface="sans"
         android:textStyle="bold"
+        android:textColor="@color/colorNegro"
+        android:textSize="16sp"
         android:text="@string/txtVacio"
         android:layout_marginTop="8dp"
         android:layout_marginStart="5dp"
         />
-
     <TextView
         android:id="@+id/txtInformacion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:textSize="14sp"
-        android:textStyle="italic"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:typeface="sans"
+        android:textSize="15sp"
+        android:textColor="@color/colorPrimarioOscuro"
         android:text="@string/txtVacio"
         android:layout_marginStart="5dp"
         />

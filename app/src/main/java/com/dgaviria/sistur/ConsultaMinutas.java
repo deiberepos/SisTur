@@ -35,7 +35,7 @@ public class ConsultaMinutas extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_minutas);
+        setContentView(R.layout.consulta_minutas);
 
         referenciar();
         llenarListaMinutas();
@@ -44,8 +44,6 @@ public class ConsultaMinutas extends Activity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int item, long l) {
                 nombreMinuta=adapterView.getItemAtPosition(item).toString();
                 llenarListaPreparaciones();
-                miAdaptadorLista= new AdaptadorListaMinutas(ConsultaMinutas.this,preparaciones);
-                vistaLista.setAdapter(miAdaptadorLista);
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -66,7 +64,6 @@ public class ConsultaMinutas extends Activity {
                     adaptadorMinuta=new ArrayAdapter<>(ConsultaMinutas.this,android.R.layout.simple_spinner_item,listaMinutas);
                     adaptadorMinuta.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spnMinutas.setAdapter(adaptadorMinuta);
-                    //spnMinutas.setSelected(false);
                     spnMinutas.setSelection(0, true); //selecciona el primer elemento del spinner
                     adaptadorMinuta.notifyDataSetChanged();
                     Toast.makeText(ConsultaMinutas.this, "Seleccione la minuta a consultar", Toast.LENGTH_SHORT).show();
@@ -75,13 +72,11 @@ public class ConsultaMinutas extends Activity {
                     Toast.makeText(getApplicationContext(),"Error de lectura de minutas, contacte al administrador",Toast.LENGTH_SHORT).show();
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
-
     }
 
     private void referenciar() {
@@ -121,6 +116,8 @@ public class ConsultaMinutas extends Activity {
                         preparaciones.append(itemPrepara,miGrupo);
                         itemPrepara++;
                     }
+                    miAdaptadorLista= new AdaptadorListaMinutas(ConsultaMinutas.this,preparaciones);
+                    vistaLista.setAdapter(miAdaptadorLista);
                 } else {
                     Toast.makeText(getApplicationContext(), "Error de lectura de minutas asociadas, contacte al administrador", Toast.LENGTH_SHORT).show();
                 }

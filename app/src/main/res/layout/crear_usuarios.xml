@@ -10,7 +10,7 @@
 
     <LinearLayout
         android:layout_width="53dp"
-        android:layout_height="60dp"
+        android:layout_height="51dp"
         android:layout_marginTop="10dp"
         android:layout_marginStart="2dp"
         android:orientation="vertical">
@@ -23,6 +23,7 @@
             android:scaleX="1"
             android:scaleY="1"/>
     </LinearLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -43,114 +44,54 @@
         android:layout_marginTop="10dp">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:orientation="vertical">
-
             <TextView
-                style="@style/TexviewsubTitulo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="@string/txtNombreUsuario"
-                android:textColor="@color/colorNegro" />
-
-            <EditText
-                android:id="@+id/editTextUsuario"
-                style="@style/edit"
-                android:fontFamily="monospace"
-                android:hint="@string/txtHintNombreUsuario"
-                android:inputType="textPostalAddress"
-                android:maxLength="15"
-                android:paddingBottom="15dp"
-                android:textColor="@color/colorPrimarioOscuro"
-                android:textCursorDrawable="@color/colorRojo"
-                android:textSize="15sp" />
-
-            <TextView
-                style="@style/TexviewsubTitulo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="@string/txtContraseña"
-                android:textColor="@color/colorNegro" />
-
-            <EditText
-                android:id="@+id/editTextPassword"
-                style="@style/edit"
-                android:fontFamily="monospace"
-                android:hint="@string/txtHintContraseña"
-                android:inputType="textPassword"
-                android:maxLength="15"
-                android:paddingBottom="15dp"
-                android:textColor="@color/colorPrimarioOscuro"
-                android:textCursorDrawable="@color/colorRojo"
-                android:textSize="15sp" />
-
-            <TextView
-                style="@style/TexviewsubTitulo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="@string/txtVerificaContraseña"
-                android:textColor="@color/colorNegro" />
-
-            <EditText
-                android:id="@+id/editTextVerificaPassword"
-                style="@style/edit"
-                android:fontFamily="monospace"
-                android:hint="@string/txtHintContraseña"
-                android:inputType="textPassword"
-                android:maxLength="15"
-                android:paddingBottom="15dp"
-                android:textColor="@color/colorPrimarioOscuro"
-                android:textCursorDrawable="@color/colorRojo"
-                android:textSize="15sp" />
-
-            <TextView
-                style="@style/TexviewsubTitulo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="@string/txtCorreo"
-                android:textColor="@color/colorNegro" />
-
-            <EditText
-                android:id="@+id/editTextCorreo"
-                style="@style/edit"
-                android:fontFamily="monospace"
-                android:hint="@string/txtHintCorreo"
-                android:inputType="textEmailAddress"
-                android:maxLength="35"
-                android:paddingBottom="15dp"
-                android:textColor="@color/colorPrimarioOscuro"
-                android:textCursorDrawable="@color/colorRojo"
-                android:textSize="15sp" />
-
-            <TextView
-                style="@style/TexviewsubTitulo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="@string/txtNombreApellido"
-                android:textColor="@color/colorNegro" />
-
+                style="@style/Encabezado"
+                android:text="@string/txtNombreApellidoUsu"/>
             <EditText
                 android:id="@+id/editTextNombre"
-                style="@style/edit"
-                android:fontFamily="monospace"
+                style="@style/IngresoDatos"
                 android:hint="@string/txtHintNombreApellido"
-                android:inputType="textPersonName"
-                android:maxLength="35"
-                android:textColor="@color/colorPrimarioOscuro"
-                android:textCursorDrawable="@color/colorRojo"
-                android:textSize="15sp" />
-
+                android:inputType="textPersonName"/>
+            <TextView
+                style="@style/Encabezado"
+                android:text="@string/txtNombreUsuario"/>
+            <EditText
+                android:id="@+id/editTextUsuario"
+                style="@style/IngresoDatos"
+                android:hint="@string/txtHintNombreUsuario"
+                android:inputType="textPostalAddress"
+                android:maxLength="15"/>
+            <TextView
+                style="@style/Encabezado"
+                android:text="@string/txtContraseña"/>
+            <EditText
+                android:id="@+id/editTextPassword"
+                style="@style/IngresoDatos"
+                android:hint="@string/txtHintContraseña"
+                android:inputType="textPassword" />
+            <TextView
+                style="@style/Encabezado"
+                android:text="@string/txtVerificaContraseña"
+                 />
+            <EditText
+                android:id="@+id/editTextVerificaPassword"
+                style="@style/IngresoDatos"
+                android:hint="@string/txtHintContraseña"
+                android:inputType="textPassword"
+                android:maxLength="15"/>
+            <TextView
+                style="@style/Encabezado"
+                android:text="@string/txtCorreo" />
+            <EditText
+                android:id="@+id/editTextCorreo"
+                style="@style/IngresoDatos"
+                android:hint="@string/txtHintCorreo"
+                android:inputType="textEmailAddress"
+                android:maxLength="45" />
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

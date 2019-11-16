@@ -20,55 +20,40 @@
             android:background="@drawable/iconologin" />
     </LinearLayout>
     <RelativeLayout
-        android:layout_width="270dp"
+        android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="40dp">
         <TextView
             android:id="@+id/txtLogUsuario"
-            android:layout_width="270dp"
-            android:layout_height="wrap_content"
-            android:text="@string/txtLoginUsuario"
-            android:textColor="@color/colorPrimarioOscuro"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            style="@style/Subtitulo"
+            android:layout_width="230dp"
+            android:text="@string/txtLoginUsuario" />
         <EditText
+            style="@style/IngresoLogin"
             android:id="@+id/editTextUsuario"
-            android:layout_width="270dp"
-            android:layout_height="wrap_content"
             android:layout_below="@id/txtLogUsuario"
-            android:layout_marginTop="5dp"
             android:drawableEnd="@drawable/ic_user"
-            android:drawablePadding="20dp"
-            android:hint="@string/txtHintUsuarios"
             android:inputType="textPostalAddress"
-            android:padding="10dp"
-            android:textColor="@color/colorNegro"
-            android:textColorHint="@color/colorGrisClaro"
+            android:hint="@string/txtHintUsuarios"
             />
         <TextView
             android:id="@+id/txtLogClave"
-            android:layout_width="270dp"
-            android:layout_height="wrap_content"
+            android:layout_width="230dp"
             android:layout_below="@id/editTextUsuario"
             android:layout_marginTop="30dp"
             android:text="@string/txtLoginClave"
-            android:textColor="@color/colorPrimarioOscuro"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            style="@style/Subtitulo"
+         />
         <EditText
+            style="@style/IngresoLogin"
             android:id="@+id/editTextPassword"
-            android:layout_width="270dp"
-            android:layout_height="50dp"
-            android:layout_below="@id/txtLogClave"
-            android:layout_marginTop="5dp"
             android:drawableEnd="@drawable/ic_pass"
-            android:drawablePadding="20dp"
+            android:layout_width="230dp"
+            android:layout_below="@id/txtLogClave"
             android:hint="@string/txtHintContraseñas"
             android:inputType="textPassword"
-            android:padding="10dp"
-            android:textColor="@color/colorNegro"
-            android:textColorHint="@color/colorGrisClaro" />
+            />
     </RelativeLayout>
     <Button
         android:id="@+id/botonIngreso"

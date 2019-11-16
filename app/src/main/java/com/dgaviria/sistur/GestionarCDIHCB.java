@@ -28,11 +28,10 @@ public class GestionarCDIHCB extends AppCompatActivity {
     DatabaseReference miReferencia;
     FloatingActionButton btncrear;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gestionar_cdihcb);
+        setContentView(R.layout.gestionar_cdihcb);
         miReferencia = FirebaseDatabase.getInstance().getReference();
         referenciar();
         llenarRecyclerCDI();
@@ -77,9 +76,6 @@ public class GestionarCDIHCB extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         miReferencia.child("Centros").child(nombreeli).removeValue();
-                        //llenarRecyclerCDI();
-                        //miRecyclerCDI.setAdapter(adaptadorCentros);
-                        //miRecyclerCDI.
                         adaptadorCentros.notifyDataSetChanged();
                         Toast.makeText(getApplicationContext(),"Centro eliminado de la base de datos",Toast.LENGTH_SHORT).show();
                     }
@@ -108,23 +104,6 @@ public class GestionarCDIHCB extends AppCompatActivity {
         miRecyclerCDI=findViewById(R.id.idrecyclerGestCDI);
         listaDeCDI=new ArrayList<>();
         btncrear=findViewById(R.id.idbtnCrearCDI);
-
-    }
-
-    private CdiHcb obtenercentro(String nombre){
-        final CdiHcb centro= new CdiHcb();
-        miReferencia.child("Centros").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //centro=dataSnapshot.getChildren().equals()
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-        return centro;
     }
 
     private void llenarRecyclerCDI(){
@@ -133,12 +112,15 @@ public class GestionarCDIHCB extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot datosbd : dataSnapshot.getChildren()) {
-
                     CdiHcb cdiHcb=datosbd.getValue(CdiHcb.class);
                     if (cdiHcb.getActivo())
                         listaDeCDI.add(cdiHcb);
                 }
                 adaptadorCentros.notifyDataSetChanged();
+                if (listaDeCDI.size()==0)
+                    Toast.makeText(GestionarCDIHCB.this, "No hay centros creados", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(GestionarCDIHCB.this, "Hay "+String.valueOf(listaDeCDI.size())+" centros creados", Toast.LENGTH_SHORT).show();
             }
 
             @Override

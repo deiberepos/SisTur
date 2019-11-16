@@ -30,11 +30,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class CensoPoblacional extends AppCompatActivity {
 
-    private int ano, mes, dia;
+    int ano, mes, dia;
     Button btnguardar, btnactualizar;
     EditText editRegistroInfante, editNombreInfante, editApellidoInfante, campoFecha, editObservaciones, editNombrePadre, editNombreMadre, editTeleMadre, editTelePadre, editDirPadre, editDirMadre;
     DatabaseReference miReferencia, misDatos, miReferenciaCentro, poblacionC;
@@ -47,7 +49,7 @@ public class CensoPoblacional extends AppCompatActivity {
     private String opcion = "", recibeRegistro, nombresAux, apellidoAux, fechaAux, observacionAux, nombreMadreAux, telefonoMadreAux, direccionMadreAux;
     private String nombrePadreAux, telefonoPadreAux, direccionPadreAux,generoCenso;
     private static final int TIPO_DIALOGO = 0;
-    private static DatePickerDialog.OnDateSetListener selectorFecha;
+    Calendar miCalendarioC;
     private Spinner spin;
 
     @Override
@@ -55,6 +57,7 @@ public class CensoPoblacional extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.censo_poblacional);
         referenciar();
+        mostrarFecha();
         if (opcion.equals("crear")) {
             llernarspinner();
             btnactualizar.setVisibility(View.INVISIBLE);
@@ -144,7 +147,6 @@ public class CensoPoblacional extends AppCompatActivity {
                     case R.id.femenino:
                         genero = "F";
                         break;
-
                 }
             }
         });
@@ -152,32 +154,20 @@ public class CensoPoblacional extends AppCompatActivity {
             activoCenso = true;
         else
             activoCenso = false;
-        Calendar calendar = Calendar.getInstance();
-        ano = calendar.get(Calendar.YEAR);
-        mes = calendar.get(Calendar.MONTH);
-        dia = calendar.get(Calendar.DAY_OF_MONTH);
-
-        mostrarFecha();
-
-        selectorFecha = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-                ano = i;
-                mes = i1 + 1;
-                dia = i2;
-                mostrarFecha();
-            }
-        };
-    }
-    @Override
-    protected Dialog onCreateDialog(int id) {
-        if (id==0)
-            return new DatePickerDialog(this, selectorFecha, ano, mes + 1, dia);
-        return null;
     }
 
     public void mostrarCalendario(View view) {
-        showDialog(TIPO_DIALOGO);
+        Calendar miCalendario=new GregorianCalendar();
+        miCalendario.setTime(new Date());
+        new DatePickerDialog(this, R.style.TemaCalendario, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                ano=year;
+                mes=month+1;
+                dia=dayOfMonth;
+                mostrarFecha();
+            }
+        }, miCalendario.get(Calendar.YEAR),miCalendario.get(Calendar.MONTH),miCalendario.get(Calendar.DAY_OF_MONTH)).show();
     }
 
 
@@ -186,7 +176,32 @@ public class CensoPoblacional extends AppCompatActivity {
         campoFecha.setText(fechaAux);
     }
 
-
+    public void referenciar() {
+        btnguardar = findViewById(R.id.btnguardarcenso);
+        btnactualizar = findViewById(R.id.btnactualizar);
+        editRegistroInfante=findViewById(R.id.registroinfante);
+        editNombreInfante = findViewById(R.id.nombreinfante);
+        editApellidoInfante = findViewById(R.id.apellidoinfante);
+        femenino = findViewById(R.id.femenino);
+        masculino = findViewById(R.id.masculino);
+        campoFecha = findViewById(R.id.fecha);
+        miCalendarioC=Calendar.getInstance();
+        ano = miCalendarioC.get(Calendar.YEAR);
+        mes = miCalendarioC.get(Calendar.MONTH)+1;
+        dia = miCalendarioC.get(Calendar.DAY_OF_MONTH);
+        editObservaciones = findViewById(R.id.editobsrvaciones);
+        spin = findViewById(R.id.spiner);
+        editNombrePadre = findViewById(R.id.nom_ape_padre);
+        editNombreMadre = findViewById(R.id.nom_ape_madre);
+        editTeleMadre = findViewById(R.id.telefonomadre);
+        editTelePadre = findViewById(R.id.telefonopadre);
+        editDirMadre = findViewById(R.id.direccionmadre);
+        editDirPadre = findViewById(R.id.direccionpadre);
+        generoInfante = findViewById(R.id.radiogenero);
+        estaActivo = findViewById(R.id.chekactivo);
+        recibeParametros = getIntent().getExtras();
+        opcion = recibeParametros.getString("opcion");
+    }
     private void llernarspinner() {
         miReferenciaCentro = FirebaseDatabase.getInstance().getReference();
         miReferenciaCentro.child("Centros").addValueEventListener(new ValueEventListener() {
@@ -518,28 +533,7 @@ public class CensoPoblacional extends AppCompatActivity {
         builder.show();
     }
 
-    public void referenciar() {
-        btnguardar = findViewById(R.id.btnguardarcenso);
-        btnactualizar = findViewById(R.id.btnactualizar);
-        editRegistroInfante=findViewById(R.id.registroinfante);
-        editNombreInfante = findViewById(R.id.nombreinfante);
-        editApellidoInfante = findViewById(R.id.apellidoinfante);
-        femenino = findViewById(R.id.femenino);
-        masculino = findViewById(R.id.masculino);
-        campoFecha = findViewById(R.id.fecha);
-        editObservaciones = findViewById(R.id.editobsrvaciones);
-        spin = findViewById(R.id.spiner);
-        editNombrePadre = findViewById(R.id.nom_ape_padre);
-        editNombreMadre = findViewById(R.id.nom_ape_madre);
-        editTeleMadre = findViewById(R.id.telefonomadre);
-        editTelePadre = findViewById(R.id.telefonopadre);
-        editDirMadre = findViewById(R.id.direccionmadre);
-        editDirPadre = findViewById(R.id.direccionpadre);
-        generoInfante = findViewById(R.id.radiogenero);
-        estaActivo = findViewById(R.id.chekactivo);
-        recibeParametros = getIntent().getExtras();
-        opcion = recibeParametros.getString("opcion");
-    }
+
 
     @Override
     protected void onPause() {
