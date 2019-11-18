@@ -98,7 +98,7 @@ public class CensoPoblacional extends AppCompatActivity {
             direccionMadreAux = recibeParametros.getString("dirmadre");
             editDirMadre.setText(direccionMadreAux);
             estaActivo = recibeParametros.getInt("activo");
-            if (estaActivo == 1) {
+            if (estaActivo == 2) {
                 this.estaActivo.setChecked(true);
             }
             llernarspinner();
@@ -532,8 +532,6 @@ public class CensoPoblacional extends AppCompatActivity {
         });
         builder.show();
     }
-
-
 
     @Override
     protected void onPause() {

@@ -70,7 +70,7 @@ public class RegistrarCDIHCB extends AppCompatActivity {
             edttelContacto.setText(acttelcon);
             spnVeredas.setSelection(2);
             activoo= recibeParametros.getInt("activo");
-            if(activoo==1){
+            if(activoo==2){
                 acti.setChecked(true);
             }
         }

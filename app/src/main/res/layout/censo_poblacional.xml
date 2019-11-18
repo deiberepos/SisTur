@@ -135,9 +135,7 @@
                 android:layout_gravity="center"
                 android:background="@color/colorClaro">
                 <Spinner
-                    android:textAlignment="center"
-                    android:layout_gravity="center"
-                    android:gravity="center"
+                    style="@style/SelectorSemana"
                     android:id="@+id/spiner"
                     android:layout_width="280dp"
                     android:layout_height="30dp"/>
@@ -199,7 +197,8 @@
                 android:text="@string/txtActivo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:shadowColor="@color/colorClaro"
+                android:shadowColor="@color/colorRojo"
+                app:buttonTint="@color/colorRojo"
                 android:shadowDx="-2"
                 android:shadowDy="-2"
                 android:shadowRadius="1.5"/>

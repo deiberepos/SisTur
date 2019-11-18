@@ -102,11 +102,6 @@ public class ListarUsuarios extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        //finish();
-    }
-    @Override
     protected void onPause() {
         super.onPause();
         finish();

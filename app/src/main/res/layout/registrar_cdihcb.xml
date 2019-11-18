@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:id="@+id/idcontenerRegCDI"
     android:layout_height="match_parent"
@@ -90,7 +91,6 @@
                 android:layout_gravity="center"
                 android:background="@color/colorClaro">
                 <Spinner
-                    android:gravity="center"
                     android:layout_width="280dp"
                     android:layout_height="30dp"
                     style="@style/SelectorSemana"
@@ -166,6 +166,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:shadowColor="@color/colorClaro"
+                app:buttonTint="@color/colorRojo"
                 android:shadowDx="-2"
                 android:shadowDy="-2"
                 android:shadowRadius="1.5"/>
