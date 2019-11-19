@@ -28,6 +28,8 @@ public class ListarUsuarios extends AppCompatActivity {
     RecyclerView miRecyclerUsuarios;
     List<Usuarios> listaDeUsuarios;
     AdaptadorListaUsuarios adaptadorUsuarios;
+    private Bundle datos;
+    private String recibeRol, recibeUsuario;
     DatabaseReference miReferencia;
 
     private FloatingActionButton btnguardar;
@@ -39,6 +41,7 @@ public class ListarUsuarios extends AppCompatActivity {
         setContentView(R.layout.listar_usuarios);
         miReferencia= FirebaseDatabase.getInstance().getReference();
         referenciar();
+
         llenarRecyclerUsuarios();
 
         btnguardar.setOnClickListener(new View.OnClickListener() {
@@ -46,6 +49,7 @@ public class ListarUsuarios extends AppCompatActivity {
             public void onClick(View view) {
                 Intent mi = new Intent(ListarUsuarios.this, CrearUsuarios.class);
                 mi.putExtra("opcion","crear");
+                mi.putExtra("rol",recibeRol);
                 startActivity(mi);
             }
         });
@@ -64,6 +68,7 @@ public class ListarUsuarios extends AppCompatActivity {
                 intent.putExtra("contrasena",misUsuarios.getContrasena());
                 intent.putExtra("correo",misUsuarios.getCorreo());
                 intent.putExtra("tipo",misUsuarios.getRolusuario());
+                intent.putExtra("rol",recibeRol);
                 startActivity(intent);
             }
 
@@ -75,6 +80,9 @@ public class ListarUsuarios extends AppCompatActivity {
         miRecyclerUsuarios=findViewById(R.id.recyclerListaU);
         listaDeUsuarios =new ArrayList<>();
         btnguardar =findViewById(R.id.guardar);
+        datos = getIntent().getExtras();
+        recibeRol= datos.getString("rol");
+        recibeUsuario = datos.getString("usuario");
     }
 
     private void llenarRecyclerUsuarios() {
@@ -86,13 +94,19 @@ public class ListarUsuarios extends AppCompatActivity {
                 listaDeUsuarios.clear();
                 for (DataSnapshot usuariosExisten : dataSnapshot.getChildren())                {
                     Usuarios miUsuario=usuariosExisten.getValue(Usuarios.class);
-                    listaDeUsuarios.add(miUsuario);
+                    if(recibeRol.equals("superusuario") && miUsuario.getRolusuario().equals("administrador")){
+                        listaDeUsuarios.add(miUsuario);
+                    }else
+                        if(!recibeRol.equals("superusuario") && !miUsuario.getRolusuario().equals("superusuario") && !miUsuario.getRolusuario().equals("administrador")){
+                            listaDeUsuarios.add(miUsuario);
+                    }
+
                 }
                 adaptadorUsuarios.notifyDataSetChanged();
                 if (listaDeUsuarios.size()==0)
                     Toast.makeText(ListarUsuarios.this, "No hay usuarios creados", Toast.LENGTH_SHORT).show();
                 else
-                    Toast.makeText(ListarUsuarios.this, "Hay "+String.valueOf(listaDeUsuarios.size())+" usuarios creados", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ListarUsuarios.this,"Hay "+String.valueOf(listaDeUsuarios.size())+" usuarios creados", Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {

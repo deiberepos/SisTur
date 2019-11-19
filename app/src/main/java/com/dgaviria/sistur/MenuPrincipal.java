@@ -42,6 +42,8 @@ public class MenuPrincipal extends AppCompatActivity {
                 switch (misOpciones.getOrden()){
                     case 1:
                         Intent miIntento1 = new Intent(MenuPrincipal.this, ListarUsuarios.class);
+                        miIntento1.putExtra("usuario",recibeUsuario);
+                        miIntento1.putExtra("rol",recibeRol);
                         startActivity(miIntento1);
                         break;
                     case 2:
@@ -90,19 +92,7 @@ public class MenuPrincipal extends AppCompatActivity {
                         });
 
                         break;
-                    case 8:/*
-                        if (recibeRol.equals("compras")){
-                            Intent miIntento8 = new Intent(MenuPrincipal.this, EntregaCompra.class);
-                            miIntento8.putExtra("usuario",recibeUsuario);
-                            miIntento8.putExtra("rol",recibeRol);
-                            startActivity(miIntento8);
-                        }
-                        else{
-                            Intent miIntento8 = new Intent(MenuPrincipal.this, RecibeCompra.class);
-                            miIntento8.putExtra("usuario",recibeUsuario);
-                            miIntento8.putExtra("rol",recibeRol);
-                            startActivity(miIntento8);
-                        }*/
+                    case 8:
                         Intent miIntento8 = new Intent(MenuPrincipal.this, EntregaCompra.class);
                         miIntento8.putExtra("usuario",recibeUsuario);
                         miIntento8.putExtra("rol",recibeRol);
@@ -156,6 +146,8 @@ public class MenuPrincipal extends AppCompatActivity {
                 switch (misOpciones.getOrden()) {
                     case 1:
                         Intent miIntento1 = new Intent(MenuPrincipal.this, ListarUsuarios.class);
+                        miIntento1.putExtra("usuario",recibeUsuario);
+                        miIntento1.putExtra("rol",recibeRol);
                         startActivity(miIntento1);
                         break;
                     case 2:
@@ -205,19 +197,7 @@ public class MenuPrincipal extends AppCompatActivity {
                         //Intent miIntento7 = new Intent(MenuPrincipal.this, CompraGaleria.class);
                         //startActivity(miIntento7);
                         break;
-                    case 8:/*
-                        if (recibeRol.equals("compras")){
-                            Intent miIntento8 = new Intent(MenuPrincipal.this, EntregaCompra.class);
-                            miIntento8.putExtra("usuario",recibeUsuario);
-                            miIntento8.putExtra("rol",recibeRol);
-                            startActivity(miIntento8);
-                        }
-                        else{
-                            Intent miIntento8 = new Intent(MenuPrincipal.this, RecibeCompra.class);
-                            miIntento8.putExtra("usuario",recibeUsuario);
-                            miIntento8.putExtra("rol",recibeRol);
-                            startActivity(miIntento8);
-                        }*/
+                    case 8:
                         Intent miIntento8 = new Intent(MenuPrincipal.this, EntregaCompra.class);
                         miIntento8.putExtra("usuario",recibeUsuario);
                         miIntento8.putExtra("rol",recibeRol);
@@ -294,6 +274,12 @@ public class MenuPrincipal extends AppCompatActivity {
                         listadoOpciones.add(misOpciones);
                         }
                     }else
+                    if(recibeRol.equals("superusuario")&& misOpciones.getActivo()){
+                        if(misOpciones.getOrden().equals(1) ){
+                            //if(misOpciones.getMinimorol().equals("basico"))  {
+                            listadoOpciones.add(misOpciones);
+                        }
+                    } else
                         if(recibeRol.equals("basico")&& misOpciones.getActivo()){
                             if(misOpciones.getOrden().equals(5) ||misOpciones.getOrden().equals(9)||misOpciones.getOrden().equals(10)||misOpciones.getOrden().equals(11)){
                             //if(misOpciones.getMinimorol().equals("basico"))  {
