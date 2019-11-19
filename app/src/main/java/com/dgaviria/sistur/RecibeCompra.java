@@ -57,6 +57,7 @@ public class RecibeCompra extends AppCompatActivity {
     Calendar miCalendarioE;
     FloatingActionButton botonAprobar;
     int numInfantes,numIngredientes;
+    private long totalcenso;
     Bundle recibeParametros;
     private static final int CODIGO_PETICION_CAMARA = 100;
     public Boolean entregaExiste;
@@ -141,6 +142,7 @@ public class RecibeCompra extends AppCompatActivity {
         recibeParametros = getIntent().getExtras();
         recibeRol= recibeParametros.getString("rol");
         recibeUsuario = recibeParametros.getString("usuario");
+        totalcenso=recibeParametros.getLong("total");
         llenarListaCDIE();
         llenarListaSemanasE();
     }
@@ -259,7 +261,7 @@ public class RecibeCompra extends AppCompatActivity {
                                             int cantidadEntregada,miCantidad;
                                             miCantidad=Integer.valueOf(ingredienteC.getCantidad());
                                             //if (numInfantes>12)
-                                            cantidadEntregada=Math.round((float) ((miCantidad/29)*numInfantes));
+                                            cantidadEntregada=Math.round((float) ((miCantidad/totalcenso)*numInfantes));
                                             //else
                                             //cantidadEntregada=miCantidad;
                                             ingredienteE.setCantidadentregada(String.valueOf(cantidadEntregada));
