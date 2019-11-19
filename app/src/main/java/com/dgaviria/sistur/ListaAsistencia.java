@@ -117,8 +117,9 @@ public class ListaAsistencia extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
-                    for (DataSnapshot semanas:dataSnapshot.getChildren()) {
-                        InfanteAsiste infanteAsiste = semanas.getValue(InfanteAsiste.class);
+                    for (DataSnapshot asisteinfante:dataSnapshot.getChildren()) {
+                        InfanteAsiste infanteAsiste = asisteinfante.getValue(InfanteAsiste.class);
+
                         lista.add(infanteAsiste);
                     }
                     adaptadorAsistencia.notifyDataSetChanged();

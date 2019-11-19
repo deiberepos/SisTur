@@ -63,7 +63,7 @@
                     style="@style/Subtitulo"/>
             </RelativeLayout>
             <TextView
-                android:text="txtCDIHCB"
+                android:text="CDIHCB"
                 style="@style/Subtitulo"
                 />
             <RelativeLayout

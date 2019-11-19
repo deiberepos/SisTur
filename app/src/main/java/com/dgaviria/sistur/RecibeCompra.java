@@ -259,7 +259,7 @@ public class RecibeCompra extends AppCompatActivity {
                                             int cantidadEntregada,miCantidad;
                                             miCantidad=Integer.valueOf(ingredienteC.getCantidad());
                                             //if (numInfantes>12)
-                                            cantidadEntregada=Math.round((float) ((numInfantes/12.0)*miCantidad));
+                                            cantidadEntregada=Math.round((float) ((miCantidad/29)*numInfantes));
                                             //else
                                             //cantidadEntregada=miCantidad;
                                             ingredienteE.setCantidadentregada(String.valueOf(cantidadEntregada));

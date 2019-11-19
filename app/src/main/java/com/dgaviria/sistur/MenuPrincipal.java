@@ -90,7 +90,7 @@ public class MenuPrincipal extends AppCompatActivity {
                         });
 
                         break;
-                    case 8:
+                    case 8:/*
                         if (recibeRol.equals("compras")){
                             Intent miIntento8 = new Intent(MenuPrincipal.this, EntregaCompra.class);
                             miIntento8.putExtra("usuario",recibeUsuario);
@@ -102,17 +102,48 @@ public class MenuPrincipal extends AppCompatActivity {
                             miIntento8.putExtra("usuario",recibeUsuario);
                             miIntento8.putExtra("rol",recibeRol);
                             startActivity(miIntento8);
-                        }
+                        }*/
+                        Intent miIntento8 = new Intent(MenuPrincipal.this, EntregaCompra.class);
+                        miIntento8.putExtra("usuario",recibeUsuario);
+                        miIntento8.putExtra("rol",recibeRol);
+                        startActivity(miIntento8);
                         break;
-                    case 9:
+                    case 10:
                         Intent miIntento9 = new Intent(MenuPrincipal.this, PublicarMinutas.class);
                         startActivity(miIntento9);
                         break;
-                    case 10:
+                    case 11:
                         Intent miIntento10 =  new Intent(MenuPrincipal.this, ListaAsistencia.class);
                         miIntento10.putExtra("rol",recibeRol);
                         miIntento10.putExtra("usuario",recibeUsuario);
                         startActivity(miIntento10);
+                        break;
+
+                    case 9:
+                        //Antes de acceder al menu de Recepción de alimentos se saca el total de niños asociados a los Centros
+                        // y se envia para realizar el cálculo de las entregas que se debe realizar
+                        miReferencia= FirebaseDatabase.getInstance().getReference();
+                        childpoblacion=miReferencia.child("poblacionCentros");
+                        childpoblacion.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                long totalinfantes=0;
+                                for (DataSnapshot datos:dataSnapshot.getChildren()) {
+                                    totalinfantes += datos.getChildrenCount()-1;
+                                }
+                                Intent miIntento11 = new Intent(MenuPrincipal.this, RecibeCompra.class);
+                                miIntento11.putExtra("usuario",recibeUsuario);
+                                miIntento11.putExtra("rol",recibeRol);
+                                miIntento11.putExtra("total",totalinfantes);
+                                startActivity(miIntento11);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+
                         break;
                     default:
                         Toast.makeText(getApplicationContext(),"Opción "+misOpciones.getTitulo(),Toast.LENGTH_SHORT).show();
@@ -174,7 +205,7 @@ public class MenuPrincipal extends AppCompatActivity {
                         //Intent miIntento7 = new Intent(MenuPrincipal.this, CompraGaleria.class);
                         //startActivity(miIntento7);
                         break;
-                    case 8:
+                    case 8:/*
                         if (recibeRol.equals("compras")){
                             Intent miIntento8 = new Intent(MenuPrincipal.this, EntregaCompra.class);
                             miIntento8.putExtra("usuario",recibeUsuario);
@@ -186,19 +217,49 @@ public class MenuPrincipal extends AppCompatActivity {
                             miIntento8.putExtra("usuario",recibeUsuario);
                             miIntento8.putExtra("rol",recibeRol);
                             startActivity(miIntento8);
-                        }
+                        }*/
+                        Intent miIntento8 = new Intent(MenuPrincipal.this, EntregaCompra.class);
+                        miIntento8.putExtra("usuario",recibeUsuario);
+                        miIntento8.putExtra("rol",recibeRol);
+                        startActivity(miIntento8);
                         break;
-                    case 9:
+                    case 10:
                         Intent miIntento9 = new Intent(MenuPrincipal.this, PublicarMinutas.class);
                         startActivity(miIntento9);
                         break;
-                    case 10:
+                    case 11:
                         Intent miIntento10 =  new Intent(MenuPrincipal.this, ListaAsistencia.class);
                         miIntento10.putExtra("rol",recibeRol);
                         miIntento10.putExtra("usuario",recibeUsuario);
                         startActivity(miIntento10);
                         break;
-                    default:
+                    case 9:
+                        //Antes de acceder al menu de Recepción de alimentos se saca el total de niños asociados a los Centros
+                        // y se envia para realizar el cálculo de las entregas que se debe realizar
+                        miReferencia= FirebaseDatabase.getInstance().getReference();
+                        childpoblacion=miReferencia.child("poblacionCentros");
+                        childpoblacion.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                long totalinfantes=0;
+                                for (DataSnapshot datos:dataSnapshot.getChildren()) {
+                                    totalinfantes += datos.getChildrenCount()-1;
+                                }
+                                Intent miIntento11 = new Intent(MenuPrincipal.this, RecibeCompra.class);
+                                miIntento11.putExtra("usuario",recibeUsuario);
+                                miIntento11.putExtra("rol",recibeRol);
+                                miIntento11.putExtra("total",totalinfantes);
+                                startActivity(miIntento11);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+
+                        break;
+                        default:
                         Toast.makeText(getApplicationContext(), "Imagen " + misOpciones.getTitulo(), Toast.LENGTH_SHORT).show();
                         break;
                 }
@@ -228,13 +289,13 @@ public class MenuPrincipal extends AppCompatActivity {
                     //if (misOpciones.getActivo()==true)
                       //  listadoOpciones.add(misOpciones);
                     if(recibeRol.equals("compras")&& misOpciones.getActivo()){
-                        if(misOpciones.getOrden().equals(5) ||misOpciones.getOrden().equals(7) ||misOpciones.getOrden().equals(8)||misOpciones.getOrden().equals(9)){
+                        if(misOpciones.getOrden().equals(5) ||misOpciones.getOrden().equals(7) ||misOpciones.getOrden().equals(8)||misOpciones.getOrden().equals(10)){
                         //if(misOpciones.getMinimorol().equals("compras")||misOpciones.getMinimorol().equals("basico"))  {
                         listadoOpciones.add(misOpciones);
                         }
                     }else
                         if(recibeRol.equals("basico")&& misOpciones.getActivo()){
-                            if(misOpciones.getOrden().equals(5) ||misOpciones.getOrden().equals(8)||misOpciones.getOrden().equals(9)||misOpciones.getOrden().equals(10)){
+                            if(misOpciones.getOrden().equals(5) ||misOpciones.getOrden().equals(9)||misOpciones.getOrden().equals(10)||misOpciones.getOrden().equals(11)){
                             //if(misOpciones.getMinimorol().equals("basico"))  {
                                 listadoOpciones.add(misOpciones);
                         }
