@@ -113,4 +113,11 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/colorNegro" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerEntregas"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingEnd="5dp"
+        android:layout_marginTop="40dp" />
 </LinearLayout>

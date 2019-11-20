@@ -187,7 +187,7 @@ public class ListarCensoPoblacion extends AppCompatActivity {
                 miReferenciaBuscar.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        for(DataSnapshot censoExistente : dataSnapshot.getChildren())                        {
+                        for(DataSnapshot censoExistente : dataSnapshot.getChildren()){
                             Censo micenso=censoExistente.getValue(Censo.class);
                             if (micenso.getActivo())
                                 listaDeCenso.add(micenso);
