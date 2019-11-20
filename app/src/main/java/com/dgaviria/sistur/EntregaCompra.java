@@ -275,7 +275,7 @@ public class EntregaCompra extends AppCompatActivity {
 
     private void llenarRecyclerControl() {
         miRecyclerEntrega.setLayoutManager(new LinearLayoutManager(this));
-        miReferenciacontrol.child("entregas").child(nombreCDIEI).child(nombreSemanaEI).addValueEventListener(new ValueEventListener() {
+        miReferenciacontrol.child("entregas").child("Hogar Cerrito").child("S01: enero 02 a enero 05").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
