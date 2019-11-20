@@ -39,7 +39,7 @@ public class AdaptadorPlanAlimenticio extends RecyclerView.Adapter<AdaptadorPlan
         }
     }
 
-    public AdaptadorPlanAlimenticio(Context contexto,List<PlanAlimenticio> listadoA) { //,AdaptadorPlanAlimenticio.OnItemClick elementoPresionado){
+    public AdaptadorPlanAlimenticio(Context contexto,List<PlanAlimenticio> listadoA) {
         this.contexto=contexto;
         this.listadoAlimentos =listadoA;
     }

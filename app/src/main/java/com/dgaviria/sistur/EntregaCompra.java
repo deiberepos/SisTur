@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -52,10 +53,11 @@ public class EntregaCompra extends AppCompatActivity {
     Calendar miCalendarioEI;
     Boolean aprobarQR;
     Bundle recibeParametros;
-    RecyclerView miRecyclerEntrega;
-    DatabaseReference miReferenciacontrol;
-    List<OtrosEntrega> listadoEntregas;
-    AdaptadorListaControl adaptadorControl;
+    RecyclerView miRecyclerEntregaH,miRecyclerEntregaP;
+    DatabaseReference miReferenciaControl;
+    AdaptadorListaControl miAdaptadorControlH,miAdaptadorControlP;
+    List<OtrosEntrega> listadoEntregasH,listadoEntregasP;
+    ScrollView bloqueEntrega;
 
     public final static int anchoCodigoQR = 350;
 
@@ -63,26 +65,13 @@ public class EntregaCompra extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.entrega_compras);
-        miReferenciacontrol = FirebaseDatabase.getInstance().getReference();
         referenciar();
         mostrarFechaEI();
-        llenarRecyclerControl();
-
-
-        adaptadorControl = new AdaptadorListaControl(this, listadoEntregas, new AdaptadorListaControl.OnItemClick() {
-            @Override
-            public void itemClick(OtrosEntrega control, int posicion) {
-                Toast.makeText(getApplicationContext(), "Tipo de Control", Toast.LENGTH_SHORT).show();
-            }
-        });
-        miRecyclerEntrega.setAdapter(adaptadorControl);
-
-
-        selectorCDIEI.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        selectorSemanasEI.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adaptadorVista, View view, int i, long l) {
-                nombreCDIEI = adaptadorVista.getItemAtPosition(i).toString();
-                lecturaCDIEI();
+                nombreSemanaEI = adaptadorVista.getItemAtPosition(i).toString();
+                listadoEntregas();
             }
 
             @Override
@@ -90,10 +79,10 @@ public class EntregaCompra extends AppCompatActivity {
 
             }
         });
-        selectorSemanasEI.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        selectorCDIEI.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adaptadorVista, View view, int i, long l) {
-                nombreSemanaEI = adaptadorVista.getItemAtPosition(i).toString();
+                nombreCDIEI = adaptadorVista.getItemAtPosition(i).toString();
                 lecturaCDIEI();
             }
 
@@ -126,6 +115,7 @@ public class EntregaCompra extends AppCompatActivity {
     }
 
     private void referenciar() {
+        miReferenciaControl = FirebaseDatabase.getInstance().getReference();
         codigoQR = findViewById(R.id.imagenQR);
         botonGenerar = findViewById(R.id.botonQR);
         campoFechaEI = findViewById(R.id.editFechaEntregaEI);
@@ -135,16 +125,14 @@ public class EntregaCompra extends AppCompatActivity {
         dia = miCalendarioEI.get(Calendar.DAY_OF_MONTH);
         selectorSemanasEI = findViewById(R.id.selectorSemanaEI);
         selectorCDIEI = findViewById(R.id.selectorCDIEI);
+        bloqueEntrega=findViewById(R.id.scrollEntregas);
         recibeParametros = getIntent().getExtras();
         recibeRol = recibeParametros.getString("rol");
         recibeUsuario = recibeParametros.getString("usuario");
         aprobarQR = false;
-        miRecyclerEntrega = findViewById(R.id.recyclerEntregas);
-        listadoEntregas = new ArrayList<>();
-        llenarListaCDIEI();
+        miRecyclerEntregaH = findViewById(R.id.recyclerEntregaHecha);
+        miRecyclerEntregaP = findViewById(R.id.recyclerEntregaPendiente);
         llenarListaSemanasEI();
-
-
     }
 
     Bitmap convierteTextoAQR(String Value) throws WriterException {
@@ -218,31 +206,15 @@ public class EntregaCompra extends AppCompatActivity {
     }
 
     private void llenarListaCDIEI() {
+        int itemCDI=0;
         listadoCDIEI = new ArrayList<>();
-        miReferenciaCDIEI = FirebaseDatabase.getInstance().getReference("Centros");
-        miReferenciaCDIEI.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.getChildren() != null) {
-                    for (DataSnapshot miCentro : dataSnapshot.getChildren()) {
-                        listadoCDIEI.add(miCentro.getKey());
-                    }
-                    adaptadorCDIEI = new ArrayAdapter<>(EntregaCompra.this, android.R.layout.simple_spinner_item, listadoCDIEI);
-                    adaptadorCDIEI.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    selectorCDIEI.setAdapter(adaptadorCDIEI);
-                    //selectorSemanas.setSelected(false);
-                    selectorCDIEI.setSelection(0, true); //selecciona el primer elemento del spinner
-                    adaptadorCDIEI.notifyDataSetChanged();
-                } else {
-                    Toast.makeText(getApplicationContext(), "Error de lectura de CDI, contacte al administrador", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+        for (int itemLista=0;itemLista<listadoEntregasP.size();itemLista++)
+            listadoCDIEI.add(listadoEntregasP.get(itemLista).getNombreCDI());
+        adaptadorCDIEI = new ArrayAdapter<>(EntregaCompra.this, android.R.layout.simple_spinner_item, listadoCDIEI);
+        adaptadorCDIEI.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        selectorCDIEI.setAdapter(adaptadorCDIEI);
+        selectorCDIEI.setSelection(0, true); //selecciona el primer elemento del spinner
+        adaptadorCDIEI.notifyDataSetChanged();
     }
 
     private void llenarListaSemanasEI() {
@@ -273,30 +245,80 @@ public class EntregaCompra extends AppCompatActivity {
         });
     }
 
-    private void llenarRecyclerControl() {
-        miRecyclerEntrega.setLayoutManager(new LinearLayoutManager(this));
-        miReferenciacontrol.child("entregas").child("Hogar Cerrito").child("S01: enero 02 a enero 05").addValueEventListener(new ValueEventListener() {
+    private void listadoEntregas() {
+        listadoEntregasH = new ArrayList<>();
+        LinearLayoutManager linearLayoutManagerH=new LinearLayoutManager(this);
+        miRecyclerEntregaH.setLayoutManager(linearLayoutManagerH);
+        miReferenciaControl.child("entregas").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    OtrosEntrega entrega = new OtrosEntrega();
-                    entrega.setQuiencompra(dataSnapshot.child("quiencompra").getValue().toString());
-                    entrega.setRecibidopor(dataSnapshot.child("recibidopor").getValue().toString());
-                    entrega.setNombreCDI(dataSnapshot.child("nombreCDI").getValue().toString());
-                    listadoEntregas.add(entrega);
+                if (dataSnapshot.exists()){
+                    listadoEntregasH.clear();
+                    for(DataSnapshot miCentro:dataSnapshot.getChildren())
+                        for (DataSnapshot miSemana:miCentro.getChildren())
+                            if (miSemana.getKey().equals(nombreSemanaEI)){
+                                OtrosEntrega entrega = new OtrosEntrega();
+                                entrega.setNombreCDI(miSemana.child("nombreCDI").getValue().toString());
+                                listadoEntregasH.add(entrega);
+                            }
+                    miAdaptadorControlH.notifyDataSetChanged();
                 }
-                adaptadorControl.notifyDataSetChanged();
-                if (listadoEntregas.size() == 0)
-                    Toast.makeText(EntregaCompra.this, "No hay centros creados", Toast.LENGTH_SHORT).show();
+                if (listadoEntregasH.size() == 0)
+                    Toast.makeText(EntregaCompra.this, "No se han realizado entregas", Toast.LENGTH_SHORT).show();
                 else
-                    Toast.makeText(EntregaCompra.this, "Hay " + String.valueOf(listadoEntregas.size()) + " entregas", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EntregaCompra.this, "Se han realizado " + String.valueOf(listadoEntregasH.size()) + " entregas", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(getApplicationContext(), "Error en la lectura de los centros, contacte al administrador", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Error en la lectura de los entregas, contacte al administrador", Toast.LENGTH_SHORT).show();
             }
         });
+        miAdaptadorControlH=new AdaptadorListaControl(EntregaCompra.this,listadoEntregasH);
+        miRecyclerEntregaH.setAdapter(miAdaptadorControlH);
+
+        listadoEntregasP = new ArrayList<>();
+        LinearLayoutManager linearLayoutManagerP=new LinearLayoutManager(this);
+        miRecyclerEntregaP.setLayoutManager(linearLayoutManagerP);
+        miReferenciaControl.child("Centros").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    String nombreCentro;
+                    boolean existeLista;
+                    for (DataSnapshot miCentro : dataSnapshot.getChildren()) {
+                        nombreCentro=miCentro.getKey();
+                        existeLista=false;
+                        for (int itemLista=0;itemLista<listadoEntregasH.size();itemLista++)
+                            if (nombreCentro.equals(listadoEntregasH.get(itemLista).getNombreCDI())){
+                                existeLista=true;
+                            }
+                        if (!existeLista){
+                            OtrosEntrega entrega = new OtrosEntrega();
+                            entrega.setNombreCDI(nombreCentro);
+                            listadoEntregasP.add(entrega);
+                        }
+                    }
+                    miAdaptadorControlP.notifyDataSetChanged();
+                }
+                if (listadoEntregasP.size() == 0){
+                    bloqueEntrega.setVisibility(View.INVISIBLE);
+                    Toast.makeText(EntregaCompra.this, "No hay entregas pendientes", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    bloqueEntrega.setVisibility(View.VISIBLE);
+                    Toast.makeText(EntregaCompra.this, "Se encuentran " + String.valueOf(listadoEntregasP.size()) + " entregas pendientes", Toast.LENGTH_SHORT).show();
+                    llenarListaCDIEI();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(getApplicationContext(), "Error en la lectura de los entregas, contacte al administrador", Toast.LENGTH_SHORT).show();
+            }
+        });
+        miAdaptadorControlP=new AdaptadorListaControl(EntregaCompra.this,listadoEntregasP);
+        miRecyclerEntregaP.setAdapter(miAdaptadorControlP);
     }
 
     @Override

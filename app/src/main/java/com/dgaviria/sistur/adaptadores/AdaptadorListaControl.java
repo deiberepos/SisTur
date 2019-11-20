@@ -17,51 +17,35 @@ import com.dgaviria.sistur.clases.OtrosEntrega;
 import java.util.List;
 
 public class AdaptadorListaControl extends RecyclerView.Adapter <AdaptadorListaControl.ControlViewHolder> {
-    List<OtrosEntrega> listadoEntregas;
     Context contexto;
-
-    public AdaptadorListaControl(List<OtrosEntrega> listaentregas){
-        this.listadoEntregas = listaentregas;
-    }
-
-    public AdaptadorListaControl(Context context, List<OtrosEntrega> listaentregas, AdaptadorListaControl.OnItemClick listener){
-        this.contexto = context;
-        this.listadoEntregas = listaentregas;
-        this.listener = listener;
-
-
-    }
-    private OnItemClick listener;
-
-    public interface OnItemClick{
-        void itemClick(OtrosEntrega control, int posicion);
-    }
+    List<OtrosEntrega> listadoEntregas;
 
     public static class ControlViewHolder extends RecyclerView.ViewHolder{
-        TextView nombreCDI,entregadopor,recibidopor,quiencompra;
+        TextView nombreCDI;
 
         public ControlViewHolder(View vistaItem){
             super(vistaItem);
-            entregadopor=vistaItem.findViewById(R.id.txtNombres);
-            nombreCDI=vistaItem.findViewById(R.id.txtUsuario);
-            recibidopor=vistaItem.findViewById(R.id.txtRol);
+            nombreCDI=vistaItem.findViewById(R.id.txtHogarCDI);
         }
     }
-    @NonNull
+
+    public AdaptadorListaControl(Context context, List<OtrosEntrega> listaentregas){
+        this.contexto = context;
+        this.listadoEntregas = listaentregas;
+    }
+
+
     @Override
-    public AdaptadorListaControl.ControlViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View vista = LayoutInflater.from(parent.getContext()).inflate(R.layout.usuarios_lista,parent,false);
-        ControlViewHolder fila = new ControlViewHolder(vista);
+    public AdaptadorListaControl.ControlViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View vista = LayoutInflater.from(parent.getContext()).inflate(R.layout.control_lista,parent,false);
+        AdaptadorListaControl.ControlViewHolder fila = new AdaptadorListaControl.ControlViewHolder(vista);
         return fila;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ControlViewHolder holder, int position) {
-        OtrosEntrega control = listadoEntregas.get(position);
-        holder.nombreCDI.setText(control.getNombreCDI());
-        holder.entregadopor.setText(control.getQuiencompra());
-        holder.recibidopor.setText(control.getRecibidopor());
-
+    public void onBindViewHolder(AdaptadorListaControl.ControlViewHolder holder, int posicion) {
+        OtrosEntrega miControl = listadoEntregas.get(posicion);
+        holder.nombreCDI.setText(miControl.getNombreCDI());
     }
     @Override
     public int getItemCount() {

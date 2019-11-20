@@ -91,7 +91,9 @@
     <string name="txtRegistrarUsuario">Registrar Usuario</string>
     <string name="txtActualizaUsuario">Actualizar Usuario</string>
     <string name="txtEntregaInsumos">Entrega de Insumos</string>
-    <string name="txtCDIHCB">CDI/HCB</string>
+    <string name="txtCDIHCB">HCB/CDI</string>
+    <string name="txtPendiente">Entregas Pendientes</string>
+    <string name="txtEntregada">Entregas Realizadas</string>
     <string name="txtFechaEntrega">Fecha de entrega:</string>
     <string name="txtFechaReporte">Fecha de reporte:</string>
     <string name="txtHintSeleccionFecha"><i>seleccione fecha</i></string>
