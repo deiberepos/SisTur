@@ -52,9 +52,11 @@ public class RegistrarCDIHCB extends AppCompatActivity {
             actTipo= recibeParametros.getInt("tipo");
             if(actTipo==1){
                 rbCentro.setChecked(true);
+                tipo="Centro de Desarrollo Infantil";
             }
             else{
                 rbHogar.setChecked(true);
+                tipo="Hogar Comunitario Básico";
             }
             actnombreen= recibeParametros.getString("nombreen");
             edtnombreEncargado.setText(actnombreen);
@@ -137,7 +139,8 @@ public class RegistrarCDIHCB extends AppCompatActivity {
         Boolean finalizar=false;
         if(edtnombreCentro.getText().toString().isEmpty()||edtdirEncargado.getText().toString().isEmpty()||
         edtnombreEncargado.getText().toString().isEmpty()||edttelEncargado.getText().toString().isEmpty()||
-        edtnomContacto.getText().toString().isEmpty()||edtdirContacto.getText().toString().isEmpty()|| edttelContacto.getText().toString().isEmpty()){
+        edtnomContacto.getText().toString().isEmpty()||edtdirContacto.getText().toString().isEmpty()||
+                edttelContacto.getText().toString().isEmpty()||tipo.equals("sinTipo")){
             Toast.makeText(this,"Todos los campos son requeridos",Toast.LENGTH_SHORT).show();
         }else {
             nombrecentro = edtnombreCentro.getText().toString();
@@ -150,113 +153,6 @@ public class RegistrarCDIHCB extends AppCompatActivity {
             guardarCentro();
         }
 
-            /*
-            //Verifica que escriba los valores en todos los campos requeridos
-            if (editTextUsuario.getText().toString().trim().toLowerCase().isEmpty()){
-                editTextUsuario.setError("Nombre de usuario requerido");
-                editTextUsuario.requestFocus();
-                barraProgreso.setVisibility(View.GONE);
-                return;
-            }
-            else{
-                usuarioU=editTextUsuario.getText().toString().trim().toLowerCase();
-                editTextUsuario.setText(usuarioU);
-            }
-            if (editTextContrasena.getText().toString().trim().isEmpty()){
-                editTextContrasena.setError("Contraseña requerida");
-                editTextContrasena.requestFocus();
-                barraProgreso.setVisibility(View.GONE);
-                return;
-            }
-            else{
-                contrasenaU=editTextContrasena.getText().toString().trim();
-                editTextContrasena.setText(contrasenaU);
-            }
-            if (editTextVerificaContrasena.getText().toString().trim().isEmpty()){
-                editTextVerificaContrasena.setError("Validación requerida");
-                editTextVerificaContrasena.requestFocus();
-                barraProgreso.setVisibility(View.GONE);
-                return;
-            }
-            else{
-                //Verifica que las contraseñas coincidan
-                contrasenaV=editTextVerificaContrasena.getText().toString().trim();
-                editTextVerificaContrasena.setText(contrasenaV);
-                if (!contrasenaU.equals(contrasenaV)){
-                    editTextVerificaContrasena.setError("Las contraseñas no coinciden");
-                    editTextVerificaContrasena.requestFocus();
-                    barraProgreso.setVisibility(View.GONE);
-                    return;
-                }
-                else{
-                    contrasenaV=editTextVerificaContrasena.getText().toString().trim();
-                    editTextVerificaContrasena.setText(contrasenaV);
-                }
-            }
-            if (editTextCorreo.getText().toString().trim().toLowerCase().isEmpty()){
-                editTextCorreo.setError("El correo es requerido");
-                editTextCorreo.requestFocus();
-                barraProgreso.setVisibility(View.GONE);
-                return;
-            }
-            else{
-                //Verifica que el correo esté bien escrito
-                correoE=editTextCorreo.getText().toString().trim().toLowerCase();
-                if(android.util.Patterns.EMAIL_ADDRESS.matcher(correoE).matches()){
-                    editTextCorreo.setText(correoE);
-                }
-                else{
-                    editTextCorreo.setError("El correo no es válido");
-                    editTextCorreo.requestFocus();
-                    barraProgreso.setVisibility(View.GONE);
-                    return;
-                }
-            }
-            if (editTextNombres.getText().toString().trim().isEmpty()){
-                editTextNombres.setError("Los nombres y apellidos son requeridos");
-                editTextNombres.requestFocus();
-                barraProgreso.setVisibility(View.GONE);
-                return;
-            }
-            else{
-                nombresU=editTextNombres.getText().toString().trim();
-                editTextNombres.setText(nombresU);
-            }*/
-            //verifica el rol seleccionado
-
-
-
-            /*
-            barraProgreso.setVisibility(View.GONE);
-            if (rolUsuario!=0) {
-                //verifica que no se repita el nombre del usuario
-                miReferencia.child(usuarioU).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.exists()) {
-                            //valida el nombre del usuario
-                            if (dataSnapshot.child("usuario").getValue(String.class).equals(usuarioU)) {
-                                Toast.makeText(getApplicationContext(), "Este usuario ya existe, intente otro nombre", Toast.LENGTH_SHORT).show();
-                            }
-                            else {
-                                crearNuevoUsuario();
-                                finish();
-                            }
-                        }
-                        else {
-                            crearNuevoUsuario();
-                            finish();
-                        }
-                    }
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-            }
-            else
-                Toast.makeText(getApplicationContext(), "Debe seleccionar un rol", Toast.LENGTH_SHORT).show();
-        */
     }
 
     private void guardarCentro(){
@@ -273,7 +169,7 @@ public class RegistrarCDIHCB extends AppCompatActivity {
     private void actualizarCentros(){
         miReferencia=FirebaseDatabase.getInstance().getReference();
         AlertDialog.Builder builder = new AlertDialog.Builder(RegistrarCDIHCB.this);
-        builder.setTitle("msj Actualizar");
+        builder.setTitle("Opciones Actualizar");
         builder.setMessage("Está seguro que desea actualizar este centro?");
         builder.setPositiveButton("ACTUALIZAR", new DialogInterface.OnClickListener() {
             @Override
@@ -302,7 +198,8 @@ public class RegistrarCDIHCB extends AppCompatActivity {
     private void cargarDatosDos() {
         if (edtnombreCentro.getText().toString().isEmpty() || edtdirEncargado.getText().toString().isEmpty() ||
                 edtnombreEncargado.getText().toString().isEmpty() || edttelEncargado.getText().toString().isEmpty() ||
-                edtnomContacto.getText().toString().isEmpty() || edtdirContacto.getText().toString().isEmpty() || edttelContacto.getText().toString().isEmpty()) {
+                edtnomContacto.getText().toString().isEmpty() || edtdirContacto.getText().toString().isEmpty() ||
+                edttelContacto.getText().toString().isEmpty()||tipo.equals("sinTipo")) {
             Toast.makeText(this, "Todos los campos son requeridos", Toast.LENGTH_SHORT).show();
         } else {
             nombrecentro = edtnombreCentro.getText().toString();
@@ -335,6 +232,7 @@ public class RegistrarCDIHCB extends AppCompatActivity {
         acti=findViewById(R.id.activocdi);
         recibeParametros =getIntent().getExtras();
         opcion= recibeParametros.getString("opcion");
+        tipo = "sinTipo";
     }
 
     @Override
