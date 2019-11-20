@@ -8,13 +8,13 @@ public class InfanteAsiste {
     private Boolean asisteMiercoles;
     private Boolean asisteJueves;
     private Boolean asisteViernes;
-
+    private boolean estadolunes;
 
     public InfanteAsiste() {
     }
 
 
-    public InfanteAsiste(String nombreInfante, String registroCivil, Boolean asisteLunes, Boolean asisteMartes, Boolean asisteMiercoles, Boolean asisteJueves, Boolean asisteViernes) {
+    public InfanteAsiste(String nombreInfante, String registroCivil, Boolean asisteLunes, Boolean asisteMartes, Boolean asisteMiercoles, Boolean asisteJueves, Boolean asisteViernes, boolean estadolunes) {
         this.nombreInfante = nombreInfante;
         this.registroCivil = registroCivil;
         this.asisteLunes = asisteLunes;
@@ -22,7 +22,17 @@ public class InfanteAsiste {
         this.asisteMiercoles = asisteMiercoles;
         this.asisteJueves = asisteJueves;
         this.asisteViernes = asisteViernes;
+        this.estadolunes=estadolunes;
     }
+
+    public boolean isEstadolunes() {
+        return estadolunes;
+    }
+
+    public void setEstadolunes(boolean estadolunes) {
+        this.estadolunes = estadolunes;
+    }
+
     public Boolean getAsisteMartes() {
         return asisteMartes;
     }

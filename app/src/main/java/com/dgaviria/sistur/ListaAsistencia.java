@@ -70,7 +70,9 @@ public class ListaAsistencia extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 nombreCentro = adapterView.getItemAtPosition(i).toString();
-                lecturaNombresInfantes(nombreCentro,"S01: enero 02 a enero 05");
+
+                //lecturaNombresInfantes(nombreCentro,"S01: enero 02 a enero 05");
+                lecturaNombresInfantes(nombreCentro,nombreSemana);
             }
 
             @Override
@@ -89,8 +91,10 @@ public class ListaAsistencia extends AppCompatActivity {
                 for(int i = 0; i<nombresInfantes.size();i++){
                     InfanteAsiste infanteAsiste;
                     infanteAsiste = nombresInfantes.get(i);
+                    infanteAsiste.setEstadolunes(true);
                     refRegistAsistencia.child(infanteAsiste.getRegistroCivil()).setValue(infanteAsiste);
                 }
+                refRegistAsistencia.child("Responsable").setValue(recibeUsuario);
                 Toast.makeText(ListaAsistencia.this, "Lista de asistencia guardada", Toast.LENGTH_SHORT).show();
                 Intent intent= new Intent(getApplicationContext(),MenuPrincipal.class);
                 intent.putExtra("rol",recibeRol);
@@ -118,9 +122,10 @@ public class ListaAsistencia extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
                     for (DataSnapshot asisteinfante:dataSnapshot.getChildren()) {
-                        InfanteAsiste infanteAsiste = asisteinfante.getValue(InfanteAsiste.class);
-
-                        lista.add(infanteAsiste);
+                        if(!asisteinfante.getKey().equals("Responsable")){
+                            InfanteAsiste infanteAsiste = asisteinfante.getValue(InfanteAsiste.class);
+                            lista.add(infanteAsiste);
+                        }
                     }
                     adaptadorAsistencia.notifyDataSetChanged();
                     cantidadI = lista.size();
@@ -142,6 +147,7 @@ public class ListaAsistencia extends AppCompatActivity {
                                     infanteAsiste.setAsisteMiercoles(false);
                                     infanteAsiste.setAsisteJueves(false);
                                     infanteAsiste.setAsisteViernes(false);
+                                    infanteAsiste.setEstadolunes(false);
                                     infanteAsiste.setNombreInfante(infante.getNombre()+" "+infante.getApellidos());
                                     infanteAsiste.setRegistroCivil(infante.getRegistro());
                                     //String nombreCompleto=infante.getNombre()+" "+infante.getApellidos();
@@ -188,6 +194,7 @@ public class ListaAsistencia extends AppCompatActivity {
                 } else {
                     Toast.makeText(getApplicationContext(), "Error de lectura de semanas, contacte al administrador", Toast.LENGTH_SHORT).show();
                 }
+                nombreSemana=spnSemanas.getItemAtPosition(0).toString();
             }
 
             @Override
@@ -217,6 +224,7 @@ public class ListaAsistencia extends AppCompatActivity {
                 } else {
                     Toast.makeText(getApplicationContext(), "Error de lectura de CDI, contacte al administrador", Toast.LENGTH_SHORT).show();
                 }
+                nombreCentro = spnCentros.getItemAtPosition(0).toString();
             }
 
             @Override

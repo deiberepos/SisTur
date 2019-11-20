@@ -44,6 +44,15 @@ public class AdaptadorListaAsistencia extends RecyclerView.Adapter<AdaptadorList
         holder.chkJueves.setChecked(infante.getAsisteJueves());
         holder.chkViernes.setChecked(infante.getAsisteViernes());
 
+        boolean estado = nombresInfantes.get(0).isEstadolunes();
+        if(estado){
+            holder.chkLunes.setEnabled(false);
+            holder.chkMartes.setEnabled(false);
+            holder.chkMiercoles.setEnabled(false);
+            holder.chkJueves.setEnabled(false);
+            holder.chkViernes.setEnabled(false);
+        }
+
         holder.chkLunes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
