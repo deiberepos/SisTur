@@ -23,7 +23,7 @@
         android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="40dp">
+        android:layout_marginTop="25dp">
         <TextView
             android:id="@+id/txtLogUsuario"
             style="@style/Subtitulo"
@@ -41,7 +41,7 @@
             android:id="@+id/txtLogClave"
             android:layout_width="230dp"
             android:layout_below="@id/editTextUsuario"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:text="@string/txtLoginClave"
             style="@style/Subtitulo"
          />
@@ -59,7 +59,7 @@
         android:id="@+id/botonIngreso"
         android:layout_width="220dp"
         android:layout_height="40dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/personalizar_button"
         android:text="@string/txtIngresar"
         android:textAllCaps="false"

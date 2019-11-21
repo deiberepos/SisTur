@@ -56,7 +56,7 @@ public class AdaptadorPlanAlimenticio extends RecyclerView.Adapter<AdaptadorPlan
         final PlanAlimenticio miAlimento= listadoAlimentos.get(posicion);
         holder.grupoA.setText(miAlimento.getGrupo());
         holder.codigoA.setText(miAlimento.getCodigo());
-        holder.nombreA.setText(miAlimento.getCodigo()+": "+miAlimento.getNombre());
+        holder.nombreA.setText(miAlimento.getNombre());
         holder.regionalA.setText(miAlimento.getRegional());
     }
 

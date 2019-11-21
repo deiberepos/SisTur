@@ -6,55 +6,61 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context=".MenuPrincipal">
-
-<androidx.cardview.widget.CardView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:cardCornerRadius="15dp"
-    android:layout_marginTop="10dp"
-    android:paddingBottom="10dp"
-    android:padding="10dp">
-
-    <RelativeLayout
-        android:id="@+id/relativo"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_gravity="center">
-
-        <ImageView
-            android:id="@+id/imagenOpcion"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:scaleType="centerInside"
-            android:adjustViewBounds="true"/>
-        <LinearLayout
-            android:id="@+id/layTextos"
-            android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/colorGrisClaro"
+        app:cardCornerRadius="10dp"
+        app:contentPadding="2dp"
+        android:paddingBottom="8dp">
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toEndOf="@+id/imagenOpcion"
-            android:orientation="vertical">
-            <TextView
-                android:id="@+id/txtTitulo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:fontFamily="sans-serif-black"
-                android:textSize="15sp"
-                />
-            <TextView
-                android:id="@+id/txtSubtitulo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:fontFamily="sans-serif-condensed"
-                android:textSize="15sp"
-                />
-        </LinearLayout>
-    </RelativeLayout>
-</androidx.cardview.widget.CardView>
+            app:cardCornerRadius="8dp"
+            app:cardElevation="3dp"
+            android:layout_gravity="center"
+            app:cardBackgroundColor="@color/colorBlanco">
+            <RelativeLayout
+                android:id="@+id/relativo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_gravity="center">
+                <ImageView
+                    android:id="@+id/imagenOpcion"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:scaleType="centerInside"
+                    android:adjustViewBounds="true"/>
+                <LinearLayout
+                    android:layout_marginLeft="8dp"
+                    android:id="@+id/layTextos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/imagenOpcion"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/txtTitulo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:fontFamily="sans-serif-black"
+                        android:textSize="15sp"
+                        />
+                    <TextView
+                        android:id="@+id/txtSubtitulo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:fontFamily="sans-serif-condensed"
+                        android:textSize="15sp"
+                        />
+                </LinearLayout>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
 </RelativeLayout>

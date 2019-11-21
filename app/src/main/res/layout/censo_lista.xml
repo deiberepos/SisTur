@@ -1,84 +1,82 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    app:cardBackgroundColor="@color/colorGrisClaro"
+    app:cardCornerRadius="10dp"
+    app:contentPadding="2dp"
+    android:paddingBottom="8dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginTop="4dp"
     tools:context=".CensoLista">
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <androidx.cardview.widget.CardView
-            app:cardCornerRadius="12dp"
-            android:layout_marginTop="5dp"
-            android:paddingBottom="10dp"
-            android:padding="10dp"
-            android:layout_width="0dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="3dp"
+        android:layout_gravity="center"
+        android:padding="5dp"
+        app:cardBackgroundColor="@color/colorBlanco">
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:background="@drawable/fondouser">
-            <RelativeLayout
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_gravity="center">
+            <ImageView
+                android:id="@+id/imgModificaCenso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/censo" />
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center">
-
-                <ImageView
-                    android:id="@+id/imgModificaCenso"
-                    android:layout_width="53dp"
-                    android:layout_height="62dp"
-                    android:layout_marginStart="18dp"
-                    android:src="@mipmap/usuarios" />
-                <LinearLayout
-                    android:layout_width="match_parent"
+                android:layout_toEndOf="@+id/imgModificaCenso"
+                android:layout_marginStart="10dp"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/txtRegistro"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="80dp"
-                    android:orientation="vertical">
-                    <TextView
-                        android:id="@+id/txtRegistro"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-condensed-medium"
-                        android:typeface="sans"
-                        android:textSize="15sp"
-                        android:textColor="@color/colorPrimarioOscuro"
-                        android:lineSpacingExtra="2dp"
-                        android:singleLine="true"
-                        android:text="@string/txtRegistroCivil" />
-                    <TextView
-                        android:id="@+id/txtNombreInfante"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-                        android:fontFamily="sans-serif-condensed-medium"
-                        android:typeface="sans"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorNegro"
-                        android:textSize="16sp"
-                        android:lines="2"
-                        android:singleLine="true"
-                        android:text="@string/txtNombreInfante"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:typeface="sans"
+                    android:textSize="15sp"
+                    android:textColor="@color/colorPrimarioOscuro"
+                    android:lineSpacingExtra="2dp"
+                    android:singleLine="true"
+                    android:text="@string/txtRegistroCivil" />
+                <TextView
+                    android:id="@+id/txtNombreInfante"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:typeface="sans"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorNegro"
+                    android:textSize="16sp"
+                    android:lines="2"
+                    android:singleLine="true"
+                    android:text="@string/txtNombreInfante"
+                />
+                <TextView
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:id="@+id/txtCentro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:typeface="sans"
+                    android:textColor="@color/colorRojo"
+                    android:textSize="14sp"
+                    android:textStyle="italic"
+                    android:singleLine="true"
+                    android:text="@string/txtNombreCDIH"
                     />
-                    <TextView
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:id="@+id/txtCentro"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-condensed-medium"
-                        android:typeface="sans"
-                        android:textColor="@color/colorRojo"
-                        android:textSize="14sp"
-                        android:textStyle="italic"
-                        android:singleLine="true"
-                        android:text="@string/txtNombreCDIH"
-                        />
-                </LinearLayout>
-            </RelativeLayout>
-        </androidx.cardview.widget.CardView>
-    </LinearLayout>
-</LinearLayout>
-
-
+            </LinearLayout>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.cardview.widget.CardView>
