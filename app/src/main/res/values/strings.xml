@@ -137,4 +137,5 @@
     <string name="txtNombreAtendido">Nombre Infante</string>
     <string name="txtTotalInfantes">Total Infantes</string>
     <string name="txtRegistroAsistencia">Registro asistencia semanal</string>
+    <string name="txtrecepcioninsumos">Recepción de Insumos</string>
 </resources>

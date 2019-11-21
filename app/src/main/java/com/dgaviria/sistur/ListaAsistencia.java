@@ -32,7 +32,7 @@ import java.util.GregorianCalendar;
 public class ListaAsistencia extends AppCompatActivity {
     int ano, mes, dia, cantidadI;
     TextView campoFechaAs, cantidadTotalI;
-    private String nombreCentro, nombreSemana, recibeRol, recibeUsuario, fechaReporte;
+    private static String nombreCentro, nombreSemana, recibeRol, recibeUsuario, fechaReporte;
     Spinner spnCentros, spnSemanas;
     private ArrayAdapter adaptadorCentros, adaptadorSemanas;
     RecyclerView recyclerAsistencia;
@@ -70,9 +70,8 @@ public class ListaAsistencia extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 nombreCentro = adapterView.getItemAtPosition(i).toString();
-
                 lecturaNombresInfantes(nombreCentro,"S01: enero 02 a enero 05");
-               // lecturaNombresInfantes(nombreCentro,nombreSemana);
+                //lecturaNombresInfantes(nombreCentro,nombreSemana);
             }
 
             @Override
@@ -80,8 +79,6 @@ public class ListaAsistencia extends AppCompatActivity {
 
             }
         });
-
-
 
         btnAprobar.setOnClickListener(new View.OnClickListener() {
             @Override
