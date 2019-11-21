@@ -24,11 +24,11 @@ public class AdaptadorListaProgramacion extends RecyclerView.Adapter<AdaptadorLi
         TextView txtNumero;
 
         public OpcionesViewHolder(View vistaItem){
-            super(vistaItem);
-            txtPrepara =vistaItem.findViewById(R.id.txtPreparaDiario);
-            txtNumero=vistaItem.findViewById(R.id.txtNumPrepara);
-        }
+        super(vistaItem);
+        txtPrepara =vistaItem.findViewById(R.id.txtPreparaDiario);
+        txtNumero=vistaItem.findViewById(R.id.txtNumPrepara);
     }
+}
 
     public AdaptadorListaProgramacion(Context contexto,List<Preparacion> listado){
         this.listadoDiario=listado;

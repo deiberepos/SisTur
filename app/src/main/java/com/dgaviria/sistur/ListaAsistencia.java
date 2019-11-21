@@ -71,8 +71,8 @@ public class ListaAsistencia extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 nombreCentro = adapterView.getItemAtPosition(i).toString();
 
-                //lecturaNombresInfantes(nombreCentro,"S01: enero 02 a enero 05");
-                lecturaNombresInfantes(nombreCentro,nombreSemana);
+                lecturaNombresInfantes(nombreCentro,"S01: enero 02 a enero 05");
+               // lecturaNombresInfantes(nombreCentro,nombreSemana);
             }
 
             @Override
