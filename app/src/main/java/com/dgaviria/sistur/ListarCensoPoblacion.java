@@ -109,7 +109,7 @@ public class ListarCensoPoblacion extends AppCompatActivity {
         miRecyclerCenso.setAdapter(adaptadorCenso);
     }
     private void referenciar(){
-        miRecyclerCenso=findViewById(R.id.listacenso);
+        miRecyclerCenso=findViewById(R.id.listaCenso);
         listaDeCenso=new ArrayList<>();
         btnCrearInfante =findViewById(R.id.btncrear);
         barraOpciones=findViewById(R.id.tb_opciones);

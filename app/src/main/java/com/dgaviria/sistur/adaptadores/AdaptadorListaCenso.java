@@ -1,6 +1,7 @@
 package com.dgaviria.sistur.adaptadores;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,7 +47,6 @@ public class AdaptadorListaCenso extends RecyclerView.Adapter<AdaptadorListaCens
             nombres.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
                     onItemClick.itemClick(miCenso,posicion);
                 }
             });
@@ -74,9 +74,9 @@ public class AdaptadorListaCenso extends RecyclerView.Adapter<AdaptadorListaCens
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CensoViewHolder holder, final int position){
+    public void onBindViewHolder(@NonNull CensoViewHolder holder, final int posicion){
         String nombreCompuesto;
-        Censo miCenso=listadoCenso.get(position);
+        Censo miCenso=listadoCenso.get(posicion);
         nombreCompuesto=miCenso.getNombre()+" "+miCenso.getApellidos();
         holder.registro.setText(miCenso.getRegistro());
         holder.nombres.setText(nombreCompuesto);
@@ -85,7 +85,21 @@ public class AdaptadorListaCenso extends RecyclerView.Adapter<AdaptadorListaCens
             holder.modifica.setImageResource(R.mipmap.femenino);
         else
             holder.modifica.setImageResource(R.mipmap.masculino);
-        holder.bind(listadoCenso.get(position),position,listener);
+        if (posicion+1==getItemCount()){
+            ajusteMargenInferior(holder.itemView,(int)(60* Resources.getSystem().getDisplayMetrics().density));
+        }
+        else{
+            ajusteMargenInferior(holder.itemView,0);
+        }
+        holder.bind(listadoCenso.get(posicion),posicion,listener);
+    }
+
+    private void ajusteMargenInferior(View itemView, int i) {
+        if (itemView.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) itemView.getLayoutParams();
+            params.setMargins(params.leftMargin, params.topMargin, params.rightMargin, i);
+            itemView.requestLayout();
+        }
     }
 
     @Override

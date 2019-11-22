@@ -1,6 +1,7 @@
 package com.dgaviria.sistur.adaptadores;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,8 +35,8 @@ public class AdaptadorListaAsistencia extends RecyclerView.Adapter<AdaptadorList
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final AsistenciaViewHolder holder, final int position) {
-        final InfanteAsiste infante = nombresInfantes.get(position);
+    public void onBindViewHolder(@NonNull final AsistenciaViewHolder holder, final int posicion) {
+        final InfanteAsiste infante = nombresInfantes.get(posicion);
         String nombre = infante.getNombreInfante();
         holder.nombre.setText(nombre);
         holder.chkLunes.setChecked(infante.getAsisteLunes());
@@ -57,40 +58,53 @@ public class AdaptadorListaAsistencia extends RecyclerView.Adapter<AdaptadorList
             @Override
             public void onClick(View view) {
                 if(holder.chkLunes.isChecked()){
-                    nombresInfantes.get(position).setAsisteLunes(true);
+                    nombresInfantes.get(posicion).setAsisteLunes(true);
                    // holder.chkLunes.setEnabled(false);
                 }
-                else {nombresInfantes.get(position).setAsisteLunes(false);}
+                else {nombresInfantes.get(posicion).setAsisteLunes(false);}
             }
         });
         holder.chkMartes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(holder.chkMartes.isChecked()){nombresInfantes.get(position).setAsisteMartes(true);}
-                else {nombresInfantes.get(position).setAsisteMartes(false);}
+                if(holder.chkMartes.isChecked()){nombresInfantes.get(posicion).setAsisteMartes(true);}
+                else {nombresInfantes.get(posicion).setAsisteMartes(false);}
             }
         });
         holder.chkMiercoles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(holder.chkMiercoles.isChecked()){nombresInfantes.get(position).setAsisteMiercoles(true);}
-                else {nombresInfantes.get(position).setAsisteMiercoles(false);}
+                if(holder.chkMiercoles.isChecked()){nombresInfantes.get(posicion).setAsisteMiercoles(true);}
+                else {nombresInfantes.get(posicion).setAsisteMiercoles(false);}
             }
         });
         holder.chkJueves.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(holder.chkJueves.isChecked()){nombresInfantes.get(position).setAsisteJueves(true);}
-                else {nombresInfantes.get(position).setAsisteJueves(false);}
+                if(holder.chkJueves.isChecked()){nombresInfantes.get(posicion).setAsisteJueves(true);}
+                else {nombresInfantes.get(posicion).setAsisteJueves(false);}
             }
         });
         holder.chkViernes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(holder.chkViernes.isChecked()){nombresInfantes.get(position).setAsisteViernes(true);}
-                else {nombresInfantes.get(position).setAsisteViernes(false);}
+                if(holder.chkViernes.isChecked()){nombresInfantes.get(posicion).setAsisteViernes(true);}
+                else {nombresInfantes.get(posicion).setAsisteViernes(false);}
             }
         });
+        if (posicion+1==getItemCount()){
+            ajusteMargenInferior(holder.itemView,(int)(64* Resources.getSystem().getDisplayMetrics().density));
+        }
+        else{
+            ajusteMargenInferior(holder.itemView,0);
+        }
+    }
+    private void ajusteMargenInferior(View itemView, int i) {
+        if (itemView.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) itemView.getLayoutParams();
+            params.setMargins(params.leftMargin, params.topMargin, params.rightMargin, i);
+            itemView.requestLayout();
+        }
     }
 
     @Override

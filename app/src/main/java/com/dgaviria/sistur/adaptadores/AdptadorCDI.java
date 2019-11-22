@@ -1,6 +1,7 @@
 package com.dgaviria.sistur.adaptadores;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,12 +34,11 @@ public class AdptadorCDI extends RecyclerView.Adapter <AdptadorCDI.CDIViewHolder
     public interface OnItemClick{
         void itemClick(CdiHcb centros, int posicion);
         void modificaClick(CdiHcb centros,int posicion);
-        void eliminaClick(CdiHcb centros,int posicion);
     }
     private OnItemClick listener;
 
     public static class CDIViewHolder extends RecyclerView.ViewHolder{
-        ImageView modifica, elimina;
+        ImageView modifica;
         TextView nombreCDI,ubicacion,tipo;
 
         public CDIViewHolder(View vistaItem){
@@ -74,14 +74,27 @@ public class AdptadorCDI extends RecyclerView.Adapter <AdptadorCDI.CDIViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AdptadorCDI.CDIViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull AdptadorCDI.CDIViewHolder holder, int posicion) {
         String tipo = "";
-        CdiHcb centro = listadoCentros.get(position);
+        CdiHcb centro = listadoCentros.get(posicion);
         holder.nombreCDI.setText(centro.getNombreCDI());
         holder.tipo.setText(centro.getTipo());
         holder.ubicacion.setText(centro.getUbicacion());
         holder.modifica.setImageResource(R.mipmap.cdi);
-        holder.bind(listadoCentros.get(position),position,listener);
+        holder.bind(listadoCentros.get(posicion),posicion,listener);
+        if (posicion+1==getItemCount()){
+            ajusteMargenInferior(holder.itemView,(int)(64* Resources.getSystem().getDisplayMetrics().density));
+        }
+        else{
+            ajusteMargenInferior(holder.itemView,0);
+        }
+    }
+    private void ajusteMargenInferior(View itemView, int i) {
+        if (itemView.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) itemView.getLayoutParams();
+            params.setMargins(params.leftMargin, params.topMargin, params.rightMargin, i);
+            itemView.requestLayout();
+        }
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.dgaviria.sistur.adaptadores;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,13 +73,26 @@ public class AdaptadorListaUsuarios extends RecyclerView.Adapter<AdaptadorListaU
 
 
     @Override
-    public void onBindViewHolder(UsuariosViewHolder holder, int position) {
-        Usuarios miUsuario=listadoUsuarios.get(position);
+    public void onBindViewHolder(UsuariosViewHolder holder, int posicion) {
+        Usuarios miUsuario=listadoUsuarios.get(posicion);
         holder.nombreU.setText(miUsuario.getUsuario());
         holder.nombres.setText(miUsuario.getNombre());
         holder.rol.setText(miUsuario.getRolusuario());
         holder.modifica.setImageResource(R.mipmap.usuarios);
-        holder.bind(listadoUsuarios.get(position),position,listener);
+        holder.bind(listadoUsuarios.get(posicion),posicion,listener);
+        if (posicion+1==getItemCount()){
+            ajusteMargenInferior(holder.itemView,(int)(68* Resources.getSystem().getDisplayMetrics().density));
+        }
+        else{
+            ajusteMargenInferior(holder.itemView,0);
+        }
+    }
+    private void ajusteMargenInferior(View itemView, int i) {
+        if (itemView.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) itemView.getLayoutParams();
+            params.setMargins(params.leftMargin, params.topMargin, params.rightMargin, i);
+            itemView.requestLayout();
+        }
     }
 
     @Override

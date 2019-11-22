@@ -1,6 +1,7 @@
 package com.dgaviria.sistur.adaptadores;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,8 +80,20 @@ public class AdaptadorListaRecibe extends RecyclerView.Adapter<AdaptadorListaRec
         holder.estadoBueno.setChecked(alimentoLista.getEstadoBueno());
         holder.estadoRegular.setChecked(alimentoLista.getEstadoRegular());
         holder.estadoMalo.setChecked(alimentoLista.getEstadoMalo());
+        if (posicion+1==getItemCount()){
+            ajusteMargenInferior(holder.itemView,(int)(68* Resources.getSystem().getDisplayMetrics().density));
+        }
+        else{
+            ajusteMargenInferior(holder.itemView,0);
+        }
     }
-
+    private void ajusteMargenInferior(View itemView, int i) {
+        if (itemView.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) itemView.getLayoutParams();
+            params.setMargins(params.leftMargin, params.topMargin, params.rightMargin, i);
+            itemView.requestLayout();
+        }
+    }
     @Override
     public int getItemCount() {
         return estadoEntregaLista.size();

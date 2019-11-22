@@ -1,6 +1,7 @@
 package com.dgaviria.sistur.adaptadores;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -69,9 +70,20 @@ public class AdaptadorListaCompra extends RecyclerView.Adapter<AdaptadorListaCom
             }
         };
         holder.valorEditar.addTextChangedListener(calculaTotal);
-
+        if (posicion+1==getItemCount()){
+            ajusteMargenInferior(holder.itemView,(int)(76* Resources.getSystem().getDisplayMetrics().density));
+        }
+        else{
+            ajusteMargenInferior(holder.itemView,0);
+        }
     }
-
+    private void ajusteMargenInferior(View itemView, int i) {
+        if (itemView.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) itemView.getLayoutParams();
+            params.setMargins(params.leftMargin, params.topMargin, params.rightMargin, i);
+            itemView.requestLayout();
+        }
+    }
     @Override
     public int getItemCount() {
         return editValorCompraLista.size();

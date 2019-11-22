@@ -65,7 +65,7 @@ public class GestionarCDIHCB extends AppCompatActivity {
                 startActivity(intent);
             }
 
-            @Override
+            /*@Override
             public void eliminaClick(CdiHcb centros, int posicion) {
 
                 final String nombreeli = centros.getNombreCDI();
@@ -87,7 +87,7 @@ public class GestionarCDIHCB extends AppCompatActivity {
                     }
                 });
                 builder.show();
-            }
+            }*/
         });
         miRecyclerCDI.setAdapter(adaptadorCentros);
 
